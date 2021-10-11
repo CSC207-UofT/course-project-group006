@@ -11,6 +11,10 @@ public abstract class User{
         this.email = email;
     }
 
+    public User(){
+        this.username = "guest";
+    }
+
     public String getUsername() {
         return username;
     }
