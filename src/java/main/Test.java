@@ -2,17 +2,17 @@ import QuestionTypes.Question;
 
 import java.util.ArrayList;
 
-public class Test {
+public abstract class Test {
     private String name;
     private int timeLimit;
     private ArrayList<Question> questions;
     private String author;
     private int Id;
     private int price;
-    public Test(String name, int timeLimit, String author, int price, ArrayList<Question>questions){
+    public Test(String name, int timeLimit, String author, int price){
         this.name=name;
         this.timeLimit=timeLimit;
-        this.questions=questions;
+        this.questions=new ArrayList<>();
         this.author=author;
         this.price=price;
         this.Id=IDcreater.creat();

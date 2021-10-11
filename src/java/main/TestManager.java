@@ -15,8 +15,12 @@ public class TestManager {
     public TestManager(){
         allTest=new HashMap<>();
     }
-    public void creatTest(String name, int timeLimit, String author, int price){
-        Test test = new Test(name,timeLimit,author,price,new ArrayList<>());
+    public void creatExame(String name, int timeLimit, String author, int price){
+        Test test = new Exam(name,timeLimit,author,price);
+        allTest.put(test.getId(),test);
+    }
+    public void creatQuiz(String name, int timeLimit, String author, int price){
+        Test test = new Quiz(name,timeLimit,author,price);
         allTest.put(test.getId(),test);
     }
     public void addQueststion(Test test, Question q){
