@@ -1,4 +1,4 @@
-package java.main;
+//package java.main;
 
 public class Student {
 }

@@ -1,5 +1,48 @@
-public class Test {
+import QuestionTypes.Question;
 
+import java.util.ArrayList;
+
+public class Test {
+    private String name;
+    private int timeLimit;
+    private ArrayList<Question> questions;
+    private String author;
+    private int Id;
+    private int price;
+    public Test(String name, int timeLimit, String author, int price, ArrayList<Question>questions){
+        this.name=name;
+        this.timeLimit=timeLimit;
+        this.questions=questions;
+        this.author=author;
+        this.price=price;
+        this.Id=IDcreater.creat();
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    //public void addQuestion(Question q){
+      //  questions.add(q);
+    //}
+    //public void removeQuestion(Question q){
+      //  questions.remove(q);
+    //}
+    //public int score(ArrayList<String> answer){
+      //  int result = 0;
+        //for(int i=0;i<questions.size();i++){
+    //        result+=questions.get(i).score(answer.get(i));
+      //  }
+        //return result;
+    //}
+
+    public ArrayList<Question> getQuestions(){
+        return this.questions;
+    }
 
 }
 
