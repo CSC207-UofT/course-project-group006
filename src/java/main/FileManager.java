@@ -14,6 +14,36 @@ public class FileManager {
     public FileManager() {
     }
 
+    public List<User> readUsers(String fileName){
+        List<User> result = new ArrayList<>();
+
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] splited = line.split("-");
+                User tempU;
+                if(splited[3].equals(Constant.STUDENT)){
+                    tempU = new Student(splited[0],splited[1], splited[2]);
+                }
+                else {
+                    tempU = new Teacher(splited[0],splited[1], splited[2]);
+                }
+                result.add(tempU);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            fileReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found");
+        } catch (IOException e) {
+            System.out.println("IO Exception");
+        }
+        return result;
+    }
+
     public List<Question> readQuestions(String fileName) {
         List<Question> result = new ArrayList<>();
         try {
@@ -23,9 +53,6 @@ public class FileManager {
             String line = bufferedReader.readLine();
             while (line != null) {
                 String[] splited = line.split("-");
-                for(String s:splited){
-                    System.out.println(s);
-                }
                 Question tempQ = new Question(splited[0], splited[1], Integer.parseInt(splited[2]));//check error
                 result.add(tempQ);
                 line = bufferedReader.readLine();
@@ -70,6 +97,5 @@ public class FileManager {
         }
         return result;
     }
-
 
 }
