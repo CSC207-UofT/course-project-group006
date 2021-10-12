@@ -4,7 +4,7 @@ public class Guest extends User{
     private ArrayList<String> wordLearnt;
 
     public Guest() {
-        this.wordLearnt = null;
+        this.wordLearnt = new ArrayList<>();
     }
 
     public ArrayList<String> getWordLearnt() {

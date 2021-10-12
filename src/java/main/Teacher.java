@@ -8,9 +8,9 @@ public class Teacher extends User{
 
     public Teacher(String username, String password, String email) {
         super(username, password, email);
-        this.adPurchased = null;
-        this.groupCreated= null;
-        this.ownedTest = null;
+        this.adPurchased = new ArrayList<>();
+        this.groupCreated= new ArrayList<>();
+        this.ownedTest = new ArrayList<>();
     }
 
     public ArrayList<String> getGroupCreated() {
