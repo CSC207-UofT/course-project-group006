@@ -8,9 +8,9 @@ public class Student extends User {
 
     public Student(String username, String password, String email) {
         super(username, password, email);
-        this.joinedGroup  = null;
+        this.joinedGroup  = new ArrayList<>();
         this.level = 0;
-        this.wordLearnt = null;
+        this.wordLearnt = new ArrayList<>();
     }
 
     public int getLevel() {
