@@ -1,13 +1,45 @@
+import QuestionTypes.Question;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class FileManager {
 
 
-    public FileManager() {}
+    public FileManager() {
+    }
+
+    public List<Question> readQuestions(String fileName) {
+        List<Question> result = new ArrayList<>();
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] splited = line.split("-");
+                for(String s:splited){
+                    System.out.println(s);
+                }
+                Question tempQ = new Question(splited[0], splited[1], Integer.parseInt(splited[2]));//check error
+                result.add(tempQ);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            fileReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found");
+        } catch (IOException e) {
+            System.out.println("IO Exception");
+        }
+        return result;
+    }
+
 
     public HashMap<Word, Integer> readWordFile(String fileName) {
         HashMap<Word, Integer> result = new HashMap<>();
@@ -33,7 +65,7 @@ public class FileManager {
             fileReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("IO Exception");
         }
         return result;
