@@ -6,5 +6,6 @@ public class Constant {
     public static final int ENGLISH = 0;
     public static final int CHINESE = 1;
 
-
+    public static final String STUDENT = "STUDENT";
+    public static final String TEACHER = "TEACHER";
 }
