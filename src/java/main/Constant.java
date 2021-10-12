@@ -1,0 +1,10 @@
+import java.util.ArrayList;
+
+public class Constant {
+
+    public static final int TOTALLAN = 10;
+    public static final int ENGLISH = 0;
+    public static final int CHINESE = 1;
+
+
+}
