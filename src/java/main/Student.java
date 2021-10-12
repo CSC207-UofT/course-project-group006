@@ -25,4 +25,6 @@ public class Student extends User {
     public ArrayList<String> getWordLearnt() {
         return wordLearnt;
     }
+
+
 }
