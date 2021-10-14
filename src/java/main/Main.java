@@ -42,13 +42,27 @@ public class Main extends User{
 
         if (ide.equals("T")){
             System.out.println("Please enter the thing you want to do. Enter 'UT' for uploading " +
-                    "tests, 'SS' for seeing assigned students, or 'SC' for seeing the created tests");
+                    "tests, 'AS' for seeing assigned students, or 'CT' for seeing the created tests");
             Scanner want = new Scanner(System.in);
             String wants = want.nextLine();
-            if (wants.equals("UT")){}
-            if (wants.equals("SS")){}
-            if (wants.equals("SC")){
-                System.out.println();
+            if (wants.equals("UT")){
+
+                //assign test id to student
+                System.out.println("Do you want to mark the test automatically? Enter 'Y' or 'N'");
+                Scanner mark = new Scanner(System.in);
+                String marks = mark.nextLine();
+                if (marks.equals("Y")){
+
+                }
+                if (marks.equals("N")){
+
+                }
+            }
+            if (wants.equals("AS")){
+                System.out.println(); //什么什么.getGroupCreated in Teacher.java
+            }
+            if (wants.equals("CT")){
+                System.out.println(); //什么什么.getOwnedTest in Teacher.java
             }
         }
     }
