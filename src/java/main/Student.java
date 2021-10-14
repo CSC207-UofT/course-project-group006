@@ -2,13 +2,13 @@ import java.util.ArrayList;
 
 public class Student extends User {
 
-    private ArrayList<String> joinedGroup;
+    //private ArrayList<String> joinedGroup;
     private int level;
-    private ArrayList<String> wordLearnt;
+    private ArrayList<Word> wordLearnt;
 
     public Student(String username, String password, String email) {
         super(username, password, email);
-        this.joinedGroup  = new ArrayList<>();
+        //this.joinedGroup  = new ArrayList<>();
         this.level = 0;
         this.wordLearnt = new ArrayList<>();
     }
@@ -17,13 +17,22 @@ public class Student extends User {
         return level;
     }
 
-    public ArrayList<String> getJoinedGroup() {
-        return joinedGroup;
+    //public ArrayList<String> getJoinedGroup() {
+    //    return joinedGroup;
+    //}
+    public boolean learnWord(Word w){
+        wordLearnt.add(w);
+        return true;
+    }
+    public boolean frogetWord(Word w){
+        return wordLearnt.remove(w);
     }
 
-    public ArrayList<String> getWordLearnt() {
-        return wordLearnt;
-    }
+
+
+    //public ArrayList<String> getWordLearnt() {
+       // return wordLearnt;
+    //}
 
 
 }

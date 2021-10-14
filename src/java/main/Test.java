@@ -6,10 +6,10 @@ public abstract class Test {
     private String name;
     private int timeLimit;
     private ArrayList<Question> questions;
-    private String author;
+    private Teacher author;
     private int Id;
     private int price;
-    public Test(String name, int timeLimit, String author, int price){
+    public Test(String name, int timeLimit, Teacher author, int price){
         this.name=name;
         this.timeLimit=timeLimit;
         this.questions=new ArrayList<>();
@@ -17,7 +17,9 @@ public abstract class Test {
         this.price=price;
         this.Id=IDcreater.creat();
     }
-
+    public Teacher getAuthor(){
+        return author;
+    }
     public int getPrice() {
         return price;
     }

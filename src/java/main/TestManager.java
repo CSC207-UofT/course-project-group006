@@ -41,6 +41,14 @@ public class TestManager {
     public Test getTest(int Id){
         return allTest.get(Id);
     }
-
+    public ArrayList<Test> getOwnedTest(Teacher t){
+        ArrayList<Test> result = new ArrayList<Test>();
+        for(Test test :allTest.values()){
+            if(test.getAuthor().equals(t)){
+                result.add(test);
+            }
+        }
+        return result;
+    }
 
 }
