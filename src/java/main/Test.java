@@ -25,7 +25,6 @@ public abstract class Test {
     public int getId() {
         return Id;
     }
-
     //public void addQuestion(Question q){
       //  questions.add(q);
     //}
