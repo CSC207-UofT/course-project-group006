@@ -38,6 +38,9 @@ public class TestManager {
         return result;
 
     }
+    public Test getTest(int Id){
+        return allTest.get(Id);
+    }
 
 
 }
