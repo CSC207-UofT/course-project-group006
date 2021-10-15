@@ -19,7 +19,7 @@ public class TestManager {
         Test test = new Exam(name,timeLimit,author,price);
         allTest.put(test.getId(),test);
     }
-    public void creatQuiz(String name, int timeLimit, String author, int price){
+    public void creatQuiz(String name, int timeLimit, Teacher author, int price){
         Test test = new Quiz(name,timeLimit,author,price);
         allTest.put(test.getId(),test);
     }
