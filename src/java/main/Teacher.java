@@ -5,6 +5,7 @@ public class Teacher extends User{
     private ArrayList<String> groupCreated;
     private ArrayList<String> adPurchased;
     private ArrayList<Test> ownedTest;
+    public static final Teacher PLATFORM=new Teacher("PLATFORM","","darcy.wang@mail.utoronto.ca");
 
     public Teacher(String username, String password, String email) {
         super(username, password, email);
