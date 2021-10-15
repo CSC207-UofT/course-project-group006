@@ -16,8 +16,8 @@ public class Quiz extends Test{
             this.questions.add(new Question(w.getSpelling(), ans.toString(), w.getLevel()));
         }
     }
-    public static Quiz dinstoic(List<Word> input){
-        Quiz q =  new Quiz("dinstoic", input.size()*3,Teacher.PLATFORM,0);
+    public static Quiz diagnostic(List<Word> input){
+        Quiz q =  new Quiz("diagnostic", input.size()*3,Teacher.PLATFORM,0);
         q.autoGenerateTranslationQuestion(input);
         return q;
     }
