@@ -11,7 +11,9 @@ public class Quiz extends Test{
         for(Word w:input){
             StringBuilder ans = new StringBuilder();
             for(String s: w.getMeaning()){
-                ans.append(s).append(",");
+                if(s != null) {
+                    ans.append(s).append(",");
+                }
             }
             this.questions.add(new Question(w.getSpelling(), ans.toString(), w.getLevel()));
         }

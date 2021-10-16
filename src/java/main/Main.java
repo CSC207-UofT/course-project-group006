@@ -1,5 +1,6 @@
 import QuestionTypes.Question;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +13,7 @@ public class Main extends User{
     public Main(){
         testManager=new TestManager();
         userGroupManager=new UserGroupManager();
-        wordManager=new WordManager("../Files/Words");
+        wordManager=new WordManager(System.getProperty("user.dir")+"\\src\\java\\main\\Files\\Words");
         fileManager=new FileManager();
     }
 
@@ -82,26 +83,31 @@ public class Main extends User{
 
 
     }
-    public void presentDiagnostic(Student s){
+    public int presentDiagnostic(Student s){
+        File file= new File(System.getProperty("user.dir")+"\\src\\java\\main\\Files\\Words");
+        System.out.println(file.exists());
         List<Word> w = new ArrayList<>();
         for(int i=0; i<Constant.TOTAL_LEVEL;i++){
+
             w.addAll(wordManager.generateList(i,(20/Constant.TOTAL_LEVEL)));
         }
         Quiz q =Quiz.diagnostic(w);
         ArrayList<Question> questions  = q.getQuestions();
         String[] answers = new String[q.getQuestions().size()];
         for(int i=0; i<questions.size();i++){
-            System.out.println(questions.get(i).getQuestion());
+            System.out.println(questions.get(i).getQuestion()+" answer is "+questions.get(i).getAnswer());
             Scanner ans = new Scanner(System.in);
             answers[i]= ans.nextLine();
         }
         Answer a = new Answer(q,s,answers);
-        System.out.println(levelByScore(a.Autograde()));
-
+        int level = levelByScore(a.Autograde());
+        System.out.println("your level is"+level);
+        return level;
     }
     public int levelByScore(int[] score){
         int result = 0;
         for (int j : score) {
+            System.out.println(j);
             result += j;
         }
         return result;
