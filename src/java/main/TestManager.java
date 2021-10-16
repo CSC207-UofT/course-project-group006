@@ -15,7 +15,7 @@ public class TestManager {
     public TestManager(){
         allTest=new HashMap<>();
     }
-    public void creatExame(String name, int timeLimit, String author, int price){
+    public void creatExame(String name, int timeLimit, Teacher author, int price){
         Test test = new Exam(name,timeLimit,author,price);
         allTest.put(test.getId(),test);
     }
@@ -42,7 +42,7 @@ public class TestManager {
         return allTest.get(Id);
     }
     public ArrayList<Test> getOwnedTest(Teacher t){
-        ArrayList<Test> result = new ArrayList<Test>();
+        ArrayList<Test> result = new ArrayList<>();
         for(Test test :allTest.values()){
             if(test.getAuthor().equals(t)){
                 result.add(test);

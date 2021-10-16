@@ -1,5 +1,8 @@
+import QuestionTypes.Question;
 import com.sun.org.apache.bcel.internal.generic.GOTO;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main extends User{
@@ -17,7 +20,7 @@ public class Main extends User{
     public Main(String username, String password, String email){
         super(username, password, email);
     }
-    public void main(String[] args) {
+    public void main() {
         System.out.println("Are you a teacher or student? Enter 'T' for teacher or 'S' for student");
         Scanner identity = new Scanner(System.in);
         String ide= identity.nextLine();
@@ -79,6 +82,33 @@ public class Main extends User{
         }
 
 
+    }
+    public void presentDiagnostic(Student s){
+        List<Word> w = new ArrayList<>();
+        for(int i=0; i<Constant.TOTAL_LEVEL;i++){
+            w.addAll(wordManager.generateList(i,(20/Constant.TOTAL_LEVEL)));
+        }
+        Quiz q =Quiz.diagnostic(w);
+        ArrayList<Question> questions  = q.getQuestions();
+        String[] answers = new String[q.getQuestions().size()];
+        for(int i=0; i<questions.size();i++){
+            System.out.println(questions.get(i).getQuestion());
+            Scanner ans = new Scanner(System.in);
+            answers[i]= ans.nextLine();
+        }
+        Answer a = new Answer(q,s,answers);
+        System.out.println(levelByScore(a.Autograde()));
+
+    }
+    public int levelByScore(int[] score){
+        int result = 0;
+        for (int j : score) {
+            result += j;
+        }
+        return result;
+    }
+    public static void main(String[] args){
+        new Main().presentDiagnostic(new Student("","",""));
     }
 
 }

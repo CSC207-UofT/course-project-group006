@@ -1,13 +1,16 @@
 package QuestionTypes;
 
 public class Question {
-    public String question;
-    public String answer;
-    public int marks;
+    private String question;
+    private String answer;
+    private int marks;
     public Question(String question,String answer,int mark){
         this.question=question;
         this.answer=answer;
         this.marks = mark;
+    }
+    public String getQuestion(){
+        return this.question;
     }
     public int score(String ans){
         if(answer.contains(ans)){
@@ -15,4 +18,5 @@ public class Question {
         }
         return 0;
     }
+
 }
