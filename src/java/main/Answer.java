@@ -21,5 +21,8 @@ public class Answer {
         return result;
 
     }
+    public Test getAbout(){
+        return about;
+    }
 
 }
