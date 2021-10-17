@@ -14,7 +14,7 @@ public class MainController{// extends User{
     public MainController(){
         testManager=new TestManager();
         userGroupManager=new UserGroupManager();
-        wordManager=new WordManager(System.getProperty("user.dir")+"\\src\\java\\main\\Files\\Words");
+        wordManager=new WordManager(System.getProperty("user.dir")+"src/java/main/Files/Words");
         fileManager=new FileManager();
         userManager=new UserManager(new ArrayList<>());
     }
@@ -102,7 +102,7 @@ public class MainController{// extends User{
 
     }
     public int presentDiagnostic(String s){
-        File file= new File(System.getProperty("user.dir")+"\\src\\java\\main\\Files\\Words");
+        File file= new File(System.getProperty("user.dir")+"src/java/main/Files/Words");
         System.out.println(file.exists());
         List<Word> w = new ArrayList<>();
         for(int i=0; i<Constant.TOTAL_LEVEL;i++){

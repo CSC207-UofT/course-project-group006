@@ -38,7 +38,7 @@ public class UserManager {
                 return a.toString();
             }
         }
-        return "There is no user with name" + name;
+        return "There is no user with name " + name;
     }
 
     public boolean loginWithUsername(String name, String password){

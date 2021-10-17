@@ -24,6 +24,7 @@ public class Student extends User {
         wordLearnt.add(w);
         return true;
     }
+
     public boolean frogetWord(Word w){
         return wordLearnt.remove(w);
     }
