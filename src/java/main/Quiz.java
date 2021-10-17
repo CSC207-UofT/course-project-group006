@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Quiz extends Test{
-    public Quiz(String name, int timeLimit, Teacher author, int price){
+    public Quiz(String name, int timeLimit, String author, int price){
         super(name,timeLimit, author, price);
     }
     private void autoGenerateTranslationQuestion(List<Word> input){
@@ -19,7 +19,7 @@ public class Quiz extends Test{
         }
     }
     public static Quiz diagnostic(List<Word> input){
-        Quiz q =  new Quiz("diagnostic", input.size()*3,Teacher.PLATFORM,0);
+        Quiz q =  new Quiz("diagnostic", input.size()*3,Teacher.PLATFORMNAME,0);
         q.autoGenerateTranslationQuestion(input);
         return q;
     }
