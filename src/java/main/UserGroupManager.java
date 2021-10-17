@@ -25,13 +25,16 @@ public class UserGroupManager {
         groups.put(g.GetID(),g);
         return true;
     }
-    public ArrayList<Group> createdBy(String t){
-        ArrayList<Group> result = new ArrayList<>();
+    public ArrayList<Integer> createdBy(String t){
+        ArrayList<Integer> result = new ArrayList<>();
         for(Group g : groups.values()){
             if(g.getTeacher().equals(t)){
-                result.add(g);
+                result.add(g.GetID());
             }
         }
         return result;
+    }
+    public String getNameOfGroup(int i){
+        return groups.get(i).getName();
     }
 }

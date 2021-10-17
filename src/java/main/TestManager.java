@@ -56,5 +56,8 @@ public class TestManager {
         }
         return result;
     }
+    public static Quiz diagnostic(List<Word> input){
+        return Quiz.diagnostic(input);
+    }
 
 }
