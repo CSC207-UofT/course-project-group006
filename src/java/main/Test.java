@@ -6,10 +6,10 @@ public abstract class Test {
     protected String name;
     protected int timeLimit;
     protected ArrayList<Question> questions;
-    protected Teacher author;
+    protected String author;
     protected int Id;
     protected int price;
-    public Test(String name, int timeLimit, Teacher author, int price){
+    public Test(String name, int timeLimit, String author, int price){
         this.name=name;
         this.timeLimit=timeLimit;
         this.questions=new ArrayList<>();
@@ -17,7 +17,7 @@ public abstract class Test {
         this.price=price;
         this.Id=IDcreater.creat();
     }
-    public Teacher getAuthor(){
+    public String getAuthor(){
         return author;
     }
     public int getPrice() {
@@ -26,6 +26,9 @@ public abstract class Test {
 
     public int getId() {
         return Id;
+    }
+    public String getName(){
+        return this.name;
     }
     //public void addQuestion(Question q){
       //  questions.add(q);
@@ -40,7 +43,22 @@ public abstract class Test {
       //  }
         //return result;
     //}
-
+    public boolean addQuestion(Question q){
+        this.questions.add(q);
+        return true;
+    }
+    public boolean deleteQuestion(String q){
+        for(Question que:questions){
+            if(que.getQuestion().equals(q)){
+                questions.remove(que);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean deleteQuestion(int i){
+        return questions.remove(i)!=null;
+    }
     public ArrayList<Question> getQuestions(){
         return this.questions;
     }

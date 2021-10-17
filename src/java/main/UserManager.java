@@ -8,14 +8,16 @@ public class UserManager {
         userList = userList1;
     }
 
-    public void createStudent(String name, String password, String email){
+    public String createStudent(String name, String password, String email){
         Student s1 = new Student(name, password, email);
         userList.add(s1);
+        return name;
     }
 
-    public void createTeacher(String name, String password, String email){
+    public String createTeacher(String name, String password, String email){
         Student t1 = new Student(name, password, email);
         userList.add(t1);
+        return name;
     }
 
     public void resetPassword(User u1, String newPassword){
