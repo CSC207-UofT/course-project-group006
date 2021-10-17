@@ -70,7 +70,7 @@ public class MainController{// extends User{
             }else if (ide.equals("T")){
                 currentUser=userManager.createTeacher(names,passwords,emails);
                 System.out.println("Please enter the thing you want to do. Enter 'CT' for creating " +
-                        "tests, 'AS' for seeing assigned students, or 'ST' for seeing the created tests");
+                        "tests, 'CG' for crate group, or 'ST' for seeing the created tests"+"'SG' for seeing created group");
                 Scanner want = new Scanner(System.in);
                 String wants = want.nextLine();
                 if (wants.equals("CT")){
@@ -95,15 +95,17 @@ public class MainController{// extends User{
                         System.out.println("Do you like to add more question?, enter y for yes, other keys for no");
                         entering_question=new Scanner(System.in).nextLine().equals("y");
                     }
-                    //if (marks.equals("Y")){
-
-                    //}
-                    //if (marks.equals("N")){
-
-                    //}
                 }
-                if (wants.equals("AS")){
-                    System.out.println(); //什么什么.getGroupCreated in Teacher.java
+                if (wants.equals("CG")){
+                    System.out.println("what is the name?"); //什么什么.getGroupCreated in Teacher.java
+                    String n = new Scanner(System.in).nextLine();
+                    userGroupManager.creatGroup(currentUser,n);
+                }
+                if (wants.equals("SG")){
+                    List<Integer> groups = userGroupManager.createdBy(currentUser);
+                    for(int i:groups){
+                        System.out.println(userGroupManager.getNameOfGroup(i));
+                    }
                 }
                 if (wants.equals("ST")){
                     List<String> l=testManager.getOwnedTest(currentUser);
