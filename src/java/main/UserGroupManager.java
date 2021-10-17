@@ -15,10 +15,12 @@ public class UserGroupManager {
 
 
 
-    public boolean addStudentToGroup(String s, Group g){
-        //s.getJoinedGroup().add(g.getName());
-        g.addStudent(s);
-        return true;
+    public boolean addStudentToGroup(String s, Integer group){
+        return groups.get(group).addStudent(s);
+    }
+    public boolean removeStudentFromGroup(String s,Integer group){
+        return groups.get(group).removeStudent(s);
+
     }
     public boolean creatGroup(String t, String name){
         Group g = new Group(t,name);
@@ -36,5 +38,21 @@ public class UserGroupManager {
     }
     public String getNameOfGroup(int i){
         return groups.get(i).getName();
+    }
+    public HashMap<Integer,String> getAllGroup(){
+        HashMap<Integer,String> result = new HashMap<>();
+        for(Integer i :groups.keySet()){
+            result.put(i,groups.get(i).getName());
+        }
+        return result;
+    }
+    public HashMap<Integer,String> getJoinedGroup(String student){
+        HashMap<Integer,String> result = new HashMap<>();
+        for(Integer i :groups.keySet()){
+            if(groups.get(i).hasStudent(student)) {
+                result.put(i, groups.get(i).getName());
+            }
+        }
+        return result;
     }
 }

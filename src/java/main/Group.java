@@ -54,5 +54,23 @@ public class Group {
         }
         return false;
     }
+    public boolean hasStudent(String student){
+        for (String s : students) {
+            if (s.equals(student)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean removeStudent(String student){
+        for (int i = 0; i < students.length; i++) {
+            if (students[i].equals(student)) {
+                students[i] = null;
+                //student.getJoinedGroup().add(name);
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
