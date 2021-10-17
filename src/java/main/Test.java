@@ -3,12 +3,12 @@ import QuestionTypes.Question;
 import java.util.ArrayList;
 
 public abstract class Test {
-    private String name;
-    private int timeLimit;
-    private ArrayList<Question> questions;
-    private Teacher author;
-    private int Id;
-    private int price;
+    protected String name;
+    protected int timeLimit;
+    protected ArrayList<Question> questions;
+    protected Teacher author;
+    protected int Id;
+    protected int price;
     public Test(String name, int timeLimit, Teacher author, int price){
         this.name=name;
         this.timeLimit=timeLimit;
