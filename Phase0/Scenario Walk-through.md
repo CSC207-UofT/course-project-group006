@@ -1,6 +1,6 @@
-#Scenario Walk-through
+# Scenario Walk-through
 
-##Scenario 1 Student
+## Scenario 1 Student
 
 A user opens the application and chooses the user to be a student
 The student is asked to identify if she/he is a member
@@ -8,7 +8,7 @@ If yes, then login with Username and Password, if no, then sign up with Email an
 When the student logins to the platform for the first time, the system assigns a Diagnostics to test the level of the student
 After the Diagnostics, the student gets a score and a level
 
-##Scenario 2 Teacher
+## Scenario 2 Teacher
 A user opens the application and chooses the user to be a teacher
 The teacher is asked to identify if she/he is a member
 If yes, then login with Username and Password, if no, then sign up with Email and set Username and Password
