@@ -13,7 +13,7 @@ public class Question {
         return this.question;
     }
     public int score(String ans){
-        if(answer.contains(ans)){
+        if(!ans.equals("") &answer.contains(ans)){
             return marks;
         }
         return 0;

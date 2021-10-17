@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main extends User{
+public class MainController extends User{
     public TestManager testManager;
     public UserGroupManager userGroupManager;
     public WordManager wordManager;
     public FileManager fileManager;
-    public Main(){
+    public MainController(){
         testManager=new TestManager();
         userGroupManager=new UserGroupManager();
         wordManager=new WordManager(System.getProperty("user.dir")+"\\src\\java\\main\\Files\\Words");
         fileManager=new FileManager();
     }
 
-    public Main(String username, String password, String email){
+    public MainController(String username, String password, String email){
         super(username, password, email);
     }
     public void main() {
@@ -113,7 +113,7 @@ public class Main extends User{
         return result;
     }
     public static void main(String[] args){
-        new Main().presentDiagnostic(new Student("","",""));
+        new MainController().presentDiagnostic(new Student("","",""));
     }
 
 }
