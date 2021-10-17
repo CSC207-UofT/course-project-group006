@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Answer {
-    private Student student;
+    private String student;
     private Test about;
     private String[] answer;
-    public Answer(Test about, Student student, String[] answer){
+    public Answer(Test about, String student, String[] answer){
         this.about=about;
         this.student=student;
         this.answer=answer;

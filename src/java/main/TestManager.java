@@ -15,21 +15,25 @@ public class TestManager {
     public TestManager(){
         allTest=new HashMap<>();
     }
-    public void creatExame(String name, int timeLimit, Teacher author, int price){
+    public void creatExame(String name, int timeLimit, String author, int price){
         Test test = new Exam(name,timeLimit,author,price);
         allTest.put(test.getId(),test);
     }
-    public void creatQuiz(String name, int timeLimit, Teacher author, int price){
+    public void creatQuiz(String name, int timeLimit, String author, int price){
         Test test = new Quiz(name,timeLimit,author,price);
         allTest.put(test.getId(),test);
     }
-    public void addQueststion(Test test, Question q){
-        test.getQuestions().add(q);
+    public boolean addQuestion(int test, String question,String answer,int mark){
+        return getTest(test).addQuestion(new Question(question,answer,mark));
     }
-    public void removeQueststion(Test test, Question q){
-        test.getQuestions().remove(q);
+    public boolean removeQuestion(int test, String q){
+        return getTest(test).deleteQuestion(q);
     }
-    public int grade(Test t, List<String> answers){
+    public boolean removeQuestion(int test, int q){
+        return getTest(test).deleteQuestion(q);
+    }
+    public int grade(int test, List<String> answers){
+        Test t = getTest(test);
         ArrayList<Question> q = t.getQuestions();
         int result = 0;
         for(int i=0;i<q.size();i++){
@@ -38,14 +42,14 @@ public class TestManager {
         return result;
 
     }
-    public Test getTest(int Id){
+    private Test getTest(int Id){
         return allTest.get(Id);
     }
-    public ArrayList<Test> getOwnedTest(Teacher t){
-        ArrayList<Test> result = new ArrayList<>();
+    public ArrayList<String> getOwnedTest(String t){
+        ArrayList<String> result = new ArrayList<>();
         for(Test test :allTest.values()){
             if(test.getAuthor().equals(t)){
-                result.add(test);
+                result.add(test.getName());
             }
         }
         return result;
