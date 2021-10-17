@@ -10,7 +10,7 @@ An educational website that provides a platform for teachers and students to col
 ## Project Architechture
 
 ### Frameworks and Drivers: 
-FileManager, MainController
+FileManager, MainController(for now we use the terminal as UI, while in future, we will add a new UI)
 ### Interface Adapters: 
 MainController
 ### Application Business Rules: 
