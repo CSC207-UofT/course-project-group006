@@ -69,27 +69,43 @@ public class MainController{// extends User{
                 System.out.println("Your score is " +mark+ " and your level of study is "+mark/20);
             }else if (ide.equals("T")){
                 currentUser=userManager.createTeacher(names,passwords,emails);
-                System.out.println("Please enter the thing you want to do. Enter 'UT' for uploading " +
-                        "tests, 'AS' for seeing assigned students, or 'CT' for seeing the created tests");
+                System.out.println("Please enter the thing you want to do. Enter 'CT' for creating " +
+                        "tests, 'AS' for seeing assigned students, or 'ST' for seeing the created tests");
                 Scanner want = new Scanner(System.in);
                 String wants = want.nextLine();
-                if (wants.equals("UT")){
+                if (wants.equals("CT")){
 
                     //assign test id to student
-                    System.out.println("Do you want to mark the test automatically? Enter 'Y' or 'N'");
-                    Scanner mark = new Scanner(System.in);
-                    String marks = mark.nextLine();
-                    if (marks.equals("Y")){
-
+                    System.out.println("What it the name for the test?");
+                    String n = new Scanner(System.in).nextLine();
+                    System.out.println("What it the time limit for the test?");
+                    int t = Integer.parseInt(new Scanner(System.in).nextLine());
+                    System.out.println("What it the name for the test?");
+                    int p = Integer.parseInt(new Scanner(System.in).nextLine());
+                    int currentTest = testManager.creatExame(n,t,currentUser,p);
+                    boolean entering_question=true;
+                    while (entering_question){
+                        System.out.println("what is the question?");
+                        String q = new Scanner(System.in).nextLine();
+                        System.out.println("what is the answer?");
+                        String a = new Scanner(System.in).nextLine();
+                        System.out.println("How mach mark it worth?");
+                        int m = Integer.parseInt(new Scanner(System.in).nextLine());
+                        testManager.addQuestion(currentTest,q,a,m);
+                        System.out.println("Do you like to add more question?, enter y for yes, other keys for no");
+                        entering_question=new Scanner(System.in).nextLine().equals("y");
                     }
-                    if (marks.equals("N")){
+                    //if (marks.equals("Y")){
 
-                    }
+                    //}
+                    //if (marks.equals("N")){
+
+                    //}
                 }
                 if (wants.equals("AS")){
                     System.out.println(); //什么什么.getGroupCreated in Teacher.java
                 }
-                if (wants.equals("CT")){
+                if (wants.equals("ST")){
                     List<String> l=testManager.getOwnedTest(currentUser);
                     for(String s:l){
                         System.out.println(s); //什么什么.getOwnedTest in Teacher.java

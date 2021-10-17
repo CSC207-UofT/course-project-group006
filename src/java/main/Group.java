@@ -4,23 +4,23 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Group {
-    private Student[] students;
-    private Teacher teacher;
+    private String[] students;
+    private String teacher;
     private String name;
     private int ID;
     public static final int MAXNUMBER = 30;
     public HashMap<Test, List<Answer>> tests;
-    public Group(Teacher teacher, String name){
+    public Group(String teacher, String name){
         this.teacher = teacher;
         this.name=name;
-        this.students=new Student[Group.MAXNUMBER];
+        this.students=new String[Group.MAXNUMBER];
         this.ID = IDcreater.creat();
         tests=new HashMap<>();
     }
     //public Group(){
 
     //}
-    public boolean addStudent(Student student) {
+    public boolean addStudent(String student) {
         for (int i = 0; i < students.length; i++) {
             if (students[i] == null) {
                 students[i] = student;
@@ -36,7 +36,7 @@ public class Group {
     public String getName(){
         return this.name;
     }
-    public Teacher getTeacher(){
+    public String getTeacher(){
         return this.teacher;
     }
     public boolean addTest(Test t){
