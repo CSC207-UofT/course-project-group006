@@ -4,23 +4,23 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Group {
-    private Student[] students;
-    private Teacher teacher;
+    private String[] students;
+    private String teacher;
     private String name;
     private int ID;
     public static final int MAXNUMBER = 30;
     public HashMap<Test, List<Answer>> tests;
-    public Group(Teacher teacher, String name){
+    public Group(String teacher, String name){
         this.teacher = teacher;
         this.name=name;
-        this.students=new Student[Group.MAXNUMBER];
+        this.students=new String[Group.MAXNUMBER];
         this.ID = IDcreater.creat();
         tests=new HashMap<>();
     }
     //public Group(){
 
     //}
-    public boolean addStudent(Student student) {
+    public boolean addStudent(String student) {
         for (int i = 0; i < students.length; i++) {
             if (students[i] == null) {
                 students[i] = student;
@@ -36,7 +36,7 @@ public class Group {
     public String getName(){
         return this.name;
     }
-    public Teacher getTeacher(){
+    public String getTeacher(){
         return this.teacher;
     }
     public boolean addTest(Test t){
@@ -51,6 +51,24 @@ public class Group {
             tests.get(a.getAbout()).remove(a);
             tests.get(a.getAbout()).add(a);
             return true;
+        }
+        return false;
+    }
+    public boolean hasStudent(String student){
+        for (String s : students) {
+            if (s.equals(student)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean removeStudent(String student){
+        for (int i = 0; i < students.length; i++) {
+            if (students[i].equals(student)) {
+                students[i] = null;
+                //student.getJoinedGroup().add(name);
+                return true;
+            }
         }
         return false;
     }
