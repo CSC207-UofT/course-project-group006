@@ -7,17 +7,6 @@ An educational website that provides a platform for teachers and students to col
 //Other than learning the language through memorizing words, this website also serves as a dictionary. The website not only provides a great opportunity for students to find a teacher to help with their language learning studies but also gives the teachers the chance to meet and connect with some new potential students online.
 
 
-## Project Architechture
-
-### Frameworks and Drivers: 
-FileManager, MainController(for now we use the terminal as UI, while in future, we will add a new UI)
-### Interface Adapters: 
-MainController
-### Application Business Rules: 
-UserManager, UserGroupManager, FileManager, WordManager, TestManager, IDCreator
-### Enterprise Business Rules: 
-Word, Test, Quiz, Exam, Group, Student, Teacher, Guest, User, Question, Answer
-
 ## Functions
 ### Dictionary
 A user can look up words and meanings using the program with or without registration. The program contains a list of words and their meanings.
