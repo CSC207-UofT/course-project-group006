@@ -64,6 +64,21 @@ This first scenario walk-through describes how the platform works for a new stud
 ## Skeleton 
 Our skeleton program is designed to have the basic structure of our platform. It contains 15 classes and 1 interface, including all the classes mentioned in CRC cards and an interface named Posts. Those classes satisfy the functions designed to be in our platform and are introduced above in the CRC model section. The users can choose their identity and set their username and password to log in. Students can do diagnostics to measure their level and then join groups, teachers can upload tests and materials, and guests can search for word meanings with the skeleton through the terminal.
 
+## Individual Contributions
+
+Darcy was responsible for the Test, Answer, Question and Test manager classes, which contribute to the part to create, fix, delete and authorize the tests, and as well as storing and marking the answers submitted by the students. The next step would be making Question an abstract class and implementing multiple subclasses to represent different types of questions (multiple-choice, short answer,.etc), and also introduce the trading of tests.
+
+Zi Hua was responsible for the Group class, GroupManager class, specification, scenario walk-through and progress report. The future steps are extending the functions such as giving back students’ test results in groups and adding a restriction that students’ can only add to groups with the teacher’s permission.
+
+Jacky Jiang was responsible for the CRC model and the specification, as well as creating unit tests to make sure the skeleton code reflects the scenario walkthrough. The future step is to expand the number of unit tests and cover as many situations as possible. The unit test is also used to assist the development of the skeleton program.
+
+Shiqi Gao was responsible for the User and UserManager classes, their corresponding subclasses and the CRC model. The purpose of user and user manager is to create accounts and manage user’s behaviours. The next step would be completing the StudentManager and TeacherManager, as well as learning about databases and storing data online.
+
+Jenny was responsible for Word, Word Manager, File Manager as well as helping with the skeleton code UI, specification and the report. The planning for the future would be to continue developing File Manager and upgrading the basic command line UI to the desired format. 
+
+Lana Zhang was responsible for the Main class extending from the User, considering the Scenario Walk-Through and other classes and methods and making the class follow the Scenario Walk-Through. The next step would be to continue implementing the class and consider the suitable design pattern.
+
+
 ## Open Questions 
 How to accomplish real time update?
 
@@ -75,4 +90,16 @@ How to implement membership system/ads that actually benefits teacher users?
 
 How to store a general method that doesn’t belong to any object classes?
 
-##Work well done
+## Work well done
+The design and brainstorm have been done completely and neatly. 
+
+All of our codes are written according to our design. 
+
+The Skeleton program perfectly performs scenario walkthroughs. 
+
+All of our group members work well together and developed a great friendship. 
+
+Our classes are identified in the correct layer of the business rules. 
+
+We developed an active discussion with our TA.
+
