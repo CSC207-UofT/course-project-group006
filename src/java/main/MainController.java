@@ -148,8 +148,10 @@ public class MainController {// extends User{
 
     }
 
+
     public int presentDiagnostic(String s) {
         File file = new File("src/java/main/Files/Words");
+
         System.out.println(file.exists());
         List<Word> w = new ArrayList<>();
         for (int i = 0; i < Constant.TOTAL_LEVEL; i++) {
