@@ -17,6 +17,15 @@ public abstract class Test {
         this.price=price;
         this.Id=IDcreater.creat();
     }
+    public Test(String name, int timeLimit, String author, int price, ArrayList<Question> questions){
+        this.name=name;
+        this.timeLimit=timeLimit;
+        this.questions=questions;
+        this.author=author;
+        this.price=price;
+        this.Id=IDcreater.creat();
+    }
+
     public String getAuthor(){
         return author;
     }

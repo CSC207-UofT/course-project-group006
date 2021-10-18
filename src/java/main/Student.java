@@ -29,6 +29,10 @@ public class Student extends User {
         return wordLearnt.remove(w);
     }
 
+    public String toString(){
+        return this.getUsername()+this.level;
+    }
+
 
 
     //public ArrayList<String> getWordLearnt() {
