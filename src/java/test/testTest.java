@@ -29,15 +29,21 @@ public class testTest {
 
     @Test(timeout =  50)
     public void testdiagnostic() {
-        Word word0 = new Word(0, "apple");
-        Word word1 = new Word(0, "banana");
+        Question question = new Question("苹果", "apple", 1);
+        Question question2 = new Question("香蕉", "banana", 1);
+        Word word0 = new Word(1, "apple");
+        Word word1 = new Word(1, "banana");
         ArrayList<Word> words= new ArrayList<Word>();
         words.add(word0);
+        word0.addMeaning("苹果",Constant.CHINESE);
+        word1.addMeaning("香蕉",Constant.CHINESE);
         words.add(word1);
         Quiz q = Quiz.diagnostic(words);
+        Answer a = new Answer(q,"",new String[]{"苹果","香蕉"});
         assertEquals(q.getname(), "diagnostic");
         assertEquals(q.gettimelimit(), 6);
-
+        int[] result = a.Autograde();
+        assertEquals(result[0]+result[1], 2);
     }
 
 }
