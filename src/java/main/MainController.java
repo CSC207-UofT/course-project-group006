@@ -26,7 +26,7 @@ public class MainController {// extends User{
     //super(username, password, email);
     //}
     public void run() {
-        String currentUser;
+        String currentUser = null;
         System.out.println("Are you a teacher or student? Enter 'T' for teacher or 'S' for student");
         Scanner identity = new Scanner(System.in);
         String ide = identity.nextLine();
@@ -46,6 +46,7 @@ public class MainController {// extends User{
                     System.out.println("no such user exist, try again");
                 }
             }
+            presentGroup(currentUser);
         }
         if (mem.equals("N")) {
             System.out.println("Please use your email address to sign up");
@@ -74,26 +75,8 @@ public class MainController {// extends User{
                     int mark = presentDiagnostic(currentUser);
                     System.out.println("Your score is " + mark + " and your level of study is " + mark / 20);
                 }
-                System.out.println("you have joined following group.");
-                HashMap<Integer, String> groupJoined = userGroupManager.getJoinedGroup(currentUser);
-                for (int i : groupJoined.keySet()) {
-                    System.out.println(groupJoined.get(i) + " with ID " + i);
-                }
-                System.out.println("if you like to join another group, enter 'j', if you like to quit a group, enter 'q'");
-                String ans = new Scanner(System.in).nextLine();
-                if (ans.equals("j")) {
-                    HashMap<Integer, String> groups = userGroupManager.getAllGroup();
-                    for (int i : groups.keySet()) {
-                        System.out.println(groups.get(i) + " with ID " + i);
-                    }
-                    System.out.println("Enter the ID for the group you want to join");
-                    int id = Integer.parseInt(new Scanner(System.in).nextLine());
-                    userGroupManager.addStudentToGroup(currentUser, id);
-                } else if (ans.equals("q")) {
-                    System.out.println("Enter the ID for the group you want to quit");
-                    int id = Integer.parseInt(new Scanner(System.in).nextLine());
-                    userGroupManager.removeStudentFromGroup(currentUser, id);
-                }
+                presentGroup(currentUser);
+              
 
             } else if (ide.equals("T")) {
                 currentUser = userManager.createTeacher(names, passwords, emails);
@@ -142,6 +125,8 @@ public class MainController {// extends User{
                     }
                 }
             }
+            
+
 
         }
 
@@ -181,10 +166,10 @@ public class MainController {// extends User{
 
     public UserGroupManager initiateGroups(UserManager userManager) {
         FileManager fm = new FileManager();
-        List<Group> groups = new ArrayList<>(fm.readGroups(this.userManager,"src/java/main/Files/Group"));
-        HashMap<Integer,Group> result = new HashMap<>();
-        for(Group g:groups){
-            result.put(g.GetID(),g);
+        List<Group> groups = new ArrayList<>(fm.readGroups(this.userManager, "src/java/main/Files/Group"));
+        HashMap<Integer, Group> result = new HashMap<>();
+        for (Group g : groups) {
+            result.put(g.GetID(), g);
         }
         return new UserGroupManager(result);
     }
@@ -194,6 +179,30 @@ public class MainController {// extends User{
         ArrayList<User> users = new ArrayList<>(fm.readUsers("src/java/main/Files/Users"));
         return new UserManager(users);
 
+    }
+    
+    public void presentGroup(String currentUser){
+        System.out.println("you have joined following group.");
+        HashMap<Integer, String> groupJoined = userGroupManager.getJoinedGroup(currentUser);
+        for (int i : groupJoined.keySet()) {
+            System.out.println(groupJoined.get(i) + " with ID " + i);
+        }
+        System.out.println("if you like to join another group, enter 'j', if you like to quit a group, enter 'q'");
+        String ans = new Scanner(System.in).nextLine();
+        if (ans.equals("j")) {
+            HashMap<Integer, String> groups = userGroupManager.getAllGroup();
+            for (int i : groups.keySet()) {
+                System.out.println(groups.get(i) + " with ID " + i);
+            }
+            System.out.println("Enter the ID for the group you want to join");
+            int id = Integer.parseInt(new Scanner(System.in).nextLine());
+            userGroupManager.addStudentToGroup(currentUser, id);
+        } else if (ans.equals("q")) {
+            System.out.println("Enter the ID for the group you want to quit");
+            int id = Integer.parseInt(new Scanner(System.in).nextLine());
+            userGroupManager.removeStudentFromGroup(currentUser, id);
+        }
+        
     }
 
     public void teacherPart() {
