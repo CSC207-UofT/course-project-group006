@@ -1,8 +1,7 @@
 import java.util.*;
 
 public class WordManager {
-
-
+    
     private String fileName;
     private List<HashMap<Word, Integer>> allWords;
     private List<Integer> savedLevels;

@@ -32,13 +32,13 @@ public class UserManager {
         u1.setEmail(newEmail);
     }
 
-    public String getUser(String name){
+    public User getUser(String name){
         for (User a: userList){
             if(a.getUsername().equals(name)){
-                return a.toString();
+                return a;
             }
         }
-        return "There is no user with name" + name;
+        return null;
     }
 
     public boolean loginWithUsername(String name, String password){
