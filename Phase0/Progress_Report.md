@@ -22,41 +22,6 @@ Controller: There are 2 controller classes that are used to interact with users.
 
 UI: The UI class is used to interact with users. For now, we are still using the terminal as our UI, but in the future, we plan to use GUI to interact with our users.
 
-Question Class: The parent class for all question types (we will add them later), stores what the question is (a string), the correct answer for the question (a string) and the mark it is worth (an int). It also contains a method to calculate the mark that will be given if a particular string is provided as the answer, and this function might be overridden by its child class. This class will not use any other classes and will be used in Test class and all its children. 
-
-Answer Class: The class representing the answer to a particular test provided by a particular student, it stores what the test is, who the student is and what is the answers provided by the student 
-
-Constant Class: A class that is used for the storage of constants that are used in the program. 
-
-Exam Class: The class is a subclass of Test class. 
-
-FileManager Class: The class is used to generate user lists, words and questions from a file. 
-
-Group Class: The group class is used to store teachers, students, number of students in the group and tests the teacher assigns that maps to the answer students submitted. 
-
-Guest Class: The class is a subclass of the User class and is used to store words learnt for the guest users. 
-
-IDCreater Class: The class is used to generate ID for each individual item. 
-
-Quiz Class: The class is a subclass of the Test class and generates autoGenerateTranslationQuestion. 
-
-Student Class: The class is a subclass of the User class, it stores what group the student joined, which level the student is in, the word the student has learned and the balance remaining in the student account (student account has not yet on the platform and still need to work on it) 
-
-Teacher Class: The class is a subclass of the User class. 
-
-Test Class: The class represents a test made by a teacher. It stores the information about the test and as well as the teacher who made it and its sale price. It is used in TestManager Class. 
-
-TestManager Class: Store and process change on test entity, it uses test classes 
-
-User Class: Store information about users, including username, password, email and ID 
-
-UserGroupManager Class: Store and process change on group entities and related information, it uses Group classes and all the subclasses of User. 
-
-UserManager Class: The class has child classes StudentManager, TeacherManager and GuestManager. The class aims to manage the user functions and it stores password, username, email and balance. 
-
-Word Class: The class is used to store meanings of words, level of different words and spelling of words 
-
-WordManager Class: The class is a class to manage wordListSet and is used to store filename, words and levels.
 
 ## Scenario 
 This first scenario walk-through describes how the platform works for a new student to register and to log in for the first time. The student enters the system and is asked to choose if they are a student, teacher or guest. Then the student is asked to register their username and password which are stored in their profile once they confirm. When they log in to the account for the first time, they will be asked to do a diagnostic for measuring the level of knowledge for future uses. After that, the student can study individually or can join a group. If they join a group, they will be able to have access to the resources provided by the assigned teacher. Our second scenario walk-through describes the situation of how a teacher can use our platform. Similar to the student login steps, after the teacher logins to the system, they can create groups. Once a group is created, the teacher is allowed to upload tests and decide whether they want to mark them manually or automatically. The choice of the teacher determines if the score of each test is shown automatically or needed to be uploaded by the teacher.
