@@ -15,13 +15,15 @@ public class TestManager {
     public TestManager(){
         allTest=new HashMap<>();
     }
-    public void creatExame(String name, int timeLimit, String author, int price){
+    public int creatExame(String name, int timeLimit, String author, int price){
         Test test = new Exam(name,timeLimit,author,price);
         allTest.put(test.getId(),test);
+        return test.Id;
     }
-    public void creatQuiz(String name, int timeLimit, String author, int price){
+    public int creatQuiz(String name, int timeLimit, String author, int price){
         Test test = new Quiz(name,timeLimit,author,price);
         allTest.put(test.getId(),test);
+        return test.Id;
     }
     public boolean addQuestion(int test, String question,String answer,int mark){
         return getTest(test).addQuestion(new Question(question,answer,mark));
@@ -53,6 +55,9 @@ public class TestManager {
             }
         }
         return result;
+    }
+    public static Quiz diagnostic(List<Word> input){
+        return Quiz.diagnostic(input);
     }
 
 }

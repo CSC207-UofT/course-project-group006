@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-
 public class Word {
+
 
     private int level;
     private String spelling;

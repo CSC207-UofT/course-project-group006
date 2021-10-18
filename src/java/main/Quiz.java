@@ -1,6 +1,5 @@
 import QuestionTypes.Question;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Quiz extends Test{
@@ -22,5 +21,13 @@ public class Quiz extends Test{
         Quiz q =  new Quiz("diagnostic", input.size()*3,Teacher.PLATFORMNAME,0);
         q.autoGenerateTranslationQuestion(input);
         return q;
+    }
+
+    public String getname(){
+        return this.name;
+    }
+
+    public int gettimelimit(){
+        return this.timeLimit;
     }
 }
