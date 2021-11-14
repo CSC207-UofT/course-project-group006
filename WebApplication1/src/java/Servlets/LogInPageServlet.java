@@ -8,9 +8,6 @@ package Servlets;
 import static Servlets.testServlet.userGroupManager;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,9 +31,8 @@ public class LogInPageServlet extends testServlet {
             out.print("window.location='LogInPage.html';"); 
             out.println("alert('wrong username or password');");
             out.println("</script>");
-        }catch(IOException  e){
-            System.out.print(e);
-        //ServletException, IOException 
+        }catch(IOException e){
+            // Do nothing
         }
         }else{
             
@@ -47,22 +43,22 @@ public class LogInPageServlet extends testServlet {
                 try{
                 response.sendRedirect("TeacherPageServlet");
                 }catch(IOException e){
-                    
+                    // Do nothing
                 }
             }else if(userType.equals("S")){
                 try{
                 response.sendRedirect("StudentPageServlet");
                 }catch(IOException e){
-                    
+                    // Do nothing
                 }
             }
         }
     }
-    public void regester(HttpServletRequest request, HttpServletResponse response){
+    public void register(HttpServletRequest request, HttpServletResponse response){
         try{
-            response.sendRedirect("regester.jsp");
+            response.sendRedirect("register.jsp");
         }catch(IOException e){
-            
+            // Do nothing
         }
     }
     

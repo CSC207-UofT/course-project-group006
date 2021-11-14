@@ -26,7 +26,7 @@
             <form action="StudentPageServlet" method="Post">
                 <label><%= joinedGroup.get(i)%></label>
                 <input type="hidden" name="groupId" id="groupId" value=<%=i%>>
-                <input type="submit" name="act" id="act" value="detal">
+                <input type="submit" name="act" id="act" value="detail">
                 <input type="submit" name="act" id="act" value="quit">
             </form>
                 <br>

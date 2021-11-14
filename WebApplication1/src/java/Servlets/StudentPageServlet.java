@@ -7,8 +7,6 @@ package Servlets;
 import static Servlets.testServlet.userGroupManager;
 import static Servlets.testServlet.userManager;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,10 +26,9 @@ public class StudentPageServlet extends testServlet {
         int userId = getUserId(request);
         if(userId==-1){
             try{
-            response.sendRedirect("LogInPage.html");
-            
+                response.sendRedirect("LogInPage.html");
             }catch(IOException e){
-                
+                // Do nothing
             }
         }
         request.setAttribute("joinedGroup", userGroupManager.getJoinedGroup(userId));
@@ -39,16 +36,14 @@ public class StudentPageServlet extends testServlet {
         RequestDispatcher r = request.getRequestDispatcher("StudentPage.jsp");
         r.forward(request, response);
     }
-    public void search(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    public void search(HttpServletRequest request, HttpServletResponse response) {
     }
-    public void detal(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void detail(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
         response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));
     }
     public void quit(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         userGroupManager.removeStudentFromGroup(getUserId(request), Integer.parseInt(request.getParameter("groupId")));
         response.sendRedirect("StudentPageServlet");
     }
@@ -56,7 +51,7 @@ public class StudentPageServlet extends testServlet {
             throws ServletException, IOException {
     }
     public void JoinGroup(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         response.sendRedirect("JoinGroupServlet");
     }
     

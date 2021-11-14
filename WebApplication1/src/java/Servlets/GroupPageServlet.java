@@ -4,10 +4,8 @@
  */
 package Servlets;
 
-import static Servlets.testServlet.userGroupManager;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,23 +45,30 @@ public class GroupPageServlet extends testServlet {
             response.sendRedirect("LogInPage.html");
             
             }catch(IOException e){
-                
+                // Do nothing
             }
         }else{
-            String type = userManager.getUserType(userId);
-            for(int i=0; i<students.length;i++){
-            if(students[i]!=0){
-            request.setAttribute("student"+students[i]+"name",userManager.getName(students[i]));
-            }
+            //String type = userManager.getUserType(userId);
+            for (int student : students) {
+                if (student != 0) {
+                    request.setAttribute("student" + student + "name", userManager.getName(student));
+                }
             }
         }
         request.setAttribute("userType", userManager.getUserType(userId));
         request.setAttribute("userId", userId);
-        RequestDispatcher r = request.getRequestDispatcher("GroupDitaljsp.jsp");
+        RequestDispatcher r = request.getRequestDispatcher("GroupDetail.jsp");
         r.forward(request, response);
     }
+
+    /**
+     *
+     * @param request The request from the HttpServlet
+     * @param response The response from the HttpServlet
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest1(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -82,11 +87,11 @@ public class GroupPageServlet extends testServlet {
         int id = Integer.parseInt(request.getParameter("groupId"));
         int[] students = userGroupManager.getStudents(id);
         out.println("<h1>"+userGroupManager.getNameOfGroup(id)+" Teacher: " + userManager.getName(userGroupManager.getTeacher(id)) +" "+ id+"</h1>");
-        Cookie c[] = request.getCookies();
+        Cookie[] c = request.getCookies();
         int userId=-1;
-        for(int i=0;i<c.length;i++){
-            if(c[i].getName().equals("userId")){
-                userId=Integer.parseInt(c[i].getValue());
+        for (Cookie cookie : c) {
+            if (cookie.getName().equals("userId")) {
+                userId = Integer.parseInt(cookie.getValue());
             }
         }
         if(userId==-1){
@@ -94,35 +99,31 @@ public class GroupPageServlet extends testServlet {
             response.sendRedirect("LogInPage.html");
             
             }catch(IOException e){
-                
+                // Do nothing
             }
         }else{
             String type = userManager.getUserType(userId);
-            for(int i=0; i<students.length;i++){
-             out.print("<form action=\"GroupPageServlet\" method=\"Post\">");
-            out.print("<label \">"+userManager.getName(students[i]));
-            out.print("<input type=\"hidden\" name=\"studentId\" id=\"studentId\" value="+students[i]+">");
-            out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value="+id+">");
-            if(type.equals("T")){
-            out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"deleat\">");
+            for (int student : students) {
+                out.print("<form action=\"GroupPageServlet\" method=\"Post\">");
+                out.print("<label \">" + userManager.getName(student));
+                out.print("<input type=\"hidden\" name=\"studentId\" id=\"studentId\" value=" + student + ">");
+                out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value=" + id + ">");
+                if (type.equals("T")) {
+                    out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"delete\">");
+                }
+                out.print("</form></br>");
             }
-            out.print("</form></br>");
-            }
-            //out.println("<script type=\"text/javascript\">");  
-            //out.print("window.location='LogInPage.html';"); 
-            //out.println("alert('wrong username or password');");
-            //out.println("</script>");
         }
     }
-    public void deleat(HttpServletRequest request, HttpServletResponse response){
+    public void delete(HttpServletRequest request, HttpServletResponse response){
         userGroupManager.removeStudentFromGroup(Integer.parseInt(request.getParameter("studentId")), Integer.parseInt(request.getParameter("groupId")));
         try{
         response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));
         }catch(IOException e){
-                   
+            // Do nothing
         }
     }
-    public String creatTitle(int id){
+    public String createTitle(int id){
         return userGroupManager.getNameOfGroup(id)+" Teacher: " + userManager.getName(userGroupManager.getTeacher(id)) +" ";
     }
     

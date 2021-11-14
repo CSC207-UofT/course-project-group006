@@ -5,7 +5,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,15 +15,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author darcy
  */
-@WebServlet(name = "regesterServlet", urlPatterns = {"/regesterServlet"})
-public class regesterServlet extends testServlet {
+@WebServlet(name = "registerServlet", urlPatterns = {"/registerServlet"})
+public class registerServlet extends testServlet {
 
     public void teacher(HttpServletRequest request, HttpServletResponse response){
         userManager.createTeacher(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
         try{
             response.sendRedirect("LogInPage.html");
         }catch(IOException e){
-            
+            // Do nothing
         }
     }
     public void student(HttpServletRequest request, HttpServletResponse response){
@@ -32,7 +31,7 @@ public class regesterServlet extends testServlet {
         try{
             response.sendRedirect("LogInPage.html");
         }catch(IOException e){
-            
+            // Do nothing
         }
     }
 
