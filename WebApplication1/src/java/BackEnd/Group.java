@@ -4,6 +4,7 @@ package BackEnd;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.time.LocalDateTime;
 
 public class Group {
     private int[] students;
@@ -11,7 +12,9 @@ public class Group {
     private String name;
     private int ID;
     public static final int MAXNUMBER = 30;
-    public HashMap<Test, List<Answer>> tests;
+    private HashMap<Integer, HashMap<Integer,String[]>> testsResult;
+    private HashMap<Integer,LocalDateTime> duedates;
+    
 
     /**
      * Construct a group giving its leading teacher and name
@@ -24,8 +27,10 @@ public class Group {
         this.name = name;
         this.students = new int[Group.MAXNUMBER];
         this.ID = IDcreater.creat();
-        tests = new HashMap<>();
+        testsResult = new HashMap<>();
+        duedates=new HashMap<>();
     }
+
 
     /**
      * Create a group giving its leading teacher, name, students
@@ -38,12 +43,12 @@ public class Group {
      * @param tests the list of test this group has
      */
 
-    public Group(int teacher, String name, int[] students, int id, HashMap<Test, List<Answer>> tests) {
+    public Group(int teacher, String name, int[] students, int id, HashMap<Integer, HashMap<Integer,String[]>> tests) {
         this.ID = id;
         this.teacher = teacher;
         this.name = name;
         this.students = students;
-        this.tests = tests;
+        this.testsResult = tests;
     }
     //public Group(){
 
@@ -89,28 +94,33 @@ public class Group {
         return this.teacher;
     }
 
+
     /**
      * Add test to this group
      * @param t the test want to add
      * @return True if add success or False otherwise
      */
-    public boolean addTest(Test t) {
-        if (tests.containsKey(t)) {
+    
+    public boolean addTest(int t, LocalDateTime duedate) {
+        if (testsResult.containsKey(t)) {
             return false;
         }
-        tests.put(t, new ArrayList<Answer>());
+        testsResult.put(t, new HashMap<Integer,String[]>());
+        this.duedates.put(t, duedate);
         return true;
     }
 
-    public boolean answerTest(Answer a) {
-        if (tests.containsKey(a.getAbout())) {
-            tests.get(a.getAbout()).remove(a);
-            tests.get(a.getAbout()).add(a);
+    public boolean answerTest(int test,String[] a, int studentId) {
+        if (testsResult.containsKey(test)) {
+            HashMap<Integer,String[]> h = testsResult.get(test);
+            h.put(studentId, a);
             return true;
         }
         return false;
     }
-
+    public HashMap<Integer,LocalDateTime> getTests(){
+        return duedates;
+    }
     public boolean hasStudent(int student) {
         for (int s : students) {
             if (s==(student)) {

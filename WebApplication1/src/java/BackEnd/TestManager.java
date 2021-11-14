@@ -1,7 +1,7 @@
 package BackEnd;
 
 import QuestionTypes.Question;
-
+import QuestionTypes.QuestionInterface;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +23,7 @@ public class TestManager {
         allTest=new HashMap<>();
     }
 
+
     /**
      * Create an Exam giving its name, time limit, author and price
      * @param name the name of the exam
@@ -31,7 +32,8 @@ public class TestManager {
      * @param price the price of the exam
      * @return the ID of the test in exam
      */
-    public int creatExame(String name, int timeLimit, String author, int price){
+    
+    public int creatExame(String name, int timeLimit, int author, int price){
         Test test = new Exam(name,timeLimit,author,price);
         allTest.put(test.getId(),test);
         return test.Id;
@@ -45,7 +47,8 @@ public class TestManager {
      * @param price the price of the quiz
      * @return the ID of the quiz
      */
-    public int creatQuiz(String name, int timeLimit, String author, int price){
+    
+    public int creatQuiz(String name, int timeLimit, int author, int price){
         Test test = new Quiz(name,timeLimit,author,price);
         allTest.put(test.getId(),test);
         return test.Id;
@@ -91,7 +94,7 @@ public class TestManager {
      */
     public int grade(int test, List<String> answers){
         Test t = getTest(test);
-        ArrayList<Question> q = t.getQuestions();
+        ArrayList<QuestionInterface> q = t.getQuestions();
         int result = 0;
         for(int i=0;i<q.size();i++){
                 result+=q.get(i).score(answers.get(i));
@@ -109,16 +112,19 @@ public class TestManager {
         return allTest.get(Id);
     }
 
+
     /**
      * Get test owned by a teacher
      * @param t the name of the teacher
      * @return the list of test this teacher owned
      */
-    public ArrayList<String> getOwnedTest(String t){
-        ArrayList<String> result = new ArrayList<>();
+    
+    public ArrayList<Integer> getOwnedTest(int t){
+        ArrayList<Integer> result = new ArrayList<>();
+
         for(Test test :allTest.values()){
-            if(test.getAuthor().equals(t)){
-                result.add(test.getName());
+            if(test.getAuthor()==(t)){
+                result.add(test.getId());
             }
         }
         return result;
@@ -132,5 +138,11 @@ public class TestManager {
     public static Quiz diagnostic(List<Word> input){
         return Quiz.diagnostic(input);
     }
-
+    public String getTestName(int id){
+        return(allTest.get(id).getName());
+    }
+    public List<QuestionInterface> getTestInfo(int id){
+       List<QuestionInterface> result = allTest.get(id).getQuestions();
+       return result;
+    }
 }

@@ -5,6 +5,7 @@ import QuestionTypes.Question;
 import java.util.List;
 
 public class Quiz extends Test{
+
     /**
      * Construct a quiz giving its name, time limit, author and
      * price
@@ -14,7 +15,8 @@ public class Quiz extends Test{
      * @param author the author of the quiz
      * @param price the price this quiz will be sold
      */
-    public Quiz(String name, int timeLimit, String author, int price){
+    
+    public Quiz(String name, int timeLimit, int author, int price){
         super(name,timeLimit, author, price);
     }
 
@@ -42,7 +44,7 @@ public class Quiz extends Test{
      * @return the quiz created
      */
     public static Quiz diagnostic(List<Word> input){
-        Quiz q =  new Quiz("diagnostic", input.size()*3,Teacher.PLATFORMNAME,0);
+        Quiz q =  new Quiz("diagnostic", input.size()*3,-1,0);
         q.autoGenerateTranslationQuestion(input);
         return q;
     }
