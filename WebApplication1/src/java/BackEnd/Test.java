@@ -11,6 +11,17 @@ public abstract class Test {
     protected int author;
     protected int Id;
     protected int price;
+
+
+    /**
+     * Construct a test giving its name, time limit,
+     * author and price
+     * @param name name of the test
+     * @param timeLimit time limit of the test
+     * @param author author of the test
+     * @param price price of the test
+     */
+    
     public Test(String name, int timeLimit, int author, int price){
         this.name=name;
         this.timeLimit=timeLimit;
@@ -19,6 +30,18 @@ public abstract class Test {
         this.price=price;
         this.Id=IDcreater.creat();
     }
+
+
+    /**
+     * Construct a test giving its name, time limit,
+     * author, price and list of questions
+     * @param name name of the test
+     * @param timeLimit time limit of the test
+     * @param author author of the test
+     * @param price price of the test
+     * @param questions list of questions in this test
+     */
+    
     public Test(String name, int timeLimit, int author, int price, ArrayList<Question> questions){
         this.name=name;
         this.timeLimit=timeLimit;
@@ -28,16 +51,37 @@ public abstract class Test {
         this.Id=IDcreater.creat();
     }
 
+
+    /**
+     *
+     * @return the author of this test
+     */
+
+    
     public int getAuthor(){
         return author;
     }
+
+    /**
+     *
+     * @return the price of this test
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     *
+     * @return the ID of the test
+     */
     public int getId() {
         return Id;
     }
+
+    /**
+     *
+     * @return the name of the test
+     */
     public String getName(){
         return this.name;
     }
@@ -54,10 +98,22 @@ public abstract class Test {
       //  }
         //return result;
     //}
+
+    /**
+     * Add question to this test
+     * @param q the question need to add
+     * @return True
+     */
     public boolean addQuestion(Question q){
         this.questions.add(q);
         return true;
     }
+
+    /**
+     * Delete a question from this test giving its name
+     * @param q the question name want to delete
+     * @return True if succeed or False otherwise
+     */
     public boolean deleteQuestion(String q){
         for(Question que:questions){
             if(que.getQuestion().equals(q)){
@@ -67,9 +123,22 @@ public abstract class Test {
         }
         return false;
     }
+
+    /**
+     * Delete a question from a test giving its ID
+     * @param i the question ID
+     * @return True if succeed
+     */
     public boolean deleteQuestion(int i){
         return questions.remove(i)!=null;
     }
+
+
+    /**
+     *
+     * @return the list of question in this test
+     */
+    
     public ArrayList<QuestionInterface> getQuestions(){
         ArrayList<QuestionInterface> result = new ArrayList<QuestionInterface>();
         for(int i=0;i<questions.size();i++){

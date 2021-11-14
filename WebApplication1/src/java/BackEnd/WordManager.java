@@ -8,11 +8,23 @@ public class WordManager {
     private List<HashMap<Word, Integer>> allWords;
     private List<Integer> savedLevels;
 
+    /**
+     * Construct a word manager giving a file
+     * @param fileName the name of the file
+     */
+
     public WordManager(String fileName) {
         this.fileName = fileName;
         this.allWords = new ArrayList<>(10);//10 levels
         this.savedLevels = new ArrayList<>(10);
     }
+
+    /**
+     * Generate a number of word in certain level giving the required level and number
+     * @param level the level required
+     * @param number the number of word needed
+     * @return this list of word
+     */
 
 
     public List<Word> generateList(int level, int number) {
