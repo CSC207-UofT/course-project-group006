@@ -13,6 +13,12 @@ public class Group {
     public static final int MAXNUMBER = 30;
     public HashMap<Test, List<Answer>> tests;
 
+    /**
+     * Construct a group giving its leading teacher and name
+     * @param teacher the teacher who created this group
+     * @param name the group name
+     */
+
     public Group(int teacher, String name) {
         this.teacher = teacher;
         this.name = name;
@@ -20,6 +26,17 @@ public class Group {
         this.ID = IDcreater.creat();
         tests = new HashMap<>();
     }
+
+    /**
+     * Create a group giving its leading teacher, name, students
+     * group ID, and test this group has
+     *
+     * @param teacher the teacher who create this group
+     * @param name the group name
+     * @param students the list of student in this group
+     * @param id the ID of the group
+     * @param tests the list of test this group has
+     */
 
     public Group(int teacher, String name, int[] students, int id, HashMap<Test, List<Answer>> tests) {
         this.ID = id;
@@ -31,6 +48,12 @@ public class Group {
     //public Group(){
 
     //}
+
+    /**
+     * Add student to this group
+     * @param student the student want to add
+     * @return True if add successful or False otherwise
+     */
     public boolean addStudent(int student) {
         for (int i = 0; i < students.length; i++) {
             if (students[i] ==0) {
@@ -42,18 +65,35 @@ public class Group {
         return false;
     }
 
+    /**
+     *
+     * @return get the ID of the group
+     */
     public int GetID() {
         return this.ID;
     }
 
+    /**
+     *
+     * @return get the name of the group
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     *
+     * @return get the leading teacher of the group
+     */
     public int getTeacher() {
         return this.teacher;
     }
 
+    /**
+     * Add test to this group
+     * @param t the test want to add
+     * @return True if add success or False otherwise
+     */
     public boolean addTest(Test t) {
         if (tests.containsKey(t)) {
             return false;
