@@ -15,6 +15,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import BackEnd.Command;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  *
@@ -59,6 +62,10 @@ public class GroupPageServlet extends testServlet {
         }
         request.setAttribute("userType", userManager.getUserType(userId));
         request.setAttribute("userId", userId);
+        request.setAttribute("Tests",userGroupManager.getTests(groupId));
+        for(Integer i:userGroupManager.getTests(groupId).keySet()){
+            request.setAttribute("Tests"+i+"name",testManager.getTestName(i));
+        }
         RequestDispatcher r = request.getRequestDispatcher("GroupDitaljsp.jsp");
         r.forward(request, response);
     }
@@ -125,5 +132,29 @@ public class GroupPageServlet extends testServlet {
     public String creatTitle(int id){
         return userGroupManager.getNameOfGroup(id)+" Teacher: " + userManager.getName(userGroupManager.getTeacher(id)) +" ";
     }
-    
+    public void assign(HttpServletRequest request, HttpServletResponse response){
+        try{
+        response.sendRedirect("TestPageServlet?groupId="+request.getParameter("groupId"));
+        }catch(IOException e){
+                   
+        }
+    }
+    public void finsh(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int groupId = Integer.parseInt(request.getParameter("groupId"));
+        int testId = Integer.parseInt(request.getParameter("testId"));
+        int year = Integer.parseInt(request.getParameter("year"));
+        int month = Integer.parseInt(request.getParameter("month"));
+        int day = Integer.parseInt(request.getParameter("day"));
+        int hour = Integer.parseInt(request.getParameter("hour"));
+        int minuit = Integer.parseInt(request.getParameter("minuit"));
+        LocalDateTime due= LocalDateTime.of(year,month,day,hour,minuit);
+        userGroupManager.addTest(groupId, testId, due);
+        processRequest(request,response);
+    }
+    public void start(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.sendRedirect("TestPresenterServlet?testId="+request.getParameter("testId")+
+                "&groupId="+request.getParameter("groupId"));
+    }
 }

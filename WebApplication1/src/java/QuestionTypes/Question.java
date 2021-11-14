@@ -1,6 +1,6 @@
 package QuestionTypes;
 
-public class Question {
+public class Question implements QuestionInterface{
     private String question;
     private String answer;
     private int marks;
@@ -20,5 +20,8 @@ public class Question {
     }
     public String getAnswer(){
         return this.answer;
+    }
+    public int getMarks(){
+        return this.marks;
     }
 }

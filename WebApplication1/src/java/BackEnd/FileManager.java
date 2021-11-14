@@ -65,7 +65,7 @@ public class FileManager {
             }
             bufferedReader.close();
             fileReader.close();
-            t = new Exam(name, time, author, price, questions);
+            t = new Exam(name, time, Integer.parseInt(author), price, questions);
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
         } catch (IOException e) {
@@ -139,7 +139,7 @@ public class FileManager {
                     tests.put(test1, new ArrayList<Answer>());
                 }
 
-                Group tempG = new Group(teacher, name, students, id, tests);
+                Group tempG = new Group(teacher, name, students, id, null);
                 result.add(tempG);
                 line = bufferedReader.readLine();
             }

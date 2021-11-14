@@ -5,7 +5,7 @@ import QuestionTypes.Question;
 import java.util.List;
 
 public class Quiz extends Test{
-    public Quiz(String name, int timeLimit, String author, int price){
+    public Quiz(String name, int timeLimit, int author, int price){
         super(name,timeLimit, author, price);
     }
     private void autoGenerateTranslationQuestion(List<Word> input){
@@ -20,7 +20,7 @@ public class Quiz extends Test{
         }
     }
     public static Quiz diagnostic(List<Word> input){
-        Quiz q =  new Quiz("diagnostic", input.size()*3,Teacher.PLATFORMNAME,0);
+        Quiz q =  new Quiz("diagnostic", input.size()*3,-1,0);
         q.autoGenerateTranslationQuestion(input);
         return q;
     }

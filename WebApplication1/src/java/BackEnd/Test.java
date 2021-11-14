@@ -1,17 +1,17 @@
 package BackEnd;
 
 import QuestionTypes.Question;
-
+import QuestionTypes.QuestionInterface;
 import java.util.ArrayList;
 
 public abstract class Test {
     protected String name;
     protected int timeLimit;
     protected ArrayList<Question> questions;
-    protected String author;
+    protected int author;
     protected int Id;
     protected int price;
-    public Test(String name, int timeLimit, String author, int price){
+    public Test(String name, int timeLimit, int author, int price){
         this.name=name;
         this.timeLimit=timeLimit;
         this.questions=new ArrayList<>();
@@ -19,7 +19,7 @@ public abstract class Test {
         this.price=price;
         this.Id=IDcreater.creat();
     }
-    public Test(String name, int timeLimit, String author, int price, ArrayList<Question> questions){
+    public Test(String name, int timeLimit, int author, int price, ArrayList<Question> questions){
         this.name=name;
         this.timeLimit=timeLimit;
         this.questions=questions;
@@ -28,7 +28,7 @@ public abstract class Test {
         this.Id=IDcreater.creat();
     }
 
-    public String getAuthor(){
+    public int getAuthor(){
         return author;
     }
     public int getPrice() {
@@ -70,8 +70,20 @@ public abstract class Test {
     public boolean deleteQuestion(int i){
         return questions.remove(i)!=null;
     }
-    public ArrayList<Question> getQuestions(){
-        return this.questions;
+    public ArrayList<QuestionInterface> getQuestions(){
+        ArrayList<QuestionInterface> result = new ArrayList<QuestionInterface>();
+        for(int i=0;i<questions.size();i++){
+            result.add(questions.get(i));
+        }
+        return result;
+    }
+    public int[] Autograde(String[] answer){
+        int[] result = new int[questions.size()];
+        for(int i=0;i<questions.size();i++){
+            result[i]=questions.get(i).score(answer[i]);
+        }
+        return result;
+
     }
 }
 

@@ -1,7 +1,7 @@
 package BackEnd;
 
 import QuestionTypes.Question;
-
+import QuestionTypes.QuestionInterface;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -107,15 +107,15 @@ public class MainController {// extends User{
             w.addAll(wordManager.generateList(i, (20 / Constant.TOTAL_LEVEL)));
         }
         Quiz q = Quiz.diagnostic(w);
-        ArrayList<Question> questions = q.getQuestions();
+        ArrayList<QuestionInterface> questions = q.getQuestions();
         String[] answers = new String[q.getQuestions().size()];
         for (int i = 0; i < questions.size(); i++) {
             System.out.println(questions.get(i).getQuestion());
             Scanner ans = new Scanner(System.in);
             answers[i] = ans.nextLine();
         }
-        Answer a = new Answer(q, s, answers);
-        int level = levelByScore(a.Autograde());
+        Answer a = new Answer(q.Id, s, answers);
+        int level = levelByScore(q.Autograde(answers));
         System.out.println("your level is" + level);
         return level;
     }
@@ -186,7 +186,7 @@ public class MainController {// extends User{
                 int t = Integer.parseInt(new Scanner(System.in).nextLine());
                 System.out.println("What it the price for the test?");
                 int p = Integer.parseInt(new Scanner(System.in).nextLine());
-                int currentTest = testManager.creatExame(n, t, userManager.getUser(currentUser).getUsername(), p);
+                int currentTest = testManager.creatExame(n, t, currentUser, p);
                 boolean entering_question = true;
                 while (entering_question) {
                     System.out.println("what is the question?");
@@ -212,8 +212,8 @@ public class MainController {// extends User{
                 }
             }
             if (wants.equals("ST")) {
-                List<String> l = testManager.getOwnedTest(userManager.getUser(currentUser).getUsername());
-                for (String s : l) {
+                List<Integer> l = testManager.getOwnedTest(currentUser);
+                for (Integer s : l) {
                     System.out.println(s); //什么什么.getOwnedTest in Teacher.java
                 }
             }
