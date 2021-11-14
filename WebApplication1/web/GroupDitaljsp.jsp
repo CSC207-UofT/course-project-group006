@@ -4,6 +4,8 @@
     Author     : darcy
 --%>
 
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ page import= "Servlets.GroupPageServlet" %>
 <!DOCTYPE html>
@@ -35,12 +37,29 @@
             <button onclick="showPeople()">:</button>
         </header>
         <div class="left">
-            a
-        </div>
+            <%HashMap<Integer,LocalDateTime> tests=(HashMap<Integer,LocalDateTime>)request.getAttribute("Tests");
+             String groupId = request.getAttribute("groupId").toString();
+            if(tests!=null){
+            for(Integer i: tests.keySet()){
+            %>
+            <form action="GroupPageServlet" method="Post">
+                <label><%=request.getAttribute("Tests"+i+"name")+" due at "+tests.get(i)%></label>
+                <input type="hidden" name="testId" id="testId" value=<%=i%>>
+                <%if(request.getAttribute("userType").equals("S")){%>
+                    <input type="hidden" name="groupId" id="groupId" value=<%=groupId%>>
+                <input type="submit" name="act" id="act" value="start">
+                <%}%>
+            </form>
+            <%}}%>
+            <%if(request.getAttribute("userType").equals("T")){%>
+                <form action="GroupPageServlet" method="Post">
+                    <input type="hidden" name="groupId" id="groupId" value=<%=groupId%>>
+                <input type="submit" name="act" id="act" value="assign">
+            </form>
+                <%}%>
         <div class="right" id="people" hidden>
             <%
                 int[] students = (int[])request.getAttribute("students");
-                String groupId = request.getAttribute("groupId").toString();
                 for(int i = 0; i<students.length;i++){
                 %>
             <%

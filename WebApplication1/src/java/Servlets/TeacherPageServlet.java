@@ -66,6 +66,9 @@ public class TeacherPageServlet extends testServlet {
             out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"detal\">");
             out.print("</form></br>");
             }
+            out.print("<form action=\"TeacherPageServlet\" method=\"Post\">");
+            out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"Tests\">");
+            out.print("</form></br>");
             //out.println("<script type=\"text/javascript\">");  
             //out.print("window.location='LogInPage.html';"); 
             //out.println("alert('wrong username or password');");
@@ -104,6 +107,13 @@ public class TeacherPageServlet extends testServlet {
     public void detal(HttpServletRequest request, HttpServletResponse response){
         try{
         response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));
+        }catch(IOException e){
+                   
+        }
+    }
+    public void Tests(HttpServletRequest request, HttpServletResponse response){
+        try{
+        response.sendRedirect("TestPageServlet");
         }catch(IOException e){
                    
         }

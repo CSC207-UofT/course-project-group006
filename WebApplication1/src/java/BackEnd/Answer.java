@@ -1,29 +1,21 @@
 package BackEnd;
 
 import QuestionTypes.Question;
-
+import QuestionTypes.QuestionInterface;
 import java.util.ArrayList;
 
 
 public class Answer {
     private String student;
-    private Test about;
+    private int about;
     private String[] answer;
-    public Answer(Test about, String student, String[] answer){
+    public Answer(int about, String student, String[] answer){
         this.about=about;
         this.student=student;
         this.answer=answer;
     }
-    public int[] Autograde(){
-        ArrayList<Question> q = about.getQuestions();
-        int[] result = new int[q.size()];
-        for(int i=0;i<q.size();i++){
-            result[i]=q.get(i).score(answer[i]);
-        }
-        return result;
-
-    }
-    public Test getAbout(){
+    
+    public int getAbout(){
         return about;
     }
 
