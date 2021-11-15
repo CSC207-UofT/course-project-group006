@@ -4,7 +4,15 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/java/main" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/java/test" type="java-test-resource" />
+//<<<<<<< darcy
+//      <sourceFolder url="file://$MODULE_DIR$/src/java/test" type="java-test-resource" />
+//=======
+      <sourceFolder url="file://$MODULE_DIR$/src/java/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/WebApplication1/src/java/BackEnd" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WebApplication1/src/java/QuestionTypes" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WebApplication1/src/java/Servlets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WebApplication1/src" isTestSource="false" />
+//>>>>>>> main
     </content>
     <orderEntry type="jdk" jdkName="12" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -18,5 +26,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="mysql-connector-java-8.0" level="project" />
   </component>
 </module>

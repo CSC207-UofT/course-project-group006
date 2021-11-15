@@ -280,11 +280,23 @@ class loginCommand extends Command {
     private final String name;
     private final String pass;
 
+    /**
+     * The command for login to the system
+     * @param name username of the account
+     * @param pass password of the account
+     */
+
     public loginCommand(String name, String pass) {
         this.name = name;
         this.pass = pass;
     }
 
+    /**
+     * Execute this login command
+     * @return Student's ID if a student login successfully
+     *         Teacher's ID if a teacher login successfully
+     *         FAILED if failed to log in
+     */
     @Override
     public Object execute() {
         try {
@@ -329,10 +341,20 @@ class loginCommand extends Command {
 class checkIdentity extends Command {
     int id;
 
+    /**
+     * Command for check the identity of the user
+     * @param id the ID of the user need to be checked
+     */
     public checkIdentity(int id) {
         this.id = id;
     }
 
+    /**
+     * Execute this check identity command
+     * @return STUDENT if the user is a student
+     *         TEACHER if the user is a teacher
+     *         FAILED if the user can't be found
+     */
     @Override
     public Object execute() {
         try {
@@ -373,6 +395,14 @@ class registerCommand extends Command {
     private final String email;
     private final int type;
 
+    /**
+     * The command for register an account.
+     * @param name the username
+     * @param pass the password
+     * @param email the email address
+     * @param type what kind of account. Teacher or Student
+     */
+
     public registerCommand(String name, String pass, String email, int type) {
         this.name = name;
         this.pass = pass;
@@ -380,6 +410,12 @@ class registerCommand extends Command {
         this.type = type;
     }
 
+    /**
+     * Execute this register command
+     * @return USERNAMEALREADYUSED if it is an invalid username
+     *         SUCCESS if register succeed
+     *         FAILED if register failed
+     */
     @Override
     public Object execute() {
         try {
@@ -461,11 +497,20 @@ class quitGroupCommand extends Command {
     int studentID;
     int groupID;
 
+    /**
+     * The Command for quit a group
+     * @param studentID the student ID who wants to quit
+     * @param groupID the group student wants to quit from
+     */
     public quitGroupCommand(int studentID, int groupID) {
         this.studentID = studentID;
         this.groupID = groupID;
     }
 
+    /**
+     * Execute this quit group command
+     * @return SUCCESS if successfully quit the group or FAILED otherwise
+     */
     @Override
     public Object execute() {
         try {
@@ -520,11 +565,23 @@ class joinGroupCommand extends Command {
     int studentID;
     int groupID;
 
+    /**
+     * The command for joining a group
+     * @param studentID the student ID who want to join
+     * @param groupID the group ID this student want to join
+     */
+
     public joinGroupCommand(int studentID, int groupID) {
         this.studentID = studentID;
         this.groupID = groupID;
     }
 
+    /**
+     * Execute this joining command
+     * @return GROUPALREADYJOINED if this student has joined this group
+     *         SUCCESS if joined successfully
+     *         FAILED if joined failed
+     */
     @Override
     public Object execute() {
         try {
@@ -591,11 +648,22 @@ class createGroupCommand extends Command {
     int teacherID;
     String groupName;
 
+    /**
+     * The command for creating a group
+     * @param teacherID the teacher ID who created this group
+     * @param groupName the group name
+     */
     public createGroupCommand(int teacherID, String groupName) {
         this.teacherID = teacherID;
         this.groupName = groupName;
     }
 
+    /**
+     * Execute this creating group command
+     * @return USERNAMEALREADYUSED if the group name is invalid
+     *         the ID of the group if the group was successfully created
+     *         FAILED if failed to create the group
+     */
     @Override
     public Object execute() {
         try {
@@ -663,11 +731,20 @@ class deleteGroupCommand extends Command {
     int teacherID;
     int groupID;
 
+    /**
+     * Command for Delete a group
+     * @param teacherID the teacher ID who owned the group
+     * @param groupID the group will be deleted
+     */
     public deleteGroupCommand(int teacherID, int groupID) {
         this.teacherID = teacherID;
         this.groupID = groupID;
     }
 
+    /**
+     * Execute to delete group command
+     * @return SUCCESS if the action succeed or FAILED otherwise
+     */
     @Override
     public Object execute() {
         try {
@@ -786,12 +863,23 @@ class createTestCommand extends Command {
     private final int author;
     private final int price;
 
+    /**
+     * Command for creating a test
+     * @param name the name of the test
+     * @param author the author of the test
+     * @param price the price of the test
+     */
+
     public createTestCommand(String name, int author, int price) {
         this.name = name;
         this.author = author;
         this.price = price;
     }
 
+    /**
+     * Execute the create test command
+     * @return SUCCESS if this test is created or FAILED otherwise
+     */
     @Override
     public Object execute() {
         try {
@@ -835,12 +923,22 @@ class addQuestationCommand extends Command {
     private final String question;
     private final String answer;
 
+    /**
+     * Command for add a question
+     * @param name the name of the question
+     * @param question the question content
+     * @param answer the answer of the question
+     */
     public addQuestationCommand(String name, String question, String answer) {
         this.name = name;
         this.question = question;
         this.answer = answer;
     }
 
+    /**
+     * Execute the adds question command
+     * @return SUCCESS if the adding succeed or FAILED otherwise
+     */
     @Override
     public Object execute() {
         try {
@@ -896,12 +994,22 @@ class deleteMemberCommand extends Command {
     int studentID;
     int groupID;
 
+    /**
+     * the command for delete a member from the group
+     * @param teacherID teacher who creates the group
+     * @param studentID student who will be deleted
+     * @param groupID the group this member will be removed from
+     */
     public deleteMemberCommand(int teacherID, int studentID, int groupID) {
         this.studentID = studentID;
         this.groupID = groupID;
         this.teacherID = teacherID;
     }
 
+    /**
+     * Execute to delete member command
+     * @return SUCCESS if remove succeed or FAILED otherwise
+     */
     @Override
     public Object execute() {
         try {
@@ -936,10 +1044,18 @@ class deleteMemberCommand extends Command {
 class createAnnouncementCommand extends Command {
     private final String announcement;
 
+    /**
+     * the command for creating an announcement
+     * @param announcement the announcement want to announce
+     */
     public createAnnouncementCommand(String announcement) {
         this.announcement = announcement;
     }
 
+    /**
+     * Execute the make announcement command
+     * @return SUCCESS if the action succeed or FAILED otherwise
+     */
     @Override
     public Object execute() {
         try {
@@ -962,11 +1078,20 @@ class addQuestionToTestCommand extends Command {
     private final int questionID;
     private final int testID;
 
+    /**
+     * Add question to a certain test
+     * @param questionID the ID of the question
+     * @param testID the ID of the test
+     */
     public addQuestionToTestCommand(int questionID, int testID) {
         this.questionID = questionID;
         this.testID = testID;
     }
 
+    /**
+     * Execute this adds question command
+     * @return SUCCESS if the adding succeed or FAILED otherwise
+     */
     @Override
     public Object execute() {
         try {
@@ -1006,10 +1131,19 @@ class addQuestionToTestCommand extends Command {
 }
 
 //int student id, string answer, int question id -> SUCCESS/FAILED
+
+
 class submitCommand extends Command {
     private final String answer;
     private final int questionID;
     private final int studentID;
+
+    /**
+     * The command for submit an answer of a question
+     * @param studentID the student ID who submit the answer
+     * @param answer the answer student gives
+     * @param questionID the question ID this student answers
+     */
 
     public submitCommand(int studentID, String answer, int questionID) {
         this.answer = answer;
@@ -1017,6 +1151,10 @@ class submitCommand extends Command {
         this.studentID = studentID;
     }
 
+    /**
+     * Execute this submission command
+     * @return SUCCESS if the submission success or FAILED otherwise
+     */
     @Override
     public Object execute() {
         try {
@@ -1051,6 +1189,11 @@ class getGroupInfo extends Command {
     private final int infoCol;
 
 
+    /**
+     * Command for get a certain group information
+     * @param id the group ID
+     * @param type the kind of information want to know
+     */
     public getGroupInfo(int id, int type) {
         this.groupID = id;
         if (type == GETGROUPNAME) {
@@ -1067,6 +1210,10 @@ class getGroupInfo extends Command {
 
     }
 
+    /**
+     * Execute the get info command
+     * @return the information needed ot FAILED if the action failed
+     */
     @Override
     public Object execute() {
         try {
@@ -1099,6 +1246,10 @@ class gradeQuestion extends Command {
 
     }
 
+    /**
+     *
+     * Execute the command that grade some questions
+     */
     @Override
     public Object execute() {
 
@@ -1163,11 +1314,20 @@ class gradeTest extends Command {
     private final int studentID;
     private final int testID;
 
+    /**
+     * The command for grade the test
+     * @param studentID the student ID this grade corresponding to
+     * @param testID the test ID this grade corresponding to
+     */
+
     public gradeTest(int studentID, int testID) {
         this.studentID = studentID;
         this.testID = testID;
     }
 
+    /**
+     * Execute this grade test command
+     */
     @Override
     public Object execute() {
         try {
@@ -1243,10 +1403,21 @@ class gradeTest extends Command {
 class getStudentAve extends Command {
     private final int studentID;
 
+    /**
+     * The command for calculate a student's average
+     * @param studentID the student ID
+     */
+
     public getStudentAve(int studentID) {
         this.studentID = studentID;
     }
 
+    /**
+     * Execute this average calculation command
+     * @return the average grade or
+     *         0 if there's no grade or
+     *         FAILED if we can't do the action
+     */
     @Override
     public Object execute() {
         try {
