@@ -1,7 +1,5 @@
 # Design Document
-## Your updated specification.
-Briefly highlight any additional functionality that you have implemented between phase 0 and the end of phase 1.
-
+## Updated specification.
 ### Introduction
 
 An educational website that provides a platform for teachers and students to collaboratively learn vocabularies in other languages. But being an unusual dictionary, this website helps to study the language by providing a word bank for the users to memorize. Teachers can form study groups and assign homework, quizzes and exams to the students within the group. Students may use the website to learn words by working on their own or join a study group and learn with other students. 
@@ -26,16 +24,10 @@ Since student users need to buy a membership in order to access tests on the web
 The website creates a webpage for each registered student. Student users can see all the groups they have joined and are able to join new groups on the page.
 #### Teacher Page
 The website creates a webpage for every teacher user. Teacher users can see all the groups they have and are able to delete students from groups. They can also access their tests on the page by pressing the tests button.
-## Diagram
-Optionally, include a well-formatted diagram of your code. This is called a class diagram (Links to an external site.), and there is an international standard called the Unified Modelling Language (Links to an external site.) (UML) that describes them in detail. However! Please don't worry about the details, just use boxes and arrows like we do in the slides. If you're curious, you can create a full UML class diagram for all or part (at your group's discretion) of your program.
-NOTE 1: This can really help your TA understand what you did, but if presented poorly it won't be of much use.
-NOTE 2: If you have access to the Pro version of IntelliJ, it can generate class diagrams for you, but make sure it is well formatted if you hand one in!
 ## Design Decision
-A description of any major design decisions your group has made (along with brief explanations of why you made them).
 We designed to let our users respond in the front end, and then the data is sent to the database. After processing functions, the response data will be sent back to users. We designed to ensure that our website can hold enough users at the same time, which avoids that when several users are using at the same time, the program will be confused which to process.
 We satisfy the following principles of Universal Design
 Tolerance of error:
-When the user forgets his/her password, the website allows him/her to press forget password and look back for his/her password.
 Pop up warning for important actions: To avoid some actions by mistakes, our website allows double checking for users in the important moves such as deleting students from group and quitting from group.
 Simple and Intuitive Use:
 Different clarified buttons control specific functionality, all buttons have distinct functionalities, all buttons are labelled with clear meaning about what the button leads to, which helps users to quickly identify where they are towarding.
@@ -45,41 +37,39 @@ Perceptible Information:
 Clear instruction to functions with concise and precise descriptions. For example, the login page only has two buttons, the login and the register buttons.
 
 ## Clean Architecture
-A brief description of how your project adheres to Clean Architecture (if you notice a violation and aren't sure how to fix it, talk about that too!)
-Referring to Clean Architecture, I think our group did a great job. Firstly, we have divided our code into four different parts as the Clean Architecture says. For entities, we have User class, Test class, and Group class that represent the most basic variable in our project. For Use cases, we have UserManager class and GroupManager class that provide functions for those entities to work. For Controllers, . For the outermost layer, .
-Besides, every piece of our code follows the dependency rule. Throughout our project, we need to use our entities frequently. If users want to change their password, the Command controller will call the reset password method in UserManager. And finally this method will reach the innermost layer User to achieve this command. 
+Referring to Clean Architecture, I think our group did a great job. Firstly, we have divided our code into four different parts as the Clean Architecture says. For entities, we have User class, Test class, and Group class that represent the most basic variable in our project. For Use cases, we have UserManager class, GroupManager class and the Command class that provide functions for those entities to work. For Controllers, we have different kinds of servlets that work with Use cases and the website.. For the outermost layer, we built a website as the User Interface that our users could use.
+Besides, every piece of our code follows the dependency rule. Throughout our project, the outer layers depend on inner layers and don’t have cross layer dependency. For example, if users want to login to the system, the UI will receive the instruction first. After the login servlet, the Command called login command will call the login method in Usermanager. And finally this method will reach the innermost layer User to achieve this command.
+
 
 ## SOLID
-A brief description of how your project is consistent with the SOLID design principles (if you notice a violation and aren't sure how to fix it, talk about that too!)
 
 Single responsibility principle(SRP) Each class relate to one functionality 
 Each page has its own corresponding servlet.
 Open/closed principle(OCP) Available to add extensions without editing the origin
 Liskov substitution principle(LSP) We haven’t used the principle
-Interface segregation principle(ISP) 
-Dependency inversion principle(DIP)
+Interface segregation principle(ISP) We used two interfaces, a Readable and a Writable. The classes implementing abstract in Readable does not contain anything in Writable, while the classes implementing abstract in Writable also does not contain anything in Readable
+Dependency inversion principle(DIP) The gateway classes and entity classes both depend on some abstract interfaces, but not depend on each other.
+
 
 ## Packaging Strategy
-A brief description of which packaging strategies you considered, which you decided to use, and why. (see slide 7 from the packages slides)
+We packaged the classes by functionality. For the whole project, we broke it out into two packages, a front end and a back end. Since we separate our work into three sections, the front end, the back end and the design document, then it is easy for us to trace where the problem is and who is responsible for it. The back end is separated into three packages by functionality, a Backend package, a Servlet package and a command package. The Backend package contains the functions written as our skeleton program, it contains the main body of the project, if there is an implementation error, it can be easily located. The command package follows the idea of using the Command design pattern which is shown below. The servlet package plays the role of the controller, which sends users responses to backend and sends the backend responses to users. We packed the classes in this way because it is easy to locate problems while running and it is neat and clean.
 
 ## Design Pattern
-A summary of any design patterns your group has implemented (or plans to implement).
-For design patterns, we plan to implement the Command Design Pattern. For this design pattern, sequences of command objects can be assembled into composite commands. In our project, we are making a website that provides for students and teachers to use together, so there will be plenty of commands or orders called by our users. In this case, a “Command” design pattern would be very useful.
-
-For phase 0, we use use cases to handle all the commands in our project, including creating an account, login to the system, join a group and so on. After implementing the Command Design Pattern,  instead of packing all the user commands into a single class, we build a “Command” parent class and then make every action into a single class and then extend that parent class. For these Commands, we specified the receiver for each of them so that each command will work with the corresponding Use case correctly. But these procedures are not the ending. 
-
-We need to construct a Command Controller that controls how these commands work. Besides, like the JShell example we did in class, we may need to build some CommandExecutor or other class that helps the Command classes and UI work correctly. 
+For design patterns, we plan to implement the Command Design Pattern. 	Command is a design pattern that an object is used to represent and encapsulate all the information needed, so that we can parametrize clients with different requests. In this case, the client will treat the object as black box and accomplish some goal by just invoking the method “execute”. For this design pattern, sequences of command objects can be assembled into composite commands. 
+In our project, we are making a website that provides for students and teachers to use together, so there will be plenty of commands or orders called by our users. In this case, a “Command” design pattern would be very useful. For phase 0, we use different kinds of managers to handle all the commands in our project, including creating an account, login to the system, joining a group and so on. After implementing the Command Design Pattern,  instead of packing all the user commands into a single class, we build a “Command” parent class and then make every action into a single class and then extend that parent class. For these Commands, we specified the receiver for each of them so that each command will work with the corresponding entities correctly. 
 
 
 
-## progress report
-### open questions your group is struggling with
 
-### what has worked well so far with your design
+## Progress Report
+### Open Question
+Why do we need entities?
+### Worked Well
 Everything has been working well according to our design. Our program satisfies 4 out of 7 principles of the Universal Design. Followed by satisfaction with 4 out of 5 SOLID principles and a clean architecture. We used the Command Design Pattern to improve our program.
-### a summary of what each group member has been working on and plans to work on next
-Darcy is responsible for the front end of the program. 
-Gavin is responsible for the design document of the program.
-Jacky is responsible for the back end of the program.
-Jenny is responsible for the back end of the program.
-Zi Hua is responsible for the design document of the program.
+### Member Progress
+Darcy is responsible for the front end of the program. During the working period, Darcy actively learned knowledge related to website building. He made the most significant effort on our User Interface part. 
+Gavin is responsible for the design document of the program. Besides, he works with Jerry on solving warnings and completing Javadocs of the program. He’s in charge of the text work of the group. Also, he and Zi Hua worked together on drawing the class diagram of the project.
+Jacky is responsible for the back end of the program. He learned to implement the Command design pattern into our project. Also, he is the major person to write tests in our group, which is the crucial part to make sure the code works.
+Jenny is responsible for the back end of the program. She cooperates with Jacky on the implementation of Command design pattern. She learned about databases to create our own database to save all the information for our system.
+Zi Hua is also responsible for the design document of the program. He and Gavin wrote the required documentation listed on the phase 1 page. Also, he worked on solving the warnings and code style with Gavin. A precise diagram is also done under the corporation of Gavin and Zi Hua. 
+
