@@ -157,4 +157,40 @@ public class GroupPageServlet extends testServlet {
         response.sendRedirect("TestPresenterServlet?testId="+request.getParameter("testId")+
                 "&groupId="+request.getParameter("groupId"));
     }
-}
+    public void startMarking(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.sendRedirect("MarkingPageChoosing.jsp");
+    }
+    public void grade(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int testId=Integer.parseInt(request.getParameter("testId"));
+        request.setAttribute("testId", testId);
+        int groupId=Integer.parseInt(request.getParameter("groupId"));
+        request.setAttribute("groupId", groupId);
+        int[] students=userGroupManager.getStudents(groupId);
+        request.setAttribute("students", students);
+        for(int i=0;i<students.length;i++){
+            if(students[i]!=0){
+                request.setAttribute("student"+i+"name", userManager.getName(students[i]));
+            }
+        }
+        RequestDispatcher r = request.getRequestDispatcher("MarkingPageChoosing.jsp");
+        r.forward(request, response);
+    }
+    public void choose(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.sendRedirect("TestSubmitionServlet?testId="+request.getParameter("testId")+
+                "&groupId="+request.getParameter("groupId")+
+                "&studentId="+request.getParameter("studentId"));
+        
+    }
+    public void back(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int user=getUserId(request);
+        if(userManager.getUserType(user)=="T"){
+            response.sendRedirect("TeacherPageServlet");
+        }else if(userManager.getUserType(user)=="S"){
+            response.sendRedirect("StudentPageServlet");
+        }
+    }
+    }

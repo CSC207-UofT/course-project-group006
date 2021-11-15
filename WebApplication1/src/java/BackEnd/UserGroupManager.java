@@ -88,4 +88,7 @@ public class UserGroupManager {
     public boolean answerTest(int groupId,int test,String[] a, int studentId) {
         return groups.get(groupId).answerTest(test, a, studentId);
     }
+    public HashMap<Integer, String[]> getSubmition(int groupId, int testId){
+        return groups.get(groupId).getTestResults(testId);
+    }
 }

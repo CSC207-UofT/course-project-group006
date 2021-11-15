@@ -58,12 +58,13 @@ public class LogInPageServlet extends testServlet {
             }
         }
     }
-    public void regester(HttpServletRequest request, HttpServletResponse response){
+    public void register(HttpServletRequest request, HttpServletResponse response){
         try{
             response.sendRedirect("regester.jsp");
         }catch(IOException e){
             
         }
+     
     }
     
     

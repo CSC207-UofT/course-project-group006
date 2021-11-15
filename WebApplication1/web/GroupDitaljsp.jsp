@@ -24,6 +24,9 @@
         button{
             float: right;
         }
+        form{
+            width:100%;
+        }
     </style>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -45,9 +48,11 @@
             <form action="GroupPageServlet" method="Post">
                 <label><%=request.getAttribute("Tests"+i+"name")+" due at "+tests.get(i)%></label>
                 <input type="hidden" name="testId" id="testId" value=<%=i%>>
+                <input type="hidden" name="groupId" id="groupId" value=<%=groupId%>>
                 <%if(request.getAttribute("userType").equals("S")){%>
-                    <input type="hidden" name="groupId" id="groupId" value=<%=groupId%>>
                 <input type="submit" name="act" id="act" value="start">
+                <%}else if(request.getAttribute("userType").equals("T")){%>
+                    <input type="submit" name="act" id="act" value="grade">
                 <%}%>
             </form>
             <%}}%>
@@ -57,6 +62,7 @@
                 <input type="submit" name="act" id="act" value="assign">
             </form>
                 <%}%>
+        </div>
         <div class="right" id="people" hidden>
             <%
                 int[] students = (int[])request.getAttribute("students");
@@ -83,5 +89,8 @@
         document.getElementById("people").hidden=!document.getElementById("people").hidden;
     }
 </script>
+            <form action ="GroupPageServlet" method="Post" style="position: fixed; bottom: 0px">
+                <input type="submit" name ="act" id="act" value="back">
+            </form>
     </body>
 </html>
