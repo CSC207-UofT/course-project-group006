@@ -13,11 +13,17 @@
     </head>
     <body>
         <form action=<%="GroupPageServlet?groupId="+request.getParameter("groupId")+"&testId="+request.getParameter("testId") %> method="Post">
-            <input type="text" name="year" id="year">
-            <input type="text" name="month" id="month">
-            <input type="text" name="day" id="day">
-            <input type="text" name="hour" id="hour">
-            <input type="text" name="minuit" id="minuit">
+            <label>Choose a due date:</label><br>
+            <label>year</label>
+            <input type="number" name="year" id="year"><br>
+            <label>month</label>
+            <input type="number" name="month" id="month"><br>
+            <label>day</label>
+            <input type="number" name="day" id="day"><br>
+            <label>hour</label>
+            <input type="number" name="hour" id="hour"><br>
+            <label>minuet</label>
+            <input type="number" name="minuit" id="minuit"><br>
             <input type="submit" name ="act" id="act" value="finsh">
         </form>
     </body>

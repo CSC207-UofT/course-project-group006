@@ -45,6 +45,7 @@ public class TestSubmitionServlet extends testServlet {
         request.setAttribute("answers", answers);
         }
         List<QuestionInterface> questions = testManager.getTestInfo(testId);
+        request.setAttribute("questions", questions);
         RequestDispatcher r= request.getRequestDispatcher("TestSubmiation.jsp");
         r.forward(request, response);
         

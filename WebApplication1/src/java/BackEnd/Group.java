@@ -85,7 +85,7 @@ public class Group {
                 String[] answer = testsResult.get(testId).get(i);
                 String[] ans = new String[answer.length];
                 for(int j=0; j<answer.length;j++){
-                    ans[i]=answer[i];
+                    ans[j]=answer[j];
                 }
                 result.put(i, ans);
             }
