@@ -67,7 +67,7 @@ Why do we need entities?
 ### Worked Well
 Everything has been working well according to our design. Our program satisfies 4 out of 7 principles of the Universal Design. Followed by satisfaction with 4 out of 5 SOLID principles and a clean architecture. We used the Command Design Pattern to improve our program.
 ### Member Progress
-Darcy is responsible for the front end of the program. During the working period, Darcy actively learned knowledge related to website building. He made the most significant effort on our User Interface part.   
+Darcy is responsible for the front end of the program. During the working period, Darcy actively learned knowledge related to website building. He made the most significant effort on our User Interface part and as well as the controllers.   
 Gavin is responsible for the design document of the program. Besides, he works with Jerry on solving warnings and completing Javadocs of the program. He’s in charge of the text work of the group. Also, he and Zi Hua worked together on drawing the class diagram of the project.  
 Jacky is responsible for the back end of the program. He learned to implement the Command design pattern into our project. Also, he is the major person to write tests in our group, which is the crucial part to make sure the code works.  
 Jenny is responsible for the back end of the program. She cooperates with Jacky on the implementation of Command design pattern. She learned about databases to create our own database to save all the information for our system.  
