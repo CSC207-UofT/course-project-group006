@@ -68,4 +68,13 @@ public class TestManager {
        List<QuestionInterface> result = allTest.get(id).getQuestions();
        return result;
     }
+    public String[] getQuestions(int id){
+        return this.allTest.get(id).getQuestion();
+    }
+    public String[] getAnswers(int id){
+        return this.allTest.get(id).getAnswer();
+    }
+    public int[] getMarks(int id){
+        return this.allTest.get(id).getMark();
+    }
 }

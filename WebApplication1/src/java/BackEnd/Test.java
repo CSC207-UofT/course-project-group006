@@ -85,6 +85,27 @@ public abstract class Test {
         return result;
 
     }
+    public String[] getQuestion(){
+        String[] result = new String[questions.size()];
+        for(int i=0;i<questions.size();i++){
+            result[i]=questions.get(i).getQuestion();
+        }
+        return result;
+    }
+    public String[] getAnswer(){
+        String[] result = new String[questions.size()];
+        for(int i=0;i<questions.size();i++){
+            result[i]=questions.get(i).getAnswer();
+        }
+        return result;
+    }
+    public int[] getMark(){
+        int[] result = new int[questions.size()];
+        for(int i=0;i<questions.size();i++){
+            result[i]=questions.get(i).getMarks();
+        }
+        return result;
+    }
 }
 
 

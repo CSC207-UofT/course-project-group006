@@ -16,6 +16,9 @@
     <body>
         <%
             List<QuestionInterface> questions = (List<QuestionInterface>)request.getAttribute("questions");
+            String[] question = (String[])request.getAttribute("question");
+            String[] answer = (String[])request.getAttribute("answer");
+            String[] mark = (String[])request.getAttribute("mark");
             int testId = (int)request.getAttribute("testId");
             int studentId = (int)request.getAttribute("studentId");
             int groupId = (int)request.getAttribute("groupId");
@@ -30,18 +33,20 @@
             <%
                 for(int i=0;i<answers.length;i++){%>
                 <label>
-                    Question:<%=questions.get(i).getQuestion() %>
+                    Question:<%=question[i] %>
                 </label>
                 <br>
                 <label>
-                    Sample Answer:<%=questions.get(i).getAnswer() %>
+                    Sample Answer:<%=answer[i] %>
                 </label>
                 <br>
                 <label>
                     Student's Answer:<%=answers[i] %>
                 </label>
                 <br>
-                    <input type="number"  name=<%="Q"+i+"grade"%> id=<%="Q"+i+"grade"%>>
+                    <input type="number"  name=<%="Q"+i+"grade"%> id=<%="Q"+i+"grade"%>><label>
+                    <%="/"+mark[i] %>
+                </label>
                 <%}
             %>
             <input type="submit" id="act" name="act" value="grade">
