@@ -1,5 +1,5 @@
 # Design Document
-## Updated specification.
+## Updated specification
 ### Introduction
 
 An educational website that provides a platform for teachers and students to collaboratively learn vocabularies in other languages. But being an unusual dictionary, this website helps to study the language by providing a word bank for the users to memorize. Teachers can form study groups and assign homework, quizzes and exams to the students within the group. Students may use the website to learn words by working on their own or join a study group and learn with other students.  
