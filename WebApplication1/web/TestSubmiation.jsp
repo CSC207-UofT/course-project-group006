@@ -18,7 +18,7 @@
             List<QuestionInterface> questions = (List<QuestionInterface>)request.getAttribute("questions");
             String[] question = (String[])request.getAttribute("question");
             String[] answer = (String[])request.getAttribute("answer");
-            String[] mark = (String[])request.getAttribute("mark");
+            int[] mark = (int[])request.getAttribute("mark");
             int testId = (int)request.getAttribute("testId");
             int studentId = (int)request.getAttribute("studentId");
             int groupId = (int)request.getAttribute("groupId");
@@ -47,6 +47,7 @@
                     <input type="number"  name=<%="Q"+i+"grade"%> id=<%="Q"+i+"grade"%>><label>
                     <%="/"+mark[i] %>
                 </label>
+                <br>
                 <%}
             %>
             <input type="submit" id="act" name="act" value="grade">

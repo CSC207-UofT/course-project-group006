@@ -23,6 +23,7 @@
             <label><%=request.getAttribute("Q"+i+"question")%></label><br>
             <textarea name=<%="Q"+i+"answer"%> id=<%="Q"+i+"answer"%>>
             </textarea>
+            <br>
             <%}%>
             <input type="submit" name="act" id="act" value="submit">
         </form>
