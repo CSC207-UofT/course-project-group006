@@ -34,12 +34,14 @@ public class TestPresenterServlet extends testServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<QuestionInterface> questions = testManager.getTestInfo(Integer.parseInt(request.getParameter("testId")));
-        request.setAttribute("testSize", questions.size());
+        //List<QuestionInterface> questions = testManager.getTestInfo(Integer.parseInt(request.getParameter("testId")));
+        String[] questions = testManager.getQuestions(Integer.parseInt(request.getParameter("testId")));
+        int[] marks = testManager.getMarks(Integer.parseInt(request.getParameter("testId")));
+        request.setAttribute("testSize", questions.length);
         request.setAttribute("testId", Integer.parseInt(request.getParameter("testId")));
-        for(int i=0; i<questions.size();i++){
-            request.setAttribute("Q"+i+"question", questions.get(i).getQuestion());
-            request.setAttribute("Q"+i+"mark", questions.get(i).getMarks());
+        for(int i=0; i<questions.length;i++){
+            request.setAttribute("Q"+i+"question", questions[i]);
+            request.setAttribute("Q"+i+"mark", questions[i]);
         }
         
         RequestDispatcher r= request.getRequestDispatcher("TestPresenter.jsp");

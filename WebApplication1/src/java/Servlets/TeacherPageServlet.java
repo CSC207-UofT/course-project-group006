@@ -57,22 +57,23 @@ public class TeacherPageServlet extends testServlet {
             }
         }else{
             List<Integer> groups=userGroupManager.createdBy(userId);
-            out.print(groups.size());
+            out.print(userManager.getName(userId)+"'s page:<br>groups:<br>");
             for(int i=0; i<groups.size();i++){
              out.print("<form action=\"TeacherPageServlet\" method=\"Post\">");
-            out.print("<label \">"+userGroupManager.getNameOfGroup( groups.get(i)));
+            out.print("<label \">"+userGroupManager.getNameOfGroup(groups.get(i)));
             out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value="+groups.get(i)+">");
             out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"deleat\">");
             out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"detal\">");
             out.print("</form></br>");
             }
+            out.print("<form action=\"TeacherPageServlet\" method=\"Post\" name=\"creatGroup\" id = \"creatGroup\">");
+            out.print("<input type=\"text\" name=\"testName\" id=\"testName\">");
+            out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"Creat\">");
+            out.print("</form></br>");
             out.print("<form action=\"TeacherPageServlet\" method=\"Post\">");
             out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"Tests\">");
             out.print("</form></br>");
-            //out.println("<script type=\"text/javascript\">");  
-            //out.print("window.location='LogInPage.html';"); 
-            //out.println("alert('wrong username or password');");
-            //out.println("</script>");
+            
         }
             out.println("</body>");
             out.println("</html>");
@@ -117,6 +118,11 @@ public class TeacherPageServlet extends testServlet {
         }catch(IOException e){
                    
         }
+    }
+    public void Creat(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        userGroupManager.creatGroup(getUserId(request), request.getParameter("testName"));
+        response.sendRedirect("TeacherPageServlet");
     }
     
 }

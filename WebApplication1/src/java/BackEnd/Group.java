@@ -102,9 +102,9 @@ public class Group {
      */
     
     public boolean addTest(int t, LocalDateTime duedate) {
-        if (testsResult.containsKey(t)) {
-            return false;
-        }
+        //if (testsResult.containsKey(t)) {
+          //  return false;
+        //}
         testsResult.put(t, new HashMap<Integer,String[]>());
         this.duedates.put(t, duedate);
         return true;
@@ -120,6 +120,20 @@ public class Group {
     }
     public HashMap<Integer,LocalDateTime> getTests(){
         return duedates;
+    }
+    public HashMap<Integer,String[]> getTestResults(int testId){
+        HashMap<Integer,String[]> result = new HashMap<Integer,String[]>();
+        if(this.testsResult.containsKey(testId)){
+            for(int i:testsResult.get(testId).keySet()){
+                String[] answer = testsResult.get(testId).get(i);
+                String[] ans = new String[answer.length];
+                for(int j=0; j<answer.length;j++){
+                    ans[j]=answer[j];
+                }
+                result.put(i, ans);
+            }
+        }
+        return result;
     }
     public boolean hasStudent(int student) {
         for (int s : students) {
