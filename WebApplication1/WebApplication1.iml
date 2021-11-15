@@ -7,41 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$USER_HOME$/Downloads/apache-tomcat-8.5.72" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$USER_HOME$/Downloads/apache-tomcat-8.5.72/webapps/docs/appdev/sample/src" />
-          <root url="file://$USER_HOME$/Downloads/apache-tomcat-8.5.72/webapps/examples/WEB-INF/classes" />
-          <root url="file://$USER_HOME$/Downloads/apache-tomcat-8.5.72/webapps/examples/WEB-INF/jsp/applet" />
-          <root url="file://$USER_HOME$/Downloads/apache-tomcat-8.5.72/webapps/examples/jsp/plugin/applet" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27/src/build/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27/src/demo/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27/src/generated/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27/src/legacy/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27/src/main/core-api/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27/src/main/core-impl/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27/src/main/protocol-impl/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27/src/main/user-api/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27/src/main/user-impl/java" />
-          <root url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27/src/test/java" />
-        </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/Downloads/mysql-connector-java-8.0.27" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" name="servlet-api" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0" level="project" />
+    <orderEntry type="library" name="apache-tomcat-8.5" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
   </component>
 </module>

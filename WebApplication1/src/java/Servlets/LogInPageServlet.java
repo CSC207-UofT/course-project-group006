@@ -60,6 +60,7 @@ public class LogInPageServlet extends testServlet {
         }catch(IOException e){
             // Do nothing
         }
+     
     }
     
     
