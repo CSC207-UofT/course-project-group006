@@ -1,4 +1,4 @@
-package BackEnd1;
+package BackEnd;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

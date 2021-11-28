@@ -1,7 +1,7 @@
-package Write.Test;
+package BackEnd.Write.Test;
 
-import Read.Test.ReadID;
-import Read.Test.TestReader;
+import BackEnd.Read.Test.ReadID;
+import BackEnd.Read.Test.TestReader;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

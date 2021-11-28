@@ -1,12 +1,12 @@
-package Write.Group;
+package BackEnd.Write.Group;
 
-import Read.Group.GroupReader;
-import Read.Group.ReadID;
-import Read.Reader;
-import Read.Teacher.ReadGroups;
-import Read.Teacher.TeacherReader;
-import Write.Teacher.TeacherWriter;
-import Write.Teacher.WriteGroups;
+import BackEnd.Read.Group.GroupReader;
+import BackEnd.Read.Group.ReadID;
+import BackEnd.Read.Reader;
+import BackEnd.Read.Teacher.ReadGroups;
+import BackEnd.Read.Teacher.TeacherReader;
+import BackEnd.Write.Teacher.TeacherWriter;
+import BackEnd.Write.Teacher.WriteGroups;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

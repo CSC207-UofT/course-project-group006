@@ -1,34 +1,34 @@
 package BackEnd;
 
-import Read.Answer.AnswerReader;
-import Read.Answer.ReadMark;
-import Read.Answer.ReadAnswerByMore;
-import Read.Group.GroupReader;
-import Read.Group.ReadStudents;
-import Read.Question.QuestionReader;
-import Read.Question.ReadID;
-import Read.Question.ReadQuestion;
-import Read.Student.StudentReader;
-import Read.Teacher.ReadTests;
-import Read.Teacher.TeacherReader;
-import Read.Test.*;
-import Write.Answer.AnswerWriter;
-import Write.Answer.AutoGrade;
-import Write.Answer.WriteMark;
-import Write.Answer.WriteNewAnswer;
-import Write.Group.*;
-import Write.Question.QuestionWriter;
-import Write.Question.WriteNewQuestion;
-import Write.Student.StudentWriter;
-import Write.Student.WriteGroups;
-import Write.Student.WriteNewStudent;
-import Write.Teacher.TeacherWriter;
-import Write.Teacher.WriteNewTeacher;
-import Write.Teacher.WriteTests;
-import Write.Test.TestWriter;
-import Write.Test.*;
-import Write.Test.WriteNewTest;
-import Write.Test.WriteQuestions;
+import BackEnd.Read.Answer.AnswerReader;
+import BackEnd.Read.Answer.ReadMark;
+import BackEnd.Read.Answer.ReadAnswerByMore;
+import BackEnd.Read.Group.GroupReader;
+import BackEnd.Read.Group.ReadStudents;
+import BackEnd.Read.Question.QuestionReader;
+import BackEnd.Read.Question.ReadID;
+import BackEnd.Read.Question.ReadQuestion;
+import BackEnd.Read.Student.StudentReader;
+import BackEnd.Read.Teacher.ReadTests;
+import BackEnd.Read.Teacher.TeacherReader;
+import BackEnd.Read.Test.*;
+import BackEnd.Write.Answer.AnswerWriter;
+import BackEnd.Write.Answer.AutoGrade;
+import BackEnd.Write.Answer.WriteMark;
+import BackEnd.Write.Answer.WriteNewAnswer;
+import BackEnd.Write.Group.*;
+import BackEnd.Write.Question.QuestionWriter;
+import BackEnd.Write.Question.WriteNewQuestion;
+import BackEnd.Write.Student.StudentWriter;
+import BackEnd.Write.Student.WriteGroups;
+import BackEnd.Write.Student.WriteNewStudent;
+import BackEnd.Write.Teacher.TeacherWriter;
+import BackEnd.Write.Teacher.WriteNewTeacher;
+import BackEnd.Write.Teacher.WriteTests;
+import BackEnd.Write.Test.TestWriter;
+import BackEnd.Write.Test.*;
+import BackEnd.Write.Test.WriteNewTest;
+import BackEnd.Write.Test.WriteQuestions;
 
 
 import java.sql.*;
@@ -72,7 +72,7 @@ public abstract class Command {
 
         if (userType == STUDENT) {
             //get all group ids
-            StudentReader reader = new Read.Student.ReadGroups(userID);
+            StudentReader reader = new BackEnd.Read.Student.ReadGroups(userID);
             String allGroups = (String) reader.read();
             if (allGroups.equals(FAILED + "")) {
                 return FAILED;
@@ -84,11 +84,11 @@ public abstract class Command {
             //remove id from string
             String newGroups = removeIDFromString(allGroups, groupID, ",");
             //reset the new string
-            StudentWriter writer = new Write.Student.WriteGroups(userID, newGroups);
+            StudentWriter writer = new BackEnd.Write.Student.WriteGroups(userID, newGroups);
             return (int) writer.set();
 
         } else {
-            TeacherReader reader = new Read.Teacher.ReadGroups(userID);
+            TeacherReader reader = new BackEnd.Read.Teacher.ReadGroups(userID);
             String allGroups = (String) reader.read();
             if (allGroups.equals(FAILED + "")) {
                 return FAILED;
@@ -97,7 +97,7 @@ public abstract class Command {
                 return FAILED;
             }
             String newGroups = removeIDFromString(allGroups, groupID, ",");
-            TeacherWriter writer = new Write.Teacher.WriteGroups(userID, newGroups);
+            TeacherWriter writer = new BackEnd.Write.Teacher.WriteGroups(userID, newGroups);
             return (int) writer.set();
         }
     }
@@ -117,7 +117,7 @@ public abstract class Command {
         //remove student from the group
         String newStudents = removeIDFromString(allStudents, userID, ",");
         //reset the new string
-        GroupWriter writer = new Write.Group.WriteStudents(newStudents, groupID);
+        GroupWriter writer = new BackEnd.Write.Group.WriteStudents(newStudents, groupID);
         return (int) writer.set();
     }
 
@@ -162,13 +162,13 @@ class loginCommand extends Command {
     @Override
     public Object execute() {
 
-        StudentReader studentReader = new Read.Student.ReadNameAndPass(name, pass);
+        StudentReader studentReader = new BackEnd.Read.Student.ReadNameAndPass(name, pass);
         int id = (int) studentReader.read();
         if (id != FAILED) {
             return id;
         }
 
-        TeacherReader teacherReader = new Read.Teacher.ReadNameAndPass(name, pass);
+        TeacherReader teacherReader = new BackEnd.Read.Teacher.ReadNameAndPass(name, pass);
         id = (int) teacherReader.read();
         return id;
 
@@ -186,12 +186,12 @@ class checkIdentity extends Command {
     @Override
     public Object execute() {
 
-        TeacherReader teacherReader = new Read.Teacher.ReadName(id);
+        TeacherReader teacherReader = new BackEnd.Read.Teacher.ReadName(id);
         String name = (String) teacherReader.read();
         if (!name.equals(FAILED + "")) {
             return TEACHER;
         }
-        StudentReader studentReader = new Read.Student.ReadName(id);
+        StudentReader studentReader = new BackEnd.Read.Student.ReadName(id);
         name = (String) studentReader.read();
         if (!name.equals(FAILED + "")) {
             return STUDENT;
@@ -291,7 +291,7 @@ class joinGroupCommand extends Command {
 
         //add group to student
         ////get all the groups joined by the student
-        StudentReader studentReader = new Read.Student.ReadGroups(studentID);
+        StudentReader studentReader = new BackEnd.Read.Student.ReadGroups(studentID);
         String allGroups = (String) studentReader.read();
         ////add groupID to the string
         if (isInString(allGroups, groupID, ",")) {
@@ -603,7 +603,7 @@ class gradeTest extends Command {
                 int mark = (int) answerReader.read();
                 sum += mark;
             }
-            TestWriter testWriter = new Write.Test.WriteMark(testID, sum);
+            TestWriter testWriter = new BackEnd.Write.Test.WriteMark(testID, sum);
             return testWriter.set();
         } catch (Exception e) {
             e.printStackTrace();

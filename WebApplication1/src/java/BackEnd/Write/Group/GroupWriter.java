@@ -1,6 +1,6 @@
-package Write.Group;
+package BackEnd.Write.Group;
 
-import Write.Writer;
+import BackEnd.Write.Writer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

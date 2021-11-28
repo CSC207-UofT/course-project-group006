@@ -1,6 +1,6 @@
-package Write.Student;
+package BackEnd.Write.Student;
 
-import Write.Writer;
+import BackEnd.Write.Writer;
 
 public abstract class StudentWriter extends Writer {
 

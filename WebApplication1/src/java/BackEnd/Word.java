@@ -1,4 +1,4 @@
-package BackEnd1;
+package BackEnd;
 
 public class Word {
 

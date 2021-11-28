@@ -1,4 +1,4 @@
-package Read.Student;
+package BackEnd.Read.Student;
 
 
 public class ReadNameAndPass extends StudentReader {

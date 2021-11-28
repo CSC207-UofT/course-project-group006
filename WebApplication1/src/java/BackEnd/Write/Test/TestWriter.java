@@ -1,6 +1,6 @@
-package Write.Test;
+package BackEnd.Write.Test;
 
-import Write.Writer;
+import BackEnd.Write.Writer;
 
 public abstract class TestWriter extends Writer {
 

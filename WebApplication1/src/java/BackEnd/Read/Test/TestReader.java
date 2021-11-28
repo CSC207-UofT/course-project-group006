@@ -1,6 +1,6 @@
-package Read.Test;
+package BackEnd.Read.Test;
 
-import Read.Reader;
+import BackEnd.Read.Reader;
 
 public abstract class TestReader extends Reader {
 

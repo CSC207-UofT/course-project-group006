@@ -1,4 +1,4 @@
-package BackEnd1;
+package BackEnd;
 
 public class IDcreater {
     public static int current=0;

@@ -1,6 +1,6 @@
-package Read.Student;
+package BackEnd.Read.Student;
 
-import Read.Reader;
+import BackEnd.Read.Reader;
 
 public abstract class StudentReader extends Reader {
 

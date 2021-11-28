@@ -1,4 +1,4 @@
-package Write.Teacher;
+package BackEnd.Write.Teacher;
 
 public class WriteGroups extends TeacherWriter {
     private final int teacherID;

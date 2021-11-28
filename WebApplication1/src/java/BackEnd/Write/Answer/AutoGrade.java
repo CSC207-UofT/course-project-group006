@@ -1,10 +1,10 @@
-package Write.Answer;
+package BackEnd.Write.Answer;
 
-import Read.Answer.AnswerReader;
-import Read.Answer.ReadAnswerByID;
-import Read.Answer.ReadID;
-import Read.Answer.ReadQuestionID;
-import Read.Question.QuestionReader;
+import BackEnd.Read.Answer.AnswerReader;
+import BackEnd.Read.Answer.ReadAnswerByID;
+import BackEnd.Read.Answer.ReadID;
+import BackEnd.Read.Answer.ReadQuestionID;
+import BackEnd.Read.Question.QuestionReader;
 
 import java.sql.*;
 
@@ -27,9 +27,9 @@ public class AutoGrade extends AnswerWriter {
             int questionID = (int) new ReadQuestionID(answerID).read();
 
 
-            QuestionReader questionReader = new Read.Question.ReadAnswer(questionID);
+            QuestionReader questionReader = new BackEnd.Read.Question.ReadAnswer(questionID);
             String correctAnswer = (String) questionReader.read();
-            QuestionReader q = new Read.Question.ReadMark(questionID);
+            QuestionReader q = new BackEnd.Read.Question.ReadMark(questionID);
             int mark = (int) q.read();
             int studentMark;
             if (correctAnswer.equals(studentAnswer)) {

@@ -1,6 +1,6 @@
-package Read.Teacher;
+package BackEnd.Read.Teacher;
 
-import Read.Reader;
+import BackEnd.Read.Reader;
 
 public abstract class TeacherReader extends Reader {
     protected final String TABLE = "TEACHER";

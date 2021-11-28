@@ -1,4 +1,4 @@
-package Write.Teacher;
+package BackEnd.Write.Teacher;
 
 public class WriteTests extends TeacherWriter {
     private final int teacherID;

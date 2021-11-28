@@ -1,4 +1,4 @@
-package Write.Group;
+package BackEnd.Write.Group;
 
 public class WriteStudents extends GroupWriter {
     private final int groupID;

@@ -1,4 +1,4 @@
-package Read.Teacher;
+package BackEnd.Read.Teacher;
 
 public class ReadTests extends TeacherReader {
     private final int ID;

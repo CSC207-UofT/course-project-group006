@@ -1,9 +1,9 @@
-package Write.Teacher;
+package BackEnd.Write.Teacher;
 
-import Read.Group.GroupReader;
-import Read.Reader;
-import Read.Teacher.ReadID;
-import Read.Teacher.TeacherReader;
+import BackEnd.Read.Group.GroupReader;
+import BackEnd.Read.Reader;
+import BackEnd.Read.Teacher.ReadID;
+import BackEnd.Read.Teacher.TeacherReader;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

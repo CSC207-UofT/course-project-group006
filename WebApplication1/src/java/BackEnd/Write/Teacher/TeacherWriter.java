@@ -1,6 +1,6 @@
-package Write.Teacher;
+package BackEnd.Write.Teacher;
 
-import Write.Writer;
+import BackEnd.Write.Writer;
 
 public abstract class TeacherWriter extends Writer {
     protected final String TABLE = "TEACHER";

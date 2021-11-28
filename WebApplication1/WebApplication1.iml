@@ -7,8 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="mysql-connector-java-8.0" level="project" />
-    <orderEntry type="library" name="apache-tomcat-8.5" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.01" level="project" />
+    <orderEntry type="library" name="apache-tomcat-10.01" level="project" />
+    <orderEntry type="library" name="servlet-api1" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
   </component>
 </module>

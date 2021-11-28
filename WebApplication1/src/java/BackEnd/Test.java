@@ -1,4 +1,4 @@
-package BackEnd1;
+package BackEnd;
 
 import QuestionTypes.Question;
 import QuestionTypes.QuestionInterface;

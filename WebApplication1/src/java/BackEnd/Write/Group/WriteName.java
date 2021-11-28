@@ -1,6 +1,6 @@
-package Write.Group;
+package BackEnd.Write.Group;
 
-import Read.Group.GroupReader;
+import BackEnd.Read.Group.GroupReader;
 
 public class WriteName extends GroupWriter {
     private final int groupID;

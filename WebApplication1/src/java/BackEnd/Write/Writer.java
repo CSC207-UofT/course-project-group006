@@ -1,4 +1,4 @@
-package Write;
+package BackEnd.Write;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

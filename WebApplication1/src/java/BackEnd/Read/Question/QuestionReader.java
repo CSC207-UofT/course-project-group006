@@ -1,6 +1,6 @@
 package BackEnd.Read.Question;
 
-import Read.Reader;
+import BackEnd.Read.Reader;
 
 public abstract class QuestionReader extends Reader {
 

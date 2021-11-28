@@ -1,8 +1,8 @@
-package Read.Test;
+package BackEnd.Read.Test;
 
-import Read.Question.QuestionReader;
-import Read.Question.ReadAnswer;
-import Read.Question.ReadQuestion;
+import BackEnd.Read.Question.QuestionReader;
+import BackEnd.Read.Question.ReadAnswer;
+import BackEnd.Read.Question.ReadQuestion;
 
 public class ReadAllQuestions extends TestReader {
     private final int testID;

@@ -1,10 +1,10 @@
-package Write.Student;
+package BackEnd.Write.Student;
 
 
-import Read.Reader;
-import Read.Student.ReadID;
-import Read.Student.StudentReader;
-import Read.Teacher.TeacherReader;
+import BackEnd.Read.Reader;
+import BackEnd.Read.Student.ReadID;
+import BackEnd.Read.Student.StudentReader;
+import BackEnd.Read.Teacher.TeacherReader;
 
 import java.sql.*;
 
