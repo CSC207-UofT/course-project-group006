@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
-import java.util.Locale;
 import static java.lang.System.out;
 import static java.lang.System.err;
 import BackEnd1.UserGroupManager;
@@ -32,7 +30,7 @@ public class testServlet extends HttpServlet {
     protected static UserGroupManager userGroupManager=new UserGroupManager();
     protected static UserManager userManager=new UserManager(null);
     protected static TestManager testManager= new TestManager();
-    protected static WordManager wordManager=new WordManager(System.getProperty("user.dir") + "\\src\\java\\main\\Files\\Words");;
+    protected static WordManager wordManager=new WordManager(System.getProperty("user.dir") + "\\src\\java\\main\\Files\\Words");
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -118,8 +116,7 @@ public class testServlet extends HttpServlet {
         try {
         response.sendRedirect("testWabPage.html");
     }catch(IOException  e){
-       System.out.print(e);
-        //ServletException, IOException 
+       // Do nothing
     }
     }
     protected void b(HttpServletRequest request, HttpServletResponse response){
@@ -127,8 +124,7 @@ public class testServlet extends HttpServlet {
         try {
             response.sendRedirect("index.html");
         }catch(IOException  e){
-            System.out.print(e);
-        //ServletException, IOException 
+            // Do nothing
         }
     }
 
@@ -142,11 +138,11 @@ public class testServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     public int getUserId(HttpServletRequest request){
-        Cookie c[] = request.getCookies();
+        Cookie[] c = request.getCookies();
         int userId=-1;
-        for(int i=0;i<c.length;i++){
-            if(c[i].getName().equals("userId")){
-                return Integer.parseInt(c[i].getValue());
+        for (Cookie cookie : c) {
+            if (cookie.getName().equals("userId")) {
+                return Integer.parseInt(cookie.getValue());
             }
         }
         return -1;

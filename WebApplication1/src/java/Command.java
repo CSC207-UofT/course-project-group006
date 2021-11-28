@@ -60,10 +60,16 @@ public class Command {
     public String password = "HNzHR6WEhn";//MySQL配置时的密码
     public Connection connection = null;
 
+    /**
+     *
+     */
     public Command() {
         getConnection();
     }
 
+    /**
+     *
+     */
     public void getConnection() {
         try {
             // 加载驱动类

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : GroupDitaljsp
+    Document   : GroupDetail
     Created on : Nov 11, 2021, 12:50:48 AM
     Author     : darcy
 --%>
@@ -76,7 +76,7 @@
                 <input type="hidden" name="studentId" id="studentId" value=<%=students[i]%>>
                 <input type="hidden" name="groupId" id="groupId" value=<%=groupId%>>
                 <%if(request.getAttribute("userType").equals("T")){%>
-                <input type="submit" name="act" id="act" value="deleat">
+                <input type="submit" name="act" id="act" value="delete">
                 <%}%>
             </form>
                 <br>

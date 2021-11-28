@@ -6,7 +6,6 @@ package Servlets;
  */
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,10 +37,8 @@ public class JoinGroupServlet extends testServlet {
         r.forward(request, response);
     }
     public void join(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         userGroupManager.addStudentToGroup(getUserId(request), Integer.parseInt(request.getParameter("groupId")));
         response.sendRedirect("JoinGroupServlet");
     }
-
-
 }
