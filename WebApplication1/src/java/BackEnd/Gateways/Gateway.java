@@ -1,6 +1,6 @@
 package BackEnd.Gateways;
 
-import BackEnd.ReadWriter;
+import BackEnd.GeneralReadWriter;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,19 +9,18 @@ import java.util.List;
 /**
  * A parent Gateway class that accesses the remote data.
  */
-public abstract class Gateway implements ReadWriter {
+public abstract class Gateway implements GeneralReadWriter {
     /**
      * Constants
      */
     protected final String FAILED = "FAILED";
+    protected final String SUCCESS = "SUCCESS";
     protected final int INT = 111;
     protected final int STRING = 222;
-
-    @Override
-    public abstract List<String> read();
-
-    @Override
-    public abstract List<String> write();
+    protected final int ONE = 333;
+    protected final int ALL = 444;
+    protected final int ID = 1;
+    protected final int NAME = 2;
 
     /**
      * Gets connection of the database.
@@ -43,38 +42,6 @@ public abstract class Gateway implements ReadWriter {
         }
     }
 
-    /**
-     * Read one element in the database.
-     *
-     * @param sql  the sql wanted to be executed
-     * @param col  the col number of the wanted element
-     * @param type the type of the element: 111 for int, 222 for string
-     * @return the element as a string
-     */
-    public String readOne(String sql, int col, int type) {
-        try {
-            Connection connection = getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            if (!resultSet.next()) {
-                statement.close();
-                connection.close();
-                return FAILED;
-            }
-            String result;
-            if (type == INT) {
-                result = resultSet.getInt(col) + "";
-            } else {
-                result = resultSet.getString(col);
-            }
-            statement.close();
-            connection.close();
-            return result;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return FAILED;
-        }
-    }
 
 
     /**
@@ -83,9 +50,9 @@ public abstract class Gateway implements ReadWriter {
      * @param sql  the sql wanted to be executed
      * @param col  the col number of the wanted element(s)
      * @param type the type of the element(s): 111 for int, 222 for string
-     * @return the list
+     * @return a list or an empty list
      */
-    protected List<String> readAll(String sql, int col, int type) {
+    protected List<String> read(String sql, int col, int type) {
         try {
             ArrayList<String> result = new ArrayList<>();
             Connection connection = getConnection();
@@ -112,9 +79,29 @@ public abstract class Gateway implements ReadWriter {
             return result;
         } catch (SQLException e) {
             e.printStackTrace();
-            return new ArrayList<>();
+            return null;
         }
 
+    }
+
+    /**
+     * Rewrite a field in the database.
+     *
+     * @param sql the sql wanted to be executed
+     * @return SUCCESS or FAILED
+     */
+    protected String rewrite(String sql) {
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            return SUCCESS;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return FAILED;
+        }
     }
 
 

@@ -1,3 +1,5 @@
+import BackEnd.Gateways.GroupGateway;
+
 import java.sql.*;
 
 public class Ini {
@@ -267,7 +269,7 @@ public class Ini {
 //        c.execute();
 //        Command c = new getStudentAve(1);
 //        System.out.println(c.execute());;
-        ini();
+//        ini();
+        System.out.println(new GroupGateway().readRow(3));
     }
-
 }
