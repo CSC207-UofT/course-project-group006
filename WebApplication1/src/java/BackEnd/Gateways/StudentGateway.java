@@ -1,8 +1,5 @@
 package BackEnd.Gateways;
 
-import BackEnd.Read.Student.ReadID;
-import BackEnd.Read.Student.StudentReader;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

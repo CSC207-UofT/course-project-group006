@@ -4,7 +4,7 @@
 // */
 //package Servlets;
 //
-//import QuestionTypes.QuestionInterface;
+//import BackEnd.Entities.QuestionTypes.QuestionInterface;
 //import static Servlets.testServlet.testManager;
 //import java.io.IOException;
 //import java.io.PrintWriter;

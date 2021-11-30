@@ -1,6 +1,6 @@
 package BackEnd.Gateways;
 
-import BackEnd.GeneralReadWriter;
+import BackEnd.Interfaces.GeneralReadWriter;
 
 import java.sql.*;
 import java.util.ArrayList;

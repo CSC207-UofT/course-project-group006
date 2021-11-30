@@ -1,10 +1,11 @@
 package BackEnd;
 
-import QuestionTypes.Question;
+import BackEnd.Entities.Test;
+import BackEnd.Entities.QuestionTypes.Question;
 
 import java.util.List;
 
-public class Quiz extends Test{
+public class Quiz extends Test {
 
     /**
      * Construct a quiz giving its name, time limit, author and

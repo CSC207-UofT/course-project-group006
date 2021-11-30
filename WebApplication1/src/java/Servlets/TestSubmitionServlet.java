@@ -4,7 +4,7 @@
 // */
 //package Servlets;
 //
-//import QuestionTypes.QuestionInterface;
+//import BackEnd.Entities.QuestionTypes.QuestionInterface;
 //import java.io.IOException;
 //import java.io.PrintWriter;
 //import java.util.HashMap;

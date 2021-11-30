@@ -1,13 +1,8 @@
 import BackEnd.Gateways.GroupGateway;
 import BackEnd.Gateways.StudentGateway;
-import BackEnd.GeneralReadWriter;
-import BackEnd.GroupManager;
-import BackEnd.ReadAll;
-import BackEnd.UserManager;
+import BackEnd.Managers.GroupManager;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Ini {
     public static Connection getConnection() {

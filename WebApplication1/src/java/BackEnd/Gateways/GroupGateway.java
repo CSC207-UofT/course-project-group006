@@ -1,7 +1,7 @@
 package BackEnd.Gateways;
 
 
-import BackEnd.ReadAll;
+import BackEnd.Interfaces.ReadAll;
 
 import java.sql.*;
 import java.util.ArrayList;

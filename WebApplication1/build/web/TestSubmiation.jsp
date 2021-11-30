@@ -4,7 +4,7 @@
     Author     : darcy
 --%>
 
-<%@page import="QuestionTypes.QuestionInterface"%>
+<%@page import="BackEnd.Entities.QuestionTypes.QuestionInterface"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

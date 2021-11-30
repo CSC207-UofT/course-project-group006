@@ -4,6 +4,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/WebApplication1">
       <sourceFolder url="file://$MODULE_DIR$/WebApplication1/src/java" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/WebApplication1/src/java/BackEnd/oldstuff" />
     </content>
     <orderEntry type="jdk" jdkName="corretto-11" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
