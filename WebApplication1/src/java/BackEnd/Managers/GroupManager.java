@@ -22,53 +22,11 @@ public class GroupManager {
         this.groupGate = readWriter;
     }
 
-//    public GroupManager() {
-//        groups = new HashMap<>();
-//        creatGroup(2, "aaa");
-//        addStudentToGroup(3, 1);
-//    }
 
     public GroupManager(HashMap<Integer, Group> groups) {
         this.groups = groups;
     }
 
-//    /**
-//     * Add student to a certain group
-//     *
-//     * @param s     the Student's ID
-//     * @param group the group want to add student to
-//     * @return true if add succeed or false otherwise
-//     */
-//    public boolean addStudentToGroup(int s, Integer group) {
-//        return groups.get(group).addStudent(s);
-//    }
-//
-//    /**
-//     * Remove a student from a certain group
-//     *
-//     * @param s     the student's ID
-//     * @param group the group that the student needs to be removed from
-//     * @return true if succeed or false otherwise
-//     */
-//    public boolean removeStudentFromGroup(int s, Integer group) {
-//        return groups.get(group).removeStudent(s);
-//
-//    }
-
-
-    public ArrayList<Integer> createdBy(int t) {
-        ArrayList<Integer> result = new ArrayList<>();
-        for (Group g : groups.values()) {
-            if (g.getTeacher() == (t)) {
-                result.add(g.GetID());
-            }
-        }
-        return result;
-    }
-
-    public String getNameOfGroup(int i) {
-        return groups.get(i).getName();
-    }
 
 //
 //    /**
@@ -87,17 +45,6 @@ public class GroupManager {
 //        return result;
 //    }
 
-    public void deleatGroup(int i) {
-        groups.remove(i);
-    }
-
-//    public int[] getStudents(int id) {
-//        return groups.get(id).getStudents();
-//    }
-
-    public int getTeacher(int id) {
-        return groups.get(id).getTeacher();
-    }
 
     public HashMap<Integer, LocalDateTime> getTests(int id) {
         return groups.get(id).getTests();
@@ -116,11 +63,6 @@ public class GroupManager {
     }
 
 
-    public boolean creatGroup(int t, String name) {
-        Group g = new Group(t, name);
-        groups.put(g.GetID(), g);
-        return true;
-    }
 
     /////////////////////////    /////////////////////////    /////////////////////////
 
@@ -177,6 +119,14 @@ public class GroupManager {
             return result.get(0);
         }
         return "FAILED";
+    }
+
+    public int getTeacher(int groupID) {
+        List<String> result = groupGate.readByID(222, 3, groupID);
+        if (result != null) {
+            return Integer.parseInt(result.get(0));
+        }
+        return -1;
     }
 
 

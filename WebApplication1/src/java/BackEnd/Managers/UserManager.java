@@ -29,8 +29,6 @@ public class UserManager {
     }
 
 
-
-
     public String createTeacher(String name, String password, String email) {
         //TODO
         Teacher t1 = new Teacher(name, password, email);
@@ -107,6 +105,7 @@ public class UserManager {
         return getUser(id).getUsername();
     }
 
+    ////////////////////////////////////////////////
     public int[] getGroupsFromStudents(int studentID) {
         List<String> result = userGate.readByID(222, 7, studentID);
         if (result.get(0).equals("")) {
@@ -120,7 +119,6 @@ public class UserManager {
         return array;
 
     }
-
 
     public boolean addGroupToStudent(int studentID, Integer groupID) {
         int[] allGroups = getGroupsFromStudents(studentID);
@@ -139,6 +137,7 @@ public class UserManager {
     }
 
     public int createStudent(String name, String password, String email) {
+        //TODO: check duplicates
         Student s1 = new Student(name, password, email);
         List<String> info = new ArrayList<>();
         info.add(s1.getUsername());
