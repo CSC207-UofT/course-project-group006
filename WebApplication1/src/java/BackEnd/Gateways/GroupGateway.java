@@ -1,11 +1,13 @@
 package BackEnd.Gateways;
 
 
+import BackEnd.ReadAll;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupGateway extends Gateway {
+public class GroupGateway extends Gateway implements ReadAll {
 
     private final int CREATOR = 3;
     private final int STUDENTS = 4;
@@ -138,4 +140,9 @@ public class GroupGateway extends Gateway {
     }
 
 
+    @Override
+    public List<String> readAllByID(int type, int targetID) {
+        //TODO
+        return null;
+    }
 }
