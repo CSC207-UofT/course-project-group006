@@ -1,6 +1,10 @@
 import BackEnd.Gateways.GroupGateway;
+import BackEnd.Gateways.StudentGateway;
+import BackEnd.GroupManager;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ini {
     public static Connection getConnection() {
@@ -268,8 +272,31 @@ public class Ini {
 //        Command c = new gradeTest(1, 2);
 //        c.execute();
 //        Command c = new getStudentAve(1);
-//        System.out.println(c.execute());;
-//        ini();
-        System.out.println(new GroupGateway().readRow(3));
+////////////////
+//        System.out.println(new GroupManager(new GroupGateway()).createGroup(1,"group:teacher1"));
+//        System.out.println(new GroupManager(new GroupGateway()).createGroup(2,"group:teacher2"));
+//        System.out.println(new GroupManager(new GroupGateway()).createGroup(3,"group:teacher3"));
+        //       System.out.println(new GroupManager(new GroupGateway()).createGroup(6,"group:teacher6"));
+        //  System.out.println(new GroupManager(new GroupGateway()).getAllGroup());
+        //System.out.println(new StudentGateway().readRow(4));
+//        System.out.println(new StudentGateway().readByID(222,5,1));
+//        System.out.println(new StudentGateway().readIntByName(1,"student1"));
+//        List<String> info = new ArrayList<>();
+//        info.add(4 + "");
+//        info.add("new name");
+
+//        info.add("student1123");
+//        info.add("1123pass");
+//        info.add("1123email");
+        //       System.out.println(new StudentGateway().write(1,info));
+//        System.out.println(new StudentGateway().write(2, info));
+//
+//        List<String> list = new ArrayList<>();
+//        list.add(4 + "");
+//        list.add("3,4,5");
+//
+//        System.out.println(new StudentGateway().write(7, list));
+
+
     }
 }

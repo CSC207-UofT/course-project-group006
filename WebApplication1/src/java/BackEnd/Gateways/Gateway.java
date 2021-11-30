@@ -43,7 +43,6 @@ public abstract class Gateway implements GeneralReadWriter {
     }
 
 
-
     /**
      * Read all elements in a table that satisfy the requirement
      *
@@ -100,6 +99,20 @@ public abstract class Gateway implements GeneralReadWriter {
             return SUCCESS;
         } catch (SQLException e) {
             e.printStackTrace();
+            return FAILED;
+        }
+    }
+
+    protected String createGetID(PreparedStatement preparedStatement) throws SQLException {
+        int rowsAffected = preparedStatement.executeUpdate();
+        if (rowsAffected == 0) {
+            return FAILED;
+        }
+        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            int newID = generatedKeys.getInt(ID);
+            return newID + "";
+        } else {
             return FAILED;
         }
     }

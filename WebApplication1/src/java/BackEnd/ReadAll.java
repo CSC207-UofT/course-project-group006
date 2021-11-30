@@ -1,8 +1,9 @@
 package BackEnd;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ReadAll extends GeneralReadWriter{
 
-    List<String> readAllByID(int type, int targetID);
+    HashMap<Integer, String> readAll();
 }

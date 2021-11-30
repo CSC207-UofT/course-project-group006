@@ -5,6 +5,7 @@ import BackEnd.ReadAll;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GroupGateway extends Gateway implements ReadAll {
@@ -93,10 +94,10 @@ public class GroupGateway extends Gateway implements ReadAll {
     }
 
 
-    public String newGroup(int teacherID, String groupName) {
+    private String newGroup(int teacherID, String groupName) {
 
         String students = "";
-        String posts = "";
+        String posts = "Add a new Announcement :D";
         String testID = "";
 
         try {
@@ -110,26 +111,7 @@ public class GroupGateway extends Gateway implements ReadAll {
             preparedStatement.setString(4, posts);
             preparedStatement.setString(5, testID);
 
-            int rowsAffected = preparedStatement.executeUpdate();
-
-            if (rowsAffected == 0) {
-                preparedStatement.close();
-                connection.close();
-                return FAILED;
-            }
-
-            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-
-            if (generatedKeys.next()) {
-                int newID = generatedKeys.getInt(ID);
-                preparedStatement.close();
-                connection.close();
-                return newID + "";
-            } else {
-                preparedStatement.close();
-                connection.close();
-                return FAILED;
-            }
+            return createGetID(preparedStatement);
 
 
         } catch (SQLException e) {
@@ -141,8 +123,16 @@ public class GroupGateway extends Gateway implements ReadAll {
 
 
     @Override
-    public List<String> readAllByID(int type, int targetID) {
-        //TODO
-        return null;
+    public HashMap<Integer, String> readAll() {
+        HashMap<Integer, String> result = new HashMap<>();
+        String sql = "select * from STUDYGROUP";
+
+        List<String> IDList = read(sql, ID, INT);
+        List<String> nameList = read(sql, NAME, STRING);
+        for (int i = 0; i < IDList.size(); i++) {
+            result.put(Integer.parseInt(IDList.get(i)), nameList.get(i));
+        }
+        return result;
+
     }
 }
