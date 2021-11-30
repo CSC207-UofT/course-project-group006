@@ -13,4 +13,6 @@ public interface GeneralReadWriter {
 
     List<String> write(int type, List<String> info);
 
+
+
 }

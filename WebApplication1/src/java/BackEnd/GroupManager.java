@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class GroupManager {
     //public static final String teacherData="../Teacher/";
@@ -18,11 +19,11 @@ public class GroupManager {
         this.groupGate = readWriter;
     }
 
-    public GroupManager() {
-        groups = new HashMap<>();
-        creatGroup(2, "aaa");
-        addStudentToGroup(3, 1);
-    }
+//    public GroupManager() {
+//        groups = new HashMap<>();
+//        creatGroup(2, "aaa");
+//        addStudentToGroup(3, 1);
+//    }
 
     public GroupManager(HashMap<Integer, Group> groups) {
         this.groups = groups;
@@ -87,9 +88,9 @@ public class GroupManager {
         groups.remove(i);
     }
 
-    public int[] getStudents(int id) {
-        return groups.get(id).getStudents();
-    }
+//    public int[] getStudents(int id) {
+//        return groups.get(id).getStudents();
+//    }
 
     public int getTeacher(int id) {
         return groups.get(id).getTeacher();
@@ -133,6 +134,24 @@ public class GroupManager {
         return -1;
     }
 
+    public boolean deleteGroup(int groupID, GeneralReadWriter studentGate) {
+        //TODO change teacher groups
+        UserManager studentManager = new UserManager(studentGate);
+        int[] students = getStudents(groupID);
+        if (students != null) {
+            for (int id : students) {
+                if (!studentManager.removeGroupFromStudent(id, groupID)) {
+                    return false;
+                }
+            }
+        }
+        List<String> info = new ArrayList<>();
+        info.add(groupID + "");
+        List<String> stringList = groupGate.write(44, info);
+        return !stringList.get(0).equals("FAILED");
+    }
+
+
 //    public boolean changeGroupName(int groupID, String groupName){
 //        //TODO: check duplicates
 //        Group g = new Group(groupID);
@@ -149,20 +168,90 @@ public class GroupManager {
 
     }
 
-
-    public HashMap<Integer, String> getJoinedGroup(int student) {
-        //TODO
-        return null;
+    public String getName(int groupID) {
+        List<String> result = groupGate.readByID(222, 2, groupID);
+        if (result != null) {
+            return result.get(0);
+        }
+        return "FAILED";
     }
 
-    public boolean removeStudentFromGroup(int studentID, Integer group) {
-        //TODO
-        return false;
+
+    public HashMap<Integer, String> getJoinedGroup(int studentID, GeneralReadWriter studentGate) {
+        HashMap<Integer, String> result = new HashMap<>();
+        UserManager studentManager = new UserManager(studentGate);
+        int[] IDList = studentManager.getGroupsFromStudents(studentID);
+        for (int id : IDList) {
+            String name = getName(id);
+            result.put(id, name);
+        }
+        return result;
+    }
+
+    public boolean removeStudentFromGroup(int studentID, Integer groupID) {
+        List<String> result = groupGate.readByID(222, 4, groupID);
+        if (result.get(0).equals("")) {
+            return false;
+        }
+        String[] strings = result.get(0).split(",");
+        int[] array = new int[strings.length];
+        boolean inGroup = false;
+        int index = 0;
+        for (int i = 0; i < strings.length; i++) {
+            array[i] = Integer.parseInt(strings[i]);
+            if (array[i] == studentID) {
+                inGroup = true;
+                index = i;
+            }
+        }
+        if (!inGroup) {
+            return false;
+        }
+
+        StringBuilder newString = new StringBuilder();
+        if (array.length != 1) {
+            for (int i = 0; i < array.length; i++) {
+                if (i != index) {
+                    newString.append(",").append(array[i]);
+                }
+            }
+        }
+        List<String> info = new ArrayList<>();
+        info.add(groupID + "");
+        info.add(newString.toString());
+        List<String> stringList = groupGate.write(22, info);
+        return !stringList.get(0).equals("FAILED");
+    }
+
+
+    public int[] getStudents(int id) {
+        List<String> result = groupGate.readByID(222, 4, id);
+        if (result.get(0).equals("")) {
+            return null;
+        }
+        String[] strings = result.get(0).split(",");
+        int[] array = new int[strings.length];
+        for (int i = 0; i < strings.length; i++) {
+            array[i] = Integer.parseInt(strings[i]);
+        }
+        return array;
+
     }
 
 
     public boolean addStudentToGroup(int studentID, Integer groupID) {
-        //TODO
-        return false;
+        int[] allStudents = getStudents(groupID);
+        if (allStudents != null) {
+            for (int id : allStudents) {
+                if (id == studentID) {
+                    return false;
+                }
+            }
+        }
+        List<String> list = new ArrayList<>();
+        list.add(groupID + "");
+        list.add(studentID + "");
+        List<String> result = groupGate.write(4, list);
+        return result != null;
     }
 }

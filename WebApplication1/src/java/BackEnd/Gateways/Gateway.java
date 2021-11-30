@@ -68,9 +68,11 @@ public abstract class Gateway implements GeneralReadWriter {
                     result.add(resultSet.getInt(col) + "");
                 }
             } else {
-                result.add(resultSet.getString(col));
+                String raw = resultSet.getString(col);
+                result.add(raw.startsWith(",") ? raw.substring(1) : raw);
                 while (resultSet.next()) {
-                    result.add(resultSet.getString(col));
+                    raw = resultSet.getString(col);
+                    result.add(raw.startsWith(",") ? raw.substring(1) : raw);
                 }
             }
             statement.close();

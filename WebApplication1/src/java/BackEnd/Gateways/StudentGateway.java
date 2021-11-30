@@ -45,7 +45,8 @@ public class StudentGateway extends Gateway {
             }
             result.add(resultSet.getInt(1) + "");
             for (int i = 2; i < 11; i++) {
-                result.add(resultSet.getString(i));
+                String raw = resultSet.getString(i);
+                result.add(raw.startsWith(",") ? raw.substring(1) : raw);
             }
             statement.close();
             connection.close();
@@ -88,21 +89,25 @@ public class StudentGateway extends Gateway {
             sql = "update STUDENT set email = '" + newEmail + "' where id = " + studentID;
         } else if (type == GROUPS) {
             String newGroups = info.get(1);
-            sql = "update STUDENT set groupID = '" + newGroups + "' where id = " + studentID;
+            sql = "update STUDENT set groupID =  CONCAT_WS(',',groupID, '" + newGroups + "') where id = " + studentID;
         } else if (type == TESTS) {
             String newTests = info.get(1);
-            sql = "update STUDENT set testID = '" + newTests + "' where id = " + studentID;
+            sql = "update STUDENT set testID =  CONCAT_WS(',',testID, '" + newTests + "') where id = " + studentID;
         } else if (type == ANSWERS) {
             String newAnswers = info.get(1);
-            sql = "update STUDENT set answerID = '" + newAnswers + "' where id = " + studentID;
-        }
+            sql = "update STUDENT set answerID =  CONCAT_WS(',',answerID, '" + newAnswers + "') where id = " + studentID;
 
+        } else if (type == 22) {
+            String newGroups = info.get(1);
+            sql = "update STUDENT set groupID = '" + newGroups + "' where id = " + studentID;
+        }
         if (rewrite(sql).equals(SUCCESS)) {
             result.add(studentID + "");
         }
 
         return result;
     }
+
 
     private String newStudent(String name, String pass, String email) {
         java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());//get date
