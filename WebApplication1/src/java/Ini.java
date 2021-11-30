@@ -4,9 +4,9 @@ public class Ini {
     public static Connection getConnection() {
         Connection conn = null;
         String driver = "com.mysql.cj.jdbc.Driver";//驱动程序名
-        String url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5449780";//url指向要访问的数据库study
-        String user = "sql5449780";//MySQL配置时的用户名
-        String password = "HNzHR6WEhn";//MySQL配置时的密码
+        String url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5454663";//url指向要访问的数据库study
+        String user = "sql5454663";//MySQL配置时的用户名
+        String password = "SinqmMLSgB";//MySQL配置时的密码
         try {
             // 加载驱动类
             Class.forName(driver);
@@ -20,7 +20,7 @@ public class Ini {
     }
 
     public static boolean ini() {
-        return iniGroupTable() && iniTestTable() && iniWordTable() && iniQuestionTable() && iniStudentTable() &&
+        return iniGroupTable() && iniTestTable() && iniQuestionTable() && iniStudentTable() &&
                 iniTeacherTable() && iniQAnswerTable() && iniTAnswerTable();
 
     }
@@ -267,6 +267,7 @@ public class Ini {
 //        c.execute();
 //        Command c = new getStudentAve(1);
 //        System.out.println(c.execute());;
+        ini();
     }
 
 }
