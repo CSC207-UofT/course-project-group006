@@ -1,7 +1,7 @@
 package BackEnd;
 
 import BackEnd.Entities.Test;
-import BackEnd.Entities.QuestionTypes.Question;
+import BackEnd.Entities.Question;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class Quiz extends Test {
      * @param author the author of the quiz
      * @param price the price this quiz will be sold
      */
-    
+
     public Quiz(String name, int timeLimit, int author, int price){
         super(name,timeLimit, author, price);
     }

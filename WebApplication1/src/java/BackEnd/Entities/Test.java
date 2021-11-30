@@ -1,7 +1,7 @@
 package BackEnd.Entities;
 
-import BackEnd.Entities.QuestionTypes.Question;
-import BackEnd.Entities.QuestionTypes.QuestionInterface;
+import BackEnd.Entities.Question;
+import BackEnd.Entities.QuestionInterface;
 import java.util.ArrayList;
 
 public abstract class Test {

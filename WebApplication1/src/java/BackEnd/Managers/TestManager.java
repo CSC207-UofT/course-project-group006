@@ -1,10 +1,9 @@
 package BackEnd.Managers;
 
-import BackEnd.Quiz;
+
 import BackEnd.Entities.Test;
-import BackEnd.Word;
-import BackEnd.Entities.QuestionTypes.Question;
-import BackEnd.Entities.QuestionTypes.QuestionInterface;
+import BackEnd.Entities.Question;
+import BackEnd.Entities.QuestionInterface;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -133,14 +132,14 @@ public class TestManager {
         return result;
     }
 
-    /**
-     * Create a diagnostic quiz
-     * @param input the question word source
-     * @return the diagnostic quiz that created
-     */
-    public static Quiz diagnostic(List<Word> input){
-        return Quiz.diagnostic(input);
-    }
+//    /**
+//     * Create a diagnostic quiz
+//     * @param input the question word source
+//     * @return the diagnostic quiz that created
+//     */
+//    public static Quiz diagnostic(List<Word> input){
+//        return Quiz.diagnostic(input);
+//    }
     public String getTestName(int id){
         return(allTest.get(id).getName());
     }
