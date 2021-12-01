@@ -71,7 +71,7 @@ public class GroupManager {
         list.add(g.getTeacher() + "");
         list.add(g.getName());
         List<String> result = groupGate.write(1, list);
-        if (result != null) {
+        if (result != null && result.size() != 0) {
             int groupID = Integer.parseInt(result.get(0));
             UserManager userManager = new UserManager(teacherGate);
             userManager.addGroupToUser(teacherID, groupID, 600);
@@ -130,7 +130,7 @@ public class GroupManager {
 
     public int getTeacher(int groupID) {
         List<String> result = groupGate.readByID(222, 3, groupID);
-        if (result != null) {
+        if (result != null && result.size() != 0) {
             return Integer.parseInt(result.get(0));
         }
         return -1;
@@ -201,7 +201,7 @@ public class GroupManager {
 
     public boolean addStudentToGroup(int studentID, Integer groupID) {
         int[] allStudents = getStudents(groupID);
-        if (allStudents != null) {
+        if (allStudents != null && allStudents.length != 0) {
             for (int id : allStudents) {
                 if (id == studentID) {
                     return false;

@@ -32,81 +32,44 @@ public class UserManager {
     }
 
 
-    public String createTeacher(String name, String password, String email) {
-        //TODO
-        Teacher t1 = new Teacher(name, password, email);
-        userList.add(t1);
-        return name;
+    public boolean resetPassword(int userID, String newPass) {
+        List<String> info = new ArrayList<>();
+        info.add(userID + "");
+        info.add(newPass);
+        List<String> result = userGate.write(3, info);
+        return result != null && result.size() != 0;
     }
 
-    public void resetPassword(User u1, String newPassword) {
-        //TODO
-        u1.setPassword(newPassword);
+    public boolean resetUsername(int userID, String newName) {
+        List<String> info = new ArrayList<>();
+        info.add(userID + "");
+        info.add(newName);
+        List<String> result = userGate.write(2, info);
+        return result != null && result.size() != 0;
     }
 
-    public void resetUsername(User u1, String newName) {
-        //TODO
-        u1.setUsername(newName);
-    }
+    public int loginWithUsername(String name, String password, GeneralReadWriter studentGate, GeneralReadWriter teacherGate) {
 
-    public void resetEmail(User u1, String newEmail) {
-        //TODO
-        u1.setEmail(newEmail);
-    }
+        int userType = getUserType(name);
+        GeneralReadWriter gate;
+        if (userType == STUDENT) {
+            gate = studentGate;
+        } else if (userType == TEACHER) {
 
-    public User getUser(String name) {
-        //TODO
-        for (User a : userList) {
-            if (a.getUsername().equals(name)) {
-                return a;
-            }
+            gate = teacherGate;
+        } else {
+            return -1;
         }
+        int userID = getID(name);
 
-        return null;
-    }
+        String pass = gate.readByID(222, 3, userID).get(0);
 
-    public User getUser(int ID) {
-        //TODO
-        for (User a : userList) {
-            if (a.getID() == (ID)) {
-                return a;
-            }
-        }
-
-        return null;
-    }
-
-    public int loginWithUsername(String name, String password) {
-        //TODO
-        System.out.print(userList.get(0).getID());
-        for (User a : userList) {
-            if (a.getUsername().equals(name) && a.getPassword().equals(password)) {
-                return a.getID();
-            }
+        if (pass.equals(password)) {
+            return userID;
         }
         return -1;
     }
 
-    //id会重复
-//    public String getUserType(int ID) {
-//        //TODO
-//        for (User a : userList) {
-//            if (a.getID() == (ID)) {
-//                if (a instanceof Teacher) {
-//                    return "T";
-//                } else if (a instanceof Student) {
-//                    return "S";
-//                }
-//            }
-//        }
-//
-//        return "Fail";
-//    }
-//
-//    public String getName(int id) {
-//        //TODO
-//        return getUser(id).getUsername();
-//    }
     public int getUserType(String userName) {
         if (userGate.hasDuplicateNames("STUDENT", userName)) {
             return STUDENT;
@@ -145,7 +108,7 @@ public class UserManager {
             col = 6;
         }
         int[] allGroups = getGroupsFromUser(userID, type);
-        if (allGroups != null) {
+        if (allGroups != null && allGroups.length != 0) {
             for (int id : allGroups) {
                 if (id == groupID) {
                     return false;
@@ -165,7 +128,7 @@ public class UserManager {
         info.add(password);
         info.add(email);
         List<String> result = userGate.write(1, info);
-        if (result != null) {
+        if (result != null && result.size() != 0) {
             return Integer.parseInt(result.get(0));
         }
         return -1;
@@ -210,5 +173,13 @@ public class UserManager {
         info.add(newString.toString());
         List<String> stringList = userGate.write(22, info);
         return !stringList.get(0).equals("FAILED");
+    }
+
+    public int getID(String userName) {
+        List<String> result = userGate.readIntByName(1, userName);
+        if (result != null) {
+            return Integer.parseInt(result.get(0));
+        }
+        return -1;
     }
 }
