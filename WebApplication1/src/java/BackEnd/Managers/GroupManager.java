@@ -11,59 +11,34 @@ import java.util.HashMap;
 import java.util.List;
 
 public class GroupManager {
-    //public static final String teacherData="../Teacher/";
-    //public static final String studentData="../Teacher/";
-    //public HashMap<String,Student> students;
-    //public HashMap<String,Teacher> teachers;
-    public HashMap<Integer, Group> groups;
-    private ReadAll groupGate;
+
+    private final ReadAll groupGate;
 
     public GroupManager(ReadAll readWriter) {
         this.groupGate = readWriter;
     }
 
 
-    public GroupManager(HashMap<Integer, Group> groups) {
-        this.groups = groups;
-    }
 
 
+//    TODO:
+//    public HashMap<Integer, LocalDateTime> getTests(int id) {
+//        return groups.get(id).getTests();
+//    }
 //
-//    /**
-//     * Get the group this student joined
-//     *
-//     * @param student the student ID
-//     * @return the list of group this student joined
-//     */
-//    public HashMap<Integer, String> getJoinedGroup(int student) {
-//        HashMap<Integer, String> result = new HashMap<>();
-//        for (Integer i : groups.keySet()) {
-//            if (groups.get(i).hasStudent(student)) {
-//                result.put(i, groups.get(i).getName());
-//            }
-//        }
-//        return result;
+//    public void addTest(int id, int t, LocalDateTime due) {
+//        groups.get(id).addTest(t, due);
+//    }
+//
+//    public boolean answerTest(int groupId, int test, String[] a, int studentId) {
+//        return groups.get(groupId).answerTest(test, a, studentId);
+//    }
+//
+//    public HashMap<Integer, String[]> getSubmition(int groupId, int testId) {
+//        return groups.get(groupId).getTestResults(testId);
 //    }
 
 
-    public HashMap<Integer, LocalDateTime> getTests(int id) {
-        return groups.get(id).getTests();
-    }
-
-    public void addTest(int id, int t, LocalDateTime due) {
-        groups.get(id).addTest(t, due);
-    }
-
-    public boolean answerTest(int groupId, int test, String[] a, int studentId) {
-        return groups.get(groupId).answerTest(test, a, studentId);
-    }
-
-    public HashMap<Integer, String[]> getSubmition(int groupId, int testId) {
-        return groups.get(groupId).getTestResults(testId);
-    }
-
-
-    /////////////////////////    /////////////////////////    /////////////////////////
 
     public int createGroup(int teacherID, String groupName, GeneralReadWriter teacherGate) {
         Group g = new Group(teacherID, groupName);
@@ -103,17 +78,6 @@ public class GroupManager {
         List<String> stringList = groupGate.write(44, info);
         return !stringList.get(0).equals("FAILED");
     }
-
-
-//    public boolean changeGroupName(int groupID, String groupName){
-//        //TODO: check duplicates
-//        Group g = new Group(groupID);
-//        g.setName(groupName);
-//        String newName = g.getName();
-//
-//
-//
-//    }
 
 
     public HashMap<Integer, String> getAllGroup() {

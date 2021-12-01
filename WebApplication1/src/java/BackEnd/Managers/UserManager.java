@@ -1,9 +1,6 @@
 package BackEnd.Managers;
 
 import BackEnd.Interfaces.GeneralReadWriter;
-import BackEnd.Entities.Student;
-import BackEnd.Entities.Teacher;
-import BackEnd.Entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +10,11 @@ public class UserManager {
     private final int STUDENT = 500;
     private final int TEACHER = 600;
 
-    private static ArrayList<User> userList;
-    private GeneralReadWriter userGate;
+    private final GeneralReadWriter userGate;
 
     public UserManager(GeneralReadWriter userGate) {
         this.userGate = userGate;
     }
-
-
-    public UserManager(ArrayList<User> userList1) {
-        userList = userList1;
-        if (userList == null) {
-            userList = new ArrayList<User>();
-            userList.add(new Teacher("a", "a", "a"));
-
-            userList.add(new Student("b", "b", "b"));
-        }
-    }
-
 
     public boolean resetPassword(int userID, String newPass) {
         List<String> info = new ArrayList<>();
