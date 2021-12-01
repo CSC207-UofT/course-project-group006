@@ -5,6 +5,9 @@ import BackEnd.Interfaces.GeneralReadWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * User Manager
+ */
 public class UserManager {
 
     private final int STUDENT = 500;
@@ -12,10 +15,22 @@ public class UserManager {
 
     private final GeneralReadWriter userGate;
 
+    /**
+     * Instantiates a new User manager.
+     *
+     * @param userGate the user gate
+     */
     public UserManager(GeneralReadWriter userGate) {
         this.userGate = userGate;
     }
 
+    /**
+     * Reset password boolean.
+     *
+     * @param userID  the user id
+     * @param newPass the new pass
+     * @return success T, failed F
+     */
     public boolean resetPassword(int userID, String newPass) {
         List<String> info = new ArrayList<>();
         info.add(userID + "");
@@ -24,6 +39,13 @@ public class UserManager {
         return result != null && result.size() != 0;
     }
 
+    /**
+     * Reset username boolean.
+     *
+     * @param userID  the user id
+     * @param newName the new name
+     * @return success T, failed F
+     */
     public boolean resetUsername(int userID, String newName) {
         List<String> info = new ArrayList<>();
         info.add(userID + "");
@@ -32,6 +54,15 @@ public class UserManager {
         return result != null && result.size() != 0;
     }
 
+    /**
+     * Login with username int.
+     *
+     * @param name        the name
+     * @param password    the password
+     * @param studentGate the student gate
+     * @param teacherGate the teacher gate
+     * @return int userID
+     */
     public int loginWithUsername(String name, String password, GeneralReadWriter studentGate, GeneralReadWriter teacherGate) {
 
         int userType = getUserType(name);
@@ -54,6 +85,12 @@ public class UserManager {
         return -1;
     }
 
+    /**
+     * Gets user type.
+     *
+     * @param userName the username
+     * @return int user type(student:500, teacher:600)
+     */
     public int getUserType(String userName) {
         if (userGate.hasDuplicateNames("STUDENT", userName)) {
             return STUDENT;
@@ -64,6 +101,13 @@ public class UserManager {
         return -1;
     }
 
+    /**
+     * Get groups from user int [ ].
+     *
+     * @param userID the user id
+     * @param type   the user type(student:500, teacher:600)
+     * @return the int [ ] with all the group ids
+     */
     public int[] getGroupsFromUser(int userID, int type) {
         int col;
         if (type == STUDENT) {
@@ -84,6 +128,14 @@ public class UserManager {
 
     }
 
+    /**
+     * Add group to user boolean.
+     *
+     * @param userID  the user id
+     * @param groupID the group id
+     * @param type    user type(student:500, teacher:600)
+     * @return success T, failed F
+     */
     public boolean addGroupToUser(int userID, Integer groupID, int type) {
         int col;
         if (type == STUDENT) {
@@ -106,6 +158,14 @@ public class UserManager {
         return result != null;
     }
 
+    /**
+     * Create user int.
+     *
+     * @param name     the name
+     * @param password the password
+     * @param email    the email
+     * @return the int user id
+     */
     public int createUser(String name, String password, String email) {
         List<String> info = new ArrayList<>();
         info.add(name);
@@ -118,6 +178,14 @@ public class UserManager {
         return -1;
     }
 
+    /**
+     * Remove group from user boolean.
+     *
+     * @param userID  the user id
+     * @param groupID the group id
+     * @param type    user type(student:500, teacher:600)
+     * @return success T, failed F
+     */
     public boolean removeGroupFromUser(int userID, Integer groupID, int type) {
         int col;
         if (type == STUDENT) {
@@ -159,6 +227,12 @@ public class UserManager {
         return !stringList.get(0).equals("FAILED");
     }
 
+    /**
+     * Gets id.
+     *
+     * @param userName the user name
+     * @return the id
+     */
     public int getID(String userName) {
         List<String> result = userGate.readIntByName(1, userName);
         if (result != null) {

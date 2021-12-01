@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Student gateway.
+ */
 public class StudentGateway extends Gateway {
 
     private final int PASS = 3;

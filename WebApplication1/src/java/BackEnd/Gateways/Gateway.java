@@ -103,6 +103,13 @@ public abstract class Gateway implements GeneralReadWriter {
         }
     }
 
+    /**
+     * Create a row and gets its id string.
+     *
+     * @param preparedStatement the prepared statement
+     * @return the string of id
+     * @throws SQLException the sql exception
+     */
     protected String createGetID(PreparedStatement preparedStatement) throws SQLException {
         int rowsAffected = preparedStatement.executeUpdate();
         if (rowsAffected == 0) {

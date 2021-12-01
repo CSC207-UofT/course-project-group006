@@ -10,10 +10,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * The type Group manager.
+ */
 public class GroupManager {
 
     private final ReadAll groupGate;
 
+    /**
+     * Instantiates a new Group manager.
+     *
+     * @param readWriter the read writer
+     */
     public GroupManager(ReadAll readWriter) {
         this.groupGate = readWriter;
     }
@@ -39,7 +47,14 @@ public class GroupManager {
 //    }
 
 
-
+    /**
+     * Create group int.
+     *
+     * @param teacherID   the teacher id
+     * @param groupName   the group name
+     * @param teacherGate the teacher gate
+     * @return the int groupID
+     */
     public int createGroup(int teacherID, String groupName, GeneralReadWriter teacherGate) {
         Group g = new Group(teacherID, groupName);
         List<String> list = new ArrayList<>();
@@ -57,6 +72,14 @@ public class GroupManager {
 
     }
 
+    /**
+     * Delete group boolean.
+     *
+     * @param groupID     the group id
+     * @param studentGate the student gate
+     * @param teacherGate the teacher gate
+     * @return success T, failed F
+     */
     public boolean deleteGroup(int groupID, GeneralReadWriter studentGate, GeneralReadWriter teacherGate) {
         UserManager studentManager = new UserManager(studentGate);
         int[] students = getStudents(groupID);
@@ -80,10 +103,21 @@ public class GroupManager {
     }
 
 
+    /**
+     * Gets all group.
+     *
+     * @return the all group in the form of {id:name}
+     */
     public HashMap<Integer, String> getAllGroup() {
         return groupGate.readAll();
     }
 
+    /**
+     * Gets name.
+     *
+     * @param groupID the group id
+     * @return the name
+     */
     public String getName(int groupID) {
         List<String> result = groupGate.readByID(222, 2, groupID);
         if (result != null) {
@@ -92,6 +126,12 @@ public class GroupManager {
         return "FAILED";
     }
 
+    /**
+     * Gets teacher.
+     *
+     * @param groupID the group id
+     * @return the teacher
+     */
     public int getTeacher(int groupID) {
         List<String> result = groupGate.readByID(222, 3, groupID);
         if (result != null && result.size() != 0) {
@@ -101,6 +141,13 @@ public class GroupManager {
     }
 
 
+    /**
+     * Gets joined group.
+     *
+     * @param studentID   the student id
+     * @param studentGate the student gate
+     * @return the joined group
+     */
     public HashMap<Integer, String> getJoinedGroup(int studentID, GeneralReadWriter studentGate) {
         HashMap<Integer, String> result = new HashMap<>();
         UserManager studentManager = new UserManager(studentGate);
@@ -112,6 +159,13 @@ public class GroupManager {
         return result;
     }
 
+    /**
+     * Remove student from group boolean.
+     *
+     * @param studentID the student id
+     * @param groupID   the group id
+     * @return success T, failed F
+     */
     public boolean removeStudentFromGroup(int studentID, Integer groupID) {
         List<String> result = groupGate.readByID(222, 4, groupID);
         if (result.get(0).equals("")) {
@@ -148,6 +202,12 @@ public class GroupManager {
     }
 
 
+    /**
+     * Get students int [ ].
+     *
+     * @param id the id
+     * @return the int [ ]
+     */
     public int[] getStudents(int id) {
         List<String> result = groupGate.readByID(222, 4, id);
         if (result.get(0).equals("")) {
@@ -163,6 +223,13 @@ public class GroupManager {
     }
 
 
+    /**
+     * Add student to group boolean.
+     *
+     * @param studentID the student id
+     * @param groupID   the group id
+     * @return success T, failed F
+     */
     public boolean addStudentToGroup(int studentID, Integer groupID) {
         int[] allStudents = getStudents(groupID);
         if (allStudents != null && allStudents.length != 0) {
@@ -179,6 +246,13 @@ public class GroupManager {
         return result != null;
     }
 
+    /**
+     * Post announcement boolean.
+     *
+     * @param groupID      the group id
+     * @param announcement the announcement
+     * @return success T, failed F
+     */
     public boolean postAnnouncement(int groupID, String announcement) {
         List<String> info = new ArrayList<>();
         info.add(groupID + "");

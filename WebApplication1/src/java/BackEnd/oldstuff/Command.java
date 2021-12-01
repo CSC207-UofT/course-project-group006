@@ -277,7 +277,7 @@ public class Command {
     }
 }
 
-//String name,String pass -> an id/FAILED
+//String name,String pass -> an id/FAILED //写了
 class loginCommand extends Command {
     private final String name;
     private final String pass;
@@ -327,7 +327,7 @@ class loginCommand extends Command {
     }
 }
 
-//int id -> STUDENT/TEACHER/FAILED
+//int id -> STUDENT/TEACHER/FAILED //写了
 class checkIdentity extends Command {
     int id;
 
@@ -368,7 +368,7 @@ class checkIdentity extends Command {
     }
 }
 
-//String name, String pass, String email, int type(teacher11, student12)-> USERNAMEALREADYUSED/SUCCESS/FAILED
+//String name, String pass, String email, int type(teacher11, student12)-> USERNAMEALREADYUSED/SUCCESS/FAILED //写了
 class registerCommand extends Command {
     private final String name;
     private final String pass;
@@ -658,7 +658,7 @@ class createGroupCommand extends Command {
             return FAILED;
         }
     }
-} //老师那边还没写
+} //写了
 
 //int teacherID, int groupID -> SUCCESS/FAILED
 class deleteGroupCommand extends Command {
@@ -711,7 +711,7 @@ class deleteGroupCommand extends Command {
         }
 
     }
-} //老师那边还没写
+} //写了
 
 ////String name -> SUCCESS/FAILED/NOTREGISTERED
 //class forgetPassCommand extends Command {

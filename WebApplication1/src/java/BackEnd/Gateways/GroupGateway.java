@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * The type Group gateway.
+ */
 public class GroupGateway extends Gateway implements ReadAll {
 
     private final int CREATOR = 3;

@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Teacher gateway.
+ */
 public class TeacherGateway extends Gateway {
 
 
