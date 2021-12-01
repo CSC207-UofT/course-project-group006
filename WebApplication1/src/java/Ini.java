@@ -264,8 +264,8 @@ public class Ini {
 //       System.out.println(new UserManager(new StudentGateway()).addGroupToUser(8,17,500));
 //        System.out.println(new GroupManager(new GroupGateway()).addStudentToGroup(8,17));
 
-        // System.out.println(new UserManager(new StudentGateway()).loginWithUsername("1150name","1150pass",new StudentGateway(),new TeacherGateway()));
-        //System.out.println(new UserManager(new StudentGateway()).resetUsername(6,"newname"));
+         System.out.println(new UserManager(new StudentGateway()).loginWithUsername("1150name","1150pass",new StudentGateway(),new TeacherGateway()));
+        System.out.println(new UserManager(new StudentGateway()).resetUsername(6,"newname"));
 
 
     }
