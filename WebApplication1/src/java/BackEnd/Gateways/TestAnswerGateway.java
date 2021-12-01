@@ -4,23 +4,23 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionGateway extends Gateway {
+public class TestAnswerGateway extends Gateway{
+    private final int testID = 2;
+    private final int studentID = 3;
+    private final int MARK = 4;
 
-    private final int NAME = 2;
-    private final int QUESTION = 3;
-    private final int ANSWER = 4;
-    private final int MARK = 5;
 
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
-        String sql = "select * from QUESTION where id = " + targetID;
+        String sql = "select * from TESTANSWER where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
-
+    // no name in TESTANSWER table
     @Override
     public List<String> readIntByName(int type, String targetName) {
-        String sql = "select * from QUESTION where name = '" + targetName + "'";
-        return new ArrayList<>(read(sql, type, INT));
+//        String sql = "select * from QUESTIONANSWER where questionID = '" + targetName + "'";
+//        return new ArrayList<>(read(sql, type, INT));
+        return null;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class QuestionGateway extends Gateway {
             ArrayList<String> result = new ArrayList<>();
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
-            String sql = "select * from QUESTION where id = " + targetID;
+            String sql = "select * from TESTANSWER where id = " + targetID;
             ResultSet resultSet = statement.executeQuery(sql);
             if (!resultSet.next()) {
                 statement.close();
@@ -50,19 +50,15 @@ public class QuestionGateway extends Gateway {
         }
     }
 
-
     @Override
     public List<String> write(int type, List<String> info) {
-
         List<String> result = new ArrayList<>();
 
-        //add a new question: info:{name, question, answer, mark} --> {questionID}/null
+        //add a new TestAnswer: info:{testId, studentID} --> {studentID}/null
         if (type == ID) {
-            String questionName = info.get(0);
-            String questionQuestion = info.get(1);
-            String questionAnswer = info.get(2);
-            int questionMark = Integer.parseInt(info.get(3));
-            String temp = newQuestion(questionName, questionQuestion, questionAnswer, questionMark);
+            int testID = Integer.parseInt(info.get(0));
+            int studentID = Integer.parseInt(info.get(1));
+            String temp = newTestAnswer(testID, studentID);
             if (!temp.equals(FAILED)) {
                 result.add(temp);
             }
@@ -70,48 +66,47 @@ public class QuestionGateway extends Gateway {
         }
 
 
-        //change one element: info:{questionID, newInfo} --> {studentID}/null
-        int questionID = Integer.parseInt(info.get(0));
+        //change one element: info:{studentID, newInfo} --> {studentID}/null
+        int TestAnswerID = Integer.parseInt(info.get(0));
         String sql = null;
-        if (type == NAME) {
-            String newName = info.get(1);
-            sql = "update QUESTION set name = '" + newName + "' where id = " + questionID;
-        } else if (type == QUESTION) {
-            String newQuestion = info.get(1);
-            sql = "update QUESTION set question = '" + newQuestion + "' where id = " + questionID;
-        } else if (type == ANSWER) {
-            String newAnswer = info.get(1);
-            sql = "update QUESTION set answer = '" + newAnswer + "' where id = " + questionID;
+        if (type == testID) {
+            String newTestID = info.get(1);
+            sql = "update TESTANSWER set testID = '" + newTestID + "' where id = " + TestAnswerID;
         } else if (type == MARK) {
             String newMark = info.get(1);
-            sql = "update QUESTION set mark = '" + newMark + "' where id = " + questionID;
-        }
+            sql = "update TESTANSWER set mark = '" + newMark + "' where id = " + TestAnswerID;
+        } else if (type == studentID) {
+            String newStudentID = info.get(1);
+            sql = "update TESTANSWER set studentID = '" + newStudentID + "' where id = " + TestAnswerID;
 
+        }
         if (rewrite(sql).equals(SUCCESS)) {
-            result.add(questionID + "");
+            result.add(TestAnswerID + "");
         }
 
         return result;
     }
 
-    public String newQuestion(String name, String question, String answer, int mark) {
+    private String newTestAnswer(int testID, int studentID) {
+        int mark = -1;
 
         try {
             Connection connection = getConnection();
-            String sql = "insert into QUESTION (name,question,answer,mark) VALUE (?,?,?,?)";
+            Statement statement = connection.createStatement();
+            String sql = "insert into TESTANSWER (testID,studentID,mark) VALUE (?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, question);
-            preparedStatement.setString(3, answer);
-            preparedStatement.setInt(4, mark);
+            preparedStatement.setInt(1, testID);
+            preparedStatement.setInt(2, studentID);
+            preparedStatement.setInt(3, mark);
             preparedStatement.executeUpdate();
+            statement.close();
             connection.close();
             return SUCCESS;
         } catch (SQLException e) {
             e.printStackTrace();
             return FAILED;
         }
+
+
     }
-
 }
-
