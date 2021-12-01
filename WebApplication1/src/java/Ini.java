@@ -1,5 +1,6 @@
 import BackEnd.Gateways.GroupGateway;
 import BackEnd.Gateways.QuestionAnswerGateway;
+import BackEnd.Gateways.TestAnswerGateway;
 import BackEnd.Gateways.QuestionGateway;
 import BackEnd.Gateways.StudentGateway;
 import BackEnd.Managers.GroupManager;
@@ -275,5 +276,17 @@ public class Ini {
 //        info.add(answer);
 //        info.add(mark + "");
 //        System.out.println(new QuestionGateway().write(1,info));
+//        int testID = 10;
+//        int studentID = 1;
+//        List<String> info = new ArrayList<>();
+//        info.add(testID + "");
+//        info.add(studentID + "");
+//        System.out.println(new TestAnswerGateway().write(1,info));
+//        int testID = 1;
+//        int mark = 10;
+//        List<String> info = new ArrayList<>();
+//        info.add(testID + "");
+//        info.add(mark + "");
+//        System.out.println(new TestAnswerGateway().write(4,info));
     }
 }
