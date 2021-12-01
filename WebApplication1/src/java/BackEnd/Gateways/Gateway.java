@@ -17,8 +17,6 @@ public abstract class Gateway implements GeneralReadWriter {
     protected final String SUCCESS = "SUCCESS";
     protected final int INT = 111;
     protected final int STRING = 222;
-    protected final int ONE = 333;
-    protected final int ALL = 444;
     protected final int ID = 1;
     protected final int NAME = 2;
 
@@ -105,6 +103,13 @@ public abstract class Gateway implements GeneralReadWriter {
         }
     }
 
+    /**
+     * Create a row and gets its id string.
+     *
+     * @param preparedStatement the prepared statement
+     * @return the string of id
+     * @throws SQLException the sql exception
+     */
     protected String createGetID(PreparedStatement preparedStatement) throws SQLException {
         int rowsAffected = preparedStatement.executeUpdate();
         if (rowsAffected == 0) {
@@ -117,6 +122,28 @@ public abstract class Gateway implements GeneralReadWriter {
         } else {
             return FAILED;
         }
+    }
+
+    public boolean hasDuplicateNames(String table, String name) {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            String sql = "select * from " + table + " where name ='" + name + "'";
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            boolean hasMatch = resultSet.next();
+            if (hasMatch) {
+                statement.close();
+                connection.close();
+                return true;
+            }
+            connection.close();
+            return false;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return true;
+        }
+
     }
 
 

@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Student gateway.
+ */
 public class StudentGateway extends Gateway {
 
     private final int PASS = 3;
@@ -107,12 +110,16 @@ public class StudentGateway extends Gateway {
 
 
     private String newStudent(String name, String pass, String email) {
+
+        if (hasDuplicateNames("STUDENT", name)) {
+            return FAILED;
+        }
+        if (hasDuplicateNames("TEACHER", name)) {
+            return FAILED;
+        }
+
         java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());//get date
-        String groupID = "";
-        String testID = "";
-        String answerID = "";
-        String words = "";
-        int level = 1;
+
 
         //register as a student
         try {
@@ -124,12 +131,15 @@ public class StudentGateway extends Gateway {
             preparedStatement.setString(2, pass);
             preparedStatement.setDate(3, sqlDate);
             preparedStatement.setString(4, email);
-            preparedStatement.setString(5, words);
-            preparedStatement.setString(6, groupID);
-            preparedStatement.setString(7, testID);
-            preparedStatement.setString(8, answerID);
-            preparedStatement.setInt(9, level);
-            return createGetID(preparedStatement);
+            preparedStatement.setString(5, "");
+            preparedStatement.setString(6, "");
+            preparedStatement.setString(7, "");
+            preparedStatement.setString(8, "");
+            preparedStatement.setInt(9, 1);
+            String result = createGetID(preparedStatement);
+            preparedStatement.close();
+            connection.close();
+            return result;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -138,3 +148,4 @@ public class StudentGateway extends Gateway {
 
     }
 }
+
