@@ -206,7 +206,7 @@ public class Ini {
 
     public static void main(String[] args) {
 ////////////////
-       //System.out.println(new GroupManager(new GroupGateway()).createGroup(1,"group:teacher1"));
+       System.out.println(new GroupManager(new GroupGateway()).createGroup(1,"group:teacher1"));
 //        System.out.println(new GroupManager(new GroupGateway()).createGroup(2,"group:teacher2"));
         //System.out.println(new GroupManager(new GroupGateway()).createGroup(3,"group:teacher3"));
         //       System.out.println(new GroupManager(new GroupGateway()).createGroup(6,"group:teacher6"));
@@ -243,7 +243,7 @@ public class Ini {
 //
 //        GroupManager groupManager = new GroupManager(aa);
 //        System.out.println(groupManager.getJoinedGroup(5,bb));
-        System.out.println(new GroupManager(new GroupGateway()).deleteGroup(15, new StudentGateway()));
+
 
     }
 }
