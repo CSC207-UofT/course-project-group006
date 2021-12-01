@@ -8,21 +8,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import BackEnd.Interfaces.GeneralReadWriter;
+
 public class TestManager {
     private HashMap<Integer, Test> allTest;
+    private GeneralReadWriter testGate;
 
     /**
      * Construct a Test manager giving some tests
-     * @param tests the list of tests
+     * @param allTest the list of tests
      */
-    public TestManager(List<Test> tests){
-        allTest=new HashMap<>();
-        for (Test t: tests) {
-            allTest.put(t.getId(),t);
-        }
+    public TestManager(HashMap<Integer, Test> allTest){
+        this.allTest = allTest;
+
     }
-    public TestManager(){
-        allTest=new HashMap<>();
+    public TestManager(GeneralReadWriter testGate){
+        this.testGate = testGate;
     }
 
 
