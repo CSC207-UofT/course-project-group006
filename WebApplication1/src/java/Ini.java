@@ -1,7 +1,10 @@
 import BackEnd.Gateways.GroupGateway;
+import BackEnd.Gateways.QuestionAnswerGateway;
+import BackEnd.Gateways.QuestionGateway;
 import BackEnd.Gateways.StudentGateway;
 import BackEnd.Managers.GroupManager;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.*;
 
 public class Ini {
@@ -174,6 +177,7 @@ public class Ini {
                     " answer VARCHAR(1000), " +
                     " mark INT , " +
                     " studentID INT, " +
+                    " groupID INT, " +
                     " PRIMARY KEY ( id )) CHARACTER SET = utf8";
             statement.executeUpdate(sql);
             System.out.println("Created answer table in given database...");
@@ -245,6 +249,31 @@ public class Ini {
 //        GroupManager groupManager = new GroupManager(aa);
 //        System.out.println(groupManager.getJoinedGroup(5,bb));
 //      System.out.println(new GroupManager(new GroupGateway()).deleteGroup(16, new StudentGateway()));
-//    iniQuestionTable();
+//    iniQAnswerTable();
+//        int questionID = 3;
+//        int studentID = 4;
+//        int groupID = 5;
+//        List<String> info = new ArrayList<>();
+//        info.add(questionID + "");
+//        info.add("苹果");
+//        info.add(studentID + "");
+//        info.add(groupID + "");
+//        System.out.println(new QuestionAnswerGateway().write(1,info));
+//        int questionID = 1;
+//        String answer = "香蕉";
+//        List<String> info = new ArrayList<>();
+//        info.add(questionID + "");
+//        info.add(answer + "");
+//        System.out.println(new QuestionGateway().write(4,info));
+//        String  name = "name1";
+//        String question = "apple";
+//        String answer = "苹果";
+//        int mark = 5;
+//        List<String> info = new ArrayList<>();
+//        info.add(name);
+//        info.add(question);
+//        info.add(answer);
+//        info.add(mark + "");
+//        System.out.println(new QuestionGateway().write(1,info));
     }
 }
