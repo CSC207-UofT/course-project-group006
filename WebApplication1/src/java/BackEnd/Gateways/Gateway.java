@@ -1,6 +1,6 @@
 package BackEnd.Gateways;
 
-import BackEnd.GeneralReadWriter;
+import BackEnd.Interfaces.GeneralReadWriter;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -43,7 +43,6 @@ public abstract class Gateway implements GeneralReadWriter {
     }
 
 
-
     /**
      * Read all elements in a table that satisfy the requirement
      *
@@ -69,9 +68,11 @@ public abstract class Gateway implements GeneralReadWriter {
                     result.add(resultSet.getInt(col) + "");
                 }
             } else {
-                result.add(resultSet.getString(col));
+                String raw = resultSet.getString(col);
+                result.add(raw.startsWith(",") ? raw.substring(1) : raw);
                 while (resultSet.next()) {
-                    result.add(resultSet.getString(col));
+                    raw = resultSet.getString(col);
+                    result.add(raw.startsWith(",") ? raw.substring(1) : raw);
                 }
             }
             statement.close();
@@ -100,6 +101,20 @@ public abstract class Gateway implements GeneralReadWriter {
             return SUCCESS;
         } catch (SQLException e) {
             e.printStackTrace();
+            return FAILED;
+        }
+    }
+
+    protected String createGetID(PreparedStatement preparedStatement) throws SQLException {
+        int rowsAffected = preparedStatement.executeUpdate();
+        if (rowsAffected == 0) {
+            return FAILED;
+        }
+        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            int newID = generatedKeys.getInt(ID);
+            return newID + "";
+        } else {
             return FAILED;
         }
     }

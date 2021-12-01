@@ -1,10 +1,11 @@
 package BackEnd.Gateways;
 
 
-import BackEnd.ReadAll;
+import BackEnd.Interfaces.ReadAll;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GroupGateway extends Gateway implements ReadAll {
@@ -42,7 +43,8 @@ public class GroupGateway extends Gateway implements ReadAll {
             }
             result.add(resultSet.getInt(1) + "");
             for (int i = 2; i < 7; i++) {
-                result.add(resultSet.getString(i));
+                String raw = resultSet.getString(i);
+                result.add(raw.startsWith(",") ? raw.substring(1) : raw);
             }
             statement.close();
             connection.close();
@@ -76,14 +78,22 @@ public class GroupGateway extends Gateway implements ReadAll {
             String newName = info.get(1);
             sql = "update STUDYGROUP set name = '" + newName + "' where id = " + groupID;
         } else if (type == STUDENTS) {
-            String newStudentIDs = info.get(1);
-            sql = "update STUDYGROUP set students = '" + newStudentIDs + "' where id = " + groupID;
+            String newStudentID = info.get(1);
+            sql = "update STUDYGROUP set students =  CONCAT_WS(',',students, '" + newStudentID + "') where id = " + groupID;
         } else if (type == POST) {
             String newPost = info.get(1);
             sql = "update STUDYGROUP set posts = '" + newPost + "' where id = " + groupID;
         } else if (type == TESTS) {
             String newTest = info.get(1);
-            sql = "update STUDYGROUP set testID = '" + newTest + "' where id = " + groupID;
+            sql = "update STUDYGROUP set testID =  CONCAT_WS(',',testID, '" + newTest + "') where id = " + groupID;
+        } else if (type == 22) {
+            String newStudents = info.get(1);
+            sql = "update STUDYGROUP set students = '" + newStudents + "' where id = " + groupID;
+        } else if (type == 33) {
+            String newTests = info.get(1);
+            sql = "update STUDYGROUP set testID = '" + newTests + "' where id = " + groupID;
+        } else if (type == 44) {
+            sql = "delete from STUDYGROUP where id = " + groupID;
         }
         if (rewrite(sql).equals(SUCCESS)) {
             result.add(groupID + "");
@@ -93,10 +103,10 @@ public class GroupGateway extends Gateway implements ReadAll {
     }
 
 
-    public String newGroup(int teacherID, String groupName) {
+    private String newGroup(int teacherID, String groupName) {
 
         String students = "";
-        String posts = "";
+        String posts = "Add a new Announcement :D";
         String testID = "";
 
         try {
@@ -110,26 +120,7 @@ public class GroupGateway extends Gateway implements ReadAll {
             preparedStatement.setString(4, posts);
             preparedStatement.setString(5, testID);
 
-            int rowsAffected = preparedStatement.executeUpdate();
-
-            if (rowsAffected == 0) {
-                preparedStatement.close();
-                connection.close();
-                return FAILED;
-            }
-
-            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-
-            if (generatedKeys.next()) {
-                int newID = generatedKeys.getInt(ID);
-                preparedStatement.close();
-                connection.close();
-                return newID + "";
-            } else {
-                preparedStatement.close();
-                connection.close();
-                return FAILED;
-            }
+            return createGetID(preparedStatement);
 
 
         } catch (SQLException e) {
@@ -141,8 +132,16 @@ public class GroupGateway extends Gateway implements ReadAll {
 
 
     @Override
-    public List<String> readAllByID(int type, int targetID) {
-        //TODO
-        return null;
+    public HashMap<Integer, String> readAll() {
+        HashMap<Integer, String> result = new HashMap<>();
+        String sql = "select * from STUDYGROUP";
+
+        List<String> IDList = read(sql, ID, INT);
+        List<String> nameList = read(sql, NAME, STRING);
+        for (int i = 0; i < IDList.size(); i++) {
+            result.put(Integer.parseInt(IDList.get(i)), nameList.get(i));
+        }
+        return result;
+
     }
 }

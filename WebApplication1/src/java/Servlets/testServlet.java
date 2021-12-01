@@ -15,9 +15,9 @@
 //import java.lang.reflect.InvocationTargetException;
 //import java.lang.reflect.Method;
 //
-//import BackEnd.GroupManager;
-//import BackEnd.UserManager;
-//import BackEnd.TestManager;
+//import BackEnd.Managers.GroupManager;
+//import BackEnd.Managers.UserManager;
+//import BackEnd.Managers.TestManager;
 //import BackEnd.WordManager;
 //import javax.servlet.http.Cookie;
 ///**

@@ -12,7 +12,7 @@
 //import javax.servlet.http.HttpServlet;
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
-//import QuestionTypes.QuestionInterface;
+//import BackEnd.Entities.QuestionTypes.QuestionInterface;
 //import java.util.List;
 //import javax.servlet.RequestDispatcher;
 //
