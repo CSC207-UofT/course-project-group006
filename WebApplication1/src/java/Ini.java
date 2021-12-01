@@ -157,6 +157,7 @@ public class Ini {
                     " name VARCHAR(16), " +
                     " question VARCHAR(1000), " +
                     " answer VARCHAR(1000), " +
+                    " mark INT," +
                     " PRIMARY KEY ( id )) CHARACTER SET = utf8";
             statement.executeUpdate(sql);
             System.out.println("Created question table in given database...");
@@ -212,7 +213,11 @@ public class Ini {
     public static void main(String[] args) {
 ////////////////
 //       System.out.println(new GroupManager(new GroupGateway()).createGroup(1,"group:teacher1"));
+
 //        System.out.println(new GroupManager(new GroupGateway()).createGroup(2,"group:teacher2"));
+
+////        System.out.println(new GroupManager(new GroupGateway()).createGroup(2,"group:teacher2"));
+
         //System.out.println(new GroupManager(new GroupGateway()).createGroup(3,"group:teacher3"));
         //       System.out.println(new GroupManager(new GroupGateway()).createGroup(6,"group:teacher6"));
         //  System.out.println(new GroupManager(new GroupGateway()).getAllGroup());
@@ -247,6 +252,7 @@ public class Ini {
 //
 //        GroupManager groupManager = new GroupManager(aa);
 //        System.out.println(groupManager.getJoinedGroup(5,bb));
+
         // System.out.println(new GroupManager(new GroupGateway()).deleteGroup(15, new StudentGateway()));
         //System.out.println(new UserManager(new StudentGateway()).createStudent("student1114","pass","1114email"));
         // System.out.println(new StudentGateway().readRow(7));
@@ -267,6 +273,10 @@ public class Ini {
          System.out.println(new UserManager(new StudentGateway()).loginWithUsername("1150name","1150pass",new StudentGateway(),new TeacherGateway()));
         System.out.println(new UserManager(new StudentGateway()).resetUsername(6,"newname"));
 
+
+
+//      System.out.println(new GroupManager(new GroupGateway()).deleteGroup(16, new StudentGateway()));
+//    iniQuestionTable();
 
     }
 }

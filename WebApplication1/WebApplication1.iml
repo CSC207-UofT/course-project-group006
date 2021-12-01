@@ -9,8 +9,9 @@
     </content>
     <orderEntry type="jdk" jdkName="12" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="apache-tomcat-10.0" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-8.0" level="project" />
+    <orderEntry type="library" name="java" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.27" level="project" />
   </component>
 </module>

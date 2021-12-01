@@ -112,4 +112,6 @@ public class QuestionGateway extends Gateway {
             return FAILED;
         }
     }
+
 }
+
