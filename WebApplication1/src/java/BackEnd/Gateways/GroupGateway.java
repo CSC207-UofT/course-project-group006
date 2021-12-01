@@ -104,6 +104,9 @@ public class GroupGateway extends Gateway implements ReadAll {
 
 
     private String newGroup(int teacherID, String groupName) {
+        if (hasDuplicateNames("STUDYGROUP", groupName)) {
+            return FAILED;
+        }
 
         String students = "";
         String posts = "Add a new Announcement :D";
@@ -120,7 +123,10 @@ public class GroupGateway extends Gateway implements ReadAll {
             preparedStatement.setString(4, posts);
             preparedStatement.setString(5, testID);
 
-            return createGetID(preparedStatement);
+            String result = createGetID(preparedStatement);
+            preparedStatement.close();
+            connection.close();
+            return result;
 
 
         } catch (SQLException e) {

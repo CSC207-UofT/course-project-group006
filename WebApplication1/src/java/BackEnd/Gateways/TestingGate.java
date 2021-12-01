@@ -1,8 +1,9 @@
 package BackEnd.Gateways;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AnswerGateway extends Gateway{
+public class TestingGate extends Gateway {
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         return null;
@@ -10,7 +11,9 @@ public class AnswerGateway extends Gateway{
 
     @Override
     public List<String> readIntByName(int type, String targetName) {
-        return null;
+        List<String> result = new ArrayList<>();
+        result.add(targetName);
+        return result;
     }
 
     @Override

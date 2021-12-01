@@ -63,33 +63,41 @@ public class GroupManager {
     }
 
 
-
     /////////////////////////    /////////////////////////    /////////////////////////
 
-    public int createGroup(int teacherID, String groupName) {
-        //TODO: check duplicates
+    public int createGroup(int teacherID, String groupName, GeneralReadWriter teacherGate) {
         Group g = new Group(teacherID, groupName);
         List<String> list = new ArrayList<>();
         list.add(g.getTeacher() + "");
         list.add(g.getName());
         List<String> result = groupGate.write(1, list);
         if (result != null) {
-            return Integer.parseInt(result.get(0));
+            int groupID = Integer.parseInt(result.get(0));
+            UserManager userManager = new UserManager(teacherGate);
+            userManager.addGroupToUser(teacherID, groupID, 600);
+            return groupID;
+        } else {
+            return -1;
         }
-        return -1;
+
     }
 
-    public boolean deleteGroup(int groupID, GeneralReadWriter studentGate) {
-        //TODO change teacher groups
+    public boolean deleteGroup(int groupID, GeneralReadWriter studentGate, GeneralReadWriter teacherGate) {
         UserManager studentManager = new UserManager(studentGate);
         int[] students = getStudents(groupID);
         if (students != null) {
             for (int id : students) {
-                if (!studentManager.removeGroupFromStudent(id, groupID)) {
+                if (!studentManager.removeGroupFromUser(id, groupID, 500)) {
                     return false;
                 }
             }
         }
+        int teacherID = getTeacher(groupID);
+        UserManager teacherManager = new UserManager(teacherGate);
+        if (!teacherManager.removeGroupFromUser(teacherID, groupID, 600)) {
+            return false;
+        }
+
         List<String> info = new ArrayList<>();
         info.add(groupID + "");
         List<String> stringList = groupGate.write(44, info);
@@ -110,7 +118,6 @@ public class GroupManager {
 
     public HashMap<Integer, String> getAllGroup() {
         return groupGate.readAll();
-
     }
 
     public String getName(int groupID) {
@@ -133,7 +140,7 @@ public class GroupManager {
     public HashMap<Integer, String> getJoinedGroup(int studentID, GeneralReadWriter studentGate) {
         HashMap<Integer, String> result = new HashMap<>();
         UserManager studentManager = new UserManager(studentGate);
-        int[] IDList = studentManager.getGroupsFromStudents(studentID);
+        int[] IDList = studentManager.getGroupsFromUser(studentID, 500);
         for (int id : IDList) {
             String name = getName(id);
             result.put(id, name);
@@ -206,5 +213,12 @@ public class GroupManager {
         list.add(studentID + "");
         List<String> result = groupGate.write(4, list);
         return result != null;
+    }
+
+    public boolean postAnnouncement(int groupID, String announcement) {
+        List<String> info = new ArrayList<>();
+        info.add(groupID + "");
+        info.add(announcement);
+        return !groupGate.write(5, info).get(0).equals("FAILED");
     }
 }
