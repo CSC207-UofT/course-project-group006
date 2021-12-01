@@ -7,7 +7,7 @@ import BackEnd.Entities.QuestionInterface;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+//creat test, add question, submit, grade question, grade test
 public class TestManager {
     private HashMap<Integer, Test> allTest;
 
