@@ -56,7 +56,7 @@ public class QuestionGateway extends Gateway {
 
         List<String> result = new ArrayList<>();
 
-        //add a new question: info:{name, question, answer} --> {questionID}/null
+        //add a new question: info:{name, question, answer, mark} --> {questionID}/null
         if (type == ID) {
             String questionName = info.get(0);
             String questionQuestion = info.get(1);
@@ -112,5 +112,6 @@ public class QuestionGateway extends Gateway {
             return FAILED;
         }
     }
+
 }
 

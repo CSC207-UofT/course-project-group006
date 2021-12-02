@@ -1,113 +1,121 @@
 package BackEnd.Managers;
 
 import BackEnd.Interfaces.GeneralReadWriter;
-import BackEnd.Entities.Student;
-import BackEnd.Entities.Teacher;
-import BackEnd.Entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * User Manager
+ */
 public class UserManager {
 
-    private static ArrayList<User> userList;
-    private GeneralReadWriter userGate;
+    private final int STUDENT = 500;
+    private final int TEACHER = 600;
 
+    private final GeneralReadWriter userGate;
+
+    /**
+     * Instantiates a new User manager.
+     *
+     * @param userGate the user gate
+     */
     public UserManager(GeneralReadWriter userGate) {
         this.userGate = userGate;
     }
 
+    /**
+     * Reset password boolean.
+     *
+     * @param userID  the user id
+     * @param newPass the new pass
+     * @return success T, failed F
+     */
+    public boolean resetPassword(int userID, String newPass) {
+        List<String> info = new ArrayList<>();
+        info.add(userID + "");
+        info.add(newPass);
+        List<String> result = userGate.write(3, info);
+        return result != null && result.size() != 0;
+    }
 
-    public UserManager(ArrayList<User> userList1) {
-        userList = userList1;
-        if (userList == null) {
-            userList = new ArrayList<User>();
-            userList.add(new Teacher("a", "a", "a"));
+    /**
+     * Reset username boolean.
+     *
+     * @param userID  the user id
+     * @param newName the new name
+     * @return success T, failed F
+     */
+    public boolean resetUsername(int userID, String newName) {
+        List<String> info = new ArrayList<>();
+        info.add(userID + "");
+        info.add(newName);
+        List<String> result = userGate.write(2, info);
+        return result != null && result.size() != 0;
+    }
 
-            userList.add(new Student("b", "b", "b"));
+    /**
+     * Login with username int.
+     *
+     * @param name        the name
+     * @param password    the password
+     * @param studentGate the student gate
+     * @param teacherGate the teacher gate
+     * @return int userID
+     */
+    public int loginWithUsername(String name, String password, GeneralReadWriter studentGate, GeneralReadWriter teacherGate) {
+
+        int userType = getUserType(name);
+        GeneralReadWriter gate;
+        if (userType == STUDENT) {
+            gate = studentGate;
+        } else if (userType == TEACHER) {
+
+            gate = teacherGate;
+        } else {
+            return -1;
         }
-    }
+        int userID = getID(name);
 
+        String pass = gate.readByID(222, 3, userID).get(0);
 
-    public String createTeacher(String name, String password, String email) {
-        //TODO
-        Teacher t1 = new Teacher(name, password, email);
-        userList.add(t1);
-        return name;
-    }
-
-    public void resetPassword(User u1, String newPassword) {
-        //TODO
-        u1.setPassword(newPassword);
-    }
-
-    public void resetUsername(User u1, String newName) {
-        //TODO
-        u1.setUsername(newName);
-    }
-
-    public void resetEmail(User u1, String newEmail) {
-        //TODO
-        u1.setEmail(newEmail);
-    }
-
-    public User getUser(String name) {
-        //TODO
-        for (User a : userList) {
-            if (a.getUsername().equals(name)) {
-                return a;
-            }
-        }
-
-        return null;
-    }
-
-    public User getUser(int ID) {
-        //TODO
-        for (User a : userList) {
-            if (a.getID() == (ID)) {
-                return a;
-            }
-        }
-
-        return null;
-    }
-
-    public int loginWithUsername(String name, String password) {
-        //TODO
-        System.out.print(userList.get(0).getID());
-        for (User a : userList) {
-            if (a.getUsername().equals(name) && a.getPassword().equals(password)) {
-                return a.getID();
-            }
+        if (pass.equals(password)) {
+            return userID;
         }
         return -1;
     }
 
-
-    public String getUserType(int ID) {
-        //TODO
-        for (User a : userList) {
-            if (a.getID() == (ID)) {
-                if (a instanceof Teacher) {
-                    return "T";
-                } else if (a instanceof Student) {
-                    return "S";
-                }
-            }
+    /**
+     * Gets user type.
+     *
+     * @param userName the username
+     * @return int user type(student:500, teacher:600)
+     */
+    public int getUserType(String userName) {
+        if (userGate.hasDuplicateNames("STUDENT", userName)) {
+            return STUDENT;
         }
-
-        return "Fail";
+        if (userGate.hasDuplicateNames("TEACHER", userName)) {
+            return TEACHER;
+        }
+        return -1;
     }
 
-    public String getName(int id) {
-        //TODO
-        return getUser(id).getUsername();
-    }
-
-    ////////////////////////////////////////////////
-    public int[] getGroupsFromStudents(int studentID) {
-        List<String> result = userGate.readByID(222, 7, studentID);
+    /**
+     * Get groups from user int [ ].
+     *
+     * @param userID the user id
+     * @param type   the user type(student:500, teacher:600)
+     * @return the int [ ] with all the group ids
+     */
+    public int[] getGroupsFromUser(int userID, int type) {
+        int col;
+        if (type == STUDENT) {
+            col = 7;
+        } else {
+            col = 6;
+        }
+        List<String> result = userGate.readByID(222, col, userID);
         if (result.get(0).equals("")) {
             return null;
         }
@@ -120,9 +128,23 @@ public class UserManager {
 
     }
 
-    public boolean addGroupToStudent(int studentID, Integer groupID) {
-        int[] allGroups = getGroupsFromStudents(studentID);
-        if (allGroups != null) {
+    /**
+     * Add group to user boolean.
+     *
+     * @param userID  the user id
+     * @param groupID the group id
+     * @param type    user type(student:500, teacher:600)
+     * @return success T, failed F
+     */
+    public boolean addGroupToUser(int userID, Integer groupID, int type) {
+        int col;
+        if (type == STUDENT) {
+            col = 7;
+        } else {
+            col = 6;
+        }
+        int[] allGroups = getGroupsFromUser(userID, type);
+        if (allGroups != null && allGroups.length != 0) {
             for (int id : allGroups) {
                 if (id == groupID) {
                     return false;
@@ -130,28 +152,48 @@ public class UserManager {
             }
         }
         List<String> list = new ArrayList<>();
-        list.add(studentID + "");
+        list.add(userID + "");
         list.add(groupID + "");
-        List<String> result = userGate.write(7, list);
+        List<String> result = userGate.write(col, list);
         return result != null;
     }
 
-    public int createStudent(String name, String password, String email) {
-        //TODO: check duplicates
-        Student s1 = new Student(name, password, email);
+    /**
+     * Create user int.
+     *
+     * @param name     the name
+     * @param password the password
+     * @param email    the email
+     * @return the int user id
+     */
+    public int createUser(String name, String password, String email) {
         List<String> info = new ArrayList<>();
-        info.add(s1.getUsername());
-        info.add(s1.getPassword());
-        info.add(s1.getEmail());
+        info.add(name);
+        info.add(password);
+        info.add(email);
         List<String> result = userGate.write(1, info);
-        if (result != null) {
+        if (result != null && result.size() != 0) {
             return Integer.parseInt(result.get(0));
         }
         return -1;
     }
 
-    public boolean removeGroupFromStudent(int studentID, Integer groupID) {
-        List<String> result = userGate.readByID(222, 7, studentID);
+    /**
+     * Remove group from user boolean.
+     *
+     * @param userID  the user id
+     * @param groupID the group id
+     * @param type    user type(student:500, teacher:600)
+     * @return success T, failed F
+     */
+    public boolean removeGroupFromUser(int userID, Integer groupID, int type) {
+        int col;
+        if (type == STUDENT) {
+            col = 7;
+        } else {
+            col = 6;
+        }
+        List<String> result = userGate.readByID(222, col, userID);
         if (result.get(0).equals("")) {
             return false;
         }
@@ -179,9 +221,23 @@ public class UserManager {
             }
         }
         List<String> info = new ArrayList<>();
-        info.add(studentID + "");
+        info.add(userID + "");
         info.add(newString.toString());
         List<String> stringList = userGate.write(22, info);
         return !stringList.get(0).equals("FAILED");
+    }
+
+    /**
+     * Gets id.
+     *
+     * @param userName the user name
+     * @return the id
+     */
+    public int getID(String userName) {
+        List<String> result = userGate.readIntByName(1, userName);
+        if (result != null) {
+            return Integer.parseInt(result.get(0));
+        }
+        return -1;
     }
 }
