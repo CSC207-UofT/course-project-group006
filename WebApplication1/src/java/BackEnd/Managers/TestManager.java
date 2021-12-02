@@ -59,6 +59,18 @@ public class TestManager {
 //        return test.Id;
 //    }
 
+    public int creatTest(String name, int author, int price){
+        List<String> info = new ArrayList<>();
+        info.add(name);
+        info.add(author + "");
+        info.add(price + "");
+        List<String> result =  testGate.write(1, info);
+        if (result != null){
+            return Integer.parseInt(result.get(0));
+        }
+        return -1;
+    }
+
     /**
      * Add question to an exam
 
@@ -98,30 +110,62 @@ public class TestManager {
 
     /**
      * Remove question from a test
-     * @param test the ID of the test
-     * @param q the question ID want to remove
+     * @param testID the ID of the test
+     * @param qID the question ID want to remove
      * @return True if succeed or False otherwise
      */
-    public boolean removeQuestion(int test, int q){
-        return getTest(test).deleteQuestion(q);
+    public boolean removeQuestion(int testID, int qID){
+        List<String> result = testGate.readByID(222, 13, testID);
+        if (result.get(0).equals("")) {
+            return false;
+        }
+        String[] strings = result.get(0).split(",");
+        int[] array = new int[strings.length];
+        boolean inTest = false;
+        int index = 0;
+        for (int i = 0; i < strings.length; i++) {
+            array[i] = Integer.parseInt(strings[i]);
+            if (array[i] == testID) {
+                inTest = true;
+                index = i;
+            }
+        }
+        if (!inTest) {
+            return false;
+        }
+        StringBuilder newString = new StringBuilder();
+        if (array.length != 1) {
+            for (int i = 0; i < array.length; i++) {
+                if (i != index) {
+                    newString.append(",").append(array[i]);
+                }
+            }
+        }
+        List<String> info = new ArrayList<>();
+        info.add(testID + "");
+        info.add(newString.toString());
+        List<String> stringList = testGate.write(13, info);
+        return !stringList.get(0).equals("FAILED");
     }
 
-    /**
-     * Get the grade of this test giving student's answer
-     * @param test the ID of the test
-     * @param answers student's answer
-     * @return Grade of the test
-     */
-    public int grade(int test, List<String> answers){
-        Test t = getTest(test);
-        ArrayList<QuestionInterface> q = t.getQuestions();
-        int result = 0;
-        for(int i=0;i<q.size();i++){
-                result+=q.get(i).score(answers.get(i));
-          }
-        return result;
 
-    }
+
+//    /**
+//     * Get the grade of this test giving student's answer
+//     * @param test the ID of the test
+//     * @param answers student's answer
+//     * @return Grade of the test
+//     */
+//    public int grade(int test, List<String> answers){
+//        Test t = getTest(test);
+//        ArrayList<QuestionInterface> q = t.getQuestions();
+//        int result = 0;
+//        for(int i=0;i<q.size();i++){
+//                result+=q.get(i).score(answers.get(i));
+//          }
+//        return result;
+//
+//    }
 
     /**
      * Get the test from manager
