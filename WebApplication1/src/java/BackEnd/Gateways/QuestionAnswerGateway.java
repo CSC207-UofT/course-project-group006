@@ -69,7 +69,7 @@ public class QuestionAnswerGateway extends Gateway{
         }
 
 
-        //change one element: info:{studentID, newInfo} --> {studentID}/null
+        //change one element: info:{questionAnswerID, newInfo} --> {studentID}/null
         int QuestionAnswerID = Integer.parseInt(info.get(0));
         String sql = null;
         if (type == QuestionID) {
@@ -104,16 +104,18 @@ public class QuestionAnswerGateway extends Gateway{
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
             String sql = "insert into QUESTIONANSWER (questionID,answer,mark,studentID,groupID) VALUE (?,?,?,?,?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql,
+                    Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, questionID);
             preparedStatement.setString(2, answer);
             preparedStatement.setInt(3, mark);
             preparedStatement.setInt(4, studentID);
             preparedStatement.setInt(5, groupID);
-            preparedStatement.executeUpdate();
+//            preparedStatement.executeUpdate();
+            String result = createGetID(preparedStatement);
             statement.close();
             connection.close();
-            return SUCCESS;
+            return result;
         } catch (SQLException e) {
             e.printStackTrace();
             return FAILED;
@@ -121,4 +123,18 @@ public class QuestionAnswerGateway extends Gateway{
 
 
     }
+
+//    @Override
+//    public HashMap<Integer, String> readAll() {
+//        HashMap<Integer, String> result = new HashMap<>();
+//        String sql = "select * from QUESTIONANSWER";
+//
+//        List<String> IDList = read(sql, ID, INT);
+//        List<String> nameList = read(sql, NAME, STRING);
+//        for (int i = 0; i < IDList.size(); i++) {
+//            result.put(Integer.parseInt(IDList.get(i)), nameList.get(i));
+//        }
+//        return result;
+//
+//    }
 }
