@@ -4,25 +4,28 @@ package BackEnd.Managers;
 import BackEnd.Entities.Test;
 import BackEnd.Entities.Question;
 import BackEnd.Entities.QuestionInterface;
+import BackEnd.Interfaces.GeneralReadWriter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+
 //creat test, add question, submit, grade question, grade test
 public class TestManager {
     private HashMap<Integer, Test> allTest;
+    private GeneralReadWriter testGate;
 
     /**
      * Construct a Test manager giving some tests
-     * @param tests the list of tests
+     * @param allTest the list of tests
      */
-    public TestManager(List<Test> tests){
-        allTest=new HashMap<>();
-        for (Test t: tests) {
-            allTest.put(t.getId(),t);
-        }
+    public TestManager(HashMap<Integer, Test> allTest){
+        this.allTest = allTest;
+
     }
-    public TestManager(){
-        allTest=new HashMap<>();
+    public TestManager(GeneralReadWriter testGate){
+        this.testGate = testGate;
     }
 
 
@@ -58,14 +61,29 @@ public class TestManager {
 
     /**
      * Add question to an exam
-     * @param test the ID of the test
-     * @param question the question want to add
-     * @param answer the answer of the question
-     * @param mark the mark of the question
+
      * @return True
      */
-    public boolean addQuestion(int test, String question,String answer,int mark){
-        return getTest(test).addQuestion(new Question(question,answer,mark));
+    public boolean addQuestionToTest(int testID, int questionID){
+        List<String> result = testGate.readByID(222, 13, testID);
+
+        if (result.get(0).equals("")){
+            List<String> info = new ArrayList<>();
+            info.add(testID + "");
+            info.add(questionID + "");
+            testGate.write(33, info);
+
+            return true;
+        }
+        else{
+            List<String> info = new ArrayList<>();
+            info.add(testID + "");
+            info.add(questionID + "");
+            testGate.write(66, info);
+            return true;
+        }
+
+
     }
 
     /**
@@ -74,7 +92,7 @@ public class TestManager {
      * @param q the question name want to remove
      * @return True if succeed or False otherwise
      */
-    public boolean removeQuestion(int test, String q){
+    public boolean removeQuestionFromTest(int test, String q){
         return getTest(test).deleteQuestion(q);
     }
 

@@ -54,7 +54,7 @@ public class TestGateway extends Gateway{
     public List<String> write(int type, List<String> info) {
         List<String> result = new ArrayList<>();
 
-        //add a new test: info:{name, pass, email} --> {testID}/null
+        //add a new test: info:{name, author, price} --> {testID}/null
         if (type == ID) {
             String testName = info.get(0);
             int authorID = Integer.parseInt(info.get(1));

@@ -1,8 +1,12 @@
 import BackEnd.Gateways.GroupGateway;
+import BackEnd.Gateways.QuestionGateway;
 import BackEnd.Gateways.StudentGateway;
+import BackEnd.Gateways.TestGateway;
 import BackEnd.Managers.GroupManager;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ini {
     public static Connection getConnection() {
@@ -174,6 +178,7 @@ public class Ini {
                     " answer VARCHAR(1000), " +
                     " mark INT , " +
                     " studentID INT, " +
+                    " groupID INT," +
                     " PRIMARY KEY ( id )) CHARACTER SET = utf8";
             statement.executeUpdate(sql);
             System.out.println("Created answer table in given database...");
@@ -246,5 +251,20 @@ public class Ini {
 //        System.out.println(groupManager.getJoinedGroup(5,bb));
 //      System.out.println(new GroupManager(new GroupGateway()).deleteGroup(16, new StudentGateway()));
 //    iniQuestionTable();
+//        int author = 12;
+//        int price = 100;
+//        List<String> info = new ArrayList<>();
+//        info.add("smallTest");
+//        info.add(author + "");
+//        info.add(price + "");
+//        System.out.println(new TestGateway().write(1, info));
+
+//        int mark = 3;
+//        List<String> info = new ArrayList<>();
+//        info.add("smallTest");
+//        info.add("jacky");
+//        info.add("123");
+//        info.add(mark + "");
+//        System.out.println(new QuestionGateway().write(1, info));
     }
 }
