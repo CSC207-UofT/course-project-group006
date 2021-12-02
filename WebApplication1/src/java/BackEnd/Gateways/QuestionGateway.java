@@ -106,7 +106,7 @@ public class QuestionGateway extends Gateway {
             preparedStatement.setInt(4, mark);
             preparedStatement.executeUpdate();
             connection.close();
-            return SUCCESS;
+            return createGetID(preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
             return FAILED;

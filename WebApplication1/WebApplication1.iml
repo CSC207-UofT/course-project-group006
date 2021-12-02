@@ -5,13 +5,15 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/java/BackEnd/oldstuff" />
-      <excludeFolder url="file://$MODULE_DIR$/src/java/BackEnd/Entities/QuestionTypes" />
     </content>
     <orderEntry type="jdk" jdkName="12" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.01" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.27" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.271" level="project" />
     <orderEntry type="library" name="apache-tomcat-10.0" level="project" />
     <orderEntry type="library" name="java" level="project" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-8.0.27" level="project" />
   </component>
 </module>
