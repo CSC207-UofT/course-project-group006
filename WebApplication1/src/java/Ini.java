@@ -4,6 +4,8 @@ import BackEnd.Gateways.TestAnswerGateway;
 import BackEnd.Gateways.QuestionGateway;
 import BackEnd.Gateways.StudentGateway;
 import BackEnd.Managers.GroupManager;
+import BackEnd.Managers.QuestionAnswerManager;
+import BackEnd.Interfaces.GeneralReadWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -266,7 +268,7 @@ public class Ini {
 //        info.add(questionID + "");
 //        info.add(answer + "");
 //        System.out.println(new QuestionGateway().write(4,info));
-//        String  name = "name1";
+//        String  name = "name2";
 //        String question = "apple";
 //        String answer = "苹果";
 //        int mark = 5;
@@ -288,5 +290,24 @@ public class Ini {
 //        info.add(testID + "");
 //        info.add(mark + "");
 //        System.out.println(new TestAnswerGateway().write(4,info));
+//        GeneralReadWriter bb = new QuestionAnswerGateway();
+//        QuestionAnswerManager questionAnswerManager = new QuestionAnswerManager(bb);
+//        questionAnswerManager.createQuestionAnswer(7, "苹果", 1, 5, bb);
+//        List<String> info = new ArrayList<>();
+//        info.add(Integer.toString(17));
+//        info.add("5");
+//        bb.write(4, info);
+//        questionAnswerManager.gradeQuestion(1, "苹果", 16);
+//        questionAnswerManager.createQuestionAnswer(1, "10", 3, 5, bb);
+//        System.out.println(new QuestionGateway().readRow(1).get(4));
+//        GeneralReadWriter bb = new QuestionAnswerGateway();
+//        List<String> list = new ArrayList<>();
+//        list.add(1 + "");
+//        list.add("10");
+//        list.add(1 + "");
+//        list.add(1 + "");
+//        List<String> result = bb.write(1, list);
+//        System.out.println(result);
+
     }
 }
