@@ -79,10 +79,10 @@ public class TestGateway extends Gateway{
             sql = "update TEST set price = '" + newPrice + "' where id = " + testID;
         } else if (type == QUESTIONS) {
             String newQuestions = info.get(1);
-            sql = "update TEST set questionIDs =  '" + newQuestions + "' where id = " + testID;
+            sql = "update TEST set questions =  '" + newQuestions + "' where id = " + testID;
         } else if (type == 66) {
             String newQuestions = info.get(1);
-            sql = "update TEST set questionIDs = CONCAT_WS(',',questionID, '" + newQuestions + "') where id = " + testID;
+            sql = "update TEST set questions = CONCAT_WS(',',questions, '" + newQuestions + "') where id = " + testID;
         }
         if (rewrite(sql).equals(SUCCESS)) {
             result.add(testID + "");
