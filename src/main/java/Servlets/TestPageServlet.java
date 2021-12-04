@@ -37,7 +37,7 @@ public class TestPageServlet extends TestServlet {
         }
         request.setAttribute("ownedTest",ownedTest);
         request.setAttribute("userId", userId);
-        request.setAttribute("userName", userManager.getName(userId));
+        request.setAttribute("userName", teacherManager.getNameById(userId));
         if(request.getParameter("groupId")!=null){
             request.setAttribute("groupId", Integer.parseInt(request.getParameter("groupId")));
         }
@@ -47,7 +47,7 @@ public class TestPageServlet extends TestServlet {
 
     public void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        testManager.creatExame(request.getParameter("testName"),Integer.parseInt(request.getParameter("timeLimit")), getUserId(request),0);
+        testManager.creatTest(request.getParameter("testName"), getUserId(request),0);
         processRequest(request,response);
     }
     public void detal(HttpServletRequest request, HttpServletResponse response)

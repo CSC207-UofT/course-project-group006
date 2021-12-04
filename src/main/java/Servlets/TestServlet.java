@@ -16,10 +16,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import static java.lang.System.out;
 import static java.lang.System.err;
-import BackEnd.UserGroupManager;
-import BackEnd.UserManager;
-import BackEnd.TestManager;
-import BackEnd.WordManager;
+import BackEnd.Managers.GroupManager;
+import BackEnd.Managers.*;
+import BackEnd.Gateways.*;
 import javax.servlet.http.Cookie;
 /**
  *
@@ -27,11 +26,14 @@ import javax.servlet.http.Cookie;
  */
 @WebServlet(urlPatterns = {"/TestServlet"})
 public class TestServlet extends HttpServlet {
-    protected static UserGroupManager userGroupManager=new UserGroupManager();
-    protected static UserManager userManager=new UserManager(null);
-    protected static TestManager testManager= new TestManager();
-    protected static WordManager wordManager=new WordManager(System.getProperty("user.dir") + "\\src\\java\\main\\Files\\Words");
+    protected static GroupManager groupManager=new GroupManager(new GroupGateway());
+    protected static UserManager teacherManager=new UserManager(new TeacherGateway());
+    protected static UserManager studentManager=new UserManager(new StudentGateway());
 
+    protected static TestManager testManager= new TestManager(new TestGateway());
+    protected static TestAnswerManager testAnswerManager= new TestAnswerManager(new TestAnswerGateway());
+    protected static QuestionManager questionManager= new QuestionManager(new QuestionGateway());
+    protected static QuestionAnswerManager questionAnswerManager=new QuestionAnswerManager(new QuestionAnswerGateway());
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.

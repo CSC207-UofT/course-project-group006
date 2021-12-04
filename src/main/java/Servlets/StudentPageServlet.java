@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import BackEnd.Gateways.*;
 
 /**
  *
@@ -28,7 +29,7 @@ public class StudentPageServlet extends TestServlet {
                 // Do nothing
             }
         }
-        request.setAttribute("joinedGroup", userGroupManager.getJoinedGroup(userId));
+        request.setAttribute("joinedGroup", groupManager.getJoinedGroup(userId,new BackEnd.Gateways.StudentGateway()));
         request.setAttribute("userId", userId);
         RequestDispatcher r = request.getRequestDispatcher("StudentPage.jsp");
         r.forward(request, response);
@@ -41,7 +42,7 @@ public class StudentPageServlet extends TestServlet {
     }
     public void quit(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        userGroupManager.removeStudentFromGroup(getUserId(request), Integer.parseInt(request.getParameter("groupId")));
+        groupManager.removeStudentFromGroup(getUserId(request), Integer.parseInt(request.getParameter("groupId")));
         response.sendRedirect("StudentPageServlet");
     }
     public void learn(HttpServletRequest request, HttpServletResponse response)

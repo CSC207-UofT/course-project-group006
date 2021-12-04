@@ -19,7 +19,7 @@ import javax.servlet.http.Cookie;
 public class LogInPageServlet extends TestServlet {
 
     public void logIn(HttpServletRequest request, HttpServletResponse response){
-        int result = userManager.loginWithUsername(request.getParameter("username"), request.getParameter("password"));
+        int result = studentManager.LogIn(request.getParameter("username"), request.getParameter("password"));
         if(result==-1){
             try {
                 PrintWriter out = response.getWriter();
@@ -33,7 +33,7 @@ public class LogInPageServlet extends TestServlet {
             }
         }else{
 
-            String userType = userManager.getUserType(result);
+            String userType = studentManager.getUserType(result);
             Cookie userId=new Cookie("userId",""+result);
             response.addCookie(userId);
             if(userType.equals("T")){

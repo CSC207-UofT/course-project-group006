@@ -6,6 +6,9 @@ package Servlets;
 
 
 
+import BackEnd.Gateways.StudentGateway;
+import BackEnd.Gateways.TeacherGateway;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -57,11 +60,11 @@ public class TeacherPageServlet extends TestServlet {
 
                 }
             }else{
-                List<Integer> groups=userGroupManager.createdBy(userId);
-                out.print(userManager.getName(userId)+"'s page:<br>groups:<br>");
+                List<Integer> groups=groupManager.createdBy(userId);
+                out.print(teacherManager.getNameById(userId)+"'s page:<br>groups:<br>");
                 for(int i=0; i<groups.size();i++){
                     out.print("<form action=\"TeacherPageServlet\" method=\"Post\">");
-                    out.print("<label \">"+userGroupManager.getNameOfGroup(groups.get(i)));
+                    out.print("<label \">"+groupManager.getName(groups.get(i)));
                     out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value="+groups.get(i)+">");
                     out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"deleat\">");
                     out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"detal\">");
@@ -99,7 +102,7 @@ public class TeacherPageServlet extends TestServlet {
 
     public void deleat(HttpServletRequest request, HttpServletResponse response){
         int id = Integer.parseInt(request.getParameter("groupId"));
-        userGroupManager.deleatGroup(id);
+        groupManager.deleteGroup(id,new StudentGateway(),new TeacherGateway());
         try{
             response.sendRedirect("TeacherPageServlet");
         }catch(IOException e){
@@ -122,7 +125,7 @@ public class TeacherPageServlet extends TestServlet {
     }
     public void Creat(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        userGroupManager.creatGroup(getUserId(request), request.getParameter("testName"));
+        groupManager.createGroup(getUserId(request), request.getParameter("testName"),new TeacherGateway());
         response.sendRedirect("TeacherPageServlet");
     }
 
