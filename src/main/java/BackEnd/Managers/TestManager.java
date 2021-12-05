@@ -5,6 +5,7 @@ import BackEnd.Entities.Test;
 import BackEnd.Entities.Question;
 import BackEnd.Entities.QuestionInterface;
 import BackEnd.Interfaces.GeneralReadWriter;
+import BackEnd.Managers.QuestionManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,14 +99,26 @@ public class TestManager {
 
     }
 
-    /**
-     * Remove question from a test
-     * @param test the ID of the test
-     * @param q the question name want to remove
-     * @return True if succeed or False otherwise
-     */
-    public boolean removeQuestionFromTest(int test, String q){
-        return getTest(test).deleteQuestion(q);
+
+
+    public Test getTest(int testID,  QuestionManager manager){
+        List<String> result = testGate.readRow(testID);
+        String[] questionsID = result.get(5).split(",");
+
+        ArrayList<Question> questions = new ArrayList<>();
+        if (questionsID.length != 0){
+            for (String q: questionsID){
+                questions.add(manager.getQuestion(Integer.parseInt(q)));
+            }
+            Test myTest = new Test(result.get(1), Integer.parseInt(result.get(2)), Integer.parseInt(result.get(4)),
+                    questions);
+            return myTest;
+        }
+        else{
+            Test myTest = new Test(result.get(1), Integer.parseInt(result.get(2)), Integer.parseInt(result.get(4)));
+        }
+
+        return null;
     }
 
     /**
@@ -115,7 +128,7 @@ public class TestManager {
      * @return True if succeed or False otherwise
      */
     public boolean removeQuestion(int testID, int qID){
-        List<String> result = testGate.readByID(222, 13, testID);
+        List<String> result = testGate.readByID(222, 6, testID);
         if (result.get(0).equals("")) {
             return false;
         }
@@ -176,6 +189,10 @@ public class TestManager {
         return allTest.get(Id);
     }
 
+    public String getTestName(int id){
+        return(allTest.get(id).getName());
+    }
+
 
     /**
      * Get test owned by a teacher
@@ -202,9 +219,7 @@ public class TestManager {
 //    public static Quiz diagnostic(List<Word> input){
 //        return Quiz.diagnostic(input);
 //    }
-    public String getTestName(int id){
-        return(allTest.get(id).getName());
-    }
+
     public List<QuestionInterface> getTestInfo(int id){
        List<QuestionInterface> result = allTest.get(id).getQuestions();
        return result;

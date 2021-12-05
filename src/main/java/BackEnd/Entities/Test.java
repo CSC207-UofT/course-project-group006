@@ -4,9 +4,8 @@ import BackEnd.Entities.Question;
 import BackEnd.Entities.QuestionInterface;
 import java.util.ArrayList;
 
-public abstract class Test {
+public class Test {
     protected String name;
-    protected int timeLimit;
     protected ArrayList<Question> questions;
     protected int author;
     protected int Id;
@@ -17,14 +16,13 @@ public abstract class Test {
      * Construct a test giving its name, time limit,
      * author and price
      * @param name name of the test
-     * @param timeLimit time limit of the test
      * @param author author of the test
      * @param price price of the test
      */
     
-    public Test(String name, int timeLimit, int author, int price){
+    public Test(String name, int author, int price){
         this.name=name;
-        this.timeLimit=timeLimit;
+
         this.questions=new ArrayList<>();
         this.author=author;
         this.price=price;
@@ -35,19 +33,19 @@ public abstract class Test {
      * Construct a test giving its name, time limit,
      * author, price and list of questions
      * @param name name of the test
-     * @param timeLimit time limit of the test
      * @param author author of the test
      * @param price price of the test
      * @param questions list of questions in this test
      */
     
-    public Test(String name, int timeLimit, int author, int price, ArrayList<Question> questions){
+    public Test(String name, int author, int price, ArrayList<Question> questions){
         this.name=name;
-        this.timeLimit=timeLimit;
         this.questions=questions;
         this.author=author;
         this.price=price;
     }
+
+
 
 
     /**

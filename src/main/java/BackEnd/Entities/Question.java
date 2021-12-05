@@ -5,7 +5,9 @@ public class Question implements QuestionInterface{
     private String question;
     private String answer;
     private int marks;
-    public Question(String name, String question, String answer, int mark){
+
+    public Question( String name, String question, String answer, int mark){
+
         this.name = name;
         this.question=question;
         this.answer=answer;
