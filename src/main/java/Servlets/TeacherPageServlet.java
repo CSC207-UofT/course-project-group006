@@ -111,6 +111,12 @@ public class TeacherPageServlet extends TestServlet {
 
         }
     }
+
+    /**
+     * Redirect the response to TestPageServlet
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void Tests(HttpServletRequest request, HttpServletResponse response){
         try{
             response.sendRedirect("TestPageServlet");
@@ -118,6 +124,14 @@ public class TeacherPageServlet extends TestServlet {
 
         }
     }
+
+    /**
+     * Redirect the response to TeacherPageServlet and create a new group
+     * @param request Servlet request
+     * @param response Servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void Creat(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         groupManager.createGroup(getUserId(request), request.getParameter("testName"),new TeacherGateway());
