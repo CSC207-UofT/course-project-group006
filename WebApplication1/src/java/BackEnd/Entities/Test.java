@@ -4,7 +4,7 @@ import BackEnd.Entities.Question;
 import BackEnd.Entities.QuestionInterface;
 import java.util.ArrayList;
 
-public abstract class Test {
+public class Test {
     protected String name;
     protected int timeLimit;
     protected ArrayList<Question> questions;
@@ -97,39 +97,39 @@ public abstract class Test {
         //return result;
     //}
 
-    /**
-     * Add question to this test
-     * @param q the question need to add
-     * @return True
-     */
-    public boolean addQuestion(Question q){
-        this.questions.add(q);
-        return true;
-    }
-
-    /**
-     * Delete a question from this test giving its name
-     * @param q the question name want to delete
-     * @return True if succeed or False otherwise
-     */
-    public boolean deleteQuestion(String q){
-        for(Question que:questions){
-            if(que.getQuestion().equals(q)){
-                questions.remove(que);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Delete a question from a test giving its ID
-     * @param i the question ID
-     * @return True if succeed
-     */
-    public boolean deleteQuestion(int i){
-        return questions.remove(i)!=null;
-    }
+//    /**
+//     * Add question to this test
+//     * @param q the question need to add
+//     * @return True
+//     */
+//    public boolean addQuestion(Question q){
+//        this.questions.add(q);
+//        return true;
+//    }
+//
+//    /**
+//     * Delete a question from this test giving its name
+//     * @param q the question name want to delete
+//     * @return True if succeed or False otherwise
+//     */
+//    public boolean deleteQuestion(String q){
+//        for(Question que:questions){
+//            if(que.getQuestion().equals(q)){
+//                questions.remove(que);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//
+//    /**
+//     * Delete a question from a test giving its ID
+//     * @param i the question ID
+//     * @return True if succeed
+//     */
+//    public boolean deleteQuestion(int i){
+//        return questions.remove(i)!=null;
+//    }
 
 
     /**
@@ -144,32 +144,11 @@ public abstract class Test {
         }
         return result;
     }
-    public int[] Autograde(String[] answer){
-        int[] result = new int[questions.size()];
-        for(int i=0;i<questions.size();i++){
-            result[i]=questions.get(i).score(answer[i]);
-        }
-        return result;
 
-    }
     public String[] getQuestion(){
         String[] result = new String[questions.size()];
         for(int i=0;i<questions.size();i++){
             result[i]=questions.get(i).getQuestion();
-        }
-        return result;
-    }
-    public String[] getAnswer(){
-        String[] result = new String[questions.size()];
-        for(int i=0;i<questions.size();i++){
-            result[i]=questions.get(i).getAnswer();
-        }
-        return result;
-    }
-    public int[] getMark(){
-        int[] result = new int[questions.size()];
-        for(int i=0;i<questions.size();i++){
-            result[i]=questions.get(i).getMarks();
         }
         return result;
     }

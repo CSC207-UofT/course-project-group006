@@ -59,6 +59,14 @@ public class TestManager {
 //        return test.Id;
 //    }
 
+    /**
+     * Create a test giving its name, author and price
+     * @param name the name of the test
+     * @param author the author of the test
+     * @param price the price of the test
+     * @return testID if the test is created, otherwise return -1.
+     */
+
     public int creatTest(String name, int author, int price){
         List<String> info = new ArrayList<>();
         info.add(name);
@@ -72,12 +80,17 @@ public class TestManager {
     }
 
     /**
-     * Add question to an exam
-
-     * @return True
+     * Add a question to a Test
+     * @param testID the test we need
+     * @param questionID the question we want to add
+     * @return True if the question is added. False if the test doesn't exist.
      */
     public boolean addQuestionToTest(int testID, int questionID){
         List<String> result = testGate.readByID(222, 13, testID);
+
+        if (result == null){
+            return false;
+        }
 
         if (result.get(0).equals("")){
             List<String> info = new ArrayList<>();
@@ -99,17 +112,7 @@ public class TestManager {
     }
 
     /**
-     * Remove question from a test
-     * @param test the ID of the test
-     * @param q the question name want to remove
-     * @return True if succeed or False otherwise
-     */
-    public boolean removeQuestionFromTest(int test, String q){
-        return getTest(test).deleteQuestion(q);
-    }
-
-    /**
-     * Remove question from a test
+     * Remove question from a test giving its id ang question ID
      * @param testID the ID of the test
      * @param qID the question ID want to remove
      * @return True if succeed or False otherwise
@@ -125,7 +128,7 @@ public class TestManager {
         int index = 0;
         for (int i = 0; i < strings.length; i++) {
             array[i] = Integer.parseInt(strings[i]);
-            if (array[i] == testID) {
+            if (array[i] == qID) {
                 inTest = true;
                 index = i;
             }
@@ -202,20 +205,23 @@ public class TestManager {
 //    public static Quiz diagnostic(List<Word> input){
 //        return Quiz.diagnostic(input);
 //    }
+
+    /**
+     * Get the test name giving the testID
+     * @param id the testID
+     * @return the name of this test
+     */
     public String getTestName(int id){
         return(allTest.get(id).getName());
     }
-    public List<QuestionInterface> getTestInfo(int id){
-       List<QuestionInterface> result = allTest.get(id).getQuestions();
-       return result;
-    }
+
+    /**
+     * get the questions in this test
+     * @param id the id of the test
+     * @return the string list of questions
+     */
     public String[] getQuestions(int id){
         return this.allTest.get(id).getQuestion();
     }
-    public String[] getAnswers(int id){
-        return this.allTest.get(id).getAnswer();
-    }
-    public int[] getMarks(int id){
-        return this.allTest.get(id).getMark();
-    }
+
 }
