@@ -84,22 +84,11 @@ public class TeacherPageServlet extends TestServlet {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Redirect the response to TeacherPageServlet and delete group
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void deleat(HttpServletRequest request, HttpServletResponse response){
         int id = Integer.parseInt(request.getParameter("groupId"));
         groupManager.deleteGroup(id,new StudentGateway(),new TeacherGateway());
@@ -109,6 +98,12 @@ public class TeacherPageServlet extends TestServlet {
 
         }
     }
+
+    /**
+     * Redirect the response to GroupPageServlet
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void detal(HttpServletRequest request, HttpServletResponse response){
         try{
             response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));
