@@ -13,7 +13,11 @@ public class Answer {
         this.student=student;
         this.answer=answer;
     }
-    
+
+    /**
+     * Getter method for about
+     * @return About of question
+     */
     public int getAbout(){
         return about;
     }
