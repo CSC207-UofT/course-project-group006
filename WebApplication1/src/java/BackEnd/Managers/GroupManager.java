@@ -6,7 +6,6 @@ import BackEnd.Entities.Group;
 import BackEnd.Interfaces.ReadAll;
 import BackEnd.Interfaces.ReadNameID;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,8 +25,6 @@ public class GroupManager {
     public GroupManager(ReadAll readWriter) {
         this.groupGate = readWriter;
     }
-
-
 
 
 //    TODO:
@@ -64,8 +61,9 @@ public class GroupManager {
         List<String> result = groupGate.write(1, list);
         if (result != null && result.size() != 0) {
             int groupID = Integer.parseInt(result.get(0));
+            g.setID(groupID);
             UserManager userManager = new UserManager(teacherGate);
-            userManager.addGroupToUser(teacherID, groupID, 600);
+            userManager.addGroupToUser(teacherID, g.getID(), 600);
             return groupID;
         } else {
             return -1;
@@ -168,6 +166,7 @@ public class GroupManager {
      * @return success T, failed F
      */
     public boolean removeStudentFromGroup(int studentID, Integer groupID) {
+        Group g = new Group(groupID);
         List<String> result = groupGate.readByID(222, 4, groupID);
         if (result.get(0).equals("")) {
             return false;
@@ -177,8 +176,8 @@ public class GroupManager {
         boolean inGroup = false;
         int index = 0;
         for (int i = 0; i < strings.length; i++) {
-            array[i] = Integer.parseInt(strings[i]);
-            if (array[i] == studentID) {
+            g.addStudent(Integer.parseInt(strings[i]));
+            if (g.getStudents()[i] == studentID) {
                 inGroup = true;
                 index = i;
             }
@@ -210,6 +209,7 @@ public class GroupManager {
      * @return the int [ ]
      */
     public int[] getStudents(int id) {
+        Group g = new Group(id);
         List<String> result = groupGate.readByID(222, 4, id);
         if (result.get(0).equals("")) {
             return null;
@@ -219,7 +219,8 @@ public class GroupManager {
         for (int i = 0; i < strings.length; i++) {
             array[i] = Integer.parseInt(strings[i]);
         }
-        return array;
+        g.setStudents(array);
+        return g.getStudents();
 
     }
 
@@ -255,9 +256,11 @@ public class GroupManager {
      * @return success T, failed F
      */
     public boolean postAnnouncement(int groupID, String announcement) {
+        Group g = new Group(groupID);
+        g.setAnnouncement(announcement);
         List<String> info = new ArrayList<>();
         info.add(groupID + "");
-        info.add(announcement);
+        info.add(g.getAnnouncement());
         return !groupGate.write(5, info).get(0).equals("FAILED");
     }
 }

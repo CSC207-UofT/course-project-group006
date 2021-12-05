@@ -13,10 +13,7 @@ import java.util.List;
  */
 public class GroupGateway extends Gateway implements ReadAll {
 
-    private final int CREATOR = 3;
-    private final int STUDENTS = 4;
-    private final int POST = 5;
-    private final int TESTS = 6;
+    //private final int CREATOR = 3;
 
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
@@ -76,6 +73,9 @@ public class GroupGateway extends Gateway implements ReadAll {
         //change one element: info:{groupID, newInfo} --> {groupID}/null
         int groupID = Integer.parseInt(info.get(0));
         String sql = null;
+        int STUDENTS = 4;
+        int POST = 5;
+        int TESTS = 6;
         if (type == NAME) {
             String newName = info.get(1);
             sql = "update STUDYGROUP set name = '" + newName + "' where id = " + groupID;

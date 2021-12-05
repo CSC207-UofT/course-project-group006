@@ -11,14 +11,9 @@ import java.util.List;
  */
 public class StudentGateway extends Gateway implements ReadNameID {
 
-    private final int PASS = 3;
-    private final int DATE = 4;
-    private final int EMAIL = 5;
-    private final int WORDS = 6;
-    private final int GROUPS = 7;
-    private final int TESTS = 8;
-    private final int ANSWERS = 9;
-    private final int LEVEL = 10;
+    //private final int DATE = 4;
+    //private final int WORDS = 6;
+    //private final int LEVEL = 10;
 
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
@@ -80,6 +75,11 @@ public class StudentGateway extends Gateway implements ReadNameID {
         //change one element: info:{studentID, newInfo} --> {studentID}/null
         int studentID = Integer.parseInt(info.get(0));
         String sql = null;
+        int PASS = 3;
+        int EMAIL = 5;
+        int GROUPS = 7;
+        int TESTS = 8;
+        int ANSWERS = 9;
         if (type == NAME) {
             String newName = info.get(1);
             sql = "update STUDENT set name = '" + newName + "' where id = " + studentID;
