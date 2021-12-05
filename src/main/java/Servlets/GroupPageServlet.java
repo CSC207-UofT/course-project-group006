@@ -31,12 +31,13 @@ public class GroupPageServlet extends TestServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("groupId", request.getParameter("groupId"));
         int groupId = Integer.parseInt(request.getParameter("groupId"));
+        request.setAttribute("groupId", request.getParameter("groupId"));
         request.setAttribute("groupName", groupManager.getNameById(groupId));
         request.setAttribute("teacherName",teacherManager.getNameById(groupManager.getTeacher(groupId)));
         int[] students = groupManager.getStudents(groupId);
         request.setAttribute("students", students);
+        request.setAttribute("posts",groupManager.posts(groupId));
         int userId = getUserId(request);
         if(userId==-1){
             try{
@@ -46,14 +47,20 @@ public class GroupPageServlet extends TestServlet {
 
             }
         }else{
-            String type = teacherManager.getUserType(userId);
+            //String type = teacherManager.getUserType(userId);
             for(int i=0; i<students.length;i++){
                 if(students[i]!=0){
                     request.setAttribute("student"+students[i]+"name",studentManager.getNameById(students[i]));
                 }
             }
         }
-        request.setAttribute("userType", teacherManager.getUserType(userId));
+        String type ="";
+        if(studentManager.IsStudent(userId)){
+            type="S";
+        }else if(teacherManager.IsTeacher(userId)){
+            type="T";
+        }
+        request.setAttribute("userType", type);
         request.setAttribute("userId", userId);
         request.setAttribute("Tests",groupManager.getTests(groupId));
         for(Integer i:groupManager.getTests(groupId).keySet()){

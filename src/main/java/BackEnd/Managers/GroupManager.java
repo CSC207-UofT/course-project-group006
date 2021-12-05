@@ -313,4 +313,7 @@ public class GroupManager {
     public HashMap<Integer,String[]> getSubmition(int groupId,int testId){
         return readGroup(groupId).getTestResults(testId);
     }
+    public List<String> posts(int id){
+        return readGroup(id).getAnnouncement();
+    }
 }

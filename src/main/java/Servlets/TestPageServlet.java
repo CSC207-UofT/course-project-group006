@@ -6,6 +6,7 @@ package Servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class TestPageServlet extends TestServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int userId=getUserId(request);
-        ArrayList<Integer> ownedTest = testManager.getOwnedTest(userId);
+        List<Integer> ownedTest = teacherManager.tests(userId);
         for(Integer i:ownedTest){
             request.setAttribute("test"+i, testManager.getTestName(i));
         }

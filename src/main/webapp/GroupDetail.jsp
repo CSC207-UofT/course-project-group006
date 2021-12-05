@@ -8,6 +8,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ page import= "Servlets.GroupPageServlet" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
     <style>
@@ -16,10 +17,13 @@
             float: left;
         }
         .left{
-            width: 90%;
+            width: 50%;
         }
         .right{
             width:10%
+        }
+        .middle{
+            width: 40%;
         }
         button{
             float: right;
@@ -63,6 +67,14 @@
             </form>
                 <%}%>
         </div>
+    <div class="middle">
+        <%List<String> posts = (List<String>) request.getAttribute("posts");
+            for (String post : posts) {
+        %>
+        <label><%=post%>
+        </label>
+        <%}%>
+    </div>
         <div class="right" id="people" hidden>
             <%
                 int[] students = (int[])request.getAttribute("students");

@@ -76,7 +76,9 @@ public class Group {
     }
 
     public List<String> getAnnouncement() {
-        return announcement;
+        if(announcement!=null){
+        return announcement;}
+        return new ArrayList<String>();
     }
 
     public void addAnnouncement(String announcement) {
