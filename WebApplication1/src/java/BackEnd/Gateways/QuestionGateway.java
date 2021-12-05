@@ -10,21 +10,13 @@ public class QuestionGateway extends Gateway {
     private final int QUESTION = 3;
     private final int ANSWER = 4;
     private final int MARK = 5;
-    @Override
-    public List<String> readByIDName(int elementStructure, int type, int targetID, int a) {
-        return null;
-    }
+
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from QUESTION where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-        String sql = "select * from QUESTION where name = '" + targetName + "'";
-        return new ArrayList<>(read(sql, type, INT));
-    }
 
     @Override
     public List<String> readRow(int targetID) {

@@ -11,21 +11,11 @@ public class TestGateway extends Gateway{
     private final int QUESTIONS = 13;
 
     @Override
-    public List<String> readByIDName(int elementStructure, int type, int targetID, int a) {
-        return null;
-    }
-
-    @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from TEST where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-        String sql = "select * from TEST where name = '" + targetName + "'";
-        return new ArrayList<>(read(sql, type, INT));
-    }
 
     @Override
     public List<String> readRow(int targetID) {

@@ -23,14 +23,7 @@ public interface GeneralReadWriter {
      * @param targetName the target name
      * @return the list of wanted info
      */
-    List<String> readIntByName(int type, String targetName);
 
-    /**
-     * Read row list.
-     *
-     * @param targetID the target id
-     * @return the list of an entire row
-     */
     List<String> readRow(int targetID);
 
     /**
@@ -52,5 +45,4 @@ public interface GeneralReadWriter {
     boolean hasDuplicateNames(String table, String name);
 
 
-    List<String> readByIDName(int elementStructure, int type, int studentID, int targetID);
 }

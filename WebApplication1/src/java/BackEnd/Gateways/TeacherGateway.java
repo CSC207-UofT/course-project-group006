@@ -1,5 +1,7 @@
 package BackEnd.Gateways;
 
+import BackEnd.Interfaces.ReadNameID;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,17 +9,14 @@ import java.util.List;
 /**
  * The type Teacher gateway.
  */
-public class TeacherGateway extends Gateway {
+public class TeacherGateway extends Gateway implements ReadNameID {
 
 
     private final int PASS = 3;
     private final int EMAIL = 5;
     private final int GROUPS = 6;
     private final int TESTS = 7;
-    @Override
-    public List<String> readByIDName(int elementStructure, int type, int targetID, int a) {
-        return null;
-    }
+
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from TEACHER where id = " + targetID;

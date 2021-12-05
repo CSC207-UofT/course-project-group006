@@ -1,10 +1,12 @@
 package BackEnd.Gateways;
 
+import BackEnd.Interfaces.ReadIDName;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionAnswerGateway extends Gateway{
+public class QuestionAnswerGateway extends Gateway implements ReadIDName {
     private final int QuestionID = 2;
     private final int ANSWER = 3;
     private final int MARK = 4;
@@ -16,13 +18,7 @@ public class QuestionAnswerGateway extends Gateway{
         String sql = "select * from QUESTIONANSWER where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
-    // no name in QUESTIONANSWER table
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-//        String sql = "select * from QUESTIONANSWER where questionID = '" + targetName + "'";
-//        return new ArrayList<>(read(sql, type, INT));
-        return null;
-    }
+
     @Override
     public List<String> readByIDName(int elementStructure,int studentID, int type, int targetID) {
         String sql = "select * from QUESTIONANSWER where questionID = ' " + targetID + " ' and studentID = '" + studentID + " '";
