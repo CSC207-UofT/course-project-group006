@@ -4,9 +4,8 @@ import BackEnd.Entities.Question;
 import BackEnd.Entities.QuestionInterface;
 import java.util.ArrayList;
 
-public abstract class Test {
+public class Test {
     protected String name;
-    protected int timeLimit;
     protected ArrayList<Question> questions;
     protected int author;
     protected int Id;
@@ -17,14 +16,13 @@ public abstract class Test {
      * Construct a test giving its name, time limit,
      * author and price
      * @param name name of the test
-     * @param timeLimit time limit of the test
      * @param author author of the test
      * @param price price of the test
      */
     
-    public Test(String name, int timeLimit, int author, int price){
+    public Test(String name, int author, int price){
         this.name=name;
-        this.timeLimit=timeLimit;
+
         this.questions=new ArrayList<>();
         this.author=author;
         this.price=price;
@@ -35,19 +33,19 @@ public abstract class Test {
      * Construct a test giving its name, time limit,
      * author, price and list of questions
      * @param name name of the test
-     * @param timeLimit time limit of the test
      * @param author author of the test
      * @param price price of the test
      * @param questions list of questions in this test
      */
     
-    public Test(String name, int timeLimit, int author, int price, ArrayList<Question> questions){
+    public Test(String name, int author, int price, ArrayList<Question> questions){
         this.name=name;
-        this.timeLimit=timeLimit;
         this.questions=questions;
         this.author=author;
         this.price=price;
     }
+
+
 
 
     /**
@@ -83,19 +81,6 @@ public abstract class Test {
     public String getName(){
         return this.name;
     }
-    //public void addQuestion(Question q){
-      //  questions.add(q);
-    //}
-    //public void removeQuestion(Question q){
-      //  questions.remove(q);
-    //}
-    //public int score(ArrayList<String> answer){
-      //  int result = 0;
-        //for(int i=0;i<questions.size();i++){
-    //        result+=questions.get(i).score(answer.get(i));
-      //  }
-        //return result;
-    //}
 
     /**
      * Add question to this test
@@ -131,27 +116,36 @@ public abstract class Test {
         return questions.remove(i)!=null;
     }
 
-
     /**
-     *
+     * Getter method of the questions
      * @return the list of question in this test
      */
     
     public ArrayList<QuestionInterface> getQuestions(){
         ArrayList<QuestionInterface> result = new ArrayList<QuestionInterface>();
-        for(int i=0;i<questions.size();i++){
-            result.add(questions.get(i));
+        for (Question question : questions) {
+            result.add(question);
         }
         return result;
     }
+
+    /**
+     * Method allows teacher to autograge tests
+     * @param answer Answer to the question
+     * @return Result mark for autograded tests
+     */
     public int[] Autograde(String[] answer){
         int[] result = new int[questions.size()];
         for(int i=0;i<questions.size();i++){
             result[i]=questions.get(i).score(answer[i]);
         }
         return result;
-
     }
+
+    /**
+     * Getter method of the question
+     * @return Question in the test
+     */
     public String[] getQuestion(){
         String[] result = new String[questions.size()];
         for(int i=0;i<questions.size();i++){
@@ -159,6 +153,11 @@ public abstract class Test {
         }
         return result;
     }
+
+    /**
+     * Getter method of the Answer
+     * @return Answer to the question
+     */
     public String[] getAnswer(){
         String[] result = new String[questions.size()];
         for(int i=0;i<questions.size();i++){
@@ -166,6 +165,11 @@ public abstract class Test {
         }
         return result;
     }
+
+    /**
+     * Getter method of the Mark
+     * @return Mark of the question
+     */
     public int[] getMark(){
         int[] result = new int[questions.size()];
         for(int i=0;i<questions.size();i++){

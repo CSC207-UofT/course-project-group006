@@ -47,6 +47,14 @@ public class TestDetailServlet extends TestServlet {
         r.forward(request, response);
 
     }
+
+    /**
+     * Method that allows users to add questions to test
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int testId=Integer.parseInt(request.getParameter("testId"));
@@ -56,6 +64,14 @@ public class TestDetailServlet extends TestServlet {
         testManager.addQuestion(testId, question, answer, mark);
         processRequest(request,response);
     }
+
+    /**
+     * Method allowing users to remove questions from test
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void delet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("testId"));
@@ -63,6 +79,14 @@ public class TestDetailServlet extends TestServlet {
         testManager.removeQuestion(id, questionNumber);
         processRequest(request,response);
     }
+
+    /**
+     * Redirect the response to TestPageServlet
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void back(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.sendRedirect("TestPageServlet");

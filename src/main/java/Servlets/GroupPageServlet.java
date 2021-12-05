@@ -187,9 +187,9 @@ public class GroupPageServlet extends TestServlet {
     public void back(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int user=getUserId(request);
-        if(Objects.equals(studentManager.getUserType(user), "T")){
+        if(teacherManager.IsTeacher(user)){
             response.sendRedirect("TeacherPageServlet");
-        }else if(Objects.equals(studentManager.getUserType(user), "S")){
+        }else if(studentManager.IsStudent(user)){
             response.sendRedirect("StudentPageServlet");
         }
     }
