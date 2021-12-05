@@ -42,11 +42,6 @@ public class Student extends User {
         return level;
     }
 
-    //public ArrayList<String> getJoinedGroup() {
-    //    return joinedGroup;
-    //}
-
-
 
     /**
      *

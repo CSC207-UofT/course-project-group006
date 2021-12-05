@@ -83,19 +83,6 @@ public abstract class Test {
     public String getName(){
         return this.name;
     }
-    //public void addQuestion(Question q){
-      //  questions.add(q);
-    //}
-    //public void removeQuestion(Question q){
-      //  questions.remove(q);
-    //}
-    //public int score(ArrayList<String> answer){
-      //  int result = 0;
-        //for(int i=0;i<questions.size();i++){
-    //        result+=questions.get(i).score(answer.get(i));
-      //  }
-        //return result;
-    //}
 
     /**
      * Add question to this test
@@ -131,7 +118,6 @@ public abstract class Test {
         return questions.remove(i)!=null;
     }
 
-
     /**
      *
      * @return the list of question in this test
@@ -139,8 +125,8 @@ public abstract class Test {
     
     public ArrayList<QuestionInterface> getQuestions(){
         ArrayList<QuestionInterface> result = new ArrayList<QuestionInterface>();
-        for(int i=0;i<questions.size();i++){
-            result.add(questions.get(i));
+        for (Question question : questions) {
+            result.add(question);
         }
         return result;
     }
