@@ -3,13 +3,13 @@ package BackEnd.Managers;
 import BackEnd.Entities.Student;
 import BackEnd.Entities.Teacher;
 import BackEnd.Entities.User;
-import BackEnd.Interfaces.GeneralReadWriter;
+import BackEnd.Interfaces.ReadNameID;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentManager extends UserManager{
-    public StudentManager(GeneralReadWriter userGate) {
+    public StudentManager(ReadNameID userGate) {
         super(userGate);
     }
     @Override
