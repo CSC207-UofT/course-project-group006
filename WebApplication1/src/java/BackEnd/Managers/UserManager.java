@@ -1,5 +1,7 @@
 package BackEnd.Managers;
 
+import BackEnd.Entities.Student;
+import BackEnd.Entities.Teacher;
 import BackEnd.Interfaces.ReadNameID;
 
 import java.util.ArrayList;
@@ -168,8 +170,10 @@ public class UserManager {
      */
     public int createUser(String name, String password, String email) {
         List<String> info = new ArrayList<>();
-        info.add(name);
-        info.add(password);
+        Teacher teacher = new Teacher(name,password,email);
+        Student student = new Student(name,password,email);
+        info.add(teacher.getUsername());
+        info.add(student.getPassword());
         info.add(email);
         List<String> result = userGate.write(1, info);
         if (result != null && result.size() != 0) {

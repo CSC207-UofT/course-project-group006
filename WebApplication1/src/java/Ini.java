@@ -1,9 +1,4 @@
-import BackEnd.Gateways.GroupGateway;
-import BackEnd.Gateways.QuestionAnswerGateway;
-import BackEnd.Gateways.TestAnswerGateway;
-import BackEnd.Gateways.TestGateway;
-import BackEnd.Gateways.QuestionGateway;
-import BackEnd.Gateways.StudentGateway;
+import BackEnd.Gateways.*;
 import BackEnd.Interfaces.ReadIDName;
 import BackEnd.Managers.GroupManager;
 import BackEnd.Managers.QuestionAnswerManager;
@@ -23,10 +18,10 @@ public class Ini {
         String password = "SinqmMLSgB";//MySQL配置时的密码
         try {
             // 加载驱动类
-            Class.forName(driver);
+            Class.forName(Gateway.driver);
             // 建立连接
-            conn = DriverManager.getConnection(url,
-                    user, password);
+            conn = DriverManager.getConnection(Gateway.url,
+                    Gateway.user, Gateway.password);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -304,17 +299,17 @@ public class Ini {
 //        questionAnswerManager.gradeQuestion(1, "苹果", 16);
 //        questionAnswerManager.createQuestionAnswer(1, "10", 3, 5, bb);
 //        System.out.println(new QuestionGateway().readRow(1).get(4));
-        ReadIDName bb = new QuestionAnswerGateway();
-        GeneralReadWriter aa = new TestAnswerGateway();
-        GeneralReadWriter cc = new TestGateway();
-        GeneralReadWriter dd = new QuestionAnswerGateway();
-        QuestionAnswerManager questionAnswerManager = new QuestionAnswerManager(dd);
-        int i = questionAnswerManager.createQuestionAnswer(3, "香蕉", 1, 1, dd);
-        int k = questionAnswerManager.createQuestionAnswer(3, "香蕉", 2, 1, dd);
-        int j = questionAnswerManager.createQuestionAnswer(3, "苹果", 1, 1, dd);
-        TestAnswerManager testAnswerManager = new TestAnswerManager(aa, cc, bb);
-        int n = testAnswerManager.createTestAnswer(1, 1, aa, cc, bb);
-        System.out.println(n);
+//        ReadIDName bb = new QuestionAnswerGateway();
+//        GeneralReadWriter aa = new TestAnswerGateway();
+//        GeneralReadWriter cc = new TestGateway();
+//        GeneralReadWriter dd = new QuestionAnswerGateway();
+//        QuestionAnswerManager questionAnswerManager = new QuestionAnswerManager(dd);
+//        int i = questionAnswerManager.createQuestionAnswer(3, "香蕉", 1, 1, dd);
+//        int k = questionAnswerManager.createQuestionAnswer(3, "香蕉", 2, 1, dd);
+//        int j = questionAnswerManager.createQuestionAnswer(3, "苹果", 1, 1, dd);
+//        TestAnswerManager testAnswerManager = new TestAnswerManager(aa, cc, bb);
+//        int n = testAnswerManager.createTestAnswer(1, 1, aa, cc, bb);
+//        System.out.println(n);
 //        List<String> list = new ArrayList<>();
 //        list.add(1 + "");
 //        list.add(2 + "");
