@@ -42,11 +42,6 @@ public class Student extends User {
         return level;
     }
 
-    //public ArrayList<String> getJoinedGroup() {
-    //    return joinedGroup;
-    //}
-
-
 
     /**
      *
@@ -57,8 +52,10 @@ public class Student extends User {
         return this.getUsername()+this.level;
     }
 
-
-
+    /**
+     * Getter method of joined groups
+     * @return The group a student joined
+     */
     public ArrayList<Integer> getJoinedGroup() {
         return joinedGroup;
     }

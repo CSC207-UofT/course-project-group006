@@ -37,6 +37,13 @@ public class JoinGroupServlet extends TestServlet {
         RequestDispatcher r = request.getRequestDispatcher("JoinGroup.jsp");
         r.forward(request, response);
     }
+
+    /**
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
     public void join(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         groupManager.addStudentToGroup(getUserId(request), Integer.parseInt(request.getParameter("groupId")));

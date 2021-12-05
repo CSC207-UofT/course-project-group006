@@ -16,6 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/RegisterServlet"})
 public class RegisterServlet extends TestServlet {
 
+    /**
+     * Method allowing teacher user to register
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void teacher(HttpServletRequest request, HttpServletResponse response){
         teacherManager.createUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
         try{
@@ -24,6 +29,11 @@ public class RegisterServlet extends TestServlet {
             // Do nothing
         }
     }
+    /**
+     * Method allowing student user to register
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void student(HttpServletRequest request, HttpServletResponse response){
         studentManager.createUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
         try{
