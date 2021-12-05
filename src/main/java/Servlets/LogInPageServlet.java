@@ -7,9 +7,12 @@ package Servlets;
 
 import BackEnd.Gateways.StudentGateway;
 import BackEnd.Gateways.TeacherGateway;
+import BackEnd.Managers.UserManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,18 +25,7 @@ import javax.servlet.http.Cookie;
 public class LogInPageServlet extends TestServlet {
 
     public void logIn(HttpServletRequest request, HttpServletResponse response){
-        try {
-            PrintWriter out = response.getWriter();
-            //out.print(userManager.loginWithUsername(request.getParameter("username"), request.getParameter("password")));
-            out.println("<script type=\"text/javascript\">");
-            out.print("window.location='LogInPage.html';");
-            out.println("alert("+studentManager.loginWithUsername(request.getParameter("username"), request.getParameter("password"),
-                    new StudentGateway(),new TeacherGateway())+");");
-            out.println("</script>");
-        }catch(IOException e){
-            // Do nothing
-        }
-        int result = studentManager.loginWithUsername(request.getParameter("username"), request.getParameter("password"),
+        int result =studentManager.loginWithUsername(request.getParameter("username"), request.getParameter("password"),
                 new StudentGateway(),new TeacherGateway());
         if(result==-1){
             try {
@@ -43,6 +35,9 @@ public class LogInPageServlet extends TestServlet {
                 out.print("window.location='LogInPage.html';");
                 out.println("alert('wrong username or password');");
                 out.println("</script>");
+
+                //out.println(new UserManager(new StudentGateway()).loginWithUsername
+                        //("a","a",new StudentGateway(),new TeacherGateway()));
             }catch(IOException e){
                 // Do nothing
             }

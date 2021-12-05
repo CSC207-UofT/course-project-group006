@@ -22,10 +22,9 @@ public class Teacher extends User{
         this.groupCreated= new ArrayList<>();
         this.ownedTest = new ArrayList<>();
     }
-    public Teacher(String username, String password, String email,ArrayList<Integer> groupCreated,
-                   ArrayList<Integer> adPurchased,ArrayList<Integer> ownedTest){
+    public Teacher(String username, String password, String email,ArrayList<Integer> groupCreated, ArrayList<Integer> ownedTest){
         super(username, password, email);
-        this.adPurchased = adPurchased;
+        this.adPurchased = new ArrayList<>();
         this.groupCreated= groupCreated;
         this.ownedTest = ownedTest;
     }

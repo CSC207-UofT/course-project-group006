@@ -4,6 +4,8 @@ import BackEnd.Entities.Teacher;
 import BackEnd.Entities.User;
 import BackEnd.Interfaces.GeneralReadWriter;
 
+import BackEnd.Gateways.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class UserManager {
     private final int STUDENT = 500;
     private final int TEACHER = 600;
 
-    private final GeneralReadWriter userGate;
+    protected final GeneralReadWriter userGate;
     private final GeneralReadWriter userGateForOtherType;
 
     /**
@@ -254,8 +256,8 @@ public class UserManager {
         }
         return -1;
     }
-    private User readUser(int id){
-        return new Teacher("placeholder","aaa","a",new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<>());
+    protected User readUser(int id){
+        return new Teacher("placeholder","aaa","a",new ArrayList<Integer>(),new ArrayList<>());
     }
     public String getNameById(int id){
         return readUser(id).getUsername();
@@ -269,4 +271,12 @@ public class UserManager {
         }
         return "";
     }
+
+    public static void main(String[] args) {
+        List<String> a = new UserManager(new StudentGateway()).userGate.readRow(1);
+        for (int i = 0; i < a.size(); i++) {
+            System.out.println(a.get(i));
+        }
+    }
+
 }
