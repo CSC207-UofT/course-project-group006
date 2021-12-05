@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class UserManager {
 
-    private final int STUDENT = 500;
-    private final int TEACHER = 600;
+    protected final int STUDENT = 500;
+    protected final int TEACHER = 600;
 
     protected final GeneralReadWriter userGate;
     private final GeneralReadWriter userGateForOtherType;
@@ -92,7 +92,7 @@ public class UserManager {
             return -1;
         }
         int userID = getID(name);
-
+        System.out.println(gate.getClass());
         String pass = gate.readByID(222, 3, userID).get(0);
 
         if (pass.equals(password)) {
@@ -251,13 +251,14 @@ public class UserManager {
      */
     public int getID(String userName) {
         List<String> result = userGate.readIntByName(1, userName);
-        if (result != null) {
+        System.out.println(userGate.getClass());
+        if (result != null&&result.size()>0) {
             return Integer.parseInt(result.get(0));
         }
         return -1;
     }
     protected User readUser(int id){
-        return new Teacher("placeholder","aaa","a",new ArrayList<Integer>(),new ArrayList<>());
+        return null;
     }
     public String getNameById(int id){
         return readUser(id).getUsername();
@@ -273,10 +274,7 @@ public class UserManager {
     }
 
     public static void main(String[] args) {
-        List<String> a = new UserManager(new StudentGateway()).userGate.readRow(1);
-        for (int i = 0; i < a.size(); i++) {
-            System.out.println(a.get(i));
-        }
+        System.out.println(new UserManager(new StudentGateway()).loginWithUsername("a","a",new StudentGateway(),new TeacherGateway()));
     }
 
 }

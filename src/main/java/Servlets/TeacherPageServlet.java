@@ -40,14 +40,10 @@ public class TeacherPageServlet extends TestServlet {
 
             int userId=getUserId(request);
             if(userId==-1){
-                try{
                     response.sendRedirect("LogInPage.html");
-
-                }catch(IOException e){
-
-                }
             }else{
-                List<Integer> groups=groupManager.createdBy(userId);
+                List<Integer> groups=teacherManager.groups(userId);
+
                 request.setAttribute("groups",groups);
                 for (Integer group : groups) {
                     request.setAttribute("group" + group + "name", groupManager.getName(group));

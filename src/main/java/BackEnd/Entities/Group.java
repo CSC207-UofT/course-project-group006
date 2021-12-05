@@ -32,7 +32,17 @@ public class Group {
     public Group(int groupID) {
         this.ID = groupID;
     }
-
+    public Group(int teacher,String name, int[] students, List<Integer> tests, String[] posts){
+        this.teacher=teacher;
+        this.name=name;
+        this.students=students;
+        this.testIDs=tests;
+        duedates=new HashMap<>();
+        for (int t:tests) {
+            duedates.put(t,LocalDateTime.now());
+        }
+        this.announcement=List.of(posts);
+    }
     public void setTeacher(int teacher) {
         this.teacher = teacher;
     }

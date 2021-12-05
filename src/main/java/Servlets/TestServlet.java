@@ -26,8 +26,8 @@ import javax.servlet.http.Cookie;
 @WebServlet(urlPatterns = {"/TestServlet"})
 public class TestServlet extends HttpServlet {
     protected static GroupManager groupManager=new GroupManager(new GroupGateway());
-    protected static UserManager teacherManager=new TeacherManager(new TeacherGateway());
-    protected static UserManager studentManager=new StudentManager(new StudentGateway());
+    protected static TeacherManager teacherManager=new TeacherManager(new TeacherGateway());
+    protected static StudentManager studentManager=new StudentManager(new StudentGateway());
 
     protected static TestManager testManager= new TestManager(new TestGateway());
     protected static TestAnswerManager testAnswerManager= new TestAnswerManager(new TestAnswerGateway());

@@ -1,6 +1,7 @@
 package BackEnd.Managers;
 
 
+import BackEnd.Entities.Student;
 import BackEnd.Interfaces.GeneralReadWriter;
 import BackEnd.Entities.Group;
 import BackEnd.Interfaces.ReadAll;
@@ -211,7 +212,7 @@ public class GroupManager {
     public int[] getStudents(int id) {
         List<String> result = groupGate.readByID(222, 4, id);
         if (result.get(0).equals("")) {
-            return null;
+            return new int[0];
         }
         String[] strings = result.get(0).split(",");
         int[] array = new int[strings.length];
@@ -260,7 +261,39 @@ public class GroupManager {
         return !groupGate.write(5, info).get(0).equals("FAILED");
     }
     private Group readGroup(int id){
-        return new Group(1, "placeholder", new int[]{2,3}, 4, new HashMap<Integer, HashMap<Integer, String[]>>(), new ArrayList<>(), new ArrayList<>());
+        //return new Group(1, "placeholder", new int[]{2,3}, 4, new HashMap<Integer, HashMap<Integer, String[]>>(), new ArrayList<>(), new ArrayList<>());
+        List<String> info= groupGate.readRow(id);
+        if(info.get(0).equals(""+id)){
+            String groupName = info.get(1);
+            String creater = info.get(2);
+            String[] students = info.get(3).split(",");
+            String[] posts = info.get(4).split(",");
+            String[] tests = info.get(5).split(",");
+            List<Integer> tIds = new ArrayList<>();
+            if(tests!=null) {
+                for (String test : tests) {
+                    try {
+                        tIds.add(Integer.parseInt(test));
+                    } catch (NumberFormatException e) {
+                        //do nothing
+                    }
+                }
+            }
+            int[] sIds = new int[Group.MAXNUMBER];
+            if(students!=null) {
+                int j = 0;
+                for (String student : students) {
+                    try {
+                        sIds[j] = Integer.parseInt(student);
+                        j++;
+                    } catch (NumberFormatException e) {
+                        //do nothing
+                    }
+                }
+            }
+            return new Group(Integer.parseInt(creater),groupName,sIds,tIds,posts);
+        }
+        return null;
     }
     public String getNameById(int id){
         return this.readGroup(id).getName();

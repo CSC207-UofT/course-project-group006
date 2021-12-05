@@ -19,7 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             groups<br>
             <!--out.print(teacherManager.getNameById(userId)+"'s page:<br>groups:<br>");-->
             <% for (Integer group : groups) {%>
-            <form action="TeacherPageServlet" method="Post">
+            <form action="TeacherPageServlet" method="Post" onsubmit= "return conform()">
                 <label><%=request.getAttribute("group" + group + "name")%>
                 </label>
                 <input type="hidden" name="groupId" id="groupId" value=<%=group%>>
@@ -42,5 +42,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <input type="submit" name="act" id="act" value="Tests">"
             </form><br>;
         </div>
+    <script>
+        function conform(){
+            if(document.activeElement.value ==="deleat") {
+                return confirm("do you really want to deleat this?");
+            }
+            return true;
+        }
+    </script>
     </body>
 </html>
