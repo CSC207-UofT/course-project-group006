@@ -2,7 +2,9 @@ package BackEnd.Entities;
 
 
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -206,5 +208,109 @@ public class Group {
 
     public void setStudents(int[] students) {
         this.students = students;
+    }
+    private String testAnswers(){
+        return format(testsResult);
+    }
+    private void setTestResult(String input){
+        testsResult=deformat(input);
+    }
+    private static String format(HashMap<Integer, HashMap<Integer, String[]>> testsResult){
+        StringBuilder result = new StringBuilder();
+        for (Integer i:testsResult.keySet()) {
+            result.append(i).append("@");
+            HashMap<Integer,String[]> sans = testsResult.get(i);
+            for (Integer j: sans.keySet()) {
+                result.append(j).append("|");
+                for (String s:sans.get(j)) {
+                    result.append(s).append("#");
+                }
+                result.append("$");
+            }
+            result.append("ö");
+        }
+        return result.toString();
+    }
+    private static HashMap<Integer, HashMap<Integer, String[]>>deformat(String input){
+        HashMap<Integer, HashMap<Integer, String[]>> result = new HashMap<>();
+        String[] outer = input.split("ö");
+        for(String inf:outer){
+            String[] s = inf.split("@");
+            try {
+                int testId = Integer.parseInt(s[0]);
+                System.out.println(testId+":");
+                String[] inner = s[1].split("\\$");
+                HashMap<Integer, String[]> studentAnswers = new HashMap<>();
+                for (String inf2 : inner) {
+                    String[] s2 = inf2.split("\\|");
+                    try {
+                        System.out.println(s2[0]+":"+ Arrays.toString(s2[1].split("#")));
+                        int studentId = Integer.parseInt(s2[0]);
+                        studentAnswers.put(studentId, s2[1].split("#"));
+
+                    } catch (NumberFormatException e) {
+                        //
+                    }
+                }
+                result.put(testId,studentAnswers);
+            }catch (NumberFormatException e){
+                //
+            }
+        }
+        return result;
+    }
+    public static String formatDueDate(HashMap<Integer,LocalDateTime> duedates){
+        String result = "";
+        for(Integer i:duedates.keySet()){
+            result+=i+"@"+duedates.get(i).toString().replace("T"," ").split("\\.")[0]+"|";
+        }
+        return result;
+    }
+    public static HashMap<Integer,LocalDateTime> deformatDueDate(String input){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        HashMap<Integer,LocalDateTime> result = new HashMap<>();
+        String[] info = input.split("\\|");
+        for(String s: info){
+            try {
+                String[] info2 = s.split("@");
+                result.put(Integer.parseInt(info2[0]),LocalDateTime.parse(info2[1], formatter));
+            }catch (NumberFormatException e){
+                //
+            }
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+//        HashMap<Integer, HashMap<Integer, String[]>> testsResult=new HashMap<>();
+//        String[] a = new String[]{"a","b","c","d"};
+//        String[] b = new String[]{"aa","bb","cc","dd"};
+//        String[] c = new String[]{"aaa","bbb","ccc","ddd"};
+//        String[] d = new String[]{"aaaa","bbbb","cccc","dddd"};
+//        HashMap<Integer, String[]> e = new HashMap<>();
+//        e.put(1,a);
+//        e.put(2,b);
+//        HashMap<Integer,String[]> f = new HashMap<>();
+//        f.put(1,c);
+//        f.put(2,d);
+//        testsResult.put(3,e);
+//        testsResult.put(4,f);
+//        String s = format(testsResult);
+//        System.out.println(s);
+//        System.out.println(deformat(s));
+//        String s = LocalDateTime.now().toString().replace("T"," ").split("\\.")[0];
+//
+//        System.out.println(s);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//        LocalDateTime dateTime = LocalDateTime.parse(s, formatter);
+        HashMap<Integer,LocalDateTime> test = new HashMap<>();
+        test.put(1,LocalDateTime.now());
+        test.put(2,LocalDateTime.now());
+        test.put(3,LocalDateTime.now());
+        test.put(4,LocalDateTime.now());
+        String s = formatDueDate(test);
+        System.out.println(s);
+        System.out.println(deformatDueDate(s));
+
+
     }
 }
