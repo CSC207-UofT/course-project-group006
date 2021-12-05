@@ -24,11 +24,6 @@ public abstract class User{
     }
 
 
-//    public User(){
-//        this.username = "guest";
-//        this.ID=IDcreater.creat();
-//    }
-
     /**
      * Test if two users are the same user
      * @param o the other user
