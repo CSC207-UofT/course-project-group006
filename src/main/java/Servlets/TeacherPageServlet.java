@@ -38,18 +38,17 @@ public class TeacherPageServlet extends TestServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet TestServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            Cookie c[] = request.getCookies();
+            Cookie[] c = request.getCookies();
             int userId=-1;
-            for(int i=0;i<c.length;i++){
-                if(c[i].getName().equals("userId")){
-                    userId=Integer.parseInt(c[i].getValue());
+            for (Cookie cookie : c) {
+                if (cookie.getName().equals("userId")) {
+                    userId = Integer.parseInt(cookie.getValue());
                 }
             }
             if(userId==-1){
@@ -57,15 +56,15 @@ public class TeacherPageServlet extends TestServlet {
                     response.sendRedirect("LogInPage.html");
 
                 }catch(IOException e){
-
+                    // Do nothing
                 }
             }else{
                 List<Integer> groups=groupManager.createdBy(userId);
                 out.print(teacherManager.getNameById(userId)+"'s page:<br>groups:<br>");
-                for(int i=0; i<groups.size();i++){
+                for (Integer group : groups) {
                     out.print("<form action=\"TeacherPageServlet\" method=\"Post\">");
-                    out.print("<label \">"+groupManager.getName(groups.get(i)));
-                    out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value="+groups.get(i)+">");
+                    out.print("<label \">" + groupManager.getName(group));
+                    out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value=" + group + ">");
                     out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"deleat\">");
                     out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"detal\">");
                     out.print("</form></br>");
@@ -95,7 +94,7 @@ public class TeacherPageServlet extends TestServlet {
         try{
             response.sendRedirect("TeacherPageServlet");
         }catch(IOException e){
-
+            // Do nothing
         }
     }
 
@@ -108,7 +107,7 @@ public class TeacherPageServlet extends TestServlet {
         try{
             response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));
         }catch(IOException e){
-
+            // Do nothing
         }
     }
 
@@ -121,7 +120,7 @@ public class TeacherPageServlet extends TestServlet {
         try{
             response.sendRedirect("TestPageServlet");
         }catch(IOException e){
-
+            // Do nothing
         }
     }
 
