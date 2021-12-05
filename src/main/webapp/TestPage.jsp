@@ -20,7 +20,7 @@
                 for(Integer i: ownedTest){
             %>
             <form action ="TestPageServlet" method="Post">
-                <label/> <%=request.getAttribute("test"+i)%></label>
+                <label> <%=request.getAttribute("test"+i)%></label>
                 <input type="hidden" name="testId" id="testId" value=<%=i%>>
                 <input type="submit" name ="act" id="act" value="detal">
                 <%
@@ -34,9 +34,9 @@
             <%}%>
             <button onclick="showForm()">creat new test</button>
             <form action ="TestPageServlet" method="Post" id = "creatTest"hidden>
-                <label> name your test</label>
+                <label for="testName"> name your test</label>
                 <input type="text" name="testName" id="testName">
-                <label> set a time limit for it</label>
+                <label for="timeLimit"> set a time limit for it</label>
                 <input type ="number" name ="timeLimit" id="timeLimit">
                 <input type="submit" name ="act" id="act" value="add">
             </form>

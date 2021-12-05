@@ -16,6 +16,7 @@ public class UserManager {
     private final int TEACHER = 600;
 
     private final GeneralReadWriter userGate;
+    private final GeneralReadWriter userGateForOtherType;
 
     /**
      * Instantiates a new User manager.
@@ -24,6 +25,17 @@ public class UserManager {
      */
     public UserManager(GeneralReadWriter userGate) {
         this.userGate = userGate;
+        this.userGateForOtherType = null;
+    }
+    /**
+     * Instantiates a new User manager.
+     *
+     * @param userGate the user gate
+     * @param userGateForOtherType the user gate fot the other user type
+     */
+    public UserManager(GeneralReadWriter userGate,GeneralReadWriter userGateForOtherType) {
+        this.userGate = userGate;
+        this.userGateForOtherType = userGateForOtherType;
     }
 
     /**
@@ -249,9 +261,12 @@ public class UserManager {
         return readUser(id).getUsername();
     }
     public String getUserType(int id){
-        return "T";
-    }
-    public int LogIn(String userName, String password){
-        return -1;
+        int userType= getUserType(getNameById(id));
+        if(userType==TEACHER){
+            return "T";
+        }else if(userType==STUDENT){
+            return "S";
+        }
+        return "";
     }
 }
