@@ -129,6 +129,12 @@ public class GroupPageServlet extends TestServlet {
             //out.println("</script>");
         }
     }
+
+    /**
+     *
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void deleat(HttpServletRequest request, HttpServletResponse response){
         groupManager.removeStudentFromGroup(Integer.parseInt(request.getParameter("studentId")), Integer.parseInt(request.getParameter("groupId")));
         try{
@@ -137,9 +143,21 @@ public class GroupPageServlet extends TestServlet {
             // Do nothing
         }
     }
+
+    /**
+     *
+     * @param id Group ID
+     * @return Group Name and Teacher Name
+     */
     public String creatTitle(int id){
         return groupManager.getName(id)+" Teacher: " + teacherManager.getNameById(groupManager.getTeacher(id)) +" ";
     }
+
+    /**
+     *
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void assign(HttpServletRequest request, HttpServletResponse response){
         try{
             response.sendRedirect("TestPageServlet?groupId="+request.getParameter("groupId"));
@@ -147,6 +165,11 @@ public class GroupPageServlet extends TestServlet {
             // Do nothing
         }
     }
+    /**
+     *
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void finsh(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int groupId = Integer.parseInt(request.getParameter("groupId"));
@@ -160,15 +183,33 @@ public class GroupPageServlet extends TestServlet {
         groupManager.addTest(groupId, testId, due);
         processRequest(request,response);
     }
+    /**
+     *
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void start(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.sendRedirect("TestPresenterServlet?testId="+request.getParameter("testId")+
                 "&groupId="+request.getParameter("groupId"));
     }
+
+    /**
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void startMarking(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.sendRedirect("MarkingPageChoosing.jsp");
     }
+    /**
+     *
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void grade(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int testId=Integer.parseInt(request.getParameter("testId"));
@@ -185,6 +226,13 @@ public class GroupPageServlet extends TestServlet {
         RequestDispatcher r = request.getRequestDispatcher("MarkingPageChoosing.jsp");
         r.forward(request, response);
     }
+    /**
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void choose(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.sendRedirect("TestSubmissionServlet?testId="+request.getParameter("testId")+
@@ -192,6 +240,13 @@ public class GroupPageServlet extends TestServlet {
                 "&studentId="+request.getParameter("studentId"));
 
     }
+    /**
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void back(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int user=getUserId(request);
