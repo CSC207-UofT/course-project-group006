@@ -2,10 +2,11 @@ package BackEnd.Entities;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Student extends User {
 
-    //private ArrayList<String> joinedGroup;
+    private ArrayList<Integer> joinedGroup;
     private int level;
 
 
@@ -19,14 +20,14 @@ public class Student extends User {
 
     public Student(String username, String password, String email) {
         super(username, password, email);
-        //this.joinedGroup  = new ArrayList<>();
+        this.joinedGroup  = new ArrayList<>();
         this.level = 0;
 
     }
 
-    public Student(String username, String password, String email,int level) {
+    public Student(String username, String password, String email,int level, ArrayList<Integer> joinedGroup) {
         super(username, password, email);
-        //this.joinedGroup  = new ArrayList<>();
+        this.joinedGroup  = joinedGroup;
         this.level = level;
 
     }
@@ -58,9 +59,9 @@ public class Student extends User {
 
 
 
-    //public ArrayList<String> getWordLearnt() {
-       // return wordLearnt;
-    //}
+    public ArrayList<Integer> getJoinedGroup() {
+        return joinedGroup;
+    }
 
 
 }

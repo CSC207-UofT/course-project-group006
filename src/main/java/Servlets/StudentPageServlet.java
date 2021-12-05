@@ -5,6 +5,8 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +39,12 @@ public class StudentPageServlet extends TestServlet {
                 // Do nothing
             }
         }
-        request.setAttribute("joinedGroup", groupManager.getJoinedGroup(userId,new BackEnd.Gateways.StudentGateway()));
+        List<Integer> joinedGroup = studentManager.getJoinedGroup(userId);
+        HashMap<Integer,String> gInfo = new HashMap<Integer,String>();
+        for (int i:joinedGroup) {
+            gInfo.put(i,groupManager.getName(i));
+        }
+        request.setAttribute("joinedGroup", gInfo);
         request.setAttribute("userId", userId);
         RequestDispatcher r = request.getRequestDispatcher("StudentPage.jsp");
         r.forward(request, response);

@@ -18,6 +18,7 @@ public class TeacherGateway extends Gateway {
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from TEACHER where id = " + targetID;
+        System.out.println(sql);
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 

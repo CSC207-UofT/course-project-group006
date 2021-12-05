@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import static java.lang.System.out;
-import static java.lang.System.err;
+
 import BackEnd.Managers.GroupManager;
 import BackEnd.Managers.*;
 import BackEnd.Gateways.*;
@@ -27,8 +26,8 @@ import javax.servlet.http.Cookie;
 @WebServlet(urlPatterns = {"/TestServlet"})
 public class TestServlet extends HttpServlet {
     protected static GroupManager groupManager=new GroupManager(new GroupGateway());
-    protected static UserManager teacherManager=new UserManager(new TeacherGateway());
-    protected static UserManager studentManager=new UserManager(new StudentGateway());
+    protected static TeacherManager teacherManager=new TeacherManager(new TeacherGateway());
+    protected static StudentManager studentManager=new StudentManager(new StudentGateway());
 
     protected static TestManager testManager= new TestManager(new TestGateway());
     protected static TestAnswerManager testAnswerManager= new TestAnswerManager(new TestAnswerGateway());
@@ -94,7 +93,8 @@ public class TestServlet extends HttpServlet {
             Method m= this.getClass().getDeclaredMethod(request.getParameter("act"), HttpServletRequest.class,HttpServletResponse.class);
             m.invoke(this,request, response);
         }catch(NoSuchMethodException|IllegalAccessException|InvocationTargetException e){
-            p("no such method"+request.getParameter("act"),response);
+            //p("no such method"+request.getParameter("act"),response);
+            p(e.getCause().fillInStackTrace().toString(),response);
         }
     }
     protected void p(String input,HttpServletResponse response){
