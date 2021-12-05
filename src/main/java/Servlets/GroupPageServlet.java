@@ -86,11 +86,18 @@ public class GroupPageServlet extends TestServlet {
             out.println("</html>");
         }
     }
+
+    /**
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @param out output of the servlet
+     */
     public void buildPage(HttpServletRequest request, HttpServletResponse response,PrintWriter out){
         int id = Integer.parseInt(request.getParameter("groupId"));
         int[] students = groupManager.getStudents(id);
         out.println("<h1>"+groupManager.getName(id)+" Teacher: " + teacherManager.getNameById(groupManager.getTeacher(id)) +" "+ id+"</h1>");
-        Cookie c[] = request.getCookies();
+        Cookie[] c = request.getCookies();
         int userId=-1;
         for(int i=0;i<c.length;i++){
             if(c[i].getName().equals("userId")){
