@@ -1,8 +1,4 @@
-import BackEnd.Gateways.GroupGateway;
-import BackEnd.Gateways.QuestionAnswerGateway;
-import BackEnd.Gateways.TestAnswerGateway;
-import BackEnd.Gateways.QuestionGateway;
-import BackEnd.Gateways.StudentGateway;
+import BackEnd.Gateways.*;
 import BackEnd.Managers.GroupManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -288,5 +284,14 @@ public class Ini {
 //        info.add(testID + "");
 //        info.add(mark + "");
 //        System.out.println(new TestAnswerGateway().write(4,info));
+
+
+        int testID = 2;
+        int author = 7;
+        List<String> info = new ArrayList<>();
+        info.add(testID + "");
+        info.add(author + "");
+        System.out.println((new TestGateway().write(10, info)));
+
     }
 }
