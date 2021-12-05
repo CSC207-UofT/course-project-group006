@@ -1,10 +1,12 @@
 package BackEnd.Gateways;
 
+import BackEnd.Interfaces.ReadIDName;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionAnswerGateway extends Gateway{
+public class QuestionAnswerGateway extends Gateway implements ReadIDName {
     private final int QuestionID = 2;
     private final int ANSWER = 3;
     private final int MARK = 4;
@@ -16,14 +18,12 @@ public class QuestionAnswerGateway extends Gateway{
         String sql = "select * from QUESTIONANSWER where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
-    // no name in QUESTIONANSWER table
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-//        String sql = "select * from QUESTIONANSWER where questionID = '" + targetName + "'";
-//        return new ArrayList<>(read(sql, type, INT));
-        return null;
-    }
 
+    @Override
+    public List<String> readByIDName(int elementStructure,int studentID, int type, int targetID) {
+        String sql = "select * from QUESTIONANSWER where questionID = ' " + targetID + " ' and studentID = '" + studentID + " '";
+        return new ArrayList<>(read(sql, type, elementStructure));
+    }
     @Override
     public List<String> readRow(int targetID) {
         try {
@@ -69,7 +69,7 @@ public class QuestionAnswerGateway extends Gateway{
         }
 
 
-        //change one element: info:{studentID, newInfo} --> {studentID}/null
+        //change one element: info:{questionAnswerID, newInfo} --> {studentID}/null
         int QuestionAnswerID = Integer.parseInt(info.get(0));
         String sql = null;
         if (type == QuestionID) {
@@ -104,16 +104,18 @@ public class QuestionAnswerGateway extends Gateway{
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
             String sql = "insert into QUESTIONANSWER (questionID,answer,mark,studentID,groupID) VALUE (?,?,?,?,?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql,
+                    Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, questionID);
             preparedStatement.setString(2, answer);
             preparedStatement.setInt(3, mark);
             preparedStatement.setInt(4, studentID);
             preparedStatement.setInt(5, groupID);
-            preparedStatement.executeUpdate();
+//            preparedStatement.executeUpdate();
+            String result = createGetID(preparedStatement);
             statement.close();
             connection.close();
-            return SUCCESS;
+            return result;
         } catch (SQLException e) {
             e.printStackTrace();
             return FAILED;
@@ -121,4 +123,6 @@ public class QuestionAnswerGateway extends Gateway{
 
 
     }
+
+
 }

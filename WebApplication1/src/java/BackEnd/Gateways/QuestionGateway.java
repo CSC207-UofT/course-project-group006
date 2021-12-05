@@ -17,11 +17,6 @@ public class QuestionGateway extends Gateway {
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-        String sql = "select * from QUESTION where name = '" + targetName + "'";
-        return new ArrayList<>(read(sql, type, INT));
-    }
 
     @Override
     public List<String> readRow(int targetID) {
@@ -37,7 +32,7 @@ public class QuestionGateway extends Gateway {
                 return result;
             }
             result.add(resultSet.getInt(1) + "");
-            for (int i = 2; i < 5; i++) {
+            for (int i = 2; i < 6; i++) {
                 String raw = resultSet.getString(i);
                 result.add(raw.startsWith(",") ? raw.substring(1) : raw);
             }
@@ -99,19 +94,21 @@ public class QuestionGateway extends Gateway {
         try {
             Connection connection = getConnection();
             String sql = "insert into QUESTION (name,question,answer,mark) VALUE (?,?,?,?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql,
+                    Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, question);
             preparedStatement.setString(3, answer);
             preparedStatement.setInt(4, mark);
+            String result = createGetID(preparedStatement);
             preparedStatement.executeUpdate();
             connection.close();
-            return createGetID(preparedStatement);
+            return result;
         } catch (SQLException e) {
             e.printStackTrace();
             return FAILED;
         }
     }
 
-}
 
+}

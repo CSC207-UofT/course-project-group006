@@ -9,19 +9,12 @@ public class TestAnswerGateway extends Gateway{
     private final int studentID = 3;
     private final int MARK = 4;
 
-
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from TESTANSWER where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
     // no name in TESTANSWER table
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-//        String sql = "select * from QUESTIONANSWER where questionID = '" + targetName + "'";
-//        return new ArrayList<>(read(sql, type, INT));
-        return null;
-    }
 
     @Override
     public List<String> readRow(int targetID) {
@@ -54,7 +47,6 @@ public class TestAnswerGateway extends Gateway{
     public List<String> write(int type, List<String> info) {
         List<String> result = new ArrayList<>();
 
-        //add a new TestAnswer: info:{testId, studentID} --> {studentID}/null
         if (type == ID) {
             int testID = Integer.parseInt(info.get(0));
             int studentID = Integer.parseInt(info.get(1));
@@ -94,14 +86,16 @@ public class TestAnswerGateway extends Gateway{
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
             String sql = "insert into TESTANSWER (testID,studentID,mark) VALUE (?,?,?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql,
+                    Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, testID);
             preparedStatement.setInt(2, studentID);
             preparedStatement.setInt(3, mark);
             preparedStatement.executeUpdate();
+            String result = createGetID(preparedStatement);
             statement.close();
             connection.close();
-            return SUCCESS;
+            return result;
         } catch (SQLException e) {
             e.printStackTrace();
             return FAILED;

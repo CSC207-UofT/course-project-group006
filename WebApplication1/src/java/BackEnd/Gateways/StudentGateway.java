@@ -1,5 +1,7 @@
 package BackEnd.Gateways;
 
+import BackEnd.Interfaces.ReadNameID;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 /**
  * The type Student gateway.
  */
-public class StudentGateway extends Gateway {
+public class StudentGateway extends Gateway implements ReadNameID {
 
     private final int PASS = 3;
     private final int DATE = 4;

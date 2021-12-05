@@ -1,9 +1,15 @@
 import BackEnd.Gateways.GroupGateway;
 import BackEnd.Gateways.QuestionAnswerGateway;
 import BackEnd.Gateways.TestAnswerGateway;
+import BackEnd.Gateways.TestGateway;
 import BackEnd.Gateways.QuestionGateway;
 import BackEnd.Gateways.StudentGateway;
+import BackEnd.Interfaces.ReadIDName;
 import BackEnd.Managers.GroupManager;
+import BackEnd.Managers.QuestionAnswerManager;
+import BackEnd.Interfaces.GeneralReadWriter;
+import BackEnd.Managers.TestAnswerManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -266,7 +272,7 @@ public class Ini {
 //        info.add(questionID + "");
 //        info.add(answer + "");
 //        System.out.println(new QuestionGateway().write(4,info));
-//        String  name = "name1";
+//        String  name = "name2";
 //        String question = "apple";
 //        String answer = "苹果";
 //        int mark = 5;
@@ -288,5 +294,60 @@ public class Ini {
 //        info.add(testID + "");
 //        info.add(mark + "");
 //        System.out.println(new TestAnswerGateway().write(4,info));
+//        GeneralReadWriter bb = new QuestionAnswerGateway();
+//        QuestionAnswerManager questionAnswerManager = new QuestionAnswerManager(bb);
+//        questionAnswerManager.createQuestionAnswer(7, "苹果", 1, 5, bb);
+//        List<String> info = new ArrayList<>();
+//        info.add(Integer.toString(17));
+//        info.add("5");
+//        bb.write(4, info);
+//        questionAnswerManager.gradeQuestion(1, "苹果", 16);
+//        questionAnswerManager.createQuestionAnswer(1, "10", 3, 5, bb);
+//        System.out.println(new QuestionGateway().readRow(1).get(4));
+        ReadIDName bb = new QuestionAnswerGateway();
+        GeneralReadWriter aa = new TestAnswerGateway();
+        GeneralReadWriter cc = new TestGateway();
+        GeneralReadWriter dd = new QuestionAnswerGateway();
+        QuestionAnswerManager questionAnswerManager = new QuestionAnswerManager(dd);
+        int i = questionAnswerManager.createQuestionAnswer(3, "香蕉", 1, 1, dd);
+        int k = questionAnswerManager.createQuestionAnswer(3, "香蕉", 2, 1, dd);
+        int j = questionAnswerManager.createQuestionAnswer(3, "苹果", 1, 1, dd);
+        TestAnswerManager testAnswerManager = new TestAnswerManager(aa, cc, bb);
+        int n = testAnswerManager.createTestAnswer(1, 1, aa, cc, bb);
+        System.out.println(n);
+//        List<String> list = new ArrayList<>();
+//        list.add(1 + "");
+//        list.add(2 + "");
+//        List<String> result = aa.write(1, list);
+//        List<String> questions = cc.readByID(111, 6, Integer.parseInt(result.get(0)));
+//        System.out.println(result);
+//        System.out.println(questions);
+//        List<String> questions = cc.readByID(222, 6, 1);
+//        System.out.println(questions);
+//        int total_mark = 0;
+//        for (String i: questions) {
+//            List<String> mark = bb.readByIDName(111, 1, 4, Integer.parseInt(i));
+////            total_mark += Integer.parseInt(mark.get(0));
+//            System.out.println(total_mark);
+//        }
+
+//        List<String> list = new ArrayList<>();
+//        list.add(1 + "");
+//        list.add(2 + "");
+//        List<String> result = aa.write(1, list);
+//        System.out.println(result);
+//        List<String> mark = bb.readByIDName(111, 1, 4, 3);
+////        List<String> mark = bb.readByID(111, 4, 1);
+//        System.out.println(mark.get(0));
+//        List<String> result = bb.readByID(111, 4,1);
+//        System.out.println(result);
+//        List<String> list = new ArrayList<>();
+//        list.add(1 + "");
+//        list.add("10");
+//        list.add(1 + "");
+//        list.add(1 + "");
+//        List<String> result = bb.write(1, list);
+//        System.out.println(result);
+
     }
 }

@@ -1,6 +1,6 @@
 package BackEnd.Managers;
 
-import BackEnd.Interfaces.GeneralReadWriter;
+import BackEnd.Interfaces.ReadNameID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +13,14 @@ public class UserManager {
     private final int STUDENT = 500;
     private final int TEACHER = 600;
 
-    private final GeneralReadWriter userGate;
+    private final ReadNameID userGate;
 
     /**
      * Instantiates a new User manager.
      *
      * @param userGate the user gate
      */
-    public UserManager(GeneralReadWriter userGate) {
+    public UserManager(ReadNameID userGate) {
         this.userGate = userGate;
     }
 
@@ -63,10 +63,10 @@ public class UserManager {
      * @param teacherGate the teacher gate
      * @return int userID
      */
-    public int loginWithUsername(String name, String password, GeneralReadWriter studentGate, GeneralReadWriter teacherGate) {
+    public int loginWithUsername(String name, String password, ReadNameID studentGate, ReadNameID teacherGate) {
 
         int userType = getUserType(name);
-        GeneralReadWriter gate;
+        ReadNameID gate;
         if (userType == STUDENT) {
             gate = studentGate;
         } else if (userType == TEACHER) {

@@ -4,6 +4,7 @@ package BackEnd.Managers;
 import BackEnd.Interfaces.GeneralReadWriter;
 import BackEnd.Entities.Group;
 import BackEnd.Interfaces.ReadAll;
+import BackEnd.Interfaces.ReadNameID;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class GroupManager {
      * @param teacherGate the teacher gate
      * @return the int groupID
      */
-    public int createGroup(int teacherID, String groupName, GeneralReadWriter teacherGate) {
+    public int createGroup(int teacherID, String groupName, ReadNameID teacherGate) {
         Group g = new Group(teacherID, groupName);
         List<String> list = new ArrayList<>();
         list.add(g.getTeacher() + "");
@@ -80,7 +81,7 @@ public class GroupManager {
      * @param teacherGate the teacher gate
      * @return success T, failed F
      */
-    public boolean deleteGroup(int groupID, GeneralReadWriter studentGate, GeneralReadWriter teacherGate) {
+    public boolean deleteGroup(int groupID, ReadNameID studentGate, ReadNameID teacherGate) {
         UserManager studentManager = new UserManager(studentGate);
         int[] students = getStudents(groupID);
         if (students != null) {
@@ -148,7 +149,7 @@ public class GroupManager {
      * @param studentGate the student gate
      * @return the joined group
      */
-    public HashMap<Integer, String> getJoinedGroup(int studentID, GeneralReadWriter studentGate) {
+    public HashMap<Integer, String> getJoinedGroup(int studentID, ReadNameID studentGate) {
         HashMap<Integer, String> result = new HashMap<>();
         UserManager studentManager = new UserManager(studentGate);
         int[] IDList = studentManager.getGroupsFromUser(studentID, 500);

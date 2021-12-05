@@ -18,18 +18,17 @@ public class GroupGateway extends Gateway implements ReadAll {
     private final int POST = 5;
     private final int TESTS = 6;
 
-
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from STUDYGROUP where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-        String sql = "select * from STUDYGROUP where name = '" + targetName + "'";
-        return new ArrayList<>(read(sql, type, INT));
-    }
+//    @Override
+//    public List<String> readIntByName(int type, String targetName) {
+//        String sql = "select * from STUDYGROUP where name = '" + targetName + "'";
+//        return new ArrayList<>(read(sql, type, INT));
+//    }
 
     @Override
     public List<String> readRow(int targetID) {

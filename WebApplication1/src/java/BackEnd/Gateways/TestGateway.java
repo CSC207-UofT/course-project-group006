@@ -16,11 +16,6 @@ public class TestGateway extends Gateway{
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-        String sql = "select * from TEST where name = '" + targetName + "'";
-        return new ArrayList<>(read(sql, type, INT));
-    }
 
     @Override
     public List<String> readRow(int targetID) {
