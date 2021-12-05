@@ -16,8 +16,13 @@ import javax.servlet.http.Cookie;
  * @author darcy
  */
 @WebServlet(urlPatterns = {"/LogInPageServlet"})
-public class LogInPageServlet extends TestServlet {
 
+public class LogInPageServlet extends TestServlet {
+    /**
+     * Method to be called when user logins
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void logIn(HttpServletRequest request, HttpServletResponse response){
         int result = studentManager.LogIn(request.getParameter("username"), request.getParameter("password"));
         if(result==-1){
@@ -51,6 +56,12 @@ public class LogInPageServlet extends TestServlet {
             }
         }
     }
+
+    /**
+     * Method to be called when users need to register
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     public void register(HttpServletRequest request, HttpServletResponse response){
         try{
             response.sendRedirect("register.jsp");
