@@ -4,6 +4,7 @@ import BackEnd.Managers.GroupManager;
 import BackEnd.Managers.QuestionAnswerManager;
 import BackEnd.Interfaces.GeneralReadWriter;
 import BackEnd.Managers.TestAnswerManager;
+import BackEnd.Managers.UserManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -343,6 +344,7 @@ public class Ini {
 //        list.add(1 + "");
 //        List<String> result = bb.write(1, list);
 //        System.out.println(result);
+        System.out.println(new UserManager(new StudentGateway()).loginWithUsername("a","a",new StudentGateway(),new TeacherGateway()));
 
     }
 }

@@ -2,6 +2,7 @@ package BackEnd.Managers;
 
 import BackEnd.Entities.Student;
 import BackEnd.Entities.Teacher;
+import BackEnd.Interfaces.GeneralReadWriter;
 import BackEnd.Interfaces.ReadNameID;
 
 import java.util.ArrayList;
@@ -72,13 +73,12 @@ public class UserManager {
         if (userType == STUDENT) {
             gate = studentGate;
         } else if (userType == TEACHER) {
-
             gate = teacherGate;
         } else {
             return -1;
         }
-        int userID = getID(name);
-
+        int userID = getID(name, gate);
+        System.out.println(userID);
         String pass = gate.readByID(222, 3, userID).get(0);
 
         if (pass.equals(password)) {
@@ -160,6 +160,11 @@ public class UserManager {
         return result != null;
     }
 
+
+//    public boolean addTestToUser(int userID, Integer testID){
+//        int[] allTestIDs
+//    }
+
     /**
      * Create user int.
      *
@@ -237,8 +242,8 @@ public class UserManager {
      * @param userName the user name
      * @return the id
      */
-    public int getID(String userName) {
-        List<String> result = userGate.readIntByName(1, userName);
+    public int getID(String userName, ReadNameID gate) {
+        List<String> result = gate.readIntByName(1, userName);
         if (result != null) {
             return Integer.parseInt(result.get(0));
         }
