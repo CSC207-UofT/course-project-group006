@@ -119,7 +119,7 @@ public abstract class Test {
     }
 
     /**
-     *
+     * Getter method of the questions
      * @return the list of question in this test
      */
     
@@ -130,14 +130,24 @@ public abstract class Test {
         }
         return result;
     }
+
+    /**
+     * Method allows teacher to autograge tests
+     * @param answer Answer to the question
+     * @return Result mark for autograded tests
+     */
     public int[] Autograde(String[] answer){
         int[] result = new int[questions.size()];
         for(int i=0;i<questions.size();i++){
             result[i]=questions.get(i).score(answer[i]);
         }
         return result;
-
     }
+
+    /**
+     * Getter method of the question
+     * @return Question in the test
+     */
     public String[] getQuestion(){
         String[] result = new String[questions.size()];
         for(int i=0;i<questions.size();i++){
@@ -145,6 +155,11 @@ public abstract class Test {
         }
         return result;
     }
+
+    /**
+     * Getter method of the Answer
+     * @return Answer to the question
+     */
     public String[] getAnswer(){
         String[] result = new String[questions.size()];
         for(int i=0;i<questions.size();i++){
@@ -152,6 +167,11 @@ public abstract class Test {
         }
         return result;
     }
+
+    /**
+     * Getter method of the Mark
+     * @return Mark of the question
+     */
     public int[] getMark(){
         int[] result = new int[questions.size()];
         for(int i=0;i<questions.size();i++){
