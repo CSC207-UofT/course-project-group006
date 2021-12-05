@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import BackEnd.Managers.GroupManager;
 import BackEnd.Managers.*;
@@ -94,7 +95,7 @@ public class TestServlet extends HttpServlet {
             m.invoke(this,request, response);
         }catch(NoSuchMethodException|IllegalAccessException|InvocationTargetException e){
             //p("no such method"+request.getParameter("act"),response);
-            p(e.getCause().fillInStackTrace().toString(),response);
+            p(Arrays.toString(e.getStackTrace()),response);
         }
     }
     protected void p(String input,HttpServletResponse response){

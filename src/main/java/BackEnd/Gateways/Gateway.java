@@ -19,7 +19,10 @@ public abstract class Gateway implements GeneralReadWriter {
     protected final int STRING = 222;
     protected final int ID = 1;
     protected final int NAME = 2;
-
+    public static String driver = "com.mysql.cj.jdbc.Driver";
+    public static String user = "sql5454663";
+    public static String password = "SinqmMLSgB";
+    public static String url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5454663";
     /**
      * Gets connection of the database.
      *
@@ -27,11 +30,7 @@ public abstract class Gateway implements GeneralReadWriter {
      */
     public Connection getConnection() {
         try {
-            String driver = "com.mysql.cj.jdbc.Driver";
             Class.forName(driver);
-            String user = "sql5454663";
-            String password = "SinqmMLSgB";
-            String url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5454663";
             return DriverManager.getConnection(url,
                     user, password);
         } catch (SQLException | ClassNotFoundException e) {
