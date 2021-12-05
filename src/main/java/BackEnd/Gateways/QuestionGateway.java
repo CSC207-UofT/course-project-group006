@@ -113,7 +113,6 @@ public class QuestionGateway extends Gateway {
             preparedStatement.setString(3, answer);
             preparedStatement.setInt(4, mark);
             String result = createGetID(preparedStatement);
-            preparedStatement.executeUpdate();
             connection.close();
             return result;
         } catch (SQLException e) {
