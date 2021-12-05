@@ -6,6 +6,9 @@ package Servlets;
 
 
 
+import BackEnd.Gateways.StudentGateway;
+import BackEnd.Gateways.TeacherGateway;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Cookie;
+import javax.servlet.RequestDispatcher;
 import java.util.List;
 
 /**
@@ -33,6 +37,27 @@ public class TeacherPageServlet extends TestServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+            int userId=getUserId(request);
+            if(userId==-1){
+                    response.sendRedirect("LogInPage.html");
+            }else{
+                List<Integer> groups=teacherManager.groups(userId);
+
+                request.setAttribute("groups",groups);
+                for (Integer group : groups) {
+                    request.setAttribute("group" + group + "name", groupManager.getName(group));
+                }
+                request.setAttribute("teacherName",teacherManager.getNameById(userId));
+                RequestDispatcher r =request.getRequestDispatcher("TeacherPage.jsp");
+                r.forward(request,response);
+            }
+
+        }
+
+
+    protected void processRequestold(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -43,12 +68,13 @@ public class TeacherPageServlet extends TestServlet {
             out.println("</head>");
             out.println("<body>");
             Cookie c[] = request.getCookies();
-            int userId=-1;
-            for(int i=0;i<c.length;i++){
-                if(c[i].getName().equals("userId")){
-                    userId=Integer.parseInt(c[i].getValue());
-                }
-            }
+            //int userId=-1;
+            //for(int i=0;i<c.length;i++){
+           //     if(c[i].getName().equals("userId")){
+            //        userId=Integer.parseInt(c[i].getValue());
+           //     }
+           // }
+            int userId=getUserId(request);
             if(userId==-1){
                 try{
                     response.sendRedirect("LogInPage.html");
@@ -57,11 +83,16 @@ public class TeacherPageServlet extends TestServlet {
 
                 }
             }else{
-                List<Integer> groups=userGroupManager.createdBy(userId);
-                out.print(userManager.getName(userId)+"'s page:<br>groups:<br>");
+                List<Integer> groups=groupManager.createdBy(userId);
+                request.setAttribute("groups",groups);
+                for(int i=0;i<groups.size();i++){
+                    request.setAttribute("group"+groups.get(i)+"name",groupManager.getName(groups.get(i)));
+                }
+                request.setAttribute("teacherName",teacherManager.getNameById(userId));
+                out.print(teacherManager.getNameById(userId)+"'s page:<br>groups:<br>");
                 for(int i=0; i<groups.size();i++){
                     out.print("<form action=\"TeacherPageServlet\" method=\"Post\">");
-                    out.print("<label \">"+userGroupManager.getNameOfGroup(groups.get(i)));
+                    out.print("<label \">"+groupManager.getName(groups.get(i)));
                     out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value="+groups.get(i)+">");
                     out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"deleat\">");
                     out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"detal\">");
@@ -99,7 +130,7 @@ public class TeacherPageServlet extends TestServlet {
 
     public void deleat(HttpServletRequest request, HttpServletResponse response){
         int id = Integer.parseInt(request.getParameter("groupId"));
-        userGroupManager.deleatGroup(id);
+        groupManager.deleteGroup(id,new StudentGateway(),new TeacherGateway());
         try{
             response.sendRedirect("TeacherPageServlet");
         }catch(IOException e){
@@ -122,7 +153,7 @@ public class TeacherPageServlet extends TestServlet {
     }
     public void Creat(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        userGroupManager.creatGroup(getUserId(request), request.getParameter("testName"));
+        groupManager.createGroup(getUserId(request), request.getParameter("testName"),new TeacherGateway());
         response.sendRedirect("TeacherPageServlet");
     }
 

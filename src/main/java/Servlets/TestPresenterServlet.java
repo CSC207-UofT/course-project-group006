@@ -51,7 +51,7 @@ public class TestPresenterServlet extends TestServlet {
         for(int i=0;i<testSize;i++){
             answer[i]=request.getParameter("Q"+i+"answer");
         }
-        userGroupManager.answerTest(groupId, testId, answer, getUserId(request));
+        groupManager.answerTest(groupId, testId, answer, getUserId(request));
         response.sendRedirect("GroupPageServlet?groupId="+groupId);
     }
 

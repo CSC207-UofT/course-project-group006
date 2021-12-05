@@ -5,8 +5,15 @@ package Servlets;
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+import BackEnd.Gateways.StudentGateway;
+import BackEnd.Gateways.TeacherGateway;
+import BackEnd.Managers.TeacherManager;
+import BackEnd.Managers.UserManager;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,37 +26,42 @@ import javax.servlet.http.Cookie;
 public class LogInPageServlet extends TestServlet {
 
     public void logIn(HttpServletRequest request, HttpServletResponse response){
-        int result = userManager.loginWithUsername(request.getParameter("username"), request.getParameter("password"));
-        if(result==-1){
-            try {
-                PrintWriter out = response.getWriter();
-                //out.print(userManager.loginWithUsername(request.getParameter("username"), request.getParameter("password")));
-                out.println("<script type=\"text/javascript\">");
-                out.print("window.location='LogInPage.html';");
-                out.println("alert('wrong username or password');");
-                out.println("</script>");
+        int result =studentManager.LogIn(request.getParameter("username"), request.getParameter("password"));
+        if(!(result==-1)){
+            Cookie userId=new Cookie("userId",""+result);
+            response.addCookie(userId);
+            try{
+                response.sendRedirect("StudentPageServlet");
             }catch(IOException e){
                 // Do nothing
             }
-        }else{
-
-            String userType = userManager.getUserType(result);
+        }
+        result = teacherManager.LogIn(request.getParameter("username"), request.getParameter("password"));
+        if(!(result==-1)){
             Cookie userId=new Cookie("userId",""+result);
             response.addCookie(userId);
-            if(userType.equals("T")){
-                try{
-                    response.sendRedirect("TeacherPageServlet");
-                }catch(IOException e){
-                    // Do nothing
-                }
-            }else if(userType.equals("S")){
-                try{
-                    response.sendRedirect("StudentPageServlet");
-                }catch(IOException e){
-                    // Do nothing
-                }
+            try{
+                response.sendRedirect("TeacherPageServlet");
+            }catch(IOException e){
+                // Do nothing
             }
+            //String userType = studentManager.getUserType(result);
+
+
         }
+        try {
+            PrintWriter out = response.getWriter();
+            //out.print(userManager.loginWithUsername(request.getParameter("username"), request.getParameter("password")));
+            //out.println("<script type=\"text/javascript\">");
+            //out.print("window.location='LogInPage.html';");
+            //out.println("alert('wrong username or password');");
+            //out.println("</script>");
+
+            out.println(result);
+        }catch(IOException e){
+            // Do nothing
+        }
+
     }
     public void register(HttpServletRequest request, HttpServletResponse response){
         try{

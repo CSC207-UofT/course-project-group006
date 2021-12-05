@@ -12,16 +12,27 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="RegisterServlet" method="Post">
-            <label for="username">username
+        <form action="RegisterServlet" method="Post" onsubmit="return checkLegal()">
+            <label for="username">username</label>
             <input type="text" name="username" id="username"></br>
-            <label for="password">password
+            <label for="password">password</label>
             <input type="text" name="password" id="password"></br>
-            <label for="email">email
+            <label for="email">email</label>
             <input type="text" name="email" id="email"></br>
             <label> register as</label>
             <input type="submit" name="act" id="act" value="teacher">
             <input type="submit" name="act" id="act" value="student">
         </form>
+        <script>
+            function checkLegal(){
+                if((document.getElementById("username").value===""||
+                    document.getElementById("password").value===""||
+                    document.getElementById("email").value==="")){
+                    alert("?")
+                    return false;
+                }
+                return true;
+            }
+        </script>
     </body>
 </html>

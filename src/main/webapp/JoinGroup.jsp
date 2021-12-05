@@ -26,5 +26,8 @@
             </form>
                 <br>
         <%}%>
+                <form action="JoinGroupServlet" method="Post">
+                    <input type="submit" name="act" id="act" value="back">
+                </form>
     </body>
 </html>

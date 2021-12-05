@@ -4,7 +4,8 @@
  */
 package Servlets;
 
-import QuestionTypes.QuestionInterface;
+import BackEnd.Entities.QuestionInterface;
+
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -37,8 +38,8 @@ public class TestSubmissionServlet extends TestServlet {
         request.setAttribute("groupId", groupId);
         int studentId = Integer.parseInt(request.getParameter("studentId"));
         request.setAttribute("studentId", studentId);;
-        if(userGroupManager.getSubmition(groupId, testId)!=null){
-            String[] answers = userGroupManager.getSubmition(groupId, testId).get(studentId);
+        if(groupManager.getSubmition(groupId, testId)!=null){
+            String[] answers = groupManager.getSubmition(groupId, testId).get(studentId);
             request.setAttribute("answers", answers);
         }
         List<QuestionInterface> questions = testManager.getTestInfo(testId);

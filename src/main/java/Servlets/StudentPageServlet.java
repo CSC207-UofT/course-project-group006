@@ -5,11 +5,14 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import BackEnd.Gateways.*;
 
 /**
  *
@@ -28,7 +31,12 @@ public class StudentPageServlet extends TestServlet {
                 // Do nothing
             }
         }
-        request.setAttribute("joinedGroup", userGroupManager.getJoinedGroup(userId));
+        List<Integer> joinedGroup = studentManager.getJoinedGroup(userId);
+        HashMap<Integer,String> gInfo = new HashMap<Integer,String>();
+        for (int i:joinedGroup) {
+            gInfo.put(i,groupManager.getName(i));
+        }
+        request.setAttribute("joinedGroup", gInfo);
         request.setAttribute("userId", userId);
         RequestDispatcher r = request.getRequestDispatcher("StudentPage.jsp");
         r.forward(request, response);
@@ -41,7 +49,7 @@ public class StudentPageServlet extends TestServlet {
     }
     public void quit(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        userGroupManager.removeStudentFromGroup(getUserId(request), Integer.parseInt(request.getParameter("groupId")));
+        groupManager.removeStudentFromGroup(getUserId(request), Integer.parseInt(request.getParameter("groupId")));
         response.sendRedirect("StudentPageServlet");
     }
     public void learn(HttpServletRequest request, HttpServletResponse response)

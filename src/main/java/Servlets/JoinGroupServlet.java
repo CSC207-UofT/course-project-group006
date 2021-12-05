@@ -5,6 +5,8 @@ package Servlets;
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+import BackEnd.Managers.UserManager;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,14 +32,19 @@ public class JoinGroupServlet extends TestServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("allGroups", userGroupManager.getAllGroup());
+        request.setAttribute("allGroups", groupManager.getAllGroup());
         request.setAttribute("userId", getUserId(request));
         RequestDispatcher r = request.getRequestDispatcher("JoinGroup.jsp");
         r.forward(request, response);
     }
     public void join(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        userGroupManager.addStudentToGroup(getUserId(request), Integer.parseInt(request.getParameter("groupId")));
+        groupManager.addStudentToGroup(getUserId(request), Integer.parseInt(request.getParameter("groupId")));
+        studentManager.addGroupToUser(getUserId(request),Integer.parseInt(request.getParameter("groupId")), 500);
         response.sendRedirect("JoinGroupServlet");
+    }
+    public void back(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        response.sendRedirect("StudentPageServlet");
     }
 }

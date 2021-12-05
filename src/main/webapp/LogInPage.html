@@ -16,15 +16,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body style="background-color: #ffc7ed">
-        <form action="LogInPageServlet" method="Post" style="position: fixed; left: 40%;bottom:50%">
+        <form action="LogInPageServlet" method="Post" id = "logInForm" onsubmit="return checkLegal()" style="position: fixed; left: 40%;bottom:50%">
             <label style="color: red">Log in</label><br>
-            <label for="username">username
+            <label for="username">username</label>
             <input type="text" name="username" id="username"></br>
-            <label for="password">password
+            <label for="password">password</label>
             <input type="text" name="password" id="password"></br>
             <input type="submit" name="act" id="act" value="logIn">
             <input type="submit" name="act" id="act" value="register">
         </form>
-        
+        <script>
+            function checkLegal(){
+                if((document.activeElement.value==="logIn")&&(document.getElementById("username").value===""||
+                    document.getElementById("password").value==="")){
+                    alert("?")
+                    return false;
+                }
+                return true;
+            }
+        </script>
     </body>
 </html>

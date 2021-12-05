@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterServlet extends TestServlet {
 
     public void teacher(HttpServletRequest request, HttpServletResponse response){
-        userManager.createTeacher(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
+        teacherManager.createUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
         try{
             response.sendRedirect("LogInPage.html");
         }catch(IOException e){
@@ -25,7 +25,7 @@ public class RegisterServlet extends TestServlet {
         }
     }
     public void student(HttpServletRequest request, HttpServletResponse response){
-        userManager.createStudent(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
+        studentManager.createUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
         try{
             response.sendRedirect("LogInPage.html");
         }catch(IOException e){
