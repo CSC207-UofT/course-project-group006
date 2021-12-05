@@ -18,7 +18,10 @@ public class GroupGateway extends Gateway implements ReadAll {
     private final int POST = 5;
     private final int TESTS = 6;
 
-
+    @Override
+    public List<String> readByIDName(int elementStructure, int type, int targetID, int a) {
+        return null;
+    }
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from STUDYGROUP where id = " + targetID;

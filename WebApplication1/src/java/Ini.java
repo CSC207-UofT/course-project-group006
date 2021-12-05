@@ -1,11 +1,14 @@
 import BackEnd.Gateways.GroupGateway;
 import BackEnd.Gateways.QuestionAnswerGateway;
 import BackEnd.Gateways.TestAnswerGateway;
+import BackEnd.Gateways.TestGateway;
 import BackEnd.Gateways.QuestionGateway;
 import BackEnd.Gateways.StudentGateway;
 import BackEnd.Managers.GroupManager;
 import BackEnd.Managers.QuestionAnswerManager;
 import BackEnd.Interfaces.GeneralReadWriter;
+import BackEnd.Managers.TestAnswerManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -300,7 +303,38 @@ public class Ini {
 //        questionAnswerManager.gradeQuestion(1, "苹果", 16);
 //        questionAnswerManager.createQuestionAnswer(1, "10", 3, 5, bb);
 //        System.out.println(new QuestionGateway().readRow(1).get(4));
-//        GeneralReadWriter bb = new QuestionAnswerGateway();
+        GeneralReadWriter bb = new QuestionAnswerGateway();
+        GeneralReadWriter aa = new TestAnswerGateway();
+        GeneralReadWriter cc = new TestGateway();
+        TestAnswerManager testAnswerManager = new TestAnswerManager(aa, cc, bb);
+        int n = testAnswerManager.createTestAnswer(1, 1, aa, cc, bb);
+        System.out.println(n);
+//        List<String> list = new ArrayList<>();
+//        list.add(1 + "");
+//        list.add(2 + "");
+//        List<String> result = aa.write(1, list);
+//        List<String> questions = cc.readByID(111, 6, Integer.parseInt(result.get(0)));
+//        System.out.println(result);
+//        System.out.println(questions);
+//        List<String> questions = cc.readByID(222, 6, 1);
+//        System.out.println(questions);
+//        int total_mark = 0;
+//        for (String i: questions) {
+//            List<String> mark = bb.readByIDName(111, 1, 4, Integer.parseInt(i));
+////            total_mark += Integer.parseInt(mark.get(0));
+//            System.out.println(total_mark);
+//        }
+
+//        List<String> list = new ArrayList<>();
+//        list.add(1 + "");
+//        list.add(2 + "");
+//        List<String> result = aa.write(1, list);
+//        System.out.println(result);
+//        List<String> mark = bb.readByIDName(111, 1, 4, 3);
+////        List<String> mark = bb.readByID(111, 4, 1);
+//        System.out.println(mark.get(0));
+//        List<String> result = bb.readByID(111, 4,1);
+//        System.out.println(result);
 //        List<String> list = new ArrayList<>();
 //        list.add(1 + "");
 //        list.add("10");

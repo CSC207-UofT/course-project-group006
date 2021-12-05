@@ -23,7 +23,11 @@ public class QuestionAnswerGateway extends Gateway{
 //        return new ArrayList<>(read(sql, type, INT));
         return null;
     }
-
+    @Override
+    public List<String> readByIDName(int elementStructure,int studentID, int type, int targetID) {
+        String sql = "select * from QUESTIONANSWER where questionID = ' " + targetID + " ' and studentID = '" + studentID + " '";
+        return new ArrayList<>(read(sql, type, elementStructure));
+    }
     @Override
     public List<String> readRow(int targetID) {
         try {
@@ -124,17 +128,5 @@ public class QuestionAnswerGateway extends Gateway{
 
     }
 
-//    @Override
-//    public HashMap<Integer, String> readAll() {
-//        HashMap<Integer, String> result = new HashMap<>();
-//        String sql = "select * from QUESTIONANSWER";
-//
-//        List<String> IDList = read(sql, ID, INT);
-//        List<String> nameList = read(sql, NAME, STRING);
-//        for (int i = 0; i < IDList.size(); i++) {
-//            result.put(Integer.parseInt(IDList.get(i)), nameList.get(i));
-//        }
-//        return result;
-//
-//    }
+
 }

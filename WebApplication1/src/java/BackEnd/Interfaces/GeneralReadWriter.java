@@ -52,4 +52,5 @@ public interface GeneralReadWriter {
     boolean hasDuplicateNames(String table, String name);
 
 
+    List<String> readByIDName(int elementStructure, int type, int studentID, int targetID);
 }

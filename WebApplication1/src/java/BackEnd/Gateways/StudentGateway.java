@@ -17,7 +17,10 @@ public class StudentGateway extends Gateway {
     private final int TESTS = 8;
     private final int ANSWERS = 9;
     private final int LEVEL = 10;
-
+    @Override
+    public List<String> readByIDName(int elementStructure, int type, int targetID, int a) {
+        return null;
+    }
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from STUDENT where id = " + targetID;
