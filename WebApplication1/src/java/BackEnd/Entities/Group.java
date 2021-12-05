@@ -11,7 +11,7 @@ public class Group {
     private int teacher;
     private String name;
     private int ID;
-    public static final int MAXNUMBER = 30;
+    public static final int MAXNUMBER = 999;
     private HashMap<Integer, HashMap<Integer, String[]>> testsResult;
     private HashMap<Integer, LocalDateTime> duedates;
     private String announcement;
@@ -79,9 +79,6 @@ public class Group {
         this.testIDs = testIDs;
     }
 
-    public int GetID() {
-        return this.ID;
-    }
 
     public String getName() {
         return this.name;

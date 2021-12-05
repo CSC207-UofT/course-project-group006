@@ -12,11 +12,6 @@ import java.util.List;
 public class TeacherGateway extends Gateway implements ReadNameID {
 
 
-    private final int PASS = 3;
-    private final int EMAIL = 5;
-    private final int GROUPS = 6;
-    private final int TESTS = 7;
-
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from TEACHER where id = " + targetID;
@@ -76,6 +71,10 @@ public class TeacherGateway extends Gateway implements ReadNameID {
         //change one element: info:{teacherID, newInfo} --> {teacherID}/null
         int teacherID = Integer.parseInt(info.get(0));
         String sql = null;
+        int EMAIL = 5;
+        int PASS = 3;
+        int GROUPS = 6;
+        int TESTS = 7;
         if (type == NAME) {
             String newName = info.get(1);
             sql = "update TEACHER set name = '" + newName + "' where id = " + teacherID;
