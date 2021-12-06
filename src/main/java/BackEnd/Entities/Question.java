@@ -33,6 +33,10 @@ public class Question implements QuestionInterface {
         return this.name;
     }
 
+    /**
+     * Getter method of ID
+     * @return ID
+     */
     public int getId() {
         return id;
     }
