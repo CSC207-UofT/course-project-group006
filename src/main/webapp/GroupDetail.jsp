@@ -82,7 +82,7 @@
         <label><%=""+request.getAttribute("test" + i + "got")+"/"+request.getAttribute("test" + i + "total")%></label>
         <%
                 }} else if (request.getAttribute("userType").equals("T")) {%>
-        <input type="submit" name="act" id="act" value="grade">
+        <!--<input type="submit" name="act" id="act" value="grade">-->
         <%}%>
     </form>
     <%
@@ -98,10 +98,11 @@
 </div>
 <div class="middle">
     <%
-        if(request.getAttribute("userType").equals("T")){
-        String post =  request.getAttribute("posts").toString();
-    %>
+        String post =  request.getAttribute("posts").toString();%>
     <label><%=post%></label>
+    <%
+        if(request.getAttribute("userType").equals("T")){
+    %>
     <form action="GroupPageServlet" method="post">
         <input type="hidden" name="groupId" id="groupId" value=<%=groupId%>>
         <label for="announcement">
