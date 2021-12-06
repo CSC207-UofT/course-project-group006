@@ -1,17 +1,11 @@
 import BackEnd.Gateways.Gateway;
 import BackEnd.Gateways.QuestionGateway;
-import BackEnd.Gateways.StudentGateway;
-import BackEnd.Gateways.TeacherGateway;
 import BackEnd.Managers.QuestionManager;
-import BackEnd.Managers.UserManager;
 import org.junit.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.*;
-import java.util.List;
-
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertEquals;
 
 
