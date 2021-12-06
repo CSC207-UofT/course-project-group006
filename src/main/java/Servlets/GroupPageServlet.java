@@ -8,9 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//import BackEnd.Command;
 import java.time.LocalDateTime;
-import java.util.Objects;
+
 
 /**
  *
@@ -44,14 +43,14 @@ public class GroupPageServlet extends TestServlet {
             try{
                 response.sendRedirect("LogInPage.html");
 
-            }catch(IOException e){
+            }catch(IOException ignored){
 
             }
         }else{
             //String type = teacherManager.getUserType(userId);
-            for(int i=0; i<students.length;i++){
-                if(students[i]!=0){
-                    request.setAttribute("student"+students[i]+"name",studentManager.getNameById(students[i]));
+            for (int student : students) {
+                if (student != 0) {
+                    request.setAttribute("student" + student + "name", studentManager.getNameById(student));
                 }
             }
         }
@@ -72,7 +71,7 @@ public class GroupPageServlet extends TestServlet {
         r.forward(request, response);
     }
     protected void processRequest1(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -91,28 +90,28 @@ public class GroupPageServlet extends TestServlet {
         int id = Integer.parseInt(request.getParameter("groupId"));
         int[] students = groupManager.getStudents(id);
         out.println("<h1>"+groupManager.getName(id)+" Teacher: " + teacherManager.getNameById(groupManager.getTeacher(id)) +" "+ id+"</h1>");
-        Cookie c[] = request.getCookies();
+        Cookie[] c = request.getCookies();
         int userId=-1;
-        for(int i=0;i<c.length;i++){
-            if(c[i].getName().equals("userId")){
-                userId=Integer.parseInt(c[i].getValue());
+        for (Cookie cookie : c) {
+            if (cookie.getName().equals("userId")) {
+                userId = Integer.parseInt(cookie.getValue());
             }
         }
         if(userId==-1){
             try{
                 response.sendRedirect("LogInPage.html");
 
-            }catch(IOException e){
+            }catch(IOException ignored){
 
             }
         }else{
             String type = teacherManager.getUserType(userId);
-            for(int i=0; i<students.length;i++){
+            for (int student : students) {
                 out.print("<form action=\"GroupPageServlet\" method=\"Post\">");
-                out.print("<label \">"+studentManager.getNameById(students[i]));
-                out.print("<input type=\"hidden\" name=\"studentId\" id=\"studentId\" value="+students[i]+">");
-                out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value="+id+">");
-                if(type.equals("T")){
+                out.print("<label \">" + studentManager.getNameById(student));
+                out.print("<input type=\"hidden\" name=\"studentId\" id=\"studentId\" value=" + student + ">");
+                out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value=" + id + ">");
+                if (type.equals("T")) {
                     out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"deleat\">");
                 }
                 out.print("</form></br>");
@@ -127,19 +126,15 @@ public class GroupPageServlet extends TestServlet {
         groupManager.removeStudentFromGroup(Integer.parseInt(request.getParameter("studentId")), Integer.parseInt(request.getParameter("groupId")));
         try{
             response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));
-        }catch(IOException e){
+        }catch(IOException ignored){
 
         }
     }
     public String creatTitle(int id){
         return groupManager.getName(id)+" Teacher: " + teacherManager.getNameById(groupManager.getTeacher(id)) +" ";
     }
-    public void assign(HttpServletRequest request, HttpServletResponse response){
-        try{
-            response.sendRedirect("TestPageServlet?groupId="+request.getParameter("groupId"));
-        }catch(IOException e){
-
-        }
+    public void assign(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("TestPageServlet?groupId="+request.getParameter("groupId"));
     }
     public void finsh(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -156,12 +151,12 @@ public class GroupPageServlet extends TestServlet {
         processRequest(request,response);
     }
     public void start(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         response.sendRedirect("TestPresenterServlet?testId="+request.getParameter("testId")+
                 "&groupId="+request.getParameter("groupId"));
     }
     public void startMarking(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         response.sendRedirect("MarkingPageChoosing.jsp");
     }
     public void grade(HttpServletRequest request, HttpServletResponse response)
@@ -181,7 +176,7 @@ public class GroupPageServlet extends TestServlet {
         r.forward(request, response);
     }
     public void choose(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         response.sendRedirect("TestSubmissionServlet?testId="+request.getParameter("testId")+
                 "&groupId="+request.getParameter("groupId")+
                 "&studentId="+request.getParameter("studentId"));

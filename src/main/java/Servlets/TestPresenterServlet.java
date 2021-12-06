@@ -31,7 +31,6 @@ public class TestPresenterServlet extends TestServlet {
             throws ServletException, IOException {
         //List<QuestionInterface> questions = testManager.getTestInfo(Integer.parseInt(request.getParameter("testId")));
         String[] questions = testManager.getQuestions(Integer.parseInt(request.getParameter("testId")));
-        int[] marks = testManager.getMarks(Integer.parseInt(request.getParameter("testId")));
         request.setAttribute("testSize", questions.length);
         request.setAttribute("testId", Integer.parseInt(request.getParameter("testId")));
         for(int i=0; i<questions.length;i++){
