@@ -3,6 +3,7 @@ package BackEnd.Entities;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -206,5 +207,73 @@ public class Group {
 
     public void setStudents(int[] students) {
         this.students = students;
+    }
+    private String testAnswers(){
+        return format(testsResult);
+    }
+    private void setTestResult(String input){
+        testsResult=deformat(input);
+    }
+    private static String format(HashMap<Integer, HashMap<Integer, String[]>> testsResult){
+        String result = "";
+        for (Integer i:testsResult.keySet()) {
+            result+=i+"@";
+            HashMap<Integer,String[]> sans = testsResult.get(i);
+            for (Integer j: sans.keySet()) {
+                result+=j+"|";
+                for (String s:sans.get(j)) {
+                    result+=s+"#";
+                }
+                result+="$";
+            }
+            result+="ö";
+        }
+        return result;
+    }
+    private static HashMap<Integer, HashMap<Integer, String[]>>deformat(String input){
+        HashMap<Integer, HashMap<Integer, String[]>> result = new HashMap<>();
+        String[] outer = input.split("ö");
+        for(String inf:outer){
+            String[] s = inf.split("@");
+            try {
+                int testId = Integer.parseInt(s[0]);
+                System.out.println(testId+":");
+                String[] inner = s[1].split("\\$");
+                HashMap<Integer, String[]> studentAnswers = new HashMap<>();
+                for (String inf2 : inner) {
+                    String[] s2 = inf2.split("\\|");
+                    try {
+                        System.out.println(s2[0]+":"+ Arrays.toString(s2[1].split("#")));
+                        int studentId = Integer.parseInt(s2[0]);
+                        studentAnswers.put(studentId, s2[1].split("#"));
+
+                    } catch (NumberFormatException e) {
+                        //
+                    }
+                }
+                result.put(testId,studentAnswers);
+            }catch (NumberFormatException e){
+                //
+            }
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        HashMap<Integer, HashMap<Integer, String[]>> testsResult=new HashMap<>();
+        String[] a = new String[]{"a","b","c","d"};
+        String[] b = new String[]{"aa","bb","cc","dd"};
+        String[] c = new String[]{"aaa","bbb","ccc","ddd"};
+        String[] d = new String[]{"aaaa","bbbb","cccc","dddd"};
+        HashMap<Integer, String[]> e = new HashMap<>();
+        e.put(1,a);
+        e.put(2,b);
+        HashMap<Integer,String[]> f = new HashMap<>();
+        f.put(1,c);
+        f.put(2,d);
+        testsResult.put(3,e);
+        testsResult.put(4,f);
+        String s = format(testsResult);
+        System.out.println(s);
+        System.out.println(deformat(s));
     }
 }

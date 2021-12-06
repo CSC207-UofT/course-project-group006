@@ -1,223 +1,222 @@
-//import BackEnd.Gateways.GroupGateway;
-//import BackEnd.Gateways.QuestionAnswerGateway;
-//import BackEnd.Gateways.TestAnswerGateway;
-//import BackEnd.Gateways.QuestionGateway;
-//import BackEnd.Gateways.StudentGateway;
-//import BackEnd.Managers.GroupManager;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.sql.*;
-//
-//public class Ini {
-//    public static Connection getConnection() {
-//        Connection conn = null;
-//        String driver = "com.mysql.cj.jdbc.Driver";//驱动程序名
-//        String url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5454663";//url指向要访问的数据库study
-//        String user = "sql5454663";//MySQL配置时的用户名
-//        String password = "SinqmMLSgB";//MySQL配置时的密码
-//        try {
-//            // 加载驱动类
-//            Class.forName(driver);
-//            // 建立连接
-//            conn = DriverManager.getConnection(url,
-//                    user, password);
-//        } catch (SQLException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return conn;
-//    }
-//
-//    public static boolean ini() {
-//        return iniGroupTable() && iniTestTable() && iniQuestionTable() && iniStudentTable() &&
-//                iniTeacherTable() && iniQAnswerTable() && iniTAnswerTable();
-//
-//    }
-//
-//    public static boolean iniStudentTable() {
-//        try {
-//            Connection connection = getConnection();
-//            Statement statement = connection.createStatement();
-//            String sql = "CREATE TABLE IF NOT EXISTS STUDENT " +
-//                    "(id INT UNSIGNED AUTO_INCREMENT, " +
-//                    " name VARCHAR(16), " +
-//                    " pass VARCHAR(16), " +
-//                    " date Date, " +
-//                    " email VARCHAR(255), " +
-//                    " words VARCHAR(1000), " +
-//                    " groupID VARCHAR(1000), " +
-//                    " testID VARCHAR(1000), " +
-//                    " answerID VARCHAR(1000), " +
-//                    " level INT, " +
-//                    " PRIMARY KEY ( id ))";
-//            statement.executeUpdate(sql);
-//            System.out.println("Created student table in given database...");
-//            statement.close();
-//            connection.close();
-//            return true;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
-//
-//    public static boolean iniTeacherTable() {
-//        try {
-//            Connection connection = getConnection();
-//            Statement statement = connection.createStatement();
-//            String sql = "CREATE TABLE IF NOT EXISTS TEACHER " +
-//                    "(id INT UNSIGNED AUTO_INCREMENT, " +
-//                    " name VARCHAR(16), " +
-//                    " pass VARCHAR(16), " +
-//                    " date Date, " +
-//                    " email VARCHAR(255), " +
-//                    " groupID VARCHAR(1000), " +
-//                    " testID VARCHAR(1000), " +
-//                    " PRIMARY KEY ( id ))";
-//            statement.executeUpdate(sql);
-//            System.out.println("Created teacher table in given database...");
-//            statement.close();
-//            connection.close();
-//            return true;
-//        } catch (SQLException e) {
-//            return false;
-//        }
-//    }
-//
-//    public static boolean iniGroupTable() {
-//        try {
-//            Connection connection = getConnection();
-//            Statement statement = connection.createStatement();
-//            String sql = "CREATE TABLE IF NOT EXISTS STUDYGROUP " +
-//                    "(id INT UNSIGNED AUTO_INCREMENT, " +
-//                    " name VARCHAR(16), " +
-//                    " creator VARCHAR(16), " +
-//                    " students VARCHAR(1000), " +
-//                    " posts VARCHAR(1000), " +
-//                    " testID VARCHAR(1000) , " +
-//                    " PRIMARY KEY ( id ))";
-//            statement.executeUpdate(sql);
-//            System.out.println("Created group table in given database...");
-//            statement.close();
-//            connection.close();
-//            return true;
-//        } catch (SQLException e) {
-//            return false;
-//        }
-//    }
-//
-//    public static boolean iniWordTable() {
-//        try {
-//            Connection connection = getConnection();
-//            Statement statement = connection.createStatement();
-//            String sql = "CREATE TABLE IF NOT EXISTS WORD " +
-//                    "(id INT UNSIGNED AUTO_INCREMENT, " +
-//                    " spelling VARCHAR(255), " +
-//                    " meaning VARCHAR(255), " +
-//                    " level INT, " +
-//                    " PRIMARY KEY ( id )) CHARACTER SET = utf8";
-//            statement.executeUpdate(sql);
-//            System.out.println("Created student table in given database...");
-//            statement.close();
-//            connection.close();
-//            return true;
-//        } catch (SQLException e) {
-//            return false;
-//        }
-//    }
-//
-//    public static boolean iniTestTable() {
-//        try {
-//            Connection connection = getConnection();
-//            Statement statement = connection.createStatement();
-//            String sql = "CREATE TABLE IF NOT EXISTS TEST " +
-//                    "(id INT UNSIGNED AUTO_INCREMENT, " +
-//                    " name VARCHAR(16), " +
-//                    " author INT, " +
-//                    " date DATE, " +
-//                    " price INT, " +
-//                    " questions VARCHAR(1000), " +
-//                    " PRIMARY KEY ( id )) CHARACTER SET = utf8";
-//            statement.executeUpdate(sql);
-//            System.out.println("Created test table in given database...");
-//            statement.close();
-//            connection.close();
-//            return true;
-//        } catch (SQLException e) {
-//            return false;
-//        }
-//    }
-//
-//    public static boolean iniQuestionTable() {
-//        try {
-//            Connection connection = getConnection();
-//            Statement statement = connection.createStatement();
-//            String sql = "CREATE TABLE IF NOT EXISTS QUESTION " +
-//                    "(id INT UNSIGNED AUTO_INCREMENT, " +
-//                    " name VARCHAR(16), " +
-//                    " question VARCHAR(1000), " +
-//                    " answer VARCHAR(1000), " +
-//                    " mark INT," +
-//                    " PRIMARY KEY ( id )) CHARACTER SET = utf8";
-//            statement.executeUpdate(sql);
-//            System.out.println("Created question table in given database...");
-//            statement.close();
-//            connection.close();
-//            return true;
-//        } catch (SQLException e) {
-//            return false;
-//        }
-//    }
-//
-//    public static boolean iniQAnswerTable() {
-//        try {
-//            Connection connection = getConnection();
-//            Statement statement = connection.createStatement();
-//            String sql = "CREATE TABLE IF NOT EXISTS QUESTIONANSWER " +
-//                    "(id INT UNSIGNED AUTO_INCREMENT, " +
-//                    " questionID INT, " +
-//                    " answer VARCHAR(1000), " +
-//                    " mark INT , " +
-//                    " studentID INT, " +
-//                    " groupID INT, " +
-//                    " PRIMARY KEY ( id )) CHARACTER SET = utf8";
-//            statement.executeUpdate(sql);
-//            System.out.println("Created answer table in given database...");
-//            statement.close();
-//            connection.close();
-//            return true;
-//        } catch (SQLException e) {
-//            return false;
-//        }
-//    }
-//
-//    public static boolean iniTAnswerTable() {
-//        try {
-//            Connection connection = getConnection();
-//            Statement statement = connection.createStatement();
-//            String sql = "CREATE TABLE IF NOT EXISTS TESTANSWER " +
-//                    "(id INT UNSIGNED AUTO_INCREMENT, " +
-//                    " testID INT, " +
-//                    " studentID INT, " +
-//                    " mark INT, " +
-//                    " PRIMARY KEY ( id )) CHARACTER SET = utf8";
-//            statement.executeUpdate(sql);
-//            System.out.println("Created answer table in given database...");
-//            statement.close();
-//            connection.close();
-//            return true;
-//        } catch (SQLException e) {
-//            return false;
-//        }
-//    }
+import BackEnd.Gateways.*;
+import BackEnd.Managers.GroupManager;
+import BackEnd.Managers.QuestionManager;
+import BackEnd.Managers.TestManager;
 
-    //public static void main(String[] args) {
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.*;
+
+public class Ini {
+    public static Connection getConnection() {
+        Connection conn = null;
+        String driver = "com.mysql.cj.jdbc.Driver";//驱动程序名
+        String url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5454663";//url指向要访问的数据库study
+        String user = "sql5454663";//MySQL配置时的用户名
+        String password = "SinqmMLSgB";//MySQL配置时的密码
+        try {
+            // 加载驱动类
+            Class.forName(driver);
+            // 建立连接
+            conn = DriverManager.getConnection(url,
+                    user, password);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+    public static boolean ini() {
+        return iniGroupTable() && iniTestTable() && iniQuestionTable() && iniStudentTable() &&
+                iniTeacherTable() && iniQAnswerTable() && iniTAnswerTable();
+
+    }
+
+    public static boolean iniStudentTable() {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            String sql = "CREATE TABLE IF NOT EXISTS STUDENT " +
+                    "(id INT UNSIGNED AUTO_INCREMENT, " +
+                    " name VARCHAR(16), " +
+                    " pass VARCHAR(16), " +
+                    " date Date, " +
+                    " email VARCHAR(255), " +
+                    " words VARCHAR(1000), " +
+                    " groupID VARCHAR(1000), " +
+                    " testID VARCHAR(1000), " +
+                    " answerID VARCHAR(1000), " +
+                    " level INT, " +
+                    " PRIMARY KEY ( id ))";
+            statement.executeUpdate(sql);
+            System.out.println("Created student table in given database...");
+            statement.close();
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean iniTeacherTable() {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            String sql = "CREATE TABLE IF NOT EXISTS TEACHER " +
+                    "(id INT UNSIGNED AUTO_INCREMENT, " +
+                    " name VARCHAR(16), " +
+                    " pass VARCHAR(16), " +
+                    " date Date, " +
+                    " email VARCHAR(255), " +
+                    " groupID VARCHAR(1000), " +
+                    " testID VARCHAR(1000), " +
+                    " PRIMARY KEY ( id ))";
+            statement.executeUpdate(sql);
+            System.out.println("Created teacher table in given database...");
+            statement.close();
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static boolean iniGroupTable() {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            String sql = "CREATE TABLE IF NOT EXISTS STUDYGROUP " +
+                    "(id INT UNSIGNED AUTO_INCREMENT, " +
+                    " name VARCHAR(16), " +
+                    " creator VARCHAR(16), " +
+                    " students VARCHAR(1000), " +
+                    " posts VARCHAR(1000), " +
+                    " testID VARCHAR(1000) , " +
+                    " PRIMARY KEY ( id ))";
+            statement.executeUpdate(sql);
+            System.out.println("Created group table in given database...");
+            statement.close();
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static boolean iniWordTable() {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            String sql = "CREATE TABLE IF NOT EXISTS WORD " +
+                    "(id INT UNSIGNED AUTO_INCREMENT, " +
+                    " spelling VARCHAR(255), " +
+                    " meaning VARCHAR(255), " +
+                    " level INT, " +
+                    " PRIMARY KEY ( id )) CHARACTER SET = utf8";
+            statement.executeUpdate(sql);
+            System.out.println("Created student table in given database...");
+            statement.close();
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static boolean iniTestTable() {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            String sql = "CREATE TABLE IF NOT EXISTS TEST " +
+                    "(id INT UNSIGNED AUTO_INCREMENT, " +
+                    " name VARCHAR(16), " +
+                    " author INT, " +
+                    " date DATE, " +
+                    " price INT, " +
+                    " questions VARCHAR(1000), " +
+                    " PRIMARY KEY ( id )) CHARACTER SET = utf8";
+            statement.executeUpdate(sql);
+            System.out.println("Created test table in given database...");
+            statement.close();
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static boolean iniQuestionTable() {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            String sql = "CREATE TABLE IF NOT EXISTS QUESTION " +
+                    "(id INT UNSIGNED AUTO_INCREMENT, " +
+                    " name VARCHAR(16), " +
+                    " question VARCHAR(1000), " +
+                    " answer VARCHAR(1000), " +
+                    " mark INT," +
+                    " PRIMARY KEY ( id )) CHARACTER SET = utf8";
+            statement.executeUpdate(sql);
+            System.out.println("Created question table in given database...");
+            statement.close();
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static boolean iniQAnswerTable() {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            String sql = "CREATE TABLE IF NOT EXISTS QUESTIONANSWER " +
+                    "(id INT UNSIGNED AUTO_INCREMENT, " +
+                    " questionID INT, " +
+                    " answer VARCHAR(1000), " +
+                    " mark INT , " +
+                    " studentID INT, " +
+                    " groupID INT, " +
+                    " PRIMARY KEY ( id )) CHARACTER SET = utf8";
+            statement.executeUpdate(sql);
+            System.out.println("Created answer table in given database...");
+            statement.close();
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static boolean iniTAnswerTable() {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            String sql = "CREATE TABLE IF NOT EXISTS TESTANSWER " +
+                    "(id INT UNSIGNED AUTO_INCREMENT, " +
+                    " testID INT, " +
+                    " studentID INT, " +
+                    " mark INT, " +
+                    " PRIMARY KEY ( id )) CHARACTER SET = utf8";
+            statement.executeUpdate(sql);
+            System.out.println("Created answer table in given database...");
+            statement.close();
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
 ////////////////
 //       System.out.println(new GroupManager(new GroupGateway()).createGroup(1,"group:teacher1"));
 ////        System.out.println(new GroupManager(new GroupGateway()).createGroup(2,"group:teacher2"));
-        //System.out.println(new GroupManager(new GroupGateway()).createGroup(3,"group:teacher3"));
-        //       System.out.println(new GroupManager(new GroupGateway()).createGroup(6,"group:teacher6"));
-        //  System.out.println(new GroupManager(new GroupGateway()).getAllGroup());
-        // System.out.println(new GroupGateway().readRow(11));
+//        System.out.println(new GroupManager(new GroupGateway()).createGroup(3,"group:teacher3"));
+//               System.out.println(new GroupManager(new GroupGateway()).createGroup(6,"group:teacher6"));
+//          System.out.println(new GroupManager(new GroupGateway()).getAllGroup());
+//         System.out.println(new GroupGateway().readRow(11));
 //        System.out.println(new StudentGateway().readByID(222,5,1));
 //        List<String> info = new ArrayList<>();
 //        info.add("11");
@@ -288,5 +287,33 @@
 //        info.add(testID + "");
 //        info.add(mark + "");
 //        System.out.println(new TestAnswerGateway().write(4,info));
-    //}
-//}
+//        System.out.println(new TestManager(new TestGateway()).getTest(5,
+//                new QuestionManager(new QuestionGateway())).getName());
+
+//        List<String> info = new ArrayList<>();
+//        String name = "q";
+//        String question = "pingguo";
+//        String answer = "apple";
+//        int mark = 5;
+//        info.add(name);
+//        info.add(question);
+//        info.add(answer);
+//        info.add(mark + "");
+//        new QuestionGateway().write(1, info);
+//        List<String> info2 = new ArrayList<>();
+//        String testName = "testtest";
+//        int author = 5;
+//        int price = 10;
+//        info2.add(testName);
+//        info2.add(author+"");
+//        info2.add(price+"");
+//        new TestGateway().write(1, info2);
+//        List<String> info = new ArrayList<>();
+//        info.add(5 + "");
+//        info.add(6 + "");
+//
+//        new TestGateway().write(13, info);
+
+
+    }
+}

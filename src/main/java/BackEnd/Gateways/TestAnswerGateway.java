@@ -94,7 +94,7 @@ public class TestAnswerGateway extends Gateway{
             preparedStatement.setInt(1, testID);
             preparedStatement.setInt(2, studentID);
             preparedStatement.setInt(3, mark);
-            preparedStatement.executeUpdate();
+
             String result = createGetID(preparedStatement);
             statement.close();
             connection.close();
