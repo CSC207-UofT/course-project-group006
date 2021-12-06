@@ -92,10 +92,12 @@ public class TestServlet extends HttpServlet {
 
         try{
             Method m= this.getClass().getDeclaredMethod(request.getParameter("act"), HttpServletRequest.class,HttpServletResponse.class);
+            //p(m.getName(),response);
             m.invoke(this,request, response);
         }catch(NoSuchMethodException|IllegalAccessException|InvocationTargetException e){
             //p("no such method"+request.getParameter("act"),response);
             p(Arrays.toString(e.getStackTrace()),response);
+            //p(request.getParameter("act"),response);
         }
     }
     protected void p(String input,HttpServletResponse response){

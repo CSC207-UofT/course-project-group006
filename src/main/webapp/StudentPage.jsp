@@ -11,7 +11,7 @@
     <head>
         <link rel="stylesheet" href="generalStyle.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Classroom</title>
     </head>
     <body>
         <!--<form action ="StudentPageServlet" method="Post" style="width:90%">
