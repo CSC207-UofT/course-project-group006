@@ -5,7 +5,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,7 +52,7 @@ public class TestPageServlet extends TestServlet {
         processRequest(request,response);
     }
     public void detal(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         response.sendRedirect("TestDetailServlet?testId="+request.getParameter("testId"));
     }
     public void back(HttpServletRequest request, HttpServletResponse response)
@@ -61,7 +60,7 @@ public class TestPageServlet extends TestServlet {
         response.sendRedirect("TeacherPageServlet");
     }
     public void asign(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         response.sendRedirect("choosingTime.jsp?testId="+request.getParameter("testId")+"&groupId="+request.getParameter("groupId"));
     }
 }
