@@ -260,6 +260,12 @@ public class GroupManager {
         info.add(announcement);
         return !groupGate.write(5, info).get(0).equals("FAILED");
     }
+
+    /**
+     * Read Group
+     * @param id Group ID
+     * @return List read from group
+     */
     private Group readGroup(int id){
         //return new Group(1, "placeholder", new int[]{2,3}, 4, new HashMap<Integer, HashMap<Integer, String[]>>(), new ArrayList<>(), new ArrayList<>());
         List<String> info= groupGate.readRow(id);
@@ -295,6 +301,12 @@ public class GroupManager {
         }
         return null;
     }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String getNameById(int id){
         return this.readGroup(id).getName();
     }
