@@ -334,7 +334,7 @@ public class Group {
                 //
             }
         }
-        System.out.println(result);
+        System.out.println("result:"+result);
         return result;
     }
     public static String formatDueDate(HashMap<Integer,LocalDateTime> duedates){
@@ -396,16 +396,17 @@ public class Group {
 //        String s = formatDueDate(test);
 //        System.out.println(s);
 //        System.out.println(deformatDueDate(s));
-        SubmationData s =new SubmationData("aaaaaaaa",-1,"");
-        s.gread(1,"");
-        SubmationData s2 = new SubmationData("a",-1,"");
-        SubmationData[] s1 = new SubmationData[]{s,s2};
-        HashMap<Integer,SubmationData[]> a = new HashMap<>();
-        a.put(1,s1);
-        HashMap<Integer,HashMap<Integer,SubmationData[]>>b =new HashMap<>();
-        b.put(1,a);
-        String q =new Group(1).format(b);
-            System.out.println(Arrays.toString(new Group(1).deformat(q).get(1).get(1)));
+//        SubmationData s =new SubmationData("aaaaaaaa",-1,"");
+//        s.gread(1,"");
+//        SubmationData s2 = new SubmationData("a",-1,"");
+//        SubmationData[] s1 = new SubmationData[]{s,s2};
+//        HashMap<Integer,SubmationData[]> a = new HashMap<>();
+//        a.put(1,s1);
+//        HashMap<Integer,HashMap<Integer,SubmationData[]>>b =new HashMap<>();
+//        b.put(1,a);
+//        String q =new Group(1).format(b);
+//            System.out.println(Arrays.toString(new Group(1).deformat(q).get(1).get(1)));
+        System.out.println(new SubmationData("aaa%&-1%&%"));
 
     }
     private static class SubmationData{
@@ -444,7 +445,7 @@ public class Group {
             String[] s = input.split("&");
             //System.out.println(Arrays.toString(s));
             answer=s[0].replace("%","");
-            mark=Integer.parseInt(s[1]);
+            mark=Integer.parseInt(s[1].replace("%",""));
             comment=s[2].replace("%","");
         }
     }
