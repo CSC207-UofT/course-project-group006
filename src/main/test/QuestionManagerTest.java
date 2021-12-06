@@ -1,20 +1,15 @@
-import BackEnd.Gateways.*;
-import BackEnd.Managers.QuestionAnswerManager;
+import BackEnd.Gateways.Gateway;
+import BackEnd.Gateways.QuestionGateway;
 import BackEnd.Managers.QuestionManager;
-import BackEnd.Managers.UserManager;
 import org.junit.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.*;
-import java.util.List;
-
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertEquals;
 
 
-
-public class QuestionAnswerManagerTesting {
+public class QuestionManagerTest {
     @Before
     public void setUp() throws SQLException {
 //        Server: sql5.freemysqlhosting.net
@@ -40,25 +35,24 @@ public class QuestionAnswerManagerTesting {
         String url =  "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5456611";
         Connection connection = DriverManager.getConnection(url, username, password);
         Statement stmt = connection.createStatement();
-        String sql = "DROP TABLE QUESTIONANSWER";
+        String sql = "DROP TABLE QUESTION";
         stmt.executeUpdate(sql);
-        String sql1 = "DROP TABLE QUESTION";
-        stmt.executeUpdate(sql1);
 
         IniTest.ini();
     }
-    @Test (timeout = 5000)
-    public void testSubmit() {
-        QuestionGateway questionGateway = new QuestionGateway();
-        int n = new QuestionManager(questionGateway).addQuestion("test", "apple", "pingguo", 5);
-        QuestionAnswerGateway questionAnswerGateway = new QuestionAnswerGateway();
-        new QuestionAnswerManager(questionAnswerGateway).createQuestionAnswer(n, "pingguo", 1, 1, questionAnswerGateway);
-        new QuestionAnswerManager(questionAnswerGateway).createQuestionAnswer(n, "ping", 2, 1, questionAnswerGateway);
-        String k = questionAnswerGateway.readByID(111, 4, 1).get(0);
-        String l = questionAnswerGateway.readByID(111, 4, 2).get(0);
-        assertEquals(5, Integer.parseInt(k));
-        assertEquals(0, Integer.parseInt(l));
+
+    @Test (timeout = 500000)
+    public void testAddQuestion() {
+            QuestionGateway questionGateway = new QuestionGateway();
+            int i = new QuestionManager(questionGateway).addQuestion("test", "apple", "pingguo", 5);
+            String a = questionGateway.readByID(222, 2, i).get(0);
+            String b = questionGateway.readByID(222, 3, i).get(0);
+            String c = questionGateway.readByID(222, 4, i).get(0);
+            String d = questionGateway.readByID(111, 5, i).get(0);
+            assertEquals("test", a);
+            assertEquals("apple", b);
+            assertEquals("pingguo", c);
+            assertEquals(5, Integer.parseInt(d));
 
     }
-
 }

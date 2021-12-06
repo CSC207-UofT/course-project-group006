@@ -7,11 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionAnswerGateway extends Gateway implements ReadIDName {
-    private final int QuestionID = 2;
-    private final int ANSWER = 3;
-    private final int MARK = 4;
-    private final int StudentID = 5;
-    private final int GroupID = 6;
 
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
@@ -72,7 +67,12 @@ public class QuestionAnswerGateway extends Gateway implements ReadIDName {
         //change one element: info:{questionAnswerID, newInfo} --> {studentID}/null
         int QuestionAnswerID = Integer.parseInt(info.get(0));
         String sql = null;
-        if (type == QuestionID) {
+        int studentID1 = 5;
+        int questionID1 = 2;
+        int ANSWER = 3;
+        int MARK = 4;
+        int groupID1 = 6;
+        if (type == questionID1) {
             String newQuestionID = info.get(1);
             sql = "update QUESTIONANSWER set questionID = '" + newQuestionID + "' where id = " + QuestionAnswerID;
         } else if (type == ANSWER) {
@@ -81,10 +81,10 @@ public class QuestionAnswerGateway extends Gateway implements ReadIDName {
         } else if (type == MARK) {
             String newMark = info.get(1);
             sql = "update QUESTIONANSWER set mark = '" + newMark + "' where id = " + QuestionAnswerID;
-        } else if (type == GroupID) {
+        } else if (type == groupID1) {
             String newGroupID = info.get(1);
             sql = "update QUESTIONANSWER set groupID = '" + newGroupID + "' where id = " + QuestionAnswerID;
-        } else if (type == StudentID) {
+        } else if (type == studentID1) {
             String newStudentID = info.get(1);
             sql = "update QUESTIONANSWER set studentID = '" + newStudentID + "' where id = " + QuestionAnswerID;
 

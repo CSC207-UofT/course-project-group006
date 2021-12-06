@@ -18,14 +18,9 @@ public class TestManager {
     private GeneralReadWriter testGate;
     private QuestionManager questionManager;
 
-    /**
-     * Construct a Test manager giving some tests
-     * @param allTest the list of tests
-     */
-    public TestManager(HashMap<Integer, Test> allTest){
-        this.allTest = allTest;
 
-    }
+
+    
     public TestManager(GeneralReadWriter testGate, QuestionManager questionManager){
         this.testGate = testGate;
         this.questionManager=questionManager;
