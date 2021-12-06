@@ -46,6 +46,7 @@
         <input type="submit" name="act" id="act" value="learn">
     </form>-->
 </div>
+<label style="font-size: 30px;background-color: white;font-family: Garamond, serif">&nbsp;Your Groups:</label>
 <div style="background-color: white">
     <%
         HashMap<Integer, String> joinedGroup = (HashMap<Integer, String>) request.getAttribute("joinedGroup");
