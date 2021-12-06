@@ -4,16 +4,10 @@ import BackEnd.Entities.Question;
 import BackEnd.Interfaces.GeneralReadWriter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class QuestionManager {
-    private HashMap<Integer, Question> allQuestions;
-    private GeneralReadWriter questionGate;
-
-    public QuestionManager(HashMap<Integer, Question> allQuestions) {
-        this.allQuestions = allQuestions;
-    }
+    private final GeneralReadWriter questionGate;
 
     public QuestionManager(GeneralReadWriter questionGate) {
         this.questionGate = questionGate;
@@ -35,9 +29,8 @@ public class QuestionManager {
 
     public Question getQuestion(int qID){
         List<String> question = questionGate.readRow(qID);
-        Question myQ = new Question(question.get(1), question.get(2), question.get(3),
+        return new Question(question.get(1), question.get(2), question.get(3),
                 Integer.parseInt(question.get(4)));
-        return myQ;
     }
 
 

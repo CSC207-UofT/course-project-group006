@@ -1,7 +1,5 @@
 package BackEnd.Managers;
 
-import BackEnd.Gateways.QuestionGateway;
-import BackEnd.Gateways.TestGateway;
 import BackEnd.Interfaces.GeneralReadWriter;
 import BackEnd.Interfaces.ReadIDName;
 
