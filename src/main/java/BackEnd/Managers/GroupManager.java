@@ -29,8 +29,6 @@ public class GroupManager {
     }
 
 
-
-
 //    TODO:
 //    public HashMap<Integer, LocalDateTime> getTests(int id) {
 //        return groups.get(id).getTests();
@@ -261,17 +259,18 @@ public class GroupManager {
         info.add(announcement);
         return !groupGate.write(5, info).get(0).equals("FAILED");
     }
-    private Group readGroup(int id){
+
+    private Group readGroup(int id) {
         //return new Group(1, "placeholder", new int[]{2,3}, 4, new HashMap<Integer, HashMap<Integer, String[]>>(), new ArrayList<>(), new ArrayList<>());
-        List<String> info= groupGate.readRow(id);
-        if(info.get(0).equals(""+id)){
+        List<String> info = groupGate.readRow(id);
+        if (info.get(0).equals("" + id)) {
             String groupName = info.get(1);
             String creater = info.get(2);
             String[] students = info.get(3).split(",");
             String[] posts = info.get(4).split(",");
             String[] tests = info.get(5).split(",");
             List<Integer> tIds = new ArrayList<>();
-            if(tests!=null) {
+            if (tests != null) {
                 for (String test : tests) {
                     try {
                         tIds.add(Integer.parseInt(test));
@@ -281,7 +280,7 @@ public class GroupManager {
                 }
             }
             int[] sIds = new int[Group.MAXNUMBER];
-            if(students!=null) {
+            if (students != null) {
                 int j = 0;
                 for (String student : students) {
                     try {
@@ -292,29 +291,36 @@ public class GroupManager {
                     }
                 }
             }
-            return new Group(Integer.parseInt(creater),groupName,sIds,tIds,posts);
+            return new Group(Integer.parseInt(creater), groupName, sIds, tIds, posts);
         }
         return null;
     }
-    public String getNameById(int id){
+
+    public String getNameById(int id) {
         return this.readGroup(id).getName();
     }
-    public HashMap<Integer, LocalDateTime> getTests(int id){
+
+    public HashMap<Integer, LocalDateTime> getTests(int id) {
         return readGroup(id).getTests();
     }
-    public boolean addTest(int id, int testId,java.time.LocalDateTime due){
-        return readGroup(id).addTest(testId,due);
+
+    public boolean addTest(int id, int testId, java.time.LocalDateTime due) {
+        return readGroup(id).addTest(testId, due);
     }
-    public List<Integer> createdBy(int Id){
+
+    public List<Integer> createdBy(int Id) {
         return new ArrayList<>();
     }
-    public void answerTest(int groupId, int testId, String[] answer, int studentId){
-        readGroup(groupId).answerTest(testId,answer,studentId);
+
+    public void answerTest(int groupId, int testId, String[] answer, int studentId) {
+        readGroup(groupId).answerTest(testId, answer, studentId);
     }
-    public HashMap<Integer,String[]> getSubmition(int groupId,int testId){
+
+    public HashMap<Integer, String[]> getSubmition(int groupId, int testId) {
         return readGroup(groupId).getTestResults(testId);
     }
-    public List<String> posts(int id){
+
+    public List<String> posts(int id) {
         return readGroup(id).getAnnouncement();
     }
 }

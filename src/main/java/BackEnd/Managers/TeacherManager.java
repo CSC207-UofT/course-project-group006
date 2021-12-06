@@ -51,7 +51,7 @@ public class TeacherManager extends UserManager {
 
     public int LogIn(String userName, String password) {
         int userType = getUserType(userName);
-        int userID = getID(userName);
+        int userID = getID(userName,userGate);
         if (userType == TEACHER) {
             String pass = userGate.readByID(222, 3, userID).get(0);
             if (pass.equals(password)) {

@@ -90,7 +90,7 @@ public class UserManager {
         } else {
             return -1;
         }
-        int userID = getID(name);
+        int userID = getID(name,gate);
         System.out.println(gate.getClass());
         String pass = gate.readByID(222, 3, userID).get(0);
 
@@ -248,9 +248,9 @@ public class UserManager {
      * @param userName the user name
      * @return the id
      */
-    public int getID(String userName) {
-        List<String> result = userGate.readIntByName(1, userName);
-        System.out.println(userGate.getClass());
+    public int getID(String userName, ReadNameID gate) {
+        List<String> result = gate.readIntByName(1, userName);
+        System.out.println(gate.getClass());
         if (result != null&&result.size()>0) {
             return Integer.parseInt(result.get(0));
         }
