@@ -302,7 +302,7 @@ public class Group {
             String[] s = inf.split("@");
             try {
                 int testId = Integer.parseInt(s[0]);
-                //System.out.println(testId+":");
+                System.out.println(testId+":");
                 HashMap<Integer, SubmationData[]> studentAnswers = new HashMap<>();
                 result.put(testId,studentAnswers);
                 if(s.length>1) {
@@ -310,9 +310,15 @@ public class Group {
                     for (String inf2 : inner) {
                         String[] s2 = inf2.split("\\|");
                         try {
-                            //System.out.println(s2[0] + ":" + Arrays.toString(s2[1].split("#")));
+                            System.out.println(s2[0] + ":" + Arrays.toString(s2[1].split("#")));
                             int studentId = Integer.parseInt(s2[0]);
-                            studentAnswers.put(studentId, from(s2[1].split("#")));
+                            String[] s3 = s2[1].split("#");
+                            SubmationData[] s4=new SubmationData[s3.length];
+                            for (int k=0;k<s3.length;k++){
+                                s4[k]=new SubmationData(s3[k]);
+                                System.out.println(s4[k]);
+                            }
+                            studentAnswers.put(studentId, s4);
 
                         } catch (NumberFormatException e) {
                             //
@@ -323,6 +329,7 @@ public class Group {
                 //
             }
         }
+        System.out.println(result);
         return result;
     }
     public static String formatDueDate(HashMap<Integer,LocalDateTime> duedates){
@@ -347,7 +354,7 @@ public class Group {
         return result;
     }
     public SubmationData[] from(String[] input){
-        System.out.println(Arrays.toString(input));
+        //System.out.println(Arrays.toString(input));
         SubmationData[] result=new SubmationData[input.length];
         for (int k=0;k<input.length;k++){
             result[k]=new SubmationData(input[k],-1,"");
@@ -390,8 +397,10 @@ public class Group {
         SubmationData[] s1 = new SubmationData[]{s,s2};
         HashMap<Integer,SubmationData[]> a = new HashMap<>();
         a.put(1,s1);
-
-            System.out.println(s);
+        HashMap<Integer,HashMap<Integer,SubmationData[]>>b =new HashMap<>();
+        b.put(1,a);
+        String q =new Group(1).format(b);
+            System.out.println(Arrays.toString(new Group(1).deformat(q).get(1).get(1)));
 
     }
     private static class SubmationData{
@@ -421,10 +430,14 @@ public class Group {
         }
         @Override
         public String toString(){
-            return this.answer+"%&"+this.mark+"&"+this.comment+"%";
+            //System.out.println("answer:"+answer);
+            //System.out.println("mark:"+mark);
+            //System.out.println("comment:"+comment);
+            return this.answer+"%&"+this.mark+"%&"+this.comment+"%";
         }
         public SubmationData(String input){
             String[] s = input.split("&");
+            //System.out.println(Arrays.toString(s));
             answer=s[0].replace("%","");
             mark=Integer.parseInt(s[1]);
             comment=s[2].replace("%","");
