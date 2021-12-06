@@ -1,8 +1,6 @@
 package BackEnd.Managers;
 
 import BackEnd.Entities.Student;
-import BackEnd.Entities.Teacher;
-import BackEnd.Entities.User;
 import BackEnd.Interfaces.ReadNameID;
 
 import java.util.ArrayList;
@@ -40,7 +38,7 @@ public class StudentManager extends UserManager{
     public int LogIn(String userName,String password){
         int userType;
         userType = getUserType(userName);
-        int userID = getID(userName);
+        int userID = getID(userName,userGate);
         if(userType==STUDENT){
             String pass = userGate.readByID(222, 3, userID).get(0);
             if (pass.equals(password)) {

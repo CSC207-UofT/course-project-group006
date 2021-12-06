@@ -1,8 +1,5 @@
 package BackEnd.Managers;
-
-import BackEnd.Entities.Student;
 import BackEnd.Entities.Teacher;
-import BackEnd.Entities.User;
 import BackEnd.Interfaces.ReadNameID;
 
 import java.util.ArrayList;
@@ -24,7 +21,7 @@ public class TeacherManager extends UserManager {
             String email = info.get(4);
             String[] groups = info.get(5).split(",");
             String[] tests = info.get(6).split(",");
-            ArrayList<Integer> gIds = new ArrayList<Integer>();
+            ArrayList<Integer> gIds = new ArrayList<>();
             for (String group : groups) {
                 try {
                     gIds.add(Integer.parseInt(group));
@@ -32,7 +29,7 @@ public class TeacherManager extends UserManager {
                     //do nothing
                 }
             }
-            ArrayList<Integer> tIds = new ArrayList<Integer>();
+            ArrayList<Integer> tIds = new ArrayList<>();
             for (String test : tests) {
                 try {
                     tIds.add(Integer.parseInt(test));
@@ -51,7 +48,7 @@ public class TeacherManager extends UserManager {
 
     public int LogIn(String userName, String password) {
         int userType = getUserType(userName);
-        int userID = getID(userName);
+        int userID = getID(userName,userGate);
         if (userType == TEACHER) {
             String pass = userGate.readByID(222, 3, userID).get(0);
             if (pass.equals(password)) {
