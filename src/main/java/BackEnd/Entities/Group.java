@@ -367,14 +367,22 @@ public class Group {
     }
     public int[] getGrades(int testId, int strudentId){
         SubmationData[] submation = testsResult.get(testId).get(strudentId);
+        boolean hasMark=false;
         if(submation!=null){
             int[] result = new int[submation.length];
             for(int i=0;i<submation.length;i++){
                 result[i]=submation[i].getMark();
+                if(result[i]!=-1){
+                    hasMark=true;
+                }
             }
-            return result;
+            if(hasMark) {
+                return result;
+            }else {
+                return null;
+            }
         }
-        return new int[0];
+        return null;
     }
     public String[] getComment(int testId, int strudentId){
         SubmationData[] submation = testsResult.get(testId).get(strudentId);
@@ -382,6 +390,7 @@ public class Group {
             String[] result = new String[submation.length];
             for(int i=0;i<submation.length;i++){
                 result[i]=submation[i].getComment();
+
             }
             return result;
         }
