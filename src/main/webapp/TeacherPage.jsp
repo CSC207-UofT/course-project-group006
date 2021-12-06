@@ -36,7 +36,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </div>
 
     <form action="TeacherPageServlet" method="Post" name="creatGroup" id="creatGroup">
-        <label style="font-family: Garamond, serif;color: black;font-size: 25px;">&nbsp;New Group Name:</label>
+        <label style="font-family: Garamond, serif;color: black;font-size: 25px;">New Group Name:</label>
         <input type="text" name="testName" id="testName">
         <input type="submit" name="act" id="act" value="Creat">
     </form>
@@ -51,7 +51,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <label style="font-family: Garamond, serif;color: black;font-size: 25px;"><%=request.getAttribute("group" + group + "name")%>
                 <label>:</label>
         </div>
-        </label>
         <div style="width: 33%; float: left;padding-left: 10px; text-align: right">
             <input style="font-family: Garamond, serif" type="submit" name="act" id="act" value="detal">
             <label>&nbsp;</label>
