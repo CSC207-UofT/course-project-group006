@@ -270,6 +270,11 @@ public class Group {
     public String dueDatesString(){
         return formatDueDate(duedates);
     }
+
+    /**
+     * Method to create a Test ID
+     * @return Test ID
+     */
     public String testIds(){
         StringBuilder result = new StringBuilder();
         for (int i:duedates.keySet()){

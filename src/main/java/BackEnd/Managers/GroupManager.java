@@ -1,5 +1,8 @@
 package BackEnd.Managers;
 
+
+import BackEnd.Entities.Student;
+import BackEnd.Interfaces.GeneralReadWriter;
 import BackEnd.Entities.Group;
 import BackEnd.Interfaces.ReadAll;
 import BackEnd.Interfaces.ReadNameID;
@@ -10,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * The type Group manager.
@@ -28,6 +30,25 @@ public class GroupManager {
         this.groupGate = readWriter;
     }
 
+
+
+
+//    TODO:
+//    public HashMap<Integer, LocalDateTime> getTests(int id) {
+//        return groups.get(id).getTests();
+//    }
+//
+//    public void addTest(int id, int t, LocalDateTime due) {
+//        groups.get(id).addTest(t, due);
+//    }
+//
+//    public boolean answerTest(int groupId, int test, String[] a, int studentId) {
+//        return groups.get(groupId).answerTest(test, a, studentId);
+//    }
+//
+//    public HashMap<Integer, String[]> getSubmition(int groupId, int testId) {
+//        return groups.get(groupId).getTestResults(testId);
+//    }
 
 
     /**
@@ -124,16 +145,23 @@ public class GroupManager {
     }
 
 
-    //    public HashMap<Integer, String> getJoinedGroup(int studentID, ReadNameID studentGate) {
-//        HashMap<Integer, String> result = new HashMap<>();
-//        UserManager studentManager = new UserManager(studentGate);
-//        int[] IDList = studentManager.getGroupsFromUser(studentID, 500);
-//        for (int id : IDList) {
-//            String name = getName(id);
-//            result.put(id, name);
-//        }
-//        return result;
-//    }
+    /**
+     * Gets joined group.
+     *
+     * @param studentID   the student id
+     * @param studentGate the student gate
+     * @return the joined group
+     */
+    public HashMap<Integer, String> getJoinedGroup(int studentID, ReadNameID studentGate) {
+        HashMap<Integer, String> result = new HashMap<>();
+        UserManager studentManager = new UserManager(studentGate);
+        int[] IDList = studentManager.getGroupsFromUser(studentID, 500);
+        for (int id : IDList) {
+            String name = getName(id);
+            result.put(id, name);
+        }
+        return result;
+    }
 
     /**
      * Remove student from group boolean.
@@ -235,11 +263,10 @@ public class GroupManager {
         info.add(announcement);
         return !groupGate.write(5, info).get(0).equals("FAILED");
     }
-
-    private Group readGroup(int id) {
+    private Group readGroup(int id){
         //return new Group(1, "placeholder", new int[]{2,3}, 4, new HashMap<Integer, HashMap<Integer, String[]>>(), new ArrayList<>(), new ArrayList<>());
-        List<String> info = groupGate.readRow(id);
-        if (info.get(0).equals("" + id)) {
+        List<String> info= groupGate.readRow(id);
+        if(info.get(0).equals(""+id)){
             String groupName = info.get(1);
             String creater = info.get(2);
             String[] students = info.get(3).split(",");
@@ -248,21 +275,25 @@ public class GroupManager {
             String testAnswers = info.get(6);
             String testDueDates = info.get(7);
             List<Integer> tIds = new ArrayList<>();
-            for (String test : tests) {
-                try {
-                    tIds.add(Integer.parseInt(test));
-                } catch (NumberFormatException e) {
-                    //do nothing
+            if(tests!=null) {
+                for (String test : tests) {
+                    try {
+                        tIds.add(Integer.parseInt(test));
+                    } catch (NumberFormatException e) {
+                        //do nothing
+                    }
                 }
             }
             int[] sIds = new int[Group.MAXNUMBER];
-            int j = 0;
-            for (String student : students) {
-                try {
-                    sIds[j] = Integer.parseInt(student);
-                    j++;
-                } catch (NumberFormatException e) {
-                    //do nothing
+            if(students!=null) {
+                int j = 0;
+                for (String student : students) {
+                    try {
+                        sIds[j] = Integer.parseInt(student);
+                        j++;
+                    } catch (NumberFormatException e) {
+                        //do nothing
+                    }
                 }
             }
             //System.out.println("testAnswers:"+testAnswers);
@@ -271,15 +302,12 @@ public class GroupManager {
         }
         return null;
     }
-
-    public String getNameById(int id) {
-        return Objects.requireNonNull(this.readGroup(id)).getName();
+    public String getNameById(int id){
+        return this.readGroup(id).getName();
     }
-
-    public HashMap<Integer, LocalDateTime> getTests(int id) {
-        return Objects.requireNonNull(readGroup(id)).getTests();
+    public HashMap<Integer, LocalDateTime> getTests(int id){
+        return readGroup(id).getTests();
     }
-
     public boolean addTest(int id, int testId,java.time.LocalDateTime due){
         Group g = readGroup(id);
         assert g != null;
@@ -313,28 +341,18 @@ public class GroupManager {
         groupGate.write(7, List.of("" + id, g.testAnswers()));
 
     }
-
-    public List<Integer> createdBy() {
+    public List<Integer> createdBy(int Id){
         return new ArrayList<>();
     }
     public void answerTest(int groupId, int testId, String[] answer, int studentId){
         Group g = readGroup(groupId);
         g.answerTest(testId,answer,studentId);
         updateStudentAnswer(groupId,g);
-
     }
-
-    public HashMap<Integer, String[]> getSubmition(int groupId, int testId) {
-        return Objects.requireNonNull(readGroup(groupId)).getTestResults(testId);
+    public HashMap<Integer,String[]> getSubmition(int groupId,int testId){
+        return readGroup(groupId).getTestResults(testId);
     }
-
-    public List<String> posts(int id) {
-        return Objects.requireNonNull(readGroup(id)).getAnnouncement();
+    public List<String> posts(int id){
+        return readGroup(id).getAnnouncement();
     }
-    public void grade(int group,int test, int student, int[] mark, String[] comment) {
-        Group g = readGroup(group);
-        assert g != null;
-        g.grade(test,student,mark,comment);
-        updateStudentAnswer(group,g);
-    }
-    }
+}
