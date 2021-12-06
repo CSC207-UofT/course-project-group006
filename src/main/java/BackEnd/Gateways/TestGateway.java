@@ -9,10 +9,6 @@ import java.util.List;
  */
 public class TestGateway extends Gateway{
 
-    private final int AUTHOR = 10;
-    private final int PRICE = 12;
-    private final int QUESTIONS = 13;
-
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from TEST where id = " + targetID;
@@ -66,6 +62,9 @@ public class TestGateway extends Gateway{
 
         int testID = Integer.parseInt(info.get(0));
         String sql = null;
+        int AUTHOR = 10;
+        int QUESTIONS = 13;
+        int PRICE = 12;
         if (type == NAME) {
             String newName = info.get(1);
             sql = "update TEST set name = '" + newName + "' where id = " + testID;

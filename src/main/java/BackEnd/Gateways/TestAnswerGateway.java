@@ -8,9 +8,6 @@ import java.util.List;
  * The type Test answer gateway.
  */
 public class TestAnswerGateway extends Gateway{
-    private final int testID = 2;
-    private final int studentID = 3;
-    private final int MARK = 4;
 
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
@@ -64,13 +61,16 @@ public class TestAnswerGateway extends Gateway{
         //change one element: info:{studentID, newInfo} --> {studentID}/null
         int TestAnswerID = Integer.parseInt(info.get(0));
         String sql = null;
-        if (type == testID) {
+        int testID1 = 2;
+        int studentID1 = 3;
+        int MARK = 4;
+        if (type == testID1) {
             String newTestID = info.get(1);
             sql = "update TESTANSWER set testID = '" + newTestID + "' where id = " + TestAnswerID;
         } else if (type == MARK) {
             String newMark = info.get(1);
             sql = "update TESTANSWER set mark = '" + newMark + "' where id = " + TestAnswerID;
-        } else if (type == studentID) {
+        } else if (type == studentID1) {
             String newStudentID = info.get(1);
             sql = "update TESTANSWER set studentID = '" + newStudentID + "' where id = " + TestAnswerID;
 
