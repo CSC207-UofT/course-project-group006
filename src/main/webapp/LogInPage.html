@@ -4,36 +4,49 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
 -->
 <html>
-    <style>
-        input{
-            color: #ff33cc;
-            background-color: #ccffff
+<style>
+    input {
+        color: black;
+        background-color: #ccffff
+    }
+</style>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="background-color: white">
+<label style="font-family: Garamond, serif;color: black;font-size: 80px;text-shadow: 2px 2px darksalmon;">&nbsp;006Classroom</label><br>
+<hr color="darksalmon" size="5" noshade>
+<hr color="black" size="5" noshade>
+
+<form action="LogInPageServlet" method="Post" id="logInForm" onsubmit="return checkLegal()"
+      style="position: fixed; left: 40%;bottom:40%; background-color: darksalmon; padding: 30px; border-radius: 25px">
+    <p>
+        <label style="font-family: Garamond, serif;color: black;font-size: 50px">Login</label><br>
+    </p>
+    <p>
+        <label for="username" style="font-family: Garamond, serif; font-size: 30px">Username</label>
+        <input type="text" name="username" id="username"></br>
+    </p>
+    <p>
+        <label for="password" style="font-family: Garamond, serif; font-size: 30px">Password&nbsp;</label>
+        <input type="text" name="password" id="password"></br>
+    </p>
+    <p >
+        <input type="submit" name="act" id="act" value="Login">
+        <input type="submit" name="act" id="act" value="Register">
+    </p>
+</form>
+<script>
+    function checkLegal() {
+        if ((document.activeElement.value === "logIn") && (document.getElementById("username").value === "" ||
+            document.getElementById("password").value === "")) {
+            alert("?")
+            return false;
         }
-    </style>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body style="background-color: #ffc7ed">
-        <form action="LogInPageServlet" method="Post" id = "logInForm" onsubmit="return checkLegal()" style="position: fixed; left: 40%;bottom:50%">
-            <label style="color: red">Log in</label><br>
-            <label for="username">username</label>
-            <input type="text" name="username" id="username"></br>
-            <label for="password">password</label>
-            <input type="text" name="password" id="password"></br>
-            <input type="submit" name="act" id="act" value="logIn">
-            <input type="submit" name="act" id="act" value="register">
-        </form>
-        <script>
-            function checkLegal(){
-                if((document.activeElement.value==="logIn")&&(document.getElementById("username").value===""||
-                    document.getElementById("password").value==="")){
-                    alert("?")
-                    return false;
-                }
-                return true;
-            }
-        </script>
-    </body>
+        return true;
+    }
+</script>
+</body>
 </html>
