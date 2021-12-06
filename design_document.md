@@ -12,7 +12,7 @@ We have jumped out the box the the directory and adopted a more general platform
 #### Group Study
 Users identified as students can choose to study in groups where he/she can access the materials provided in specific groups, he/she will be assigned to a group and a teacher at a specific level. The website will provide a platform for the necessary connections between students and teachers.
 #### Tests
-Users identified as students can access tests posted by teachers if he/she joins groups or use auto-created quizzes as progress measurement if he/she chooses to study individually.
+Users identified as students can access tests posted by teachers if they join groups or use auto-created quizzes as progress measurement if they chooses to study individually.
 Users identified as teachers can upload tests and get auto-graded scores from the website after students finish the test.
 #### User Files
 The website will stores all he information online without using any local storage.
