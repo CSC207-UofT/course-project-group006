@@ -24,8 +24,7 @@ public class TestManagerTesting {
         Gateway.user = "sql5456611";
         Gateway.password = "9BF66dT8y5";
         Gateway.url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5456611";
-
-        Ini.ini();
+        IniTest.ini();
     }
     @After
     public void tearDown() throws SQLException {
@@ -41,7 +40,7 @@ public class TestManagerTesting {
         String sql = "DROP TABLE TEST";
         stmt.executeUpdate(sql);
 
-        Ini.ini();
+        IniTest.ini();
     }
     @Test (timeout = 50000)
     public void testTest() {
