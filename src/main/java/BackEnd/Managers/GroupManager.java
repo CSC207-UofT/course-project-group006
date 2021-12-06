@@ -1,8 +1,5 @@
 package BackEnd.Managers;
 
-
-import BackEnd.Entities.Student;
-import BackEnd.Interfaces.GeneralReadWriter;
 import BackEnd.Entities.Group;
 import BackEnd.Interfaces.ReadAll;
 import BackEnd.Interfaces.ReadNameID;
@@ -11,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The type Group manager.
@@ -270,25 +268,21 @@ public class GroupManager {
             String[] posts = info.get(4).split(",");
             String[] tests = info.get(5).split(",");
             List<Integer> tIds = new ArrayList<>();
-            if (tests != null) {
-                for (String test : tests) {
-                    try {
-                        tIds.add(Integer.parseInt(test));
-                    } catch (NumberFormatException e) {
-                        //do nothing
-                    }
+            for (String test : tests) {
+                try {
+                    tIds.add(Integer.parseInt(test));
+                } catch (NumberFormatException e) {
+                    //do nothing
                 }
             }
             int[] sIds = new int[Group.MAXNUMBER];
-            if (students != null) {
-                int j = 0;
-                for (String student : students) {
-                    try {
-                        sIds[j] = Integer.parseInt(student);
-                        j++;
-                    } catch (NumberFormatException e) {
-                        //do nothing
-                    }
+            int j = 0;
+            for (String student : students) {
+                try {
+                    sIds[j] = Integer.parseInt(student);
+                    j++;
+                } catch (NumberFormatException e) {
+                    //do nothing
                 }
             }
             return new Group(Integer.parseInt(creater), groupName, sIds, tIds, posts);
@@ -308,12 +302,12 @@ public class GroupManager {
         return readGroup(id).addTest(testId, due);
     }
 
-    public List<Integer> createdBy(int Id) {
+    public List<Integer> createdBy() {
         return new ArrayList<>();
     }
 
     public void answerTest(int groupId, int testId, String[] answer, int studentId) {
-        readGroup(groupId).answerTest(testId, answer, studentId);
+        Objects.requireNonNull(readGroup(groupId)).answerTest(testId, answer, studentId);
     }
 
     public HashMap<Integer, String[]> getSubmition(int groupId, int testId) {
@@ -321,6 +315,6 @@ public class GroupManager {
     }
 
     public List<String> posts(int id) {
-        return readGroup(id).getAnnouncement();
+        return Objects.requireNonNull(readGroup(id)).getAnnouncement();
     }
 }

@@ -83,7 +83,7 @@ public class TeacherPageServlet extends TestServlet {
 
                 }
             }else{
-                List<Integer> groups=groupManager.createdBy(userId);
+                List<Integer> groups=groupManager.createdBy();
                 request.setAttribute("groups",groups);
                 for(int i=0;i<groups.size();i++){
                     request.setAttribute("group"+groups.get(i)+"name",groupManager.getName(groups.get(i)));
