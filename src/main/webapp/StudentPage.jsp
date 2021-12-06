@@ -47,13 +47,13 @@
     </form>-->
 </div>
 <label style="font-size: 30px;background-color: white;font-family: Garamond, serif">&nbsp;Your Groups:</label>
-<div style="background-color: white">
+<div style="background-color: white;padding: 5px">
     <%
         HashMap<Integer, String> joinedGroup = (HashMap<Integer, String>) request.getAttribute("joinedGroup");
         for (int i : joinedGroup.keySet()) {
     %>
 
-    <form action="StudentPageServlet" method="Post" style="background-color: white;font-size: xxx-large;padding: 5px">
+    <form action="StudentPageServlet" method="Post" style="background-color: white;font-size: xxx-large">
         <div style="font-family: Garamond, serif; width: 33%; float: left; text-align: right">
             <label style="background-color: white;font-size: 25px"><%= joinedGroup.get(i)%>
             </label>
