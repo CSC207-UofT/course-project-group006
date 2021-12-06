@@ -31,6 +31,7 @@ public class GroupPageServlet extends TestServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("aksytbfcawlf:   "+request.getParameter("groupId"));
         int groupId = Integer.parseInt(request.getParameter("groupId"));
         request.setAttribute("groupId", request.getParameter("groupId"));
         request.setAttribute("groupName", groupManager.getNameById(groupId));
