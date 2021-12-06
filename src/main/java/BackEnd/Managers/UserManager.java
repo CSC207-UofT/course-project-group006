@@ -272,8 +272,4 @@ public class UserManager {
         return "";
     }
 
-    public static void main(String[] args) {
-
-    }
-
 }
