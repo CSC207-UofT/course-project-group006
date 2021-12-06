@@ -30,11 +30,14 @@ public class LogInPageServlet extends TestServlet {
      * @param request Servlet request
      * @param response Servlet response
      */
-    public void logIn(HttpServletRequest request, HttpServletResponse response){
+    public void Login(HttpServletRequest request, HttpServletResponse response){
         int result =studentManager.LogIn(request.getParameter("username"), request.getParameter("password"));
+        System.out.println(result);
         if(!(result==-1)){
             Cookie userId=new Cookie("userId",""+result);
             response.addCookie(userId);
+            Cookie userType=new Cookie("userType","S");
+            response.addCookie(userType);
             try{
                 response.sendRedirect("StudentPageServlet");
             }catch(IOException e){
@@ -45,6 +48,8 @@ public class LogInPageServlet extends TestServlet {
         if(!(result==-1)){
             Cookie userId=new Cookie("userId",""+result);
             response.addCookie(userId);
+            Cookie userType=new Cookie("userType","T");
+            response.addCookie(userType);
             try{
                 response.sendRedirect("TeacherPageServlet");
             }catch(IOException e){
@@ -74,7 +79,7 @@ public class LogInPageServlet extends TestServlet {
      * @param request Servlet request
      * @param response Servlet response
      */
-    public void register(HttpServletRequest request, HttpServletResponse response){
+    public void Register(HttpServletRequest request, HttpServletResponse response){
         try{
             response.sendRedirect("register.jsp");
         }catch(IOException e){

@@ -33,13 +33,14 @@ public class TestDetailServlet extends TestServlet {
         String[] questions = testManager.getQuestions(Integer.parseInt(request.getParameter("testId")));
         String[] answers = testManager.getAnswers(Integer.parseInt(request.getParameter("testId")));
         int[] marks = testManager.getMarks(Integer.parseInt(request.getParameter("testId")));
-
-        request.setAttribute("testSize", questions.length);
+        int[] questionIds = testManager.getQuestionId(Integer.parseInt(request.getParameter("testId")));
+        request.setAttribute("testSize", questionIds.length);
         request.setAttribute("testId", Integer.parseInt(request.getParameter("testId")));
-        for(int i=0; i<questions.length;i++){
-            request.setAttribute("Q"+i+"question", questions[i]);
-            request.setAttribute("Q"+i+"answer", answers[i]);
-            request.setAttribute("Q"+i+"mark", marks[i]);
+        request.setAttribute("questionIds", questionIds);
+        for (int questionId : questionIds) {
+            request.setAttribute("Q" + questionId + "question", questionManager.getquestion(questionId));
+            request.setAttribute("Q" + questionId + "answer", questionManager.getAnswer(questionId));
+            request.setAttribute("Q" + questionId + "mark", questionManager.getMark(questionId));
 
         }
 
@@ -75,8 +76,8 @@ public class TestDetailServlet extends TestServlet {
     public void delet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("testId"));
-        int questionNumber = Integer.parseInt(request.getParameter("questionNumber"));
-        testManager.removeQuestion(id, questionNumber);
+        int questionId = Integer.parseInt(request.getParameter("questionId"));
+        testManager.removeQuestion(id, questionId);
         processRequest(request,response);
     }
 

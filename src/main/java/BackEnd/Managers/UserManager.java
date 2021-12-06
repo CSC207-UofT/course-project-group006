@@ -2,7 +2,7 @@ package BackEnd.Managers;
 
 import BackEnd.Entities.Teacher;
 import BackEnd.Entities.User;
-import BackEnd.Interfaces.GeneralReadWriter;
+import BackEnd.Interfaces.ReadNameID;
 
 import BackEnd.Gateways.*;
 
@@ -17,15 +17,15 @@ public class UserManager {
     protected final int STUDENT = 500;
     protected final int TEACHER = 600;
 
-    protected final GeneralReadWriter userGate;
-    private final GeneralReadWriter userGateForOtherType;
+    protected final ReadNameID userGate;
+    private final ReadNameID userGateForOtherType;
 
     /**
      * Instantiates a new User manager.
      *
      * @param userGate the user gate
      */
-    public UserManager(GeneralReadWriter userGate) {
+    public UserManager(ReadNameID userGate) {
         this.userGate = userGate;
         this.userGateForOtherType = null;
     }
@@ -35,7 +35,7 @@ public class UserManager {
      * @param userGate the user gate
      * @param userGateForOtherType the user gate fot the other user type
      */
-    public UserManager(GeneralReadWriter userGate,GeneralReadWriter userGateForOtherType) {
+    public UserManager(ReadNameID userGate,ReadNameID userGateForOtherType) {
         this.userGate = userGate;
         this.userGateForOtherType = userGateForOtherType;
     }
@@ -79,10 +79,9 @@ public class UserManager {
      * @param teacherGate the teacher gate
      * @return int userID
      */
-    public int loginWithUsername(String name, String password, GeneralReadWriter studentGate, GeneralReadWriter teacherGate) {
-
+    public int loginWithUsername(String name, String password, ReadNameID studentGate, ReadNameID teacherGate) {
         int userType = getUserType(name);
-        GeneralReadWriter gate;
+        ReadNameID gate;
         if (userType == STUDENT) {
             gate = studentGate;
         } else if (userType == TEACHER) {
@@ -271,10 +270,6 @@ public class UserManager {
             return "S";
         }
         return "";
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new UserManager(new StudentGateway()).loginWithUsername("a","a",new StudentGateway(),new TeacherGateway()));
     }
 
 }

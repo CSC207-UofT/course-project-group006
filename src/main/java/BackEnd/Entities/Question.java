@@ -1,17 +1,29 @@
 package BackEnd.Entities;
 
-public class Question implements QuestionInterface{
+import BackEnd.Interfaces.QuestionInterface;
+
+public class Question implements QuestionInterface {
     private String name;
     private String question;
     private String answer;
     private int marks;
+    private int id;
+
     public Question(String name, String question, String answer, int mark){
+
         this.name = name;
         this.question=question;
         this.answer=answer;
         this.marks = mark;
     }
+    public Question(String name, String question, String answer, int mark,int id){
 
+        this.name = name;
+        this.question=question;
+        this.answer=answer;
+        this.marks = mark;
+        this.id=id;
+    }
     /**
      * Getter method of question name
      * @return Question name
@@ -19,6 +31,10 @@ public class Question implements QuestionInterface{
     @Override
     public String getName() {
         return this.name;
+    }
+
+    public int getId() {
+        return id;
     }
 
     /**

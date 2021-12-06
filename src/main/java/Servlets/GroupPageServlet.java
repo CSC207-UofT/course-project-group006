@@ -54,12 +54,13 @@ public class GroupPageServlet extends TestServlet {
                 }
             }
         }
-        String type ="";
-        if(studentManager.IsStudent(userId)){
-            type="S";
-        }else if(teacherManager.IsTeacher(userId)){
-            type="T";
-        }
+        String type =getUserType(request);
+        //if(studentManager.IsStudent(userId)){
+          //  type="S";
+        //}else if(teacherManager.IsTeacher(userId)){
+          //  type="T";
+        //}
+        //System.out.println(type);
         request.setAttribute("userType", type);
         request.setAttribute("userId", userId);
         request.setAttribute("Tests",groupManager.getTests(groupId));
@@ -149,6 +150,7 @@ public class GroupPageServlet extends TestServlet {
         int hour = Integer.parseInt(request.getParameter("hour"));
         int minuit = Integer.parseInt(request.getParameter("minuit"));
         LocalDateTime due= LocalDateTime.of(year,month,day,hour,minuit);
+        //System.out.println(due);
         groupManager.addTest(groupId, testId, due);
         processRequest(request,response);
     }
@@ -187,10 +189,18 @@ public class GroupPageServlet extends TestServlet {
     public void back(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int user=getUserId(request);
-        if(Objects.equals(studentManager.getUserType(user), "T")){
+        if(teacherManager.IsTeacher(user)){
             response.sendRedirect("TeacherPageServlet");
-        }else if(Objects.equals(studentManager.getUserType(user), "S")){
+        }else if(studentManager.IsStudent(user)){
             response.sendRedirect("StudentPageServlet");
         }
+    }
+    public void removeTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int testId=Integer.parseInt(request.getParameter("testId"));
+        int groupId=Integer.parseInt(request.getParameter("groupId"));
+        groupManager.removeTest(groupId,testId);
+        processRequest(request,response);
     }
 }

@@ -13,11 +13,7 @@ import java.util.List;
  */
 public class GroupGateway extends Gateway implements ReadAll {
 
-    private final int CREATOR = 3;
-    private final int STUDENTS = 4;
-    private final int POST = 5;
-    private final int TESTS = 6;
-
+    //private final int CREATOR = 3;
 
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
@@ -25,11 +21,11 @@ public class GroupGateway extends Gateway implements ReadAll {
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-        String sql = "select * from STUDYGROUP where name = '" + targetName + "'";
-        return new ArrayList<>(read(sql, type, INT));
-    }
+//    @Override
+//    public List<String> readIntByName(int type, String targetName) {
+//        String sql = "select * from STUDYGROUP where name = '" + targetName + "'";
+//        return new ArrayList<>(read(sql, type, INT));
+//    }
 
     @Override
     public List<String> readRow(int targetID) {
@@ -45,7 +41,7 @@ public class GroupGateway extends Gateway implements ReadAll {
                 return result;
             }
             result.add(resultSet.getInt(1) + "");
-            for (int i = 2; i < 7; i++) {
+            for (int i = 2; i < 9; i++) {
                 String raw = resultSet.getString(i);
                 result.add(raw.startsWith(",") ? raw.substring(1) : raw);
             }
@@ -77,6 +73,9 @@ public class GroupGateway extends Gateway implements ReadAll {
         //change one element: info:{groupID, newInfo} --> {groupID}/null
         int groupID = Integer.parseInt(info.get(0));
         String sql = null;
+        int STUDENTS = 4;
+        int POST = 5;
+        int TESTS = 6;
         if (type == NAME) {
             String newName = info.get(1);
             sql = "update STUDYGROUP set name = '" + newName + "' where id = " + groupID;
@@ -89,6 +88,14 @@ public class GroupGateway extends Gateway implements ReadAll {
         } else if (type == TESTS) {
             String newTest = info.get(1);
             sql = "update STUDYGROUP set testID =  CONCAT_WS(',',testID, '" + newTest + "') where id = " + groupID;
+        }
+        else if (type == 7) {
+            String newInfo = info.get(1);
+            sql = "update STUDYGROUP set answerString = '" + newInfo + "' where id = " + groupID;
+        }
+        else if (type == 8) {
+            String newInfo = info.get(1);
+            sql = "update STUDYGROUP set duedates = '" + newInfo + "' where id = " + groupID;
         } else if (type == 22) {
             String newStudents = info.get(1);
             sql = "update STUDYGROUP set students = '" + newStudents + "' where id = " + groupID;
@@ -117,7 +124,7 @@ public class GroupGateway extends Gateway implements ReadAll {
 
         try {
             Connection connection = getConnection();
-            String sql = "insert into STUDYGROUP (name,creator,students,posts,testID) VALUE (?,?,?,?,?)";
+            String sql = "insert into STUDYGROUP (name,creator,students,posts,testID,answerString,duedates) VALUE (?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, groupName);
@@ -125,6 +132,9 @@ public class GroupGateway extends Gateway implements ReadAll {
             preparedStatement.setString(3, students);
             preparedStatement.setString(4, posts);
             preparedStatement.setString(5, testID);
+            preparedStatement.setString(6, "");
+            preparedStatement.setString(7, "");
+
 
             String result = createGetID(preparedStatement);
             preparedStatement.close();

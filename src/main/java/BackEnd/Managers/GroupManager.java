@@ -5,9 +5,12 @@ import BackEnd.Entities.Student;
 import BackEnd.Interfaces.GeneralReadWriter;
 import BackEnd.Entities.Group;
 import BackEnd.Interfaces.ReadAll;
+import BackEnd.Interfaces.ReadNameID;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,7 +59,7 @@ public class GroupManager {
      * @param teacherGate the teacher gate
      * @return the int groupID
      */
-    public int createGroup(int teacherID, String groupName, GeneralReadWriter teacherGate) {
+    public int createGroup(int teacherID, String groupName, ReadNameID teacherGate) {
         Group g = new Group(teacherID, groupName);
         List<String> list = new ArrayList<>();
         list.add(g.getTeacher() + "");
@@ -81,7 +84,7 @@ public class GroupManager {
      * @param teacherGate the teacher gate
      * @return success T, failed F
      */
-    public boolean deleteGroup(int groupID, GeneralReadWriter studentGate, GeneralReadWriter teacherGate) {
+    public boolean deleteGroup(int groupID, ReadNameID studentGate, ReadNameID teacherGate) {
         UserManager studentManager = new UserManager(studentGate);
         int[] students = getStudents(groupID);
         if (students != null) {
@@ -149,7 +152,7 @@ public class GroupManager {
      * @param studentGate the student gate
      * @return the joined group
      */
-    public HashMap<Integer, String> getJoinedGroup(int studentID, GeneralReadWriter studentGate) {
+    public HashMap<Integer, String> getJoinedGroup(int studentID, ReadNameID studentGate) {
         HashMap<Integer, String> result = new HashMap<>();
         UserManager studentManager = new UserManager(studentGate);
         int[] IDList = studentManager.getGroupsFromUser(studentID, 500);
@@ -275,6 +278,8 @@ public class GroupManager {
             String[] students = info.get(3).split(",");
             String[] posts = info.get(4).split(",");
             String[] tests = info.get(5).split(",");
+            String testAnswers = info.get(6);
+            String testDueDates = info.get(7);
             List<Integer> tIds = new ArrayList<>();
             if(tests!=null) {
                 for (String test : tests) {
@@ -297,7 +302,9 @@ public class GroupManager {
                     }
                 }
             }
-            return new Group(Integer.parseInt(creater),groupName,sIds,tIds,posts);
+            //System.out.println("testAnswers:"+testAnswers);
+            //System.out.println("testDueDates"+testDueDates);
+            return new Group(Integer.parseInt(creater),groupName,sIds,id, List.of(posts),testAnswers,testDueDates);
         }
         return null;
     }
@@ -314,13 +321,45 @@ public class GroupManager {
         return readGroup(id).getTests();
     }
     public boolean addTest(int id, int testId,java.time.LocalDateTime due){
-        return readGroup(id).addTest(testId,due);
+        Group g = readGroup(id);
+        assert g != null;
+        if(g.addTest(testId,due)) {
+           updateTest(id,g);
+            return true;
+        }
+        return false;
+    }
+    public boolean removeTest(int id, int testId){
+        System.out.println("testId:"+testId);
+        System.out.println("groupId:"+id);
+        Group g = readGroup(id);
+        assert g != null;
+        if(g.removeTest(testId)) {
+            System.out.println(g.getDuedates());
+            updateTest(id,g);
+            return true;
+        }
+        return false;
+    }
+    private void updateTest(int id, Group g){
+        updateStudentAnswer(id,g);
+        //System.out.println(g.testAnswers());
+        groupGate.write(8, List.of("" + id, g.dueDatesString()));
+        //System.out.println(g.dueDatesString());
+        groupGate.write(33, List.of("" + id, g.testIds()));
+        //System.out.println(g.testIds());
+    }
+    private void updateStudentAnswer(int id,Group g){
+        groupGate.write(7, List.of("" + id, g.testAnswers()));
+
     }
     public List<Integer> createdBy(int Id){
         return new ArrayList<>();
     }
     public void answerTest(int groupId, int testId, String[] answer, int studentId){
-        readGroup(groupId).answerTest(testId,answer,studentId);
+        Group g = readGroup(groupId);
+        g.answerTest(testId,answer,studentId);
+        updateStudentAnswer(groupId,g);
     }
     public HashMap<Integer,String[]> getSubmition(int groupId,int testId){
         return readGroup(groupId).getTestResults(testId);

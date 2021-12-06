@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Question gateway.
+ */
 public class QuestionGateway extends Gateway {
 
     private final int NAME = 2;
@@ -17,11 +20,6 @@ public class QuestionGateway extends Gateway {
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-        String sql = "select * from QUESTION where name = '" + targetName + "'";
-        return new ArrayList<>(read(sql, type, INT));
-    }
 
     @Override
     public List<String> readRow(int targetID) {
@@ -94,6 +92,15 @@ public class QuestionGateway extends Gateway {
         return result;
     }
 
+    /**
+     * New question string.
+     *
+     * @param name     the name
+     * @param question the question
+     * @param answer   the answer
+     * @param mark     the mark
+     * @return the string
+     */
     public String newQuestion(String name, String question, String answer, int mark) {
 
         try {
@@ -106,7 +113,6 @@ public class QuestionGateway extends Gateway {
             preparedStatement.setString(3, answer);
             preparedStatement.setInt(4, mark);
             String result = createGetID(preparedStatement);
-            preparedStatement.executeUpdate();
             connection.close();
             return result;
         } catch (SQLException e) {
@@ -115,5 +121,5 @@ public class QuestionGateway extends Gateway {
         }
     }
 
-}
 
+}

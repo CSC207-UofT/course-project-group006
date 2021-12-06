@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Test gateway.
+ */
 public class TestGateway extends Gateway{
 
     private final int AUTHOR = 10;
@@ -16,11 +19,6 @@ public class TestGateway extends Gateway{
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
-    @Override
-    public List<String> readIntByName(int type, String targetName) {
-        String sql = "select * from TEST where name = '" + targetName + "'";
-        return new ArrayList<>(read(sql, type, INT));
-    }
 
     @Override
     public List<String> readRow(int targetID) {
@@ -90,6 +88,14 @@ public class TestGateway extends Gateway{
         return result;
     }
 
+    /**
+     * New test string.
+     *
+     * @param testName the test name
+     * @param authorID the author id
+     * @param price    the price
+     * @return the string
+     */
     public String newTest(String testName, int authorID, int price){
         java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
         String questions = "";
@@ -105,7 +111,11 @@ public class TestGateway extends Gateway{
             preparedStatement.setInt(4, price);
             preparedStatement.setString(5, questions);
 
-            return createGetID(preparedStatement);
+            String result = createGetID(preparedStatement);
+            preparedStatement.close();
+            connection.close();
+
+            return result;
 
 
         } catch (SQLException e) {

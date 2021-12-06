@@ -1,8 +1,6 @@
 package BackEnd.Managers;
 
-import BackEnd.Entities.Test;
 import BackEnd.Entities.Question;
-import BackEnd.Entities.QuestionInterface;
 import BackEnd.Interfaces.GeneralReadWriter;
 
 import java.util.ArrayList;
@@ -33,6 +31,22 @@ public class QuestionManager {
             return Integer.parseInt(result.get(0));
         }
         return -1;
+    }
+
+    public Question getQuestion(int qID){
+        List<String> question = questionGate.readRow(qID);
+        Question myQ = new Question(question.get(1), question.get(2), question.get(3),
+                Integer.parseInt(question.get(4)),qID);
+        return myQ;
+    }
+    public String getquestion(int id){
+        return getQuestion(id).getQuestion();
+    }
+    public String getAnswer(int id){
+        return getQuestion(id).getAnswer();
+    }
+    public int getMark(int id){
+        return getQuestion(id).getMarks();
     }
 
 

@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
-public class Ini {
+public class IniTest {
     public static Connection getConnection() {
         Connection conn = null;
         String driver = "com.mysql.cj.jdbc.Driver";//驱动程序名
-        String url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5454663";//url指向要访问的数据库study
-        String user = "sql5454663";//MySQL配置时的用户名
-        String password = "SinqmMLSgB";//MySQL配置时的密码
+        String url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5456611";//url指向要访问的数据库study
+        String user = "sql5456611";//MySQL配置时的用户名
+        String password = "9BF66dT8y5";//MySQL配置时的密码
         try {
             // 加载驱动类
             Class.forName(driver);
@@ -93,8 +93,6 @@ public class Ini {
                     " students VARCHAR(1000), " +
                     " posts VARCHAR(1000), " +
                     " testID VARCHAR(1000) , " +
-                    " answerString VARCHAR(1000) , " +
-                    " duedates VARCHAR(1000) , " +
                     " PRIMARY KEY ( id ))";
             statement.executeUpdate(sql);
             System.out.println("Created group table in given database...");
@@ -212,7 +210,6 @@ public class Ini {
     }
 
     public static void main(String[] args) {
-        iniGroupTable();
 ////////////////
 //       System.out.println(new GroupManager(new GroupGateway()).createGroup(1,"group:teacher1"));
 ////        System.out.println(new GroupManager(new GroupGateway()).createGroup(2,"group:teacher2"));

@@ -1,13 +1,12 @@
 package BackEnd.Entities;
 
-import BackEnd.Entities.Question;
-import BackEnd.Entities.QuestionInterface;
+import BackEnd.Interfaces.QuestionInterface;
 import java.util.ArrayList;
 
-public abstract class Test {
+public class Test {
     protected String name;
-    protected int timeLimit;
     protected ArrayList<Question> questions;
+    protected ArrayList<Integer>  questionIds;
     protected int author;
     protected int Id;
     protected int price;
@@ -17,14 +16,13 @@ public abstract class Test {
      * Construct a test giving its name, time limit,
      * author and price
      * @param name name of the test
-     * @param timeLimit time limit of the test
      * @param author author of the test
      * @param price price of the test
      */
     
-    public Test(String name, int timeLimit, int author, int price){
+    public Test(String name, int author, int price){
         this.name=name;
-        this.timeLimit=timeLimit;
+
         this.questions=new ArrayList<>();
         this.author=author;
         this.price=price;
@@ -35,19 +33,19 @@ public abstract class Test {
      * Construct a test giving its name, time limit,
      * author, price and list of questions
      * @param name name of the test
-     * @param timeLimit time limit of the test
      * @param author author of the test
      * @param price price of the test
      * @param questions list of questions in this test
      */
     
-    public Test(String name, int timeLimit, int author, int price, ArrayList<Question> questions){
+    public Test(String name, int author, int price, ArrayList<Question> questions){
         this.name=name;
-        this.timeLimit=timeLimit;
         this.questions=questions;
         this.author=author;
         this.price=price;
     }
+
+
 
 
     /**
@@ -93,7 +91,10 @@ public abstract class Test {
         this.questions.add(q);
         return true;
     }
-
+    public boolean addQuestion(int qId){
+        this.questionIds.add(qId);
+        return true;
+    }
     /**
      * Delete a question from this test giving its name
      * @param q the question name want to delete
@@ -108,6 +109,7 @@ public abstract class Test {
         }
         return false;
     }
+
 
     /**
      * Delete a question from a test giving its ID
@@ -176,6 +178,13 @@ public abstract class Test {
         int[] result = new int[questions.size()];
         for(int i=0;i<questions.size();i++){
             result[i]=questions.get(i).getMarks();
+        }
+        return result;
+    }
+    public int[] getQuestionId(){
+        int[] result = new int[questions.size()];
+        for(int i=0;i<questions.size();i++){
+            result[i]=questions.get(i).getId();
         }
         return result;
     }
