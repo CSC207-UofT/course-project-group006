@@ -366,6 +366,28 @@ public class Group {
         }
         return result;
     }
+    public int[] getGrades(int testId, int strudentId){
+        SubmationData[] submation = testsResult.get(testId).get(strudentId);
+        if(submation!=null){
+            int[] result = new int[submation.length];
+            for(int i=0;i<submation.length;i++){
+                result[i]=submation[i].getMark();
+            }
+            return result;
+        }
+        return new int[0];
+    }
+    public String[] getComment(int testId, int strudentId){
+        SubmationData[] submation = testsResult.get(testId).get(strudentId);
+        if(submation!=null){
+            String[] result = new String[submation.length];
+            for(int i=0;i<submation.length;i++){
+                result[i]=submation[i].getComment();
+            }
+            return result;
+        }
+        return new String[0];
+    }
     public static void main(String[] args) {
 //        HashMap<Integer, HashMap<Integer, String[]>> testsResult=new HashMap<>();
 //        String[] a = new String[]{"a","b","c","d"};

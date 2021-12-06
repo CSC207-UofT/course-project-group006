@@ -65,6 +65,7 @@ public class TestSubmissionServlet extends TestServlet {
             grades[i]=Integer.parseInt(request.getParameter("Q"+i+"grade"));
         }
         groupManager.grade(groupId,testId,studentId,grades,new String[testSize]);
+        back(request,response);
     }
     public void back(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
