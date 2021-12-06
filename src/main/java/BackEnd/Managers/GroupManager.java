@@ -4,8 +4,10 @@ import BackEnd.Entities.Group;
 import BackEnd.Interfaces.ReadAll;
 import BackEnd.Interfaces.ReadNameID;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -243,6 +245,8 @@ public class GroupManager {
             String[] students = info.get(3).split(",");
             String[] posts = info.get(4).split(",");
             String[] tests = info.get(5).split(",");
+            String testAnswers = info.get(6);
+            String testDueDates = info.get(7);
             List<Integer> tIds = new ArrayList<>();
             for (String test : tests) {
                 try {
@@ -261,7 +265,9 @@ public class GroupManager {
                     //do nothing
                 }
             }
-            return new Group(Integer.parseInt(creater), groupName, sIds, tIds, posts);
+            //System.out.println("testAnswers:"+testAnswers);
+            //System.out.println("testDueDates"+testDueDates);
+            return new Group(Integer.parseInt(creater),groupName,sIds,id, List.of(posts),testAnswers,testDueDates);
         }
         return null;
     }
@@ -274,16 +280,48 @@ public class GroupManager {
         return Objects.requireNonNull(readGroup(id)).getTests();
     }
 
-    public boolean addTest(int id, int testId, java.time.LocalDateTime due) {
-        return Objects.requireNonNull(readGroup(id)).addTest(testId, due);
+    public boolean addTest(int id, int testId,java.time.LocalDateTime due){
+        Group g = readGroup(id);
+        assert g != null;
+        if(g.addTest(testId,due)) {
+           updateTest(id,g);
+            return true;
+        }
+        return false;
+    }
+    public boolean removeTest(int id, int testId){
+        System.out.println("testId:"+testId);
+        System.out.println("groupId:"+id);
+        Group g = readGroup(id);
+        assert g != null;
+        if(g.removeTest(testId)) {
+            System.out.println(g.getDuedates());
+            updateTest(id,g);
+            return true;
+        }
+        return false;
+    }
+    private void updateTest(int id, Group g){
+        updateStudentAnswer(id,g);
+        //System.out.println(g.testAnswers());
+        groupGate.write(8, List.of("" + id, g.dueDatesString()));
+        //System.out.println(g.dueDatesString());
+        groupGate.write(33, List.of("" + id, g.testIds()));
+        //System.out.println(g.testIds());
+    }
+    private void updateStudentAnswer(int id,Group g){
+        groupGate.write(7, List.of("" + id, g.testAnswers()));
+
     }
 
     public List<Integer> createdBy() {
         return new ArrayList<>();
     }
+    public void answerTest(int groupId, int testId, String[] answer, int studentId){
+        Group g = readGroup(groupId);
+        g.answerTest(testId,answer,studentId);
+        updateStudentAnswer(groupId,g);
 
-    public void answerTest(int groupId, int testId, String[] answer, int studentId) {
-        Objects.requireNonNull(readGroup(groupId)).answerTest(testId, answer, studentId);
     }
 
     public HashMap<Integer, String[]> getSubmition(int groupId, int testId) {
@@ -293,4 +331,10 @@ public class GroupManager {
     public List<String> posts(int id) {
         return Objects.requireNonNull(readGroup(id)).getAnnouncement();
     }
-}
+    public void grade(int group,int test, int student, int[] mark, String[] comment) {
+        Group g = readGroup(group);
+        assert g != null;
+        g.grade(test,student,mark,comment);
+        updateStudentAnswer(group,g);
+    }
+    }

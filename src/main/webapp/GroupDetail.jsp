@@ -57,6 +57,7 @@
                 <input type="submit" name="act" id="act" value="start">
                 <%}else if(request.getAttribute("userType").equals("T")){%>
                     <input type="submit" name="act" id="act" value="grade">
+                <input type="submit" name="act" id="act" value="removeTest">
                 <%}%>
             </form>
             <%}}%>
