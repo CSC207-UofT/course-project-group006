@@ -11,10 +11,6 @@ import java.util.List;
  */
 public class StudentGateway extends Gateway implements ReadNameID {
 
-    //private final int DATE = 4;
-    //private final int WORDS = 6;
-    //private final int LEVEL = 10;
-
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from STUDENT where id = " + targetID;

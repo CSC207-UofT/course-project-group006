@@ -9,11 +9,6 @@ import java.util.List;
  */
 public class QuestionGateway extends Gateway {
 
-    private final int NAME = 2;
-    private final int QUESTION = 3;
-    private final int ANSWER = 4;
-    private final int MARK = 5;
-
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from QUESTION where id = " + targetID;
@@ -71,6 +66,10 @@ public class QuestionGateway extends Gateway {
         //change one element: info:{questionID, newInfo} --> {studentID}/null
         int questionID = Integer.parseInt(info.get(0));
         String sql = null;
+        int NAME = 2;
+        int QUESTION = 3;
+        int ANSWER = 4;
+        int MARK = 5;
         if (type == NAME) {
             String newName = info.get(1);
             sql = "update QUESTION set name = '" + newName + "' where id = " + questionID;
