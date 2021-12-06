@@ -14,6 +14,7 @@ Users identified as students can choose to study in groups where he/she can acce
 #### Tests
 Users identified as students can access tests posted by teachers if they join groups or use auto-created quizzes as progress measurement if they chooses to study individually.
 Users identified as teachers can upload tests and get auto-graded scores from the website after students finish the test.
+Every test question will be able to have a specific mark for our website to calculate students' score and return to teachers.
 #### User Files
 The website will stores all he information online without using any local storage.
 #### Student Page
