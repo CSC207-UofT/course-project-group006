@@ -355,4 +355,10 @@ public class GroupManager {
     public List<String> posts(int id){
         return readGroup(id).getAnnouncement();
     }
-}
+    public void grade(int group,int test, int student, int[] mark, String[] comment) {
+        Group g = readGroup(group);
+        assert g != null;
+        g.grade(test,student,mark,comment);
+        updateStudentAnswer(group,g);
+    }
+    }

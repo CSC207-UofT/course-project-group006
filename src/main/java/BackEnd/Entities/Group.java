@@ -92,7 +92,22 @@ public class Group {
     public void setTestsResult(HashMap<Integer, HashMap<Integer, SubmationData[]>> testsResult) {
         this.testsResult = testsResult;
     }
-
+    public void grade(int test, int student, int[] mark, String[] comment){
+        System.out.println(Arrays.toString(mark));
+        System.out.println(Arrays.toString(comment));
+        SubmationData[] s=testsResult.get(test).get(student);
+        for (int i=0;i<s.length;i++){
+            int m = -1;
+            if (i < mark.length) {
+                m = mark[i];
+            }
+            String c = "";
+            if (i < comment.length && comment[i] != null) {
+                c = comment[i];
+            }
+            s[i].gread(m, c);
+        }
+    }
     public HashMap<Integer, LocalDateTime> getDuedates() {
         return duedates;
     }
@@ -186,6 +201,9 @@ public class Group {
     public boolean answerTest(int test, String[] a, int studentId) {
         if (testsResult.containsKey(test)) {
             HashMap<Integer, SubmationData[]> h = testsResult.get(test);
+            System.out.println(h);
+            System.out.println(Arrays.toString(a));
+            System.out.println(from(a));
             h.put(studentId, from(a));
             return true;
         }
@@ -329,6 +347,7 @@ public class Group {
         return result;
     }
     public SubmationData[] from(String[] input){
+        System.out.println(Arrays.toString(input));
         SubmationData[] result=new SubmationData[input.length];
         for (int k=0;k<input.length;k++){
             result[k]=new SubmationData(input[k]);
