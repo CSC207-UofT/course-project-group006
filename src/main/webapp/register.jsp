@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>JSP Page</title>
+    <title>Classroom</title>
 </head>
 <body>
 <label style="font-family: Garamond, serif;color: black;font-size: 80px;text-shadow: 2px 2px darksalmon;">&nbsp;Register</label><br>

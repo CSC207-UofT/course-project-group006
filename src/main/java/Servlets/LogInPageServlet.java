@@ -32,6 +32,7 @@ public class LogInPageServlet extends TestServlet {
      */
     public void Login(HttpServletRequest request, HttpServletResponse response){
         int result =studentManager.LogIn(request.getParameter("username"), request.getParameter("password"));
+        System.out.println(result);
         if(!(result==-1)){
             Cookie userId=new Cookie("userId",""+result);
             response.addCookie(userId);
