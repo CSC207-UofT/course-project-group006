@@ -204,4 +204,9 @@ public class GroupPageServlet extends TestServlet {
         groupManager.removeTest(groupId,testId);
         processRequest(request,response);
     }
+    public void postAnnouncement(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        groupManager.postAnnouncement(Integer.parseInt(request.getParameter("groupId")),request.getParameter("announcement"));
+        processRequest(request,response);
+    }
 }

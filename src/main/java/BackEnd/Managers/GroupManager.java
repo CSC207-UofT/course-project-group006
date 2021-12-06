@@ -270,7 +270,7 @@ public class GroupManager {
             String groupName = info.get(1);
             String creater = info.get(2);
             String[] students = info.get(3).split(",");
-            String[] posts = info.get(4).split(",");
+            String posts = info.get(4);
             String[] tests = info.get(5).split(",");
             String testAnswers = info.get(6);
             String testDueDates = info.get(7);
@@ -298,7 +298,7 @@ public class GroupManager {
             }
             //System.out.println("testAnswers:"+testAnswers);
             //System.out.println("testDueDates"+testDueDates);
-            return new Group(Integer.parseInt(creater),groupName,sIds,id, List.of(posts),testAnswers,testDueDates);
+            return new Group(Integer.parseInt(creater),groupName,sIds,id, posts,testAnswers,testDueDates);
         }
         return null;
     }
@@ -352,7 +352,7 @@ public class GroupManager {
     public HashMap<Integer,String[]> getSubmition(int groupId,int testId){
         return readGroup(groupId).getTestResults(testId);
     }
-    public List<String> posts(int id){
+    public String posts(int id){
         return readGroup(id).getAnnouncement();
     }
     public void grade(int groupId,int testId,int studentId,int[] grades,String[] comment){

@@ -21,10 +21,10 @@ public class Group {
     private HashMap<Integer, HashMap<Integer, SubmationData[]>> testsResult;
     private HashMap<Integer, HashMap<Integer, Integer>> testMarks;
     private HashMap<Integer, LocalDateTime> duedates;
-    private List<String> announcement;
+    private String announcement;
     private List<Integer> testIDs;
 
-    public Group(int teacher, String name, int[] students, int id, HashMap<Integer, HashMap<Integer, String[]>> tests, List<String> announcements, List<Integer> testIDs) {
+    public Group(int teacher, String name, int[] students, int id, HashMap<Integer, HashMap<Integer, String[]>> tests, String announcements, List<Integer> testIDs) {
         this.ID = id;
         this.teacher = teacher;
         this.name = name;
@@ -40,7 +40,7 @@ public class Group {
         this.announcement = announcements;
         this.testIDs = testIDs;
     }
-    public Group(int teacher, String name, int[] students, int id,List<String> announcements, String testResult,String duedates) {
+    public Group(int teacher, String name, int[] students, int id,String announcements, String testResult,String duedates) {
         this.ID = id;
         this.teacher = teacher;
         this.name = name;
@@ -58,7 +58,7 @@ public class Group {
     public Group(int groupID) {
         this.ID = groupID;
     }
-    public Group(int teacher,String name, int[] students, List<Integer> tests, String[] posts){
+    public Group(int teacher,String name, int[] students, List<Integer> tests, String posts){
         this.teacher=teacher;
         this.name=name;
         this.students=students;
@@ -67,7 +67,7 @@ public class Group {
         for (int t:tests) {
             duedates.put(t,LocalDateTime.now());
         }
-        this.announcement=List.of(posts);
+        this.announcement=posts;
     }
     public void setTeacher(int teacher) {
         this.teacher = teacher;
@@ -116,15 +116,15 @@ public class Group {
         this.duedates = duedates;
     }
 
-    public List<String> getAnnouncement() {
+    public String getAnnouncement() {
         if(announcement!=null){
         return announcement;}
-        return new ArrayList<String>();
+        return "";
     }
 
-    public void addAnnouncement(String announcement) {
-        this.announcement.add(announcement);
-    }
+//    public void addAnnouncement(String announcement) {
+//        this.announcement.add(announcement);
+//    }
 
     public List<Integer> getTestIDs() {
         return testIDs;
@@ -157,8 +157,7 @@ public class Group {
         this.students = new int[Group.MAXNUMBER];
         this.testsResult = new HashMap<>();
         this.duedates = new HashMap<>();
-        this.announcement = new ArrayList<String>(){
-        };
+        this.announcement ="";
         this.testIDs =new ArrayList<>() ;
     }
 

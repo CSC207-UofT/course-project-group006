@@ -93,11 +93,17 @@
 </div>
 <div class="middle">
     <%
-        List<String> posts = (List<String>) request.getAttribute("posts");
-        for (String post : posts) {
+        if(request.getAttribute("userType").equals("T")){
+        String post =  request.getAttribute("posts").toString();
     %>
-    <label><%=post%>
-    </label>
+    <label><%=post%></label>
+    <form action="GroupPageServlet" method="post">
+        <input type="hidden" name="groupId" id="groupId" value=<%=groupId%>>
+        <label for="announcement">
+            Enter your text for announcement
+        </label><input type="text" name="announcement" id="announcement">
+        <input type="submit" name="act" id="act" value="postAnnouncement">
+    </form>
     <%}%>
 </div>
 <div class="right" id="people" hidden>
