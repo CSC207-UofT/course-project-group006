@@ -31,6 +31,10 @@ public class TestManager {
         this.questionManager=questionManager;
     }
 
+    
+    public TestManager(GeneralReadWriter testGate){
+        this.testGate = testGate;
+    }
 
 //    /**
 //     * Create an Exam giving its name, time limit, author and price
