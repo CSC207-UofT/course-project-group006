@@ -9,19 +9,13 @@ We have jumped out the box the the directory and adopted a more general platform
 
 
 ### Functions
-#### Individual Study (TBC)
-Users identified as students can choose to study individually, he/she will be provided services such as wordlists and personal tests. The website will automatically generate quizzes at the student’s level.
 #### Group Study
 Users identified as students can also choose to study in groups, he/she will be assigned to a group and a teacher at a specific level. The website will provide a platform for the necessary connections between students and teachers.
 #### Tests
 Users identified as students can access tests posted by teachers if he/she joins groups or use auto-created quizzes as progress measurement if he/she chooses to study individually.
 Users identified as teachers can upload tests and get auto-graded scores from the website after students finish the test.
-#### Give Recommendation (TBC)
-The website offers groups and teachers to students, once the student users finish a diagnostics quiz to evaluate level.
 #### User Files
 The website will stores all he information online without using any local storage.
-#### Profit (TBC)
-Since student users need to buy a membership in order to access tests on the website. Half of the profit will be given to the teacher users so teachers can gain profit that encourages him/her to create more excellent tests for students and earn for living at the same time. (The other half will be used to run the website)
 #### Student Page
 The website creates a webpage for each registered student. Student users can see all the groups they have joined and are able to join new groups on the page.
 #### Teacher Page
