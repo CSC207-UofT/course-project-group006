@@ -132,7 +132,7 @@ public class TestManager {
         int index = 0;
         for (int i = 0; i < strings.length; i++) {
             array[i] = Integer.parseInt(strings[i]);
-            if (array[i] == testID) {
+            if (array[i] == qID) {
                 inTest = true;
                 index = i;
             }
