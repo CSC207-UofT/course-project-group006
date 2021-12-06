@@ -16,7 +16,7 @@ Users identified as students can access tests posted by teachers if they join gr
 Users identified as teachers can upload tests and get auto-graded scores from the website after students finish the test.
 Every test question will be able to have a specific mark for our website to calculate students' scores and return to teachers.
 #### User Files
-The website will stores all he information online without using any local storage.
+The website will stores all he information online using the MySQL database and without using any local storage.
 #### Student Page
 The website creates a webpage for each registered student. Student users can see all the groups they have joined and are able to join new groups on the page.
 #### Teacher Page
