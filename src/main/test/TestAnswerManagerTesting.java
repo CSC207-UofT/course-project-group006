@@ -23,20 +23,8 @@ public class TestAnswerManagerTesting {
         Gateway.user = "sql5456611";
         Gateway.password = "9BF66dT8y5";
         Gateway.url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5456611";
-        String username = "sql5456611";
-        String password = "9BF66dT8y5";
-        String url =  "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5456611";
-        Connection connection = DriverManager.getConnection(url, username, password);
-        Statement stmt = connection.createStatement();
-        String sql = "DROP TABLE TEST";
-        stmt.executeUpdate(sql);
-        sql = "DROP TABLE QUESTION";
-        stmt.executeUpdate(sql);
-        sql = "DROP TABLE TESTANSWER";
-        stmt.executeUpdate(sql);
-        sql = "DROP TABLE QUESTIONANSWER";
-        stmt.executeUpdate(sql);
-        Ini.ini();
+
+        IniTest.ini();
     }
     @After
     public void tearDown() throws SQLException {
@@ -51,8 +39,21 @@ public class TestAnswerManagerTesting {
 //        Statement stmt = connection.createStatement();
 //        String sql = "DROP TABLE TESTANSWER";
 //        stmt.executeUpdate(sql);
+        String username = "sql5456611";
+        String password = "9BF66dT8y5";
+        String url =  "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5456611";
+        Connection connection = DriverManager.getConnection(url, username, password);
+        Statement stmt = connection.createStatement();
+        String sql = "DROP TABLE TEST";
+        stmt.executeUpdate(sql);
+        sql = "DROP TABLE QUESTION";
+        stmt.executeUpdate(sql);
+        sql = "DROP TABLE TESTANSWER";
+        stmt.executeUpdate(sql);
+        sql = "DROP TABLE QUESTIONANSWER";
+        stmt.executeUpdate(sql);
 
-        Ini.ini();
+        IniTest.ini();
     }
     @Test (timeout = 50000)
     public void testTestAnswer() {
