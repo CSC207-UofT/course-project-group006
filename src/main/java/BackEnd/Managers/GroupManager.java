@@ -341,7 +341,7 @@ public class GroupManager {
         groupGate.write(7, List.of("" + id, g.testAnswers()));
 
     }
-    public List<Integer> createdBy(int Id){
+    public List<Integer> createdBy(){
         return new ArrayList<>();
     }
     public void answerTest(int groupId, int testId, String[] answer, int studentId){
@@ -354,5 +354,10 @@ public class GroupManager {
     }
     public List<String> posts(int id){
         return readGroup(id).getAnnouncement();
+    }
+    public void grade(int groupId,int testId,int studentId,int[] grades,String[] comment){
+       Group g = readGroup(groupId);
+       g.grade(testId,studentId,grades,comment);
+       updateTest(groupId,g);
     }
 }
