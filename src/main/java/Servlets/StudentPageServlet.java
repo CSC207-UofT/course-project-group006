@@ -13,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import BackEnd.Gateways.*;
 
 /**
  * @author darcy
@@ -40,7 +39,7 @@ public class StudentPageServlet extends TestServlet {
             }
         }
         List<Integer> joinedGroup = studentManager.getJoinedGroup(userId);
-        HashMap<Integer, String> gInfo = new HashMap<Integer, String>();
+        HashMap<Integer, String> gInfo = new HashMap<>();
         for (int i : joinedGroup) {
             gInfo.put(i, groupManager.getName(i));
         }
@@ -80,8 +79,7 @@ public class StudentPageServlet extends TestServlet {
         response.sendRedirect("StudentPageServlet");
     }
 
-    public void learn(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void learn(HttpServletRequest request, HttpServletResponse response) {
     }
 
     /**

@@ -37,7 +37,7 @@ public class TestSubmissionServlet extends TestServlet {
         int groupId = Integer.parseInt(request.getParameter("groupId"));
         request.setAttribute("groupId", groupId);
         int studentId = Integer.parseInt(request.getParameter("studentId"));
-        request.setAttribute("studentId", studentId);;
+        request.setAttribute("studentId", studentId);
         if(groupManager.getSubmition(groupId, testId)!=null){
             String[] answers = groupManager.getSubmition(groupId, testId).get(studentId);
             request.setAttribute("answers", answers);
@@ -54,8 +54,7 @@ public class TestSubmissionServlet extends TestServlet {
         r.forward(request, response);
 
     }
-    public void grade(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void grade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int testSize= Integer.parseInt(request.getParameter("testSize"));
         int testId= Integer.parseInt(request.getParameter("testId"));
         int groupId= Integer.parseInt(request.getParameter("groupId"));

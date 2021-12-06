@@ -5,15 +5,8 @@ package Servlets;
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-import BackEnd.Gateways.StudentGateway;
-import BackEnd.Gateways.TeacherGateway;
-import BackEnd.Managers.TeacherManager;
-import BackEnd.Managers.UserManager;
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
