@@ -4,7 +4,7 @@
  */
 package Servlets;
 
-import BackEnd.Entities.QuestionInterface;
+import BackEnd.Interfaces.QuestionInterface;
 
 import java.io.IOException;
 import java.util.List;
