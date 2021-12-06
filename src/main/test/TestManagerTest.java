@@ -1,25 +1,16 @@
 import BackEnd.Gateways.*;
-import BackEnd.Managers.QuestionManager;
 import BackEnd.Managers.TestManager;
-import BackEnd.Managers.UserManager;
 import org.junit.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.*;
-import java.util.List;
 
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertEquals;
 
 public class TestManagerTest {
     @Before
     public void setUp() throws SQLException {
-//        Server: sql5.freemysqlhosting.net
-//        Name: sql5456611
-//        Username: sql5456611
-//        Password: 9BF66dT8y5
-//        Port number: 3306
         Gateway.driver = "com.mysql.cj.jdbc.Driver";
         Gateway.user = "sql5456611";
         Gateway.password = "9BF66dT8y5";

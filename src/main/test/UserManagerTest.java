@@ -9,17 +9,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UserManagerTest {
     @Before
     public void setUp() {
-//        Server: sql5.freemysqlhosting.net
-//        Name: sql5456611
-//        Username: sql5456611
-//        Password: 9BF66dT8y5
-//        Port number: 3306
         Gateway.driver = "com.mysql.cj.jdbc.Driver";
         Gateway.user = "sql5456611";
         Gateway.password = "9BF66dT8y5";
@@ -46,8 +41,8 @@ public class UserManagerTest {
 
     @Test(timeout = 5000)
     public void testStudyGroup() {
-        int studentID1 = new UserManager(new StudentGateway()).createUser("StudentName", "StudentPass", "StudentEmail");
-        int teacherID1 = new UserManager(new TeacherGateway()).createUser("TeacherName", "TeacherPass", "TeacherEmail");
+        new UserManager(new StudentGateway()).createUser("StudentName", "StudentPass", "StudentEmail");
+        new UserManager(new TeacherGateway()).createUser("TeacherName", "TeacherPass", "TeacherEmail");
         String studentID = new StudentGateway().readIntByName(1, "StudentName").get(0);
         String teacherID = new TeacherGateway().readIntByName(1, "TeacherName").get(0);
         int a = new UserManager(new StudentGateway()).loginWithUsername("StudentName", "StudentPass", new StudentGateway(), new TeacherGateway());
@@ -57,15 +52,15 @@ public class UserManagerTest {
         boolean j = new UserManager(new TeacherGateway()).addGroupToUser(Integer.parseInt(teacherID), 1, 600);
         boolean k = new UserManager(new StudentGateway()).removeGroupFromUser(Integer.parseInt(studentID),1, 500);
         boolean m = new UserManager(new TeacherGateway()).removeGroupFromUser(Integer.parseInt(teacherID), 1, 600);
-        assertEquals(true, i);
-        assertEquals(true, j);
-        assertEquals(true, k);
-        assertEquals(true, m);
+        assertTrue(i);
+        assertTrue(j);
+        assertTrue(k);
+        assertTrue(m);
         assertEquals(Integer.parseInt(studentID), a);
-        assertEquals(true, b);
-        assertEquals(true, c);
+        assertTrue(b);
+        assertTrue(c);
     }
-    @Test(timeout = 5000)
+    @Test(timeout = 50000)
     public void testRegister() {
         int studentID = new UserManager(new StudentGateway()).createUser("StudentName", "StudentPass", "StudentEmail");
         int teacherID = new UserManager(new TeacherGateway()).createUser("TeacherName", "TeacherPass", "TeacherEmail");
