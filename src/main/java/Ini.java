@@ -93,6 +93,8 @@ public class Ini {
                     " students VARCHAR(1000), " +
                     " posts VARCHAR(1000), " +
                     " testID VARCHAR(1000) , " +
+                    " answerString VARCHAR(1000) , " +
+                    " duedates VARCHAR(1000) , " +
                     " PRIMARY KEY ( id ))";
             statement.executeUpdate(sql);
             System.out.println("Created group table in given database...");
@@ -210,6 +212,7 @@ public class Ini {
     }
 
     public static void main(String[] args) {
+        iniGroupTable();
 ////////////////
 //       System.out.println(new GroupManager(new GroupGateway()).createGroup(1,"group:teacher1"));
 ////        System.out.println(new GroupManager(new GroupGateway()).createGroup(2,"group:teacher2"));
