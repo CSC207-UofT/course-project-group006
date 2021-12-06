@@ -350,7 +350,7 @@ public class Group {
         System.out.println(Arrays.toString(input));
         SubmationData[] result=new SubmationData[input.length];
         for (int k=0;k<input.length;k++){
-            result[k]=new SubmationData(input[k]);
+            result[k]=new SubmationData(input[k],-1,"");
         }
         return result;
     }
@@ -384,10 +384,17 @@ public class Group {
 //        String s = formatDueDate(test);
 //        System.out.println(s);
 //        System.out.println(deformatDueDate(s));
-            System.out.println("yyyy-MM-dd HH:mm:ss".charAt(16));
+        SubmationData s =new SubmationData("aaaaaaaa",-1,"");
+        s.gread(1,"");
+        SubmationData s2 = new SubmationData("a",-1,"");
+        SubmationData[] s1 = new SubmationData[]{s,s2};
+        HashMap<Integer,SubmationData[]> a = new HashMap<>();
+        a.put(1,s1);
+
+            System.out.println(s);
 
     }
-    private class SubmationData{
+    private static class SubmationData{
         private String answer;
         private int mark=-1;
         private String comment="";
@@ -417,7 +424,7 @@ public class Group {
             return this.answer+"%&"+this.mark+"&"+this.comment+"%";
         }
         public SubmationData(String input){
-            String s[] = input.split("&");
+            String[] s = input.split("&");
             answer=s[0].replace("%","");
             mark=Integer.parseInt(s[1]);
             comment=s[2].replace("%","");
