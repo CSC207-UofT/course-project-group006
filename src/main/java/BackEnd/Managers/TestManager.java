@@ -14,16 +14,9 @@ import java.util.List;
 //creat test, add question, submit, grade question, grade test
 public class TestManager {
     private HashMap<Integer, Test> allTest;
-    private GeneralReadWriter testGate;
+    private final GeneralReadWriter testGate;
 
-    /**
-     * Construct a Test manager giving some tests
-     * @param allTest the list of tests
-     */
-    public TestManager(HashMap<Integer, Test> allTest){
-        this.allTest = allTest;
 
-    }
     public TestManager(GeneralReadWriter testGate){
         this.testGate = testGate;
     }

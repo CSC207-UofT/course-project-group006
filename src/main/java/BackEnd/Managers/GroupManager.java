@@ -27,23 +27,6 @@ public class GroupManager {
     }
 
 
-//    TODO:
-//    public HashMap<Integer, LocalDateTime> getTests(int id) {
-//        return groups.get(id).getTests();
-//    }
-//
-//    public void addTest(int id, int t, LocalDateTime due) {
-//        groups.get(id).addTest(t, due);
-//    }
-//
-//    public boolean answerTest(int groupId, int test, String[] a, int studentId) {
-//        return groups.get(groupId).answerTest(test, a, studentId);
-//    }
-//
-//    public HashMap<Integer, String[]> getSubmition(int groupId, int testId) {
-//        return groups.get(groupId).getTestResults(testId);
-//    }
-
 
     /**
      * Create group int.
@@ -139,23 +122,16 @@ public class GroupManager {
     }
 
 
-    /**
-     * Gets joined group.
-     *
-     * @param studentID   the student id
-     * @param studentGate the student gate
-     * @return the joined group
-     */
-    public HashMap<Integer, String> getJoinedGroup(int studentID, ReadNameID studentGate) {
-        HashMap<Integer, String> result = new HashMap<>();
-        UserManager studentManager = new UserManager(studentGate);
-        int[] IDList = studentManager.getGroupsFromUser(studentID, 500);
-        for (int id : IDList) {
-            String name = getName(id);
-            result.put(id, name);
-        }
-        return result;
-    }
+    //    public HashMap<Integer, String> getJoinedGroup(int studentID, ReadNameID studentGate) {
+//        HashMap<Integer, String> result = new HashMap<>();
+//        UserManager studentManager = new UserManager(studentGate);
+//        int[] IDList = studentManager.getGroupsFromUser(studentID, 500);
+//        for (int id : IDList) {
+//            String name = getName(id);
+//            result.put(id, name);
+//        }
+//        return result;
+//    }
 
     /**
      * Remove student from group boolean.
@@ -291,15 +267,15 @@ public class GroupManager {
     }
 
     public String getNameById(int id) {
-        return this.readGroup(id).getName();
+        return Objects.requireNonNull(this.readGroup(id)).getName();
     }
 
     public HashMap<Integer, LocalDateTime> getTests(int id) {
-        return readGroup(id).getTests();
+        return Objects.requireNonNull(readGroup(id)).getTests();
     }
 
     public boolean addTest(int id, int testId, java.time.LocalDateTime due) {
-        return readGroup(id).addTest(testId, due);
+        return Objects.requireNonNull(readGroup(id)).addTest(testId, due);
     }
 
     public List<Integer> createdBy() {
@@ -311,7 +287,7 @@ public class GroupManager {
     }
 
     public HashMap<Integer, String[]> getSubmition(int groupId, int testId) {
-        return readGroup(groupId).getTestResults(testId);
+        return Objects.requireNonNull(readGroup(groupId)).getTestResults(testId);
     }
 
     public List<String> posts(int id) {
