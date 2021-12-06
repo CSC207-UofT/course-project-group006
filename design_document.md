@@ -18,7 +18,7 @@ Every test question will be able to have a specific mark for our website to calc
 #### User Files
 The website will stores all he information online using the MySQL database and without using any local storage.
 #### Student Page
-The website creates a webpage for each registered student. Student users can see all the groups they have joined and are able to join new groups on the page. After the student access to the group detail page, he/she will be able to access the tests.
+The website creates a webpage for each registered student. Student users can see all the groups they have joined and are able to join new groups on the page. After the student access to the group detail page, he/she will be able to access the tests created by teachers.
 #### Teacher Page
 The website creates a webpage for every teacher user. Teacher users can see all the groups they have and are able to delete students from groups. They can also access their tests on the page by pressing the tests button.
 
