@@ -12,7 +12,7 @@ import java.sql.Statement;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertEquals;
 
-public class UserManagerTesting {
+public class UserManagerTest {
     @Before
     public void setUp() {
 //        Server: sql5.freemysqlhosting.net

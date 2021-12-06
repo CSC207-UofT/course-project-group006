@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertEquals;
 
-public class TestManagerTesting {
+public class TestManagerTest {
     @Before
     public void setUp() throws SQLException {
 //        Server: sql5.freemysqlhosting.net
