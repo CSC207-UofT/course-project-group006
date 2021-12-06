@@ -48,7 +48,7 @@ public class TestPageServlet extends TestServlet {
     public void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int testId = testManager.creatTest(request.getParameter("testName"), getUserId(request),0);
-        //teacherManager.addTest(getUserId(request),testId);
+        teacherManager.addTest(getUserId(request),testId);
         processRequest(request,response);
     }
     public void detal(HttpServletRequest request, HttpServletResponse response)
