@@ -3,9 +3,8 @@ package BackEnd.Managers;
 
 import BackEnd.Entities.Test;
 import BackEnd.Entities.Question;
-import BackEnd.Entities.QuestionInterface;
+import BackEnd.Interfaces.QuestionInterface;
 import BackEnd.Interfaces.GeneralReadWriter;
-import BackEnd.Managers.QuestionManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,8 +66,10 @@ public class TestManager {
         info.add(price + "");
         List<String> result =  testGate.write(1, info);
         if (result != null){
+
             return Integer.parseInt(result.get(0));
         }
+
         return -1;
     }
 
@@ -180,17 +181,11 @@ public class TestManager {
 //
 //    }
 
-    /**
-     * Get the test from manager
-     * @param Id the ID of the test
-     * @return the test has given ID
-     */
-    private Test getTest(int Id){
-        return allTest.get(Id);
-    }
 
-    public String getTestName(int id){
-        return(allTest.get(id).getName());
+
+    public String getTestName(int testID){
+        List<String> result = testGate.readRow(testID);
+        return result.get(1);
     }
 
 

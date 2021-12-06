@@ -1,8 +1,5 @@
 package BackEnd.Entities;
 
-import BackEnd.Entities.Question;
-import BackEnd.Entities.QuestionInterface;
-
 
 public class Answer {
     private int student;

@@ -1,6 +1,8 @@
 package BackEnd.Entities;
 
-public class Question implements QuestionInterface{
+import BackEnd.Interfaces.QuestionInterface;
+
+public class Question implements QuestionInterface {
     private String name;
     private String question;
     private String answer;
