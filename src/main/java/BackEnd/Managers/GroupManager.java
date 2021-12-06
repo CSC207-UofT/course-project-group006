@@ -7,8 +7,10 @@ import BackEnd.Entities.Group;
 import BackEnd.Interfaces.ReadAll;
 import BackEnd.Interfaces.ReadNameID;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -270,6 +272,8 @@ public class GroupManager {
             String[] students = info.get(3).split(",");
             String[] posts = info.get(4).split(",");
             String[] tests = info.get(5).split(",");
+            String testAnswers = info.get(6);
+            String testDueDates = info.get(7);
             List<Integer> tIds = new ArrayList<>();
             if(tests!=null) {
                 for (String test : tests) {
@@ -292,7 +296,7 @@ public class GroupManager {
                     }
                 }
             }
-            return new Group(Integer.parseInt(creater),groupName,sIds,tIds,posts);
+            return new Group(Integer.parseInt(creater),groupName,sIds,id, List.of(posts),testAnswers,testDueDates);
         }
         return null;
     }

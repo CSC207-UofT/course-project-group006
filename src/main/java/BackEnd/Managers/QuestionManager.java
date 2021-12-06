@@ -36,10 +36,18 @@ public class QuestionManager {
     public Question getQuestion(int qID){
         List<String> question = questionGate.readRow(qID);
         Question myQ = new Question(question.get(1), question.get(2), question.get(3),
-                Integer.parseInt(question.get(4)));
+                Integer.parseInt(question.get(4)),qID);
         return myQ;
     }
-
+    public String getquestion(int id){
+        return getQuestion(id).getQuestion();
+    }
+    public String getAnswer(int id){
+        return getQuestion(id).getAnswer();
+    }
+    public int getMark(int id){
+        return getQuestion(id).getMarks();
+    }
 
 
 

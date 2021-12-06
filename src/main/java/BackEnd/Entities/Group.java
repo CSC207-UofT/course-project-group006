@@ -30,6 +30,16 @@ public class Group {
         this.announcement = announcements;
         this.testIDs = testIDs;
     }
+    public Group(int teacher, String name, int[] students, int id,List<String> announcements, String testResult,String duedates) {
+        this.ID = id;
+        this.teacher = teacher;
+        this.name = name;
+        this.students = students;
+        this.announcement = announcements;
+        this.testsResult=deformat(testResult);
+        this.duedates=deformatDueDate(duedates);
+        this.testIDs= Arrays.asList(this.duedates.keySet().toArray(new Integer[1]));
+    }
 
     public Group(int groupID) {
         this.ID = groupID;
@@ -144,6 +154,7 @@ public class Group {
         //if (testsResult.containsKey(t)) {
         //  return false;
         //}
+        this.testIDs.add(t);
         testsResult.put(t, new HashMap<Integer, String[]>());
         this.duedates.put(t, duedate);
         return true;
