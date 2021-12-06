@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="RegisterServlet" method="Post" onsubmit="return checkLegal()">
+        <form  style="position: fixed; left: 40%;bottom:40%; background-color: darksalmon; padding: 30px; border-radius: 25px" action="RegisterServlet" method="Post" onsubmit="return checkLegal()">
             <label for="username">username</label>
             <input type="text" name="username" id="username"></br>
             <label for="password">password</label>

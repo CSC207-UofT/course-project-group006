@@ -2,6 +2,7 @@ package BackEnd.Entities;
 
 
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -215,20 +216,20 @@ public class Group {
         testsResult=deformat(input);
     }
     private static String format(HashMap<Integer, HashMap<Integer, String[]>> testsResult){
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (Integer i:testsResult.keySet()) {
-            result+=i+"@";
+            result.append(i).append("@");
             HashMap<Integer,String[]> sans = testsResult.get(i);
             for (Integer j: sans.keySet()) {
-                result+=j+"|";
+                result.append(j).append("|");
                 for (String s:sans.get(j)) {
-                    result+=s+"#";
+                    result.append(s).append("#");
                 }
-                result+="$";
+                result.append("$");
             }
-            result+="ö";
+            result.append("ö");
         }
-        return result;
+        return result.toString();
     }
     private static HashMap<Integer, HashMap<Integer, String[]>>deformat(String input){
         HashMap<Integer, HashMap<Integer, String[]>> result = new HashMap<>();
@@ -258,22 +259,58 @@ public class Group {
         }
         return result;
     }
+    public static String formatDueDate(HashMap<Integer,LocalDateTime> duedates){
+        String result = "";
+        for(Integer i:duedates.keySet()){
+            result+=i+"@"+duedates.get(i).toString().replace("T"," ").split("\\.")[0]+"|";
+        }
+        return result;
+    }
+    public static HashMap<Integer,LocalDateTime> deformatDueDate(String input){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        HashMap<Integer,LocalDateTime> result = new HashMap<>();
+        String[] info = input.split("\\|");
+        for(String s: info){
+            try {
+                String[] info2 = s.split("@");
+                result.put(Integer.parseInt(info2[0]),LocalDateTime.parse(info2[1], formatter));
+            }catch (NumberFormatException e){
+                //
+            }
+        }
+        return result;
+    }
     public static void main(String[] args) {
-        HashMap<Integer, HashMap<Integer, String[]>> testsResult=new HashMap<>();
-        String[] a = new String[]{"a","b","c","d"};
-        String[] b = new String[]{"aa","bb","cc","dd"};
-        String[] c = new String[]{"aaa","bbb","ccc","ddd"};
-        String[] d = new String[]{"aaaa","bbbb","cccc","dddd"};
-        HashMap<Integer, String[]> e = new HashMap<>();
-        e.put(1,a);
-        e.put(2,b);
-        HashMap<Integer,String[]> f = new HashMap<>();
-        f.put(1,c);
-        f.put(2,d);
-        testsResult.put(3,e);
-        testsResult.put(4,f);
-        String s = format(testsResult);
+//        HashMap<Integer, HashMap<Integer, String[]>> testsResult=new HashMap<>();
+//        String[] a = new String[]{"a","b","c","d"};
+//        String[] b = new String[]{"aa","bb","cc","dd"};
+//        String[] c = new String[]{"aaa","bbb","ccc","ddd"};
+//        String[] d = new String[]{"aaaa","bbbb","cccc","dddd"};
+//        HashMap<Integer, String[]> e = new HashMap<>();
+//        e.put(1,a);
+//        e.put(2,b);
+//        HashMap<Integer,String[]> f = new HashMap<>();
+//        f.put(1,c);
+//        f.put(2,d);
+//        testsResult.put(3,e);
+//        testsResult.put(4,f);
+//        String s = format(testsResult);
+//        System.out.println(s);
+//        System.out.println(deformat(s));
+//        String s = LocalDateTime.now().toString().replace("T"," ").split("\\.")[0];
+//
+//        System.out.println(s);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//        LocalDateTime dateTime = LocalDateTime.parse(s, formatter);
+        HashMap<Integer,LocalDateTime> test = new HashMap<>();
+        test.put(1,LocalDateTime.now());
+        test.put(2,LocalDateTime.now());
+        test.put(3,LocalDateTime.now());
+        test.put(4,LocalDateTime.now());
+        String s = formatDueDate(test);
         System.out.println(s);
-        System.out.println(deformat(s));
+        System.out.println(deformatDueDate(s));
+
+
     }
 }
