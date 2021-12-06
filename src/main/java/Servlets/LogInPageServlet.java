@@ -55,10 +55,10 @@ public class LogInPageServlet extends TestServlet {
         try {
             PrintWriter out = response.getWriter();
             //out.print(userManager.loginWithUsername(request.getParameter("username"), request.getParameter("password")));
-            //out.println("<script type=\"text/javascript\">");
-            //out.print("window.location='LogInPage.html';");
-            //out.println("alert('wrong username or password');");
-            //out.println("</script>");
+            out.println("<script type=\"text/javascript\">");
+            out.print("window.location='LogInPage.html';");
+            out.println("alert('wrong username or password');");
+            out.println("</script>");
 
             out.println(result);
         }catch(IOException e){
