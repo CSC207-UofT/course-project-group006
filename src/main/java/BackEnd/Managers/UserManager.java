@@ -1,10 +1,6 @@
 package BackEnd.Managers;
-
-import BackEnd.Entities.Teacher;
 import BackEnd.Entities.User;
 import BackEnd.Interfaces.ReadNameID;
-
-import BackEnd.Gateways.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +14,6 @@ public class UserManager {
     protected final int TEACHER = 600;
 
     protected final ReadNameID userGate;
-    private final ReadNameID userGateForOtherType;
 
     /**
      * Instantiates a new User manager.
@@ -27,17 +22,6 @@ public class UserManager {
      */
     public UserManager(ReadNameID userGate) {
         this.userGate = userGate;
-        this.userGateForOtherType = null;
-    }
-    /**
-     * Instantiates a new User manager.
-     *
-     * @param userGate the user gate
-     * @param userGateForOtherType the user gate fot the other user type
-     */
-    public UserManager(ReadNameID userGate,ReadNameID userGateForOtherType) {
-        this.userGate = userGate;
-        this.userGateForOtherType = userGateForOtherType;
     }
 
     /**

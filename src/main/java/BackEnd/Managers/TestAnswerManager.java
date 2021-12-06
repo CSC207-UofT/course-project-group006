@@ -7,15 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestAnswerManager {
-    private final GeneralReadWriter TestAnswerGate;
-    private final GeneralReadWriter TestGate;
-    private final ReadIDName QuestionAnswerGate;
     private int total_mark = 0;
 
     public TestAnswerManager(GeneralReadWriter readWriter, GeneralReadWriter rw, ReadIDName r) {
-        this.TestAnswerGate = readWriter;
-        this.TestGate = rw;
-        this.QuestionAnswerGate = r;
     }
 
     public int createTestAnswer(int testID, int studentID, GeneralReadWriter TestAnswerGate, GeneralReadWriter TestGate, ReadIDName QuestionAnswerGate) {
