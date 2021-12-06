@@ -360,4 +360,7 @@ public class GroupManager {
        g.grade(testId,studentId,grades,comment);
        updateTest(groupId,g);
     }
+    public int[] getMarks(int groupId, int testId, int studentId){
+        return readGroup(groupId).getGrades(testId,studentId);
+    }
 }

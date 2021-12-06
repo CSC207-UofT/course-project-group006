@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import BackEnd.Command;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -67,7 +68,25 @@ public class GroupPageServlet extends TestServlet {
         request.setAttribute("Tests",groupManager.getTests(groupId));
         for(Integer i:groupManager.getTests(groupId).keySet()){
             request.setAttribute("Tests"+i+"name",testManager.getTestName(i));
+            if(Objects.equals(type, "S")){
+                int[] markgot = groupManager.getMarks(groupId,i,userId);
+                //System.out.println(Arrays.toString(markgot));
+                if(markgot!=null) {
+                    int[] totalMark = testManager.getMarks(i);
+                    int total = 0;
+                    int got = 0;
+                    for (int j : totalMark) {
+                        total += j;
+                    }
+                    for (int j : markgot) {
+                        got += j;
+                    }
+                    request.setAttribute("test" + i + "total", total);
+                    request.setAttribute("test" + i + "got", got);
+                }
+            }
         }
+
         RequestDispatcher r = request.getRequestDispatcher("GroupDetail.jsp");
         r.forward(request, response);
     }
