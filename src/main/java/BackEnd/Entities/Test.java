@@ -1,7 +1,6 @@
 package BackEnd.Entities;
 
-import BackEnd.Entities.Question;
-import BackEnd.Entities.QuestionInterface;
+import BackEnd.Interfaces.QuestionInterface;
 import java.util.ArrayList;
 
 public class Test {

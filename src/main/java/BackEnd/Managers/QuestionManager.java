@@ -1,8 +1,6 @@
 package BackEnd.Managers;
 
-import BackEnd.Entities.Test;
 import BackEnd.Entities.Question;
-import BackEnd.Entities.QuestionInterface;
 import BackEnd.Interfaces.GeneralReadWriter;
 
 import java.util.ArrayList;
