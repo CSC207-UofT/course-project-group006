@@ -3,6 +3,7 @@ import BackEnd.Interfaces.ReadIDName;
 import BackEnd.Managers.GroupManager;
 import BackEnd.Managers.QuestionAnswerManager;
 import BackEnd.Interfaces.GeneralReadWriter;
+import BackEnd.Managers.QuestionManager;
 import BackEnd.Managers.TestAnswerManager;
 
 import java.util.ArrayList;
@@ -182,7 +183,7 @@ public class Ini {
                     " groupID INT, " +
                     " PRIMARY KEY ( id )) CHARACTER SET = utf8";
             statement.executeUpdate(sql);
-            System.out.println("Created answer table in given database...");
+            System.out.println("Created questionAnswer table in given database...");
             statement.close();
             connection.close();
             return true;
@@ -202,7 +203,7 @@ public class Ini {
                     " mark INT, " +
                     " PRIMARY KEY ( id )) CHARACTER SET = utf8";
             statement.executeUpdate(sql);
-            System.out.println("Created answer table in given database...");
+            System.out.println("Created testAnswer table in given database...");
             statement.close();
             connection.close();
             return true;
@@ -307,9 +308,12 @@ public class Ini {
 //        int i = questionAnswerManager.createQuestionAnswer(3, "香蕉", 1, 1, dd);
 //        int k = questionAnswerManager.createQuestionAnswer(3, "香蕉", 2, 1, dd);
 //        int j = questionAnswerManager.createQuestionAnswer(3, "苹果", 1, 1, dd);
+//        ReadIDName bb = new QuestionAnswerGateway();
 //        TestAnswerManager testAnswerManager = new TestAnswerManager(aa, cc, bb);
 //        int n = testAnswerManager.createTestAnswer(1, 1, aa, cc, bb);
 //        System.out.println(n);
+//        GeneralReadWriter aa = new QuestionGateway();
+//        new QuestionManager(aa).addQuestion("bbbb", "bbbb", "bbbb", 10);
 //        List<String> list = new ArrayList<>();
 //        list.add(1 + "");
 //        list.add(2 + "");
@@ -343,6 +347,14 @@ public class Ini {
 //        list.add(1 + "");
 //        List<String> result = bb.write(1, list);
 //        System.out.println(result);
+        List<String> info = new ArrayList<>();
+        String name = "jacky";
+        int author = 10;
+        int price = 20;
+        info.add(name);
+        info.add(author+"");
+        info.add(price+"");
+        new TestGateway().write(1, info);
 
     }
 }

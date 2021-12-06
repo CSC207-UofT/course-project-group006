@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://sql5.freemysqlhosting.net:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="MySQL - @sql5.freemysqlhosting.net" uuid="e6cae098-3746-4e12-9b53-4167c61db84b">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://sql5.freemysqlhosting.net:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

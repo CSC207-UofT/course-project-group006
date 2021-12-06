@@ -99,8 +99,9 @@ public class TestGateway extends Gateway{
             preparedStatement.setDate(3, sqlDate);
             preparedStatement.setInt(4, price);
             preparedStatement.setString(5, questions);
-
-            return createGetID(preparedStatement);
+            String result = createGetID(preparedStatement);
+            connection.close();
+            return result;
 
 
         } catch (SQLException e) {

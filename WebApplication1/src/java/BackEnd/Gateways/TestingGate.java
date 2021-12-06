@@ -1,12 +1,14 @@
+
 package BackEnd.Gateways;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestingGate extends Gateway {
-
+// only for testing and has no connection
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
+
         return null;
     }
 

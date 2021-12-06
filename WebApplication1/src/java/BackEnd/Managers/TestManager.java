@@ -86,7 +86,7 @@ public class TestManager {
      * @return True if the question is added. False if the test doesn't exist.
      */
     public boolean addQuestionToTest(int testID, int questionID){
-        List<String> result = testGate.readByID(222, 13, testID);
+        List<String> result = testGate.readByID(222, 6, testID);
 
         if (result == null){
             return false;
@@ -96,7 +96,7 @@ public class TestManager {
             List<String> info = new ArrayList<>();
             info.add(testID + "");
             info.add(questionID + "");
-            testGate.write(33, info);
+            testGate.write(13, info);
 
             return true;
         }

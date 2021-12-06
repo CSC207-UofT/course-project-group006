@@ -14,7 +14,6 @@ public class TestAnswerGateway extends Gateway{
         String sql = "select * from TESTANSWER where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
-    // no name in TESTANSWER table
 
     @Override
     public List<String> readRow(int targetID) {
@@ -91,7 +90,6 @@ public class TestAnswerGateway extends Gateway{
             preparedStatement.setInt(1, testID);
             preparedStatement.setInt(2, studentID);
             preparedStatement.setInt(3, mark);
-            preparedStatement.executeUpdate();
             String result = createGetID(preparedStatement);
             statement.close();
             connection.close();
