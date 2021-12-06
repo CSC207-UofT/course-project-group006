@@ -74,9 +74,14 @@
         </label>
         <input type="hidden" name="testId" id="testId" value=<%=i%>>
         <input type="hidden" name="groupId" id="groupId" value=<%=groupId%>>
-        <%if (request.getAttribute("userType").equals("S")) {%>
+        <%if (request.getAttribute("userType").equals("S")) {
+            if(request.getAttribute("test" + i + "got")==null){
+        %>
         <input type="submit" name="act" id="act" value="start">
-        <%} else if (request.getAttribute("userType").equals("T")) {%>
+        <%}else{%>
+        <label><%=""+request.getAttribute("test" + i + "got")+"/"+request.getAttribute("test" + i + "total")%></label>
+        <%
+                }} else if (request.getAttribute("userType").equals("T")) {%>
         <input type="submit" name="act" id="act" value="grade">
         <%}%>
     </form>
