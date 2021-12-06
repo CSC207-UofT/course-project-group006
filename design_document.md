@@ -2,7 +2,10 @@
 ## Updated specification
 ### Introduction
 
+
 We have jumped out the box the the directory and adopted a more general platform suitable for any kind of interactive learning! Teachers can form study groups, create questions and form tests that can be assigned to study groups. Once a question/test is completed, it becomes the property of the teacher. In the future, there will be ways for teachers to profit from these creations. In the future, there will be ways for teachers to profit from these creations. Students may use the website to join study groups and learn with other students with the benefit of having a teacher to provide personalized tests.
+
+
 
 
 ### Functions
@@ -25,26 +28,35 @@ The website creates a webpage for each registered student. Student users can see
 The website creates a webpage for every teacher user. Teacher users can see all the groups they have and are able to delete students from groups. They can also access their tests on the page by pressing the tests button.
 
 
-## Functionality
-For now, our program can do most parts said by our specification such as creating groups and tests. We even implemented an online database and web ui to our program. However, since this is our first time coding a web program, we have faced many difficulties along the way. Our front end and back end code can work perfectly seperateingly, but we want to challenge ourselves more by connecting them together for phase 1. This process created lots of issues and we have tried our best to overcome them. We understand that our program right now is no way close to being professional, but we will absolutely move towards that direction in the future.
 
-Our program is able to store and load state through accessing an online database. All the information is organized and stored in the remote rather than local. All states of the users will be saved, for example, if a teacher creates a question, it will be permanently stored in the database unless they decide to delete it. This is not affected by time and location since everything is stored real-time.
+
+## Functionality
+For now, our program can do most parts said by our specification such as creating groups and tests. We even implemented an online database and web ui to our program. However, since this is our first time coding a web program, we have faced many difficulties along the way. Our front end and back end code can work perfectly seperately, but we want to challenge ourselves more by connecting them together. This process created lots of issues and we have tried our best to overcome them. 
+
+
+Our program is able to store and load states through accessing an online database. All the information is organized and stored remotely rather than locally. All states of the users will be saved, for example, if a teacher creates a question, it will be permanently stored in the database unless they decide to delete it. This is not affected by time and location since everything is stored real-time.
+
 
 We think we are ambitious enough for our group size. We unfortunately lost one member along the way, and everyone immediately felt the weight added to us. We are challenging ourselves by doing web developing and online databases since these two are completely new to all the group members. We are also planning to upgrade from localhost to online hosting in the future, which is another big challenge for us.
+
+
 
 
 ## Design Decision
 We designed to let our users respond in the front end, and then the data is sent to the database. After processing functions, the response data will be sent back to users. We designed to ensure that our website can hold enough users at the same time, which avoids that when several users are using at the same time, the program will be confused which to process.  
 
+
 We satisfy the following principles of Universal Design:
 
-Tolerance of error: Pop up warning for important actions: To avoid some actions by mistakes, our website allows double checking for users in the important moves such as deleting students from group and quitting from group. 
+Equitable Use: A login page with a large logo and obvious instruct is friendly to people with visual disabilities
 
-Simple and Intuitive Use: Different clarified buttons control specific functionality, all buttons have distinct functionalities, all buttons are labelled with clear meaning about what the button leads to, which helps users to quickly identify where they are towarding.  
+Tolerance of error: Pop up warning for important actions: To avoid some actions by mistakes, our website allows double-checking for users in the important moves such as deleting students from the group and quitting from the group. 
 
-Low Physical Effort: It does not require repeatable actions to use the website. There are no functionalities that requires multiple taps to be accessed  
+Simple and Intuitive Use: Different clarified buttons control specific functionality, all buttons have distinct functionalities, all buttons are labelled with clear meaning about what the button leads to, which helps users to quickly identify where they are toward.  
 
-Perceptible Information: clear instruction to functions with concise and precise descriptions. For example, the login page only has two buttons, the login and the register buttons.  
+Low Physical Effort: It does not require repeatable actions to use the website. There are no functionalities that require multiple taps to be accessed  
+
+Perceptible Information: clear instruction to functions with concise and precise descriptions. For example, the login page only has two buttons, the login and the register buttons. 
 
 
 ## Clean Architecture
