@@ -3,7 +3,7 @@
 ### Introduction
 
 
-We have jumped out the box the the directory and adopted a more general platform suitable for any kind of interactive learning! Teachers can form study groups, create questions and form tests that can be assigned to study groups. Once a question/test is completed, it becomes the property of the teacher. In the future, there will be ways for teachers to profit from these creations. In the future, there will be ways for teachers to profit from these creations. Students may use the website to join study groups and learn with other students with the benefit of having a teacher to provide personalized tests.
+We have jumped out the box the the directory and adopted a more general platform suitable for any kind of interactive learning! Teachers can form study groups, create questions and form tests that can be assigned to study groups. Once a question/test is completed, it becomes the property of the teacher. In the future, there will be ways for teachers to profit from these creations. Students may use the website to join study groups and learn with other students with the benefit of having a teacher to provide personalized tests.
 
 
 
