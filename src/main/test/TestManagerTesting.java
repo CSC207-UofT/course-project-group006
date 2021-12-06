@@ -45,7 +45,7 @@ public class TestManagerTesting {
     @Test (timeout = 50000)
     public void testTest() {
         TestGateway testGateway = new TestGateway();
-        int i = new TestManager(testGateway).creatTest("test", 1, 10);
+        int i = new TestManager(testGateway,new QuestionManager(new QuestionGateway())).creatTest("test", 1, 10);
         String j = testGateway.readByID(222, 2, i).get(0);
         String k = testGateway.readByID(111, 3, i).get(0);
         String m = testGateway.readByID(111, 5, i).get(0);

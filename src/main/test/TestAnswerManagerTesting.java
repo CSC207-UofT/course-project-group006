@@ -64,9 +64,9 @@ public class TestAnswerManagerTesting {
         ReadIDName bb = new QuestionAnswerGateway();
         int questionID = new QuestionManager(questionGateway).addQuestion("test", "apple", "pingguo", 5);
         int questionID1 = new QuestionManager(questionGateway).addQuestion("test2", "banana", "xiangjiao", 4);
-        int testID = new TestManager(testGateway).creatTest("test", 1, 10);
-        new TestManager(testGateway).addQuestionToTest(1, 1);
-        new TestManager(testGateway).addQuestionToTest(1, 2);
+        int testID = new TestManager(testGateway,new QuestionManager(questionGateway)).creatTest("test", 1, 10);
+        new TestManager(testGateway,new QuestionManager(questionGateway)).addQuestionToTest(1, 1);
+        new TestManager(testGateway,new QuestionManager(questionGateway)).addQuestionToTest(1, 2);
         int questionAnswerID = new QuestionAnswerManager(questionAnswerGateway).createQuestionAnswer(questionID, "pingguo", 1, 1, bb);
         int questionAnswerID2 = new QuestionAnswerManager(questionAnswerGateway).createQuestionAnswer(questionID, "ping", 2, 1, bb);
         int questionAnswerID3 = new QuestionAnswerManager(questionAnswerGateway).createQuestionAnswer(2, "xiangjiao", 1, 1, bb);

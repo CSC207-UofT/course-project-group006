@@ -144,12 +144,20 @@ public class TestServlet extends HttpServlet {
     }// </editor-fold>
     public int getUserId(HttpServletRequest request){
         Cookie[] c = request.getCookies();
-        int userId=-1;
         for (Cookie cookie : c) {
             if (cookie.getName().equals("userId")) {
                 return Integer.parseInt(cookie.getValue());
             }
         }
         return -1;
+    }
+    public String getUserType(HttpServletRequest request){
+        Cookie[] c = request.getCookies();
+        for (Cookie cookie : c) {
+            if (cookie.getName().equals("userType")) {
+                return cookie.getValue();
+            }
+        }
+        return "";
     }
 }

@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Collection;
+
 
 public class Group {
 
@@ -16,7 +18,8 @@ public class Group {
     private String name;
     private int ID;
     public static final int MAXNUMBER = 30;
-    private HashMap<Integer, HashMap<Integer, String[]>> testsResult;
+    private HashMap<Integer, HashMap<Integer, SubmationData[]>> testsResult;
+    private HashMap<Integer, HashMap<Integer, Integer>> testMarks;
     private HashMap<Integer, LocalDateTime> duedates;
     private List<String> announcement;
     private List<Integer> testIDs;
@@ -26,7 +29,14 @@ public class Group {
         this.teacher = teacher;
         this.name = name;
         this.students = students;
-        this.testsResult = tests;
+        this.testsResult = new HashMap<>();
+        for (int i:tests.keySet()){
+            HashMap<Integer,SubmationData[]> temp = new HashMap<>();
+            for (int j:tests.get(i).keySet()){
+                temp.put(j,from(tests.get(i).get(j)));
+            }
+            this.testsResult.put(i,temp);
+        }
         this.announcement = announcements;
         this.testIDs = testIDs;
     }
@@ -37,8 +47,12 @@ public class Group {
         this.students = students;
         this.announcement = announcements;
         this.testsResult=deformat(testResult);
+        //System.out.println(testResult);
         this.duedates=deformatDueDate(duedates);
-        this.testIDs= Arrays.asList(this.duedates.keySet().toArray(new Integer[1]));
+        //System.out.println(duedates);
+        this.testIDs= new ArrayList<>();
+        testIDs.addAll(this.duedates.keySet());
+        //System.out.println(testIDs);
     }
 
     public Group(int groupID) {
@@ -71,11 +85,11 @@ public class Group {
         this.ID = ID;
     }
 
-    public HashMap<Integer, HashMap<Integer, String[]>> getTestsResult() {
+    public HashMap<Integer, HashMap<Integer, SubmationData[]>> getTestsResult() {
         return testsResult;
     }
 
-    public void setTestsResult(HashMap<Integer, HashMap<Integer, String[]>> testsResult) {
+    public void setTestsResult(HashMap<Integer, HashMap<Integer, SubmationData[]>> testsResult) {
         this.testsResult = testsResult;
     }
 
@@ -155,15 +169,24 @@ public class Group {
         //  return false;
         //}
         this.testIDs.add(t);
-        testsResult.put(t, new HashMap<Integer, String[]>());
+        testsResult.put(t, new HashMap<Integer, SubmationData[]>());
         this.duedates.put(t, duedate);
         return true;
     }
-
+    public boolean removeTest(int t){
+        boolean result = this.testIDs.remove((Object) t);
+        if((this.testsResult.remove(t)==null)){
+            result = true;
+        }
+        if(!(this.duedates.remove(t)==null)){
+            result = true;
+        }
+        return result;
+    }
     public boolean answerTest(int test, String[] a, int studentId) {
         if (testsResult.containsKey(test)) {
-            HashMap<Integer, String[]> h = testsResult.get(test);
-            h.put(studentId, a);
+            HashMap<Integer, SubmationData[]> h = testsResult.get(test);
+            h.put(studentId, from(a));
             return true;
         }
         return false;
@@ -174,10 +197,10 @@ public class Group {
         HashMap<Integer, String[]> result = new HashMap<Integer, String[]>();
         if (this.testsResult.containsKey(testId)) {
             for (int i : testsResult.get(testId).keySet()) {
-                String[] answer = testsResult.get(testId).get(i);
+                SubmationData[] answer = testsResult.get(testId).get(i);
                 String[] ans = new String[answer.length];
                 for (int j = 0; j < answer.length; j++) {
-                    ans[j] = answer[j];
+                    ans[j] = answer[j].answer;
                 }
                 result.put(i, ans);
             }
@@ -220,20 +243,30 @@ public class Group {
     public void setStudents(int[] students) {
         this.students = students;
     }
-    private String testAnswers(){
+    public String testAnswers(){
         return format(testsResult);
     }
     private void setTestResult(String input){
         testsResult=deformat(input);
     }
-    private static String format(HashMap<Integer, HashMap<Integer, String[]>> testsResult){
+    public String dueDatesString(){
+        return formatDueDate(duedates);
+    }
+    public String testIds(){
+        StringBuilder result = new StringBuilder();
+        for (int i:duedates.keySet()){
+            result.append(",").append(i);
+        }
+        return result.toString();
+    }
+    private String format(HashMap<Integer, HashMap<Integer, SubmationData[]>> testsResult){
         StringBuilder result = new StringBuilder();
         for (Integer i:testsResult.keySet()) {
             result.append(i).append("@");
-            HashMap<Integer,String[]> sans = testsResult.get(i);
+            HashMap<Integer,SubmationData[]> sans = testsResult.get(i);
             for (Integer j: sans.keySet()) {
                 result.append(j).append("|");
-                for (String s:sans.get(j)) {
+                for (SubmationData s:sans.get(j)) {
                     result.append(s).append("#");
                 }
                 result.append("$");
@@ -242,28 +275,32 @@ public class Group {
         }
         return result.toString();
     }
-    private static HashMap<Integer, HashMap<Integer, String[]>>deformat(String input){
-        HashMap<Integer, HashMap<Integer, String[]>> result = new HashMap<>();
+    private HashMap<Integer, HashMap<Integer, SubmationData[]>>deformat(String input){
+        input=input.replaceAll(" ","");
+        //System.out.println(input);
+        HashMap<Integer, HashMap<Integer, SubmationData[]>> result = new HashMap<>();
         String[] outer = input.split("ö");
         for(String inf:outer){
             String[] s = inf.split("@");
             try {
                 int testId = Integer.parseInt(s[0]);
-                System.out.println(testId+":");
-                String[] inner = s[1].split("\\$");
-                HashMap<Integer, String[]> studentAnswers = new HashMap<>();
-                for (String inf2 : inner) {
-                    String[] s2 = inf2.split("\\|");
-                    try {
-                        System.out.println(s2[0]+":"+ Arrays.toString(s2[1].split("#")));
-                        int studentId = Integer.parseInt(s2[0]);
-                        studentAnswers.put(studentId, s2[1].split("#"));
+                //System.out.println(testId+":");
+                HashMap<Integer, SubmationData[]> studentAnswers = new HashMap<>();
+                result.put(testId,studentAnswers);
+                if(s.length>1) {
+                    String[] inner = s[1].split("\\$");
+                    for (String inf2 : inner) {
+                        String[] s2 = inf2.split("\\|");
+                        try {
+                            //System.out.println(s2[0] + ":" + Arrays.toString(s2[1].split("#")));
+                            int studentId = Integer.parseInt(s2[0]);
+                            studentAnswers.put(studentId, from(s2[1].split("#")));
 
-                    } catch (NumberFormatException e) {
-                        //
+                        } catch (NumberFormatException e) {
+                            //
+                        }
                     }
                 }
-                result.put(testId,studentAnswers);
             }catch (NumberFormatException e){
                 //
             }
@@ -278,7 +315,7 @@ public class Group {
         return result;
     }
     public static HashMap<Integer,LocalDateTime> deformatDueDate(String input){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         HashMap<Integer,LocalDateTime> result = new HashMap<>();
         String[] info = input.split("\\|");
         for(String s: info){
@@ -288,6 +325,13 @@ public class Group {
             }catch (NumberFormatException e){
                 //
             }
+        }
+        return result;
+    }
+    public SubmationData[] from(String[] input){
+        SubmationData[] result=new SubmationData[input.length];
+        for (int k=0;k<input.length;k++){
+            result[k]=new SubmationData(input[k]);
         }
         return result;
     }
@@ -313,15 +357,51 @@ public class Group {
 //        System.out.println(s);
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 //        LocalDateTime dateTime = LocalDateTime.parse(s, formatter);
-        HashMap<Integer,LocalDateTime> test = new HashMap<>();
-        test.put(1,LocalDateTime.now());
-        test.put(2,LocalDateTime.now());
-        test.put(3,LocalDateTime.now());
-        test.put(4,LocalDateTime.now());
-        String s = formatDueDate(test);
-        System.out.println(s);
-        System.out.println(deformatDueDate(s));
+//        HashMap<Integer,LocalDateTime> test = new HashMap<>();
+//        test.put(1,LocalDateTime.now());
+//        test.put(2,LocalDateTime.now());
+//        test.put(3,LocalDateTime.now());
+//        test.put(4,LocalDateTime.now());
+//        String s = formatDueDate(test);
+//        System.out.println(s);
+//        System.out.println(deformatDueDate(s));
+            System.out.println("yyyy-MM-dd HH:mm:ss".charAt(16));
 
-
+    }
+    private class SubmationData{
+        private String answer;
+        private int mark=-1;
+        private String comment="";
+        public SubmationData(String answer, int mark,String comment){
+            this.answer=answer;
+            this.mark=mark;
+            this.comment=comment;
+        }
+        public void gread(int mark,String comment){
+            this.comment=comment;
+            this.mark=mark;
+        }
+        public String getAnswer(){
+            return this.answer;
+        }
+        public String getComment(){
+            return this.comment;
+        }
+        public int getMark(){
+            return this.mark;
+        }
+        public void setAnswer(String answer){
+            this.answer=answer;
+        }
+        @Override
+        public String toString(){
+            return this.answer+"%&"+this.mark+"&"+this.comment+"%";
+        }
+        public SubmationData(String input){
+            String s[] = input.split("&");
+            answer=s[0].replace("%","");
+            mark=Integer.parseInt(s[1]);
+            comment=s[2].replace("%","");
+        }
     }
 }

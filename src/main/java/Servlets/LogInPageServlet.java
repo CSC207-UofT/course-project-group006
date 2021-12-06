@@ -36,6 +36,8 @@ public class LogInPageServlet extends TestServlet {
         if(!(result==-1)){
             Cookie userId=new Cookie("userId",""+result);
             response.addCookie(userId);
+            Cookie userType=new Cookie("userType","S");
+            response.addCookie(userType);
             try{
                 response.sendRedirect("StudentPageServlet");
             }catch(IOException e){
@@ -46,6 +48,8 @@ public class LogInPageServlet extends TestServlet {
         if(!(result==-1)){
             Cookie userId=new Cookie("userId",""+result);
             response.addCookie(userId);
+            Cookie userType=new Cookie("userType","T");
+            response.addCookie(userType);
             try{
                 response.sendRedirect("TeacherPageServlet");
             }catch(IOException e){
