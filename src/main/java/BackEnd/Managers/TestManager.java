@@ -78,13 +78,13 @@ public class TestManager {
      * @return True
      */
     public boolean addQuestionToTest(int testID, int questionID){
-        List<String> result = testGate.readByID(222, 13, testID);
+        List<String> result = testGate.readByID(222, 6, testID);
 
         if (result.get(0).equals("")){
             List<String> info = new ArrayList<>();
             info.add(testID + "");
             info.add(questionID + "");
-            testGate.write(33, info);
+            testGate.write(13, info);
 
             return true;
         }
