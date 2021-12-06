@@ -29,10 +29,10 @@ public class TestServlet extends HttpServlet {
     protected static GroupManager groupManager=new GroupManager(new GroupGateway());
     protected static TeacherManager teacherManager=new TeacherManager(new TeacherGateway());
     protected static StudentManager studentManager=new StudentManager(new StudentGateway());
-
-    protected static TestManager testManager= new TestManager(new TestGateway());
-    protected static TestAnswerManager testAnswerManager= new TestAnswerManager(new TestAnswerGateway(), new TestGateway(), new QuestionAnswerGateway());
     protected static QuestionManager questionManager= new QuestionManager(new QuestionGateway());
+    protected static TestManager testManager= new TestManager(new TestGateway(),questionManager);
+    protected static TestAnswerManager testAnswerManager= new TestAnswerManager(new TestAnswerGateway(), new TestGateway(), new QuestionAnswerGateway());
+
     protected static QuestionAnswerManager questionAnswerManager=new QuestionAnswerManager(new QuestionAnswerGateway());
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -144,12 +144,20 @@ public class TestServlet extends HttpServlet {
     }// </editor-fold>
     public int getUserId(HttpServletRequest request){
         Cookie[] c = request.getCookies();
-        int userId=-1;
         for (Cookie cookie : c) {
             if (cookie.getName().equals("userId")) {
                 return Integer.parseInt(cookie.getValue());
             }
         }
         return -1;
+    }
+    public String getUserType(HttpServletRequest request){
+        Cookie[] c = request.getCookies();
+        for (Cookie cookie : c) {
+            if (cookie.getName().equals("userType")) {
+                return cookie.getValue();
+            }
+        }
+        return "";
     }
 }

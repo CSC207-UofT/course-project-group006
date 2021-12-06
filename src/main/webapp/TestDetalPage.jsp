@@ -17,14 +17,15 @@
             Questions:
             <%
                 int size = (int)request.getAttribute("testSize");
-                for(int i=0; i<size;i++){
+                int[] questionIds = (int[])request.getAttribute("questionIds");
+                for(int i:questionIds){
                 %>
            
             <form action="TestDetailServlet" method="Post">
             <input type="hidden" name="testId" id="testId" value=<%=request.getAttribute("testId")%>>
             <label><%="Q"+(i+1)+":"%></label><br>
                 <label>Question:</label><br>
-                <input type="hidden" name="questionNumber" id="questionNumber" value=<%=i%>>
+                <input type="hidden" name="questionId" id="questionId" value=<%=i%>>
                 <lable>"<%=request.getAttribute("Q"+i+"question")%>" </lable><br>
                 <label>Answer:</label><br>
                 <lable>"<%=request.getAttribute("Q"+i+"answer")%>" </lable><br>

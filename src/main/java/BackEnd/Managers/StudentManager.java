@@ -1,8 +1,6 @@
 package BackEnd.Managers;
 
 import BackEnd.Entities.Student;
-import BackEnd.Entities.Teacher;
-import BackEnd.Entities.User;
 import BackEnd.Interfaces.ReadNameID;
 
 import java.util.ArrayList;

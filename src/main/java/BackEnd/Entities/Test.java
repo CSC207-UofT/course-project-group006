@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Test {
     protected String name;
     protected ArrayList<Question> questions;
+    protected ArrayList<Integer>  questionIds;
     protected int author;
     protected int Id;
     protected int price;
@@ -90,7 +91,10 @@ public class Test {
         this.questions.add(q);
         return true;
     }
-
+    public boolean addQuestion(int qId){
+        this.questionIds.add(qId);
+        return true;
+    }
     /**
      * Delete a question from this test giving its name
      * @param q the question name want to delete
@@ -105,6 +109,7 @@ public class Test {
         }
         return false;
     }
+
 
     /**
      * Delete a question from a test giving its ID
@@ -173,6 +178,13 @@ public class Test {
         int[] result = new int[questions.size()];
         for(int i=0;i<questions.size();i++){
             result[i]=questions.get(i).getMarks();
+        }
+        return result;
+    }
+    public int[] getQuestionId(){
+        int[] result = new int[questions.size()];
+        for(int i=0;i<questions.size();i++){
+            result[i]=questions.get(i).getId();
         }
         return result;
     }

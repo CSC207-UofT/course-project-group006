@@ -1,18 +1,15 @@
-import BackEnd.Gateways.*;
+import BackEnd.Gateways.Gateway;
+import BackEnd.Gateways.QuestionGateway;
 import BackEnd.Managers.QuestionManager;
-import BackEnd.Managers.TestManager;
-import BackEnd.Managers.UserManager;
 import org.junit.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.*;
-import java.util.List;
-
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertEquals;
 
-public class TestManagerTesting {
+
+public class QuestionManagerTest {
     @Before
     public void setUp() throws SQLException {
 //        Server: sql5.freemysqlhosting.net
@@ -24,6 +21,7 @@ public class TestManagerTesting {
         Gateway.user = "sql5456611";
         Gateway.password = "9BF66dT8y5";
         Gateway.url = "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5456611";
+
         IniTest.ini();
     }
     @After
@@ -37,20 +35,24 @@ public class TestManagerTesting {
         String url =  "jdbc:MySQL://sql5.freemysqlhosting.net:3306/sql5456611";
         Connection connection = DriverManager.getConnection(url, username, password);
         Statement stmt = connection.createStatement();
-        String sql = "DROP TABLE TEST";
+        String sql = "DROP TABLE QUESTION";
         stmt.executeUpdate(sql);
 
         IniTest.ini();
     }
-    @Test (timeout = 50000)
-    public void testTest() {
-        TestGateway testGateway = new TestGateway();
-        int i = new TestManager(testGateway).creatTest("test", 1, 10);
-        String j = testGateway.readByID(222, 2, i).get(0);
-        String k = testGateway.readByID(111, 3, i).get(0);
-        String m = testGateway.readByID(111, 5, i).get(0);
-        assertEquals("test", j);
-        assertEquals(1, Integer.parseInt(k));
-        assertEquals(10, Integer.parseInt(m));
+
+    @Test (timeout = 500000)
+    public void testAddQuestion() {
+            QuestionGateway questionGateway = new QuestionGateway();
+            int i = new QuestionManager(questionGateway).addQuestion("test", "apple", "pingguo", 5);
+            String a = questionGateway.readByID(222, 2, i).get(0);
+            String b = questionGateway.readByID(222, 3, i).get(0);
+            String c = questionGateway.readByID(222, 4, i).get(0);
+            String d = questionGateway.readByID(111, 5, i).get(0);
+            assertEquals("test", a);
+            assertEquals("apple", b);
+            assertEquals("pingguo", c);
+            assertEquals(5, Integer.parseInt(d));
+
     }
 }

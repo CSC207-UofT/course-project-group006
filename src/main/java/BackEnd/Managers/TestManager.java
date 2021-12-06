@@ -7,6 +7,7 @@ import BackEnd.Interfaces.QuestionInterface;
 import BackEnd.Interfaces.GeneralReadWriter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,19 +16,20 @@ import java.util.List;
 public class TestManager {
     private HashMap<Integer, Test> allTest;
     private GeneralReadWriter testGate;
+    private QuestionManager questionManager;
 
-    /**
-     * Construct a Test manager giving some tests
-     * @param allTest the list of tests
-     */
-    public TestManager(HashMap<Integer, Test> allTest){
-        this.allTest = allTest;
 
+
+    
+    public TestManager(GeneralReadWriter testGate, QuestionManager questionManager){
+        this.testGate = testGate;
+        this.questionManager=questionManager;
     }
+
+    
     public TestManager(GeneralReadWriter testGate){
         this.testGate = testGate;
     }
-
 
 //    /**
 //     * Create an Exam giving its name, time limit, author and price
@@ -102,14 +104,19 @@ public class TestManager {
 
 
 
-    public Test getTest(int testID,  QuestionManager manager){
+    public Test getTest(int testID){
         List<String> result = testGate.readRow(testID);
         String[] questionsID = result.get(5).split(",");
-
+        System.out.println(Arrays.toString(result.get(5).split(",")));
         ArrayList<Question> questions = new ArrayList<>();
         if (questionsID.length != 0){
             for (String q: questionsID){
-                questions.add(manager.getQuestion(Integer.parseInt(q)));
+                try {
+                    questions.add(questionManager.getQuestion(Integer.parseInt(q)));
+
+                }catch (NumberFormatException e){
+                    //
+                }
             }
             Test myTest = new Test(result.get(1), Integer.parseInt(result.get(2)), Integer.parseInt(result.get(4)),
                     questions);
@@ -139,7 +146,7 @@ public class TestManager {
         int index = 0;
         for (int i = 0; i < strings.length; i++) {
             array[i] = Integer.parseInt(strings[i]);
-            if (array[i] == testID) {
+            if (array[i] == qID) {
                 inTest = true;
                 index = i;
             }
@@ -216,19 +223,24 @@ public class TestManager {
 //    }
 
     public List<QuestionInterface> getTestInfo(int id){
-       List<QuestionInterface> result = allTest.get(id).getQuestions();
+       List<QuestionInterface> result = getTest(id).getQuestions();
        return result;
     }
     public String[] getQuestions(int id){
-        return this.allTest.get(id).getQuestion();
+        return getTest(id).getQuestion();
     }
     public String[] getAnswers(int id){
-        return this.allTest.get(id).getAnswer();
+        return getTest(id).getAnswer();
     }
     public int[] getMarks(int id){
-        return this.allTest.get(id).getMark();
+        return getTest(id).getMark();
+    }
+    public int[] getQuestionId(int id){
+        System.out.println(id);
+        System.out.println(Arrays.toString(getTest(id).getQuestionId()));
+        return getTest(id).getQuestionId();
     }
     public void addQuestion(int testId,String q,String a, int m){
-
+        addQuestionToTest(testId,questionManager.addQuestion("?",q,a,m));
     }
 }
