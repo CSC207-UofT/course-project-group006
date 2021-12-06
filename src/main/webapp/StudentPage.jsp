@@ -18,6 +18,10 @@
             <input type="text" id="word" name="word">
             <input type="submit" name="act" id="act" value="search">
         </form>-->
+        <%
+            String studentName = request.getAttribute("studentName").toString();
+        %>
+        <%= studentName%> 's Page
         <div style="width: 50%; float:left">
             <%
                 HashMap<Integer,String> joinedGroup =(HashMap<Integer,String>) request.getAttribute("joinedGroup");

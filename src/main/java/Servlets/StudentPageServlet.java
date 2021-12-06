@@ -46,6 +46,7 @@ public class StudentPageServlet extends TestServlet {
         }
         request.setAttribute("joinedGroup", gInfo);
         request.setAttribute("userId", userId);
+        request.setAttribute("studentName",studentManager.getNameById(userId));
         RequestDispatcher r = request.getRequestDispatcher("StudentPage.jsp");
         r.forward(request, response);
     }
