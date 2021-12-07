@@ -142,7 +142,8 @@ public class GroupPageServlet extends TestServlet {
             //out.println("</script>");
         }
     }
-    public void deleat(HttpServletRequest request, HttpServletResponse response){
+    public void delete(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("studentId:"+request.getParameter("studentId")+"groupId:"+request.getParameter("groupId"));
         groupManager.removeStudentFromGroup(Integer.parseInt(request.getParameter("studentId")), Integer.parseInt(request.getParameter("groupId")));
         try{
             response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));

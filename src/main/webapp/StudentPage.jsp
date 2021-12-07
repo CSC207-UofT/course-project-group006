@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="generalStyle.css">
+    <!--<link rel="stylesheet" href="generalStyle.css">-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
         input[type=button], input[type=submit], input[type=reset] {
@@ -35,6 +35,9 @@
         String studentName = request.getAttribute("studentName").toString();
     %>
     <%= studentName%> 's Page
+    <form action="LogInPageServlet" method="post" style="float: right; width: 10%">
+        <input type="submit" name="act" id="act" value="LogOut">
+    </form>
     <hr color="darksalmon" size="5" noshade>
 </div>
 

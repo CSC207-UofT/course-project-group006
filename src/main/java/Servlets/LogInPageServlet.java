@@ -7,6 +7,7 @@ package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -78,6 +79,16 @@ public class LogInPageServlet extends TestServlet {
         }catch(IOException e){
             // Do nothing
         }
+
+    }
+    public void LogOut(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+        Cookie[] c = request.getCookies();
+        for (Cookie cookie : c) {
+            if (cookie.getName().equals("userId")||cookie.getName().equals("userType")) {
+                cookie.setMaxAge(0);
+            }
+        }
+        response.sendRedirect("LogInPage.html");
 
     }
 }

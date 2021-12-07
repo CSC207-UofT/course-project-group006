@@ -126,7 +126,7 @@
         <input type="hidden" name="studentId" id="studentId" value=<%=students[i]%>>
         <input type="hidden" name="groupId" id="groupId" value=<%=groupId%>>
         <%if (request.getAttribute("userType").equals("T")) {%>
-        <!--<input type="submit" name="act" id="act" value="delete">-->
+        <input type="submit" name="act" id="act" value="delete">
         <%}%>
     </form>
     <br>
