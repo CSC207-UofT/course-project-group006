@@ -62,21 +62,6 @@ Our website is an educational website dedicated to creating an online study spac
 &nbsp;&nbsp;&nbsp;&nbsp;After phase 1, we realized that we can't just have commands in the backend, so we study the provided feedback and upgraded our structure to MVC.
 * Interfaces:\
 &nbsp;&nbsp;&nbsp;&nbsp;This is the most important design decision we made for the project. By using an interface to act as a bridge between gateways and use cases, it perfectly meets the requirements for clean architecture while fulfilling our needs.\
-&nbsp;&nbsp;&nbsp;&nbsp;Universal Design:
-* Equitable Use:\
-&nbsp;&nbsp;&nbsp;&nbsp;The login page we have has large texts and obvious instructions, which is friendly to people with visual disabilities.
-* Tolerance of error:\
-&nbsp;&nbsp;&nbsp;&nbsp;Pop up warning for important actions: To avoid some actions by mistakes, our website allows double-checking for users in the important moves such as deleting students from the group and quitting from the group.
-* Simple and Intuitive Use:\
-&nbsp;&nbsp;&nbsp;&nbsp;Different clarified buttons control specific functionality, all buttons have distinct functionalities and are labelled with clear meaning indicating what the button leads to. This helps users to quickly identify where they are toward. 
-* Low Physical Effort:\
-&nbsp;&nbsp;&nbsp;&nbsp;It does not require repeatable actions to use the website. There are no functionalities that require multiple taps to be accessed. For example, when doing a test, students can submit all the questions at once. 
-* Perceptible Information:\
-&nbsp;&nbsp;&nbsp;&nbsp;Clear instruction to functions with concise and precise descriptions. For example, the login page only has two buttons, the login and the register buttons. 
-
-
-
-
 
 ## Clean Architecture
 * UML Diagram:\
@@ -159,8 +144,6 @@ TODO
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
 * Improvments From Phase 1:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
-* Phase 2 Conclusion:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
 * In Future:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
