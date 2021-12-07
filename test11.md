@@ -18,8 +18,7 @@
   
 
 ## Introduction
-We have adopted a more general platform suitable for any kind of interactive learning! Teachers can form study groups, create questions and form tests that can be assigned to study groups. Once a question/test is completed, it becomes the property of the teacher. In the future, there will be ways for teachers to profit from these creations. Students may use the website to join study groups and learn with other students with the benefit of having a teacher to provide personalized tests.
-
+Our website is an educational website dedicated to creating an online study space for students. This platform is suitable for any kind of interactive learning! Teachers can form study groups, create questions and form tests that can be assigned to study groups. Once a question/test is designed, it becomes the property of the teacher. In the future, there will be ways for teachers to profit from these creations. Students may use the website to join study groups and learn with other students with the benefit of having a teacher to provide personalized tests. They will receive marks/feedback from the teacher once their answers are graded.
 
 ## How to run our code
 1. Clone the repo to local
@@ -37,22 +36,17 @@ We have adopted a more general platform suitable for any kind of interactive lea
 * If tomcat access is denied and you are using a mac, check if you downloaded .zip instead of the .tar for the MYSQL connector.
 * If related to the java version, set JDK to amazon corretto version 11.
 
-
 ## Functions
-* Group Study:\
-&nbsp;&nbsp;&nbsp;&nbsp;Users identified as students can choose to study in groups where he/she can access the materials provided in specific groups, he/she will be assigned to a group and a teacher at a specific level. The website will provide a platform for the necessary connections between students and teachers.
-* Tests:\
-&nbsp;&nbsp;&nbsp;&nbsp;Users identified as students can access tests posted by teachers if they join groups or use auto-created quizzes as progress measurement if they chooses to study individually.
-Users identified as teachers can upload tests and get auto-graded scores from the website after students finish the test.
-Every test question will be able to have a specific mark for our website to calculate students' scores and return to teachers.
-* User Files:\
-&nbsp;&nbsp;&nbsp;&nbsp;The website will stores all he information online using the MySQL database and without using any local storage.
 * Student Page:\
-&nbsp;&nbsp;&nbsp;&nbsp;The website creates a webpage for each registered student. Student users can see all the groups they have joined and are able to join new groups on the page. After the student access to the group detail page, he/she will be able to access the tests created by teachers.
+&nbsp;&nbsp;&nbsp;&nbsp;The website creates a webpage for each registered student. Student users can see all the groups they have joined and are able to join new groups on the page. They can access their study groups by entering the group detail page.
 * Teacher Page:\
-&nbsp;&nbsp;&nbsp;&nbsp;The website creates a webpage for every teacher user. Teacher users can see all the groups they have and are able to delete students from groups. They can also access their tests on the page by pressing the tests button. Creating tests is also allowed to be accessed in the Teacher page.
-
-
+&nbsp;&nbsp;&nbsp;&nbsp;The website creates a webpage for every teacher user. They can create tests as well as access all their study groups through the group detail page.
+* Tests:\
+&nbsp;&nbsp;&nbsp;&nbsp;Students can access tests posted by teachers. Teachers can create tests and add questions, answers, and marks to each test. Teachers are only able to see their own tests.
+* Group Study:\
+&nbsp;&nbsp;&nbsp;&nbsp;Users identified as students can choose to study in any group where they can access the materials such as student lists, announcements and tests. They are also able to see their mark once the teacher finishes grading. Users identified as teachers can see all students' answers and grade the test.
+* User Files:\
+&nbsp;&nbsp;&nbsp;&nbsp;The website will store all the information online using the MySQL database and without using any local storage.
 
 ## Functionality
 * For now, our program can do most parts said by our specification such as creating groups and tests. We even implemented an online database and web ui to our program. However, since this is our first time coding a web program, we have faced many difficulties along the way. Our front end and back end code can work perfectly seperately, but we want to challenge ourselves more by connecting them together. This process created lots of issues and we have tried our best to overcome them. 
@@ -156,4 +150,6 @@ TODO
 &nbsp;&nbsp;&nbsp;&nbsp;TODO\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
 * Phase 2 Conclusion:\
+&nbsp;&nbsp;&nbsp;&nbsp;TODO
+* In Future:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
