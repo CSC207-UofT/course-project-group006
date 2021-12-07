@@ -3,9 +3,24 @@
 ### Introduction
 
 
-We have jumped out the box the the directory and adopted a more general platform suitable for any kind of interactive learning! Teachers can form study groups, create questions and form tests that can be assigned to study groups. Once a question/test is completed, it becomes the property of the teacher. In the future, there will be ways for teachers to profit from these creations. Students may use the website to join study groups and learn with other students with the benefit of having a teacher to provide personalized tests.
+We have adopted a more general platform suitable for any kind of interactive learning! Teachers can form study groups, create questions and form tests that can be assigned to study groups. Once a question/test is completed, it becomes the property of the teacher. In the future, there will be ways for teachers to profit from these creations. Students may use the website to join study groups and learn with other students with the benefit of having a teacher to provide personalized tests.
 
 
+### How to run our code
+1. Clone the repo to local
+2. Add a new local tomcat configuration\
+  2.1. Download tomcat 8 and add it to the application server\
+  2.2. Change URL to http://localhost:8080/unnamed/LogInPage.html
+3. Fix the artifact by choosing unnamed\
+  3.1. If artifact lib doesn't have MySQL connector, download MySQL connector and add it to the external library.\
+	3.2. Import MySQL connector into artifact lib.
+5. Click the run button :D
+
+#### Common errors:
+1. If the error message is related to JDBC, make sure you have an MYSQL connector in both libraries.
+2. If the web page shows 404 after login/register, use tomcat version 8. Do not use tomcat 10.
+3. If tomcat access is denied and you are using a mac, check if you downloaded .zip instead of the .tar for the MYSQL connector.
+4. If related to the java version, set JDK to amazon corretto version 11.
 
 
 ### Functions
