@@ -28,13 +28,13 @@
         <input type="text" name="password" id="password" style="background-color: #ccffff">
     <p>
         <label style="font-family: Garamond, serif; font-size: 30px" for="email">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input type="text" name="email" id="email" style="background-color: #ccffff">
+        <input type="email" name="email" id="email" style="background-color: #ccffff">
     </p>
     <p>
         <label style="font-family: Garamond, serif; font-size: 20px"> You are a: </label>
-        <input type="submit" name="act" id="act" value="teacher" style="font-family: Garamond, serif; background-color: white; float: right">
+        <input type="submit" name="act" value="teacher" style="font-family: Garamond, serif; background-color: white; float: right">
         <span style="width: 10px"></span>
-        <input type="submit" name="act" id="act" value="student" style="font-family: Garamond, serif; background-color: white; float: right">
+        <input type="submit" name="act" value="student" style="font-family: Garamond, serif; background-color: white; float: right">
     </p>
 </form>
 <script>

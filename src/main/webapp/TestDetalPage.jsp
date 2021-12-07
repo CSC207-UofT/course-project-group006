@@ -29,7 +29,7 @@
                 <!--<lable>"<%=request.getAttribute("Q"+i+"question")%>" </lable><br>-->
                 <label>Answer:</label><br>
                 <lable>"<%=request.getAttribute("Q"+i+"answer")%>" </lable><br>
-                <input type="submit" name="act" id="act" value="delet">
+                <input type="submit" name="act" value="delet">
             </form>
                 <br>
         <%}%>
@@ -38,18 +38,18 @@
             <div style="float: left; width:50%">
                 Add:
                 <form action="TestDetailServlet" method="Post">
-            <input type="hidden" name="testId" id="testId" value=<%=request.getAttribute("testId")%>>
+            <input type="hidden" name="testId" value=<%=request.getAttribute("testId")%>>
             <label>Question:</label><br>
             <textarea name="question" id= "question" style="width:70%" rows=10"></textarea><br>
             <label>Answer:</label><br>
             <textarea name="answer" id= "answer" style="width:70%;" rows=10></textarea><br>
             <label>Mark:</label><br>
             <input type="number" id="mark" name="mark">
-                <input type="submit" name="act" id="act" value="add">
+                <input type="submit" name="act" value="add">
             </form>
             </div>
             <form action="TestDetailServlet" method="Post">
-                <input type="submit" name="act" id="act" value="back">
+                <input type="submit" name="act" value="back">
             </form>
     </body>
     
