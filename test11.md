@@ -82,13 +82,13 @@ Our website is an educational website dedicated to creating an online study spac
 * UML Diagram:\
 ![uml](https://user-images.githubusercontent.com/90296783/145091064-d58bd9eb-88b7-471c-9541-ceb35b70e3a8.png)\
 &nbsp;&nbsp;&nbsp;&nbsp;Our code follows clean architecture. Referring to the UML diagram, we have all the layers. For the innermost layer, we create different types of entities, such as Users, Groups and Tests, to encapsulate the information to an object and simplify further programming. For use cases, we write different managers to achieve the actions or commands of the corresponding entity. For the Interface Adapters, we design several gateways to connect the database. We also build multiple servlet classes to work as controllers that communicate between GUI and use case classes. For the outermost layer, frameworks and drivers, we build a website as our user interface by using html and jsp. We also use MySQL as our online database to store all the user information.\
-&nbsp;&nbsp;&nbsp;&nbsp;Here is a simplified code walk-through for joining a group to demonstrate clean architecture:
+&nbsp;&nbsp;&nbsp;&nbsp;Here is a simplified code walk-through for joining a group to demonstrate clean architecture:\
 &nbsp;&nbsp;&nbsp;&nbsp;1. UI gets and sends information to Servlet\
 &nbsp;&nbsp;&nbsp;&nbsp;2. Servlet receives the information, creates a gateway as an interface, and send the interface and the information to manager\
 &nbsp;&nbsp;&nbsp;&nbsp;3. Manager receives the information and creates a group entity using the data read in by the interface\
 &nbsp;&nbsp;&nbsp;&nbsp;4. Perform the joining action onto the group entity\
 &nbsp;&nbsp;&nbsp;&nbsp;5. Manager uses the altered group entity and the interface to rewrite data\
-&nbsp;&nbsp;&nbsp;&nbsp;6. Servlet, UI continues performing the rest of the method\
+&nbsp;&nbsp;&nbsp;&nbsp;6. Servlet, UI continues performing the rest of the method
 
 &nbsp;&nbsp;&nbsp;&nbsp;To conclude, every piece of our code follows the dependency rule. Throughout our project, the outer layers depend on inner layers and don’t have a cross-layer dependency. By implementing the rules of Clean Architecture, we keep our project organized and simple in terms of the code structure, it helps us to debug and increases readability for others.
 
@@ -112,9 +112,9 @@ TODO
 
 ## Design Pattern
 * Dependency Injection:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;This design pattern is a technique that makes a class independent of its dependencies. It helps us to follow the dependency inversion principle and single responsibility in solid. We introduce interfaces to break the dependencies between higher and lower level classes so that both classes depend on the interface and no longer on each other. In our code, we create an interface called GeneralReadWrite, which is the interface that all of our gateways implement. For the use cases, all of our managers import the GeneralReadWrite interface. In this case, both the use cases and gateways depend on the interface instead of each other. 
 * Strategy:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;The strategy design pattern allows us to do specific things in different ways. We encapsulate an interface as a base and then bury implementation details in derived classes. In our project, we build our gateways by implementing the interface called GeneralReadWrite. We make different gateways like Teacher Gateway, Student Gateway, for each table in the database. These gateways all have the same thing to do, which is to read/write but each corresponding table has a unique structure. Hence, by implementing the interface, we can write their getter and setter methods accordingly. By doing so, we avoid writing long if-else statements that are required to distinguish tables. For example, without this pattern, we will need to first get a parameter telling us which table we are looking at, and then read/write the table. This will create long methods and significantly decrease readability. Instead of setting the table type as a parameter, we could dynamically tell the code which read/write method we want to use on the spot. By using this design pattern, we also satisfied the open/ close principle. In the future development, we could add more different gateways without changing the older gateways. And the old ones are closed for modification.
 
 
 ## Use of Github Features
