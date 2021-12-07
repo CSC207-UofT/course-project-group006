@@ -81,16 +81,16 @@ Our website is an educational website dedicated to creating an online study spac
 ## Clean Architecture
 * UML Diagram:\
 ![uml](https://user-images.githubusercontent.com/90296783/145091064-d58bd9eb-88b7-471c-9541-ceb35b70e3a8.png)\
-&nbsp;&nbsp;&nbsp;&nbsp;Our code follows clean architecture. Referring to the UML diagram, we have all the layers. For the innermost layer, we create different types of entities, such as Users, Groups and Tests, to encapsulate the information to an object and simplify further programming. For use cases, we write different managers to achieve the actions or commands of the corresponding entity. For the Interface Adapters, we design several gateways to connect the database. We also build multiple servlet classes to work as controllers that communicate between GUI and use case classes. For the outermost layer, frameworks and drivers, we build a website as our user interface by using html and jsp. We also use MySQL as our online database to store all the user information. 
-Here is a simplified code walk-through for joining a group to demonstrate clean architecture:
-1. UI gets and sends information to Servlet
-2. Servlet receives the information, creates a gateway as an interface, and send the interface and the information to manager
-3. Manager receives the information and creates a group entity using the data read in by the interface
-4. Perform the joining action onto the group entity
-5. Manager uses the altered group entity and the interface to rewrite data
-6. Servlet, UI continues performing the rest of the method
+&nbsp;&nbsp;&nbsp;&nbsp;Our code follows clean architecture. Referring to the UML diagram, we have all the layers. For the innermost layer, we create different types of entities, such as Users, Groups and Tests, to encapsulate the information to an object and simplify further programming. For use cases, we write different managers to achieve the actions or commands of the corresponding entity. For the Interface Adapters, we design several gateways to connect the database. We also build multiple servlet classes to work as controllers that communicate between GUI and use case classes. For the outermost layer, frameworks and drivers, we build a website as our user interface by using html and jsp. We also use MySQL as our online database to store all the user information.\
+&nbsp;&nbsp;&nbsp;&nbsp;Here is a simplified code walk-through for joining a group to demonstrate clean architecture:
+&nbsp;&nbsp;&nbsp;&nbsp;1. UI gets and sends information to Servlet
+&nbsp;&nbsp;&nbsp;&nbsp;2. Servlet receives the information, creates a gateway as an interface, and send the interface and the information to manager
+&nbsp;&nbsp;&nbsp;&nbsp;3. Manager receives the information and creates a group entity using the data read in by the interface
+&nbsp;&nbsp;&nbsp;&nbsp;4. Perform the joining action onto the group entity
+&nbsp;&nbsp;&nbsp;&nbsp;5. Manager uses the altered group entity and the interface to rewrite data
+&nbsp;&nbsp;&nbsp;&nbsp;6. Servlet, UI continues performing the rest of the method
 
-To conclude, every piece of our code follows the dependency rule. Throughout our project, the outer layers depend on inner layers and don’t have a cross-layer dependency. By implementing the rules of Clean Architecture, we keep our project organized and simple in terms of the code structure, it helps us to debug and increases readability for others.
+&nbsp;&nbsp;&nbsp;&nbsp;To conclude, every piece of our code follows the dependency rule. Throughout our project, the outer layers depend on inner layers and don’t have a cross-layer dependency. By implementing the rules of Clean Architecture, we keep our project organized and simple in terms of the code structure, it helps us to debug and increases readability for others.
 
 
 
