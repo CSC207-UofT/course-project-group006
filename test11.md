@@ -89,15 +89,15 @@ Our website is an educational website dedicated to creating an online study spac
 
 ## SOLID
 * Single responsibility principle(SRP):\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;In short, each class relates to one functionality and each page in our website has its own corresponding servlet. For example, the groupgateway is only responsible for read/write group data and it will not have access to other data.
 * Open/closed principle(OCP):\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp; We implement the strategy design pattern. By using this design pattern, our gateways are open for extensions, which means we could add more things into it and close for modification. For example, if we want to add\delete a column in the Group table, we only need to change the group gateway class. Adding tables is also easy to achieve since we just need to create a new gateway class for the new table and override the read and write methods. None of the above action effect other parts of the code.
 * Liskov substitution principle(LSP):\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;We have an interface called GeneralReadWriter, which is responsible for reading and writing information into the database. It has multiple children such as ReadNameID or ReadAll that perform some other extra actions. If we replace an object that implemented GeneralReadWriter with any of its children, it will not break the program since all the methods are overridden.
 * Interface segregation principle(ISP):\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;Some gateway classes don't need a method that uses a name to find an id but some others do. Hence, we created another interface that specifically has this method and only let the gateways that need this method implement it. By doing so, we don't need to put this method in all gateway classes so those who don’t need this method will not need to override it. This avoids implementing extra methods.
 * Dependency inversion principle(DIP):\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;We used the dependency inversion design pattern for accessing the gateway feature in the use case classes through an interface. Hence, they both depend on the interface and adhere to clean architecture. For example, group manager imports the interface GeneralReadWriter instead of importing the actual gateway itself, even though the manager needs the help of the gateway to access the database.
 
 
 ## Packaging Strategy
