@@ -61,7 +61,7 @@ Our website is an educational website dedicated to creating an online study spac
 * Structure:\
 &nbsp;&nbsp;&nbsp;&nbsp;After phase 1, we realized that we can't just have commands in the backend, so we study the provided feedback and upgraded our structure to MVC.
 * Interfaces:\
-&nbsp;&nbsp;&nbsp;&nbsp;This is the most important design decision we made for the project. By using an interface to act as a bridge between gateways and use cases, it perfectly meets the requirements for clean architecture while fulfilling our needs
+&nbsp;&nbsp;&nbsp;&nbsp;This is the most important design decision we made for the project. By using an interface to act as a bridge between gateways and use cases, it perfectly meets the requirements for clean architecture while fulfilling our needs.\
 &nbsp;&nbsp;&nbsp;&nbsp;Universal Design:
 * Equitable Use:\
 &nbsp;&nbsp;&nbsp;&nbsp;The login page we have has large texts and obvious instructions, which is friendly to people with visual disabilities.
