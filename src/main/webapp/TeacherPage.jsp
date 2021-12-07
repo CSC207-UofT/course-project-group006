@@ -41,7 +41,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <form action="TeacherPageServlet" method="Post" name="creatGroup" id="creatGroup">
         <label style="font-family: Garamond, serif;color: black;font-size: 25px;">New Group Name:</label>
         <input type="text" name="testName" id="testName">
-        <input type="submit" name="act" id="act" value="Creat">
+        <input type="submit" name="act" value="Creat">
     </form>
 
     <label style="font-size: 30px;">&nbsp;Your Groups:</label>
@@ -55,11 +55,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <label>:</label>
         </div>
         <div style="width: 33%; float: left;padding-left: 10px; text-align: right">
-            <input style="font-family: Garamond, serif" type="submit" name="act" id="act" value="detal">
+            <input style="font-family: Garamond, serif" type="submit" name="act" value="detal">
             <label>&nbsp;</label>
         </div>
         <div style="width: 33%; float: left">
-            <input style="font-family: Garamond, serif" type="submit" name="act" id="act" value="deleat">
+            <input style="font-family: Garamond, serif" type="submit" name="act" value="deleat">
         </div>
 
         <input style="font-family: Garamond, serif" type="hidden" name="groupId" id="groupId" value=<%=group%>>

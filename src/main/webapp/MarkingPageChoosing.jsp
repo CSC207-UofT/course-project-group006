@@ -45,7 +45,7 @@
         </label>
     </div>
     <div style="width: 50%;  float: left; text-align: left">
-        <input type="submit" name="act" id="act" value="choose">
+        <input type="submit" name="act" value="choose">
     </div>
 </form>
 <%
