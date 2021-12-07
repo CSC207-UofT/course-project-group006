@@ -17,10 +17,11 @@ We have adopted a more general platform suitable for any kind of interactive lea
 5. Click the run button :D
 
 #### Common errors:
-1. If the error message is related to JDBC, make sure you have an MYSQL connector in both libraries.
-2. If the web page shows 404 after login/register, use tomcat version 8. Do not use tomcat 10.
-3. If tomcat access is denied and you are using a mac, check if you downloaded .zip instead of the .tar for the MYSQL connector.
-4. If related to the java version, set JDK to amazon corretto version 11.
+* If the error message is related to JDBC, make sure you have an MYSQL connector in both libraries.
+* If the error message is related to the java version, set JDK to amazon corretto version 11.
+* If the web page shows 404 after login/register, use tomcat version 8. Do not use tomcat 10.
+* If tomcat access is denied and you are using a mac, check if you downloaded .tar (not .zip) for MYSQL connector.
+
 
 
 ### Functions
