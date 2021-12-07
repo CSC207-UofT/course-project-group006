@@ -46,12 +46,12 @@ Our website is an educational website dedicated to creating an online study spac
 * Group Study:\
 &nbsp;&nbsp;&nbsp;&nbsp;Users identified as students can choose to study in any group where they can access the materials such as student lists, announcements and tests. They are also able to see their mark once the teacher finishes grading. Users identified as teachers can see all students' answers and grade the test.
 * User Files:\
-&nbsp;&nbsp;&nbsp;&nbsp;The website will store all the information online using the MySQL database and without using any local storage.
+&nbsp;&nbsp;&nbsp;&nbsp;The website will store all the information online using the MySQL database without using any local storage.
 
 ## Functionality
-* For now, our program can do most parts said by our specification such as creating groups and tests. We even implemented an online database and web ui to our program. However, since this is our first time coding a web program, we have faced many difficulties along the way. Our front end and back end code can work perfectly seperately, but we want to challenge ourselves more by connecting them together. This process created lots of issues and we have tried our best to overcome them. 
-* Our program is able to store and load states through accessing an online database. All the information is organized and stored remotely rather than locally. All states of the users will be saved, for example, if a teacher creates a question, it will be permanently stored in the database unless they decide to delete it. This is not affected by time and location since everything is stored real-time.
-* We think we are ambitious enough for our group size. We unfortunately lost one member along the way, and everyone immediately felt the weight added to us. We are challenging ourselves by doing web developing and online databases since these two are completely new to all the group members. We are also planning to upgrade from localhost to online hosting in the future, which is another big challenge for us.
+* Our program fulfills the specifications in terms of study groups and tests.
+* Our program can store and load states through accessing an online database. All the information is organized and stored remotely rather than locally on each user's computer. All states of the users can be saved, for example, if a teacher creates a study group, it will be permanently stored in the database unless they decide to delete it. This is not affected by time and location since everything is stored real-time.
+* We think we are ambitious enough for our group size. None of us have any experience in developing a website or MySQL, but we managed to learn and use both of them in our project within a relatively short period. It was also very challenging for us to build a structure that adhered to clean architecture because the structure of a website is very different from the structure taught in class. We are happy that we were able to expand and build on top of the lecture materials.
 
 
 ## Design Decision
