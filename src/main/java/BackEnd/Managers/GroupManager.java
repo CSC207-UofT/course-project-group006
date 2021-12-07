@@ -363,4 +363,11 @@ public class GroupManager {
     public int[] getMarks(int groupId, int testId, int studentId){
         return readGroup(groupId).getGrades(testId,studentId);
     }
+    public boolean hasStudent(int groupId, int studentId){
+        Group g = readGroup(groupId);
+        if(g!=null) {
+            return g.hasStudent(studentId);
+        }
+        return false;
+    }
 }

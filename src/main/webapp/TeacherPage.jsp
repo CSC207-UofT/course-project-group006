@@ -28,6 +28,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         String teacherName = request.getAttribute("teacherName").toString();
     %>
     <%= teacherName%> 's Page
+    <form action="LogInPageServlet" method="post" style="float: right; width: 10%">
+        <input type="submit" name="act" id="act" value="LogOut">
+    </form>
     <hr color="darksalmon" size="5" noshade>
     <div style="text-align: center;align-content: center">
         <form action="TeacherPageServlet" method="Post">

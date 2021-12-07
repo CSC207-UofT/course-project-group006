@@ -8,6 +8,8 @@ package Servlets;
 
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +34,16 @@ public class JoinGroupServlet extends TestServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("allGroups", groupManager.getAllGroup());
+        //request.setAttribute("allGroups", groupManager.getAllGroup());
+        HashMap<Integer,String> groups = groupManager.getAllGroup();
+        HashMap<Integer,String> group1 = new HashMap<Integer,String>();
+        List<Integer> joinedGroup = studentManager.getJoinedGroup(getUserId(request));
+        for(Integer i:groups.keySet()){
+            if(!joinedGroup.contains(i)){
+                group1.put(i,groups.get(i));
+            }
+        }
+        request.setAttribute("allGroups", group1);
         request.setAttribute("userId", getUserId(request));
         RequestDispatcher r = request.getRequestDispatcher("JoinGroup.jsp");
         r.forward(request, response);

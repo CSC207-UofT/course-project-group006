@@ -26,7 +26,7 @@
             <label><%="Q"+(i+1)+":"%></label><br>
                 <label>Question:</label><br>
                 <input type="hidden" name="questionId" id="questionId" value=<%=i%>>
-                <lable>"<%=request.getAttribute("Q"+i+"question")%>" </lable><br>
+                <!--<lable>"<%=request.getAttribute("Q"+i+"question")%>" </lable><br>-->
                 <label>Answer:</label><br>
                 <lable>"<%=request.getAttribute("Q"+i+"answer")%>" </lable><br>
                 <input type="submit" name="act" id="act" value="delet">
