@@ -28,7 +28,7 @@
         <input type="text" name="password" id="password" style="background-color: #ccffff">
     <p>
         <label style="font-family: Garamond, serif; font-size: 30px" for="email">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input type="text" name="email" id="email" style="background-color: #ccffff">
+        <input type="email" name="email" id="email" style="background-color: #ccffff">
     </p>
     <p>
         <label style="font-family: Garamond, serif; font-size: 20px"> You are a: </label>
