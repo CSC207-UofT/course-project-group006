@@ -37,9 +37,10 @@ public class UserManagerTest {
         stmt.executeUpdate(sql);
         sql = "DROP TABLE TEACHER";
         stmt.executeUpdate(sql);
+        System.out.println("drop teacher");
     }
 
-    @Test(timeout = 5000)
+    @Test(timeout = 50000)
     public void testStudyGroup() {
         new UserManager(new StudentGateway()).createUser("StudentName", "StudentPass", "StudentEmail");
         new UserManager(new TeacherGateway()).createUser("TeacherName", "TeacherPass", "TeacherEmail");

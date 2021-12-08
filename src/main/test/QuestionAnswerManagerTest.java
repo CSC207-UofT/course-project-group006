@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class QuestionAnswerManagerTest {
     @Before
-    public void setUp() throws SQLException {
+    public void setUp() {
         Gateway.driver = "com.mysql.cj.jdbc.Driver";
         Gateway.user = "sql5456611";
         Gateway.password = "9BF66dT8y5";
@@ -38,8 +38,22 @@ public class QuestionAnswerManagerTest {
 
         IniTest.ini();
     }
-    @Test (timeout = 5000)
+    @Test (timeout = 50000)
     public void testSubmit() {
+        QuestionGateway questionGateway = new QuestionGateway();
+        int n = new QuestionManager(questionGateway).addQuestion("test2", "banana", "xiangjiao", 7);
+        QuestionAnswerGateway questionAnswerGateway = new QuestionAnswerGateway();
+        new QuestionAnswerManager(questionAnswerGateway).createQuestionAnswer(n, "xiang", 1, 1, questionAnswerGateway);
+        new QuestionAnswerManager(questionAnswerGateway).createQuestionAnswer(n, "xiangjiao", 2, 1, questionAnswerGateway);
+        String k = questionAnswerGateway.readByID(111, 4, 1).get(0);
+        String l = questionAnswerGateway.readByID(111, 4, 2).get(0);
+        assertEquals(0, Integer.parseInt(k));
+        assertEquals(7, Integer.parseInt(l));
+
+    }
+
+    @Test (timeout = 50000)
+    public void testAnotherSubmit() {
         QuestionGateway questionGateway = new QuestionGateway();
         int n = new QuestionManager(questionGateway).addQuestion("test", "apple", "pingguo", 5);
         QuestionAnswerGateway questionAnswerGateway = new QuestionAnswerGateway();
