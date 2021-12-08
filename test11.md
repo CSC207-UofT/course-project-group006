@@ -125,7 +125,7 @@ Our website is an educational website dedicated to creating an online study spac
 TODO
 
 ## Testing
-In order to test our code, we create a new database and new ini only for testing purpose. In this way, we can test the main method of our project using a different connection to another database. In this case, we separate our main database with the test database so that keeps our main database not being affected when we run our test.
+In order to test our code, we create a new database and new ini only for testing purpose. In this way, we can test the main method of our project using a different connection to another database. In this case, we separate our main database with the test database so that keeps our main database not being affected when we run our test.\
 In our design, most commands made by the users are written in our manager classes, which are our use cases. For this part, all of the methods in managers have been tested by at least one corresponding unit test and can work properly. Gateways are used to access to the database to read or write data, so we didn’t write separate unit test for this part. All of them worked correctly since we access them through interface to connect the test database when testing those managers. For our controllers, we write servlet to connect between UI and managers. It could work as we expected since we can connect our website and do the command we want correctly.
 
 
