@@ -51,7 +51,7 @@ public class TestPageServlet extends TestServlet {
         teacherManager.addTest(getUserId(request),testId);
         processRequest(request,response);
     }
-    public void detal(HttpServletRequest request, HttpServletResponse response)
+    public void detail(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.sendRedirect("TestDetailServlet?testId="+request.getParameter("testId"));
     }
@@ -59,7 +59,7 @@ public class TestPageServlet extends TestServlet {
             throws ServletException, IOException {
         response.sendRedirect("TeacherPageServlet");
     }
-    public void asign(HttpServletRequest request, HttpServletResponse response)
+    public void assign(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.sendRedirect("choosingTime.jsp?testId="+request.getParameter("testId")+"&groupId="+request.getParameter("groupId"));
     }

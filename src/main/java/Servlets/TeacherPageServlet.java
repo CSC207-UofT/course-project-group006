@@ -55,72 +55,7 @@ public class TeacherPageServlet extends TestServlet {
         }
 
 
-    protected void processRequestold(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TestServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            int userId=getUserId(request);
-            if(userId==-1){
-                try{
-                    response.sendRedirect("LogInPage.html");
-
-                }catch(IOException ignored){
-
-                }
-            }else{
-                List<Integer> groups=groupManager.createdBy();
-                request.setAttribute("groups",groups);
-                for (Integer group : groups) {
-                    request.setAttribute("group" + group + "name", groupManager.getName(group));
-                }
-                request.setAttribute("teacherName",teacherManager.getNameById(userId));
-                out.print(teacherManager.getNameById(userId)+"'s page:<br>groups:<br>");
-                for (Integer group : groups) {
-                    out.print("<form action=\"TeacherPageServlet\" method=\"Post\">");
-                    out.print("<label \">" + groupManager.getName(group));
-                    out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value=" + group + ">");
-                    out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"deleat\">");
-                    out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"detal\">");
-                    out.print("</form></br>");
-                }
-                out.print("<form action=\"TeacherPageServlet\" method=\"Post\" name=\"creatGroup\" id = \"creatGroup\">");
-                out.print("<input type=\"text\" name=\"testName\" id=\"testName\">");
-                out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"Creat\">");
-                out.print("</form></br>");
-                out.print("<form action=\"TeacherPageServlet\" method=\"Post\">");
-                out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"Tests\">");
-                out.print("</form></br>");
-
-            }
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void deleat(HttpServletRequest request, HttpServletResponse response){
+    public void delete(HttpServletRequest request, HttpServletResponse response){
         int id = Integer.parseInt(request.getParameter("groupId"));
         groupManager.deleteGroup(id,new StudentGateway(),new TeacherGateway());
         try{
@@ -128,7 +63,7 @@ public class TeacherPageServlet extends TestServlet {
         }catch(IOException ignored){
         }
     }
-    public void detal(HttpServletRequest request, HttpServletResponse response){
+    public void detail(HttpServletRequest request, HttpServletResponse response){
         try{
             response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));
         }catch(IOException ignored){
@@ -142,7 +77,7 @@ public class TeacherPageServlet extends TestServlet {
 
         }
     }
-    public void Creat(HttpServletRequest request, HttpServletResponse response)
+    public void Create(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         groupManager.createGroup(getUserId(request), request.getParameter("testName"),new TeacherGateway());
         response.sendRedirect("TeacherPageServlet");

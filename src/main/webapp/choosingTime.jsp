@@ -23,8 +23,8 @@
   <label>hour</label>
   <input type="number" name="hour" id="hour"><br>
   <label>minuet</label>
-  <input type="number" name="minuit" id="minuit"><br>
-  <input type="submit" name ="act" id="act" value="finsh">
+  <input type="number" name="minute" id="minute"><br>
+  <input type="submit" name ="act" id="act" value="finish">
 </form>
 </body>
 </html>

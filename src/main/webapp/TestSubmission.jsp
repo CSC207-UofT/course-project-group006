@@ -70,7 +70,7 @@
     <hr>
     <input type="submit" id="act" name="act" value="grade">
 </form>
-<%} else {%>
+} else {%>
 
 <label>this student did not hand in any thing yet</label>
 <form action="TestSubmissionServlet" method="Post">

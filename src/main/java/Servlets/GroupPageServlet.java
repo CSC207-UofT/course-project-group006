@@ -32,7 +32,7 @@ public class GroupPageServlet extends TestServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("aksytbfcawlf:   "+request.getParameter("groupId"));
+        // System.out.println("aksytbfcawlf:   "+request.getParameter("groupId"));
         int groupId = Integer.parseInt(request.getParameter("groupId"));
         request.setAttribute("groupId", request.getParameter("groupId"));
         request.setAttribute("groupName", groupManager.getNameById(groupId));
@@ -132,7 +132,7 @@ public class GroupPageServlet extends TestServlet {
                 out.print("<input type=\"hidden\" name=\"studentId\" id=\"studentId\" value=" + student + ">");
                 out.print("<input type=\"hidden\" name=\"groupId\" id=\"groupId\" value=" + id + ">");
                 if (type.equals("T")) {
-                    out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"deleat\">");
+                    out.print("<input type=\"submit\" name=\"act\" id=\"act\" value=\"delete\">");
                 }
                 out.print("</form></br>");
             }
@@ -157,7 +157,7 @@ public class GroupPageServlet extends TestServlet {
     public void assign(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("TestPageServlet?groupId="+request.getParameter("groupId"));
     }
-    public void finsh(HttpServletRequest request, HttpServletResponse response)
+    public void finish(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int groupId = Integer.parseInt(request.getParameter("groupId"));
         int testId = Integer.parseInt(request.getParameter("testId"));
@@ -165,8 +165,8 @@ public class GroupPageServlet extends TestServlet {
         int month = Integer.parseInt(request.getParameter("month"));
         int day = Integer.parseInt(request.getParameter("day"));
         int hour = Integer.parseInt(request.getParameter("hour"));
-        int minuit = Integer.parseInt(request.getParameter("minuit"));
-        LocalDateTime due= LocalDateTime.of(year,month,day,hour,minuit);
+        int minute = Integer.parseInt(request.getParameter("minute"));
+        LocalDateTime due= LocalDateTime.of(year,month,day,hour,minute);
         //System.out.println(due);
         groupManager.addTest(groupId, testId, due);
         processRequest(request,response);
@@ -206,9 +206,9 @@ public class GroupPageServlet extends TestServlet {
     public void back(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int user=getUserId(request);
-        if(teacherManager.IsTeacher(user)){
+        if(Objects.equals(getUserType(request), "T")){
             response.sendRedirect("TeacherPageServlet");
-        }else if(studentManager.IsStudent(user)){
+        }else if(Objects.equals(getUserType(request), "S")){
             response.sendRedirect("StudentPageServlet");
         }
     }

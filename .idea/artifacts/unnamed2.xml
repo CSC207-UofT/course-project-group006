@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="unnamed2">
+    <output-path>$PROJECT_DIR$/out/artifacts/unnamed2</output-path>
+    <root id="archive" name="unnamed.jar">
+      <element id="javaee-facet-resources" facet="course-project-group006/web/Web" />
+      <element id="library" level="project" name="mysql-connector-java-8.0.27" />
+    </root>
+  </artifact>
+</component>

@@ -44,7 +44,7 @@ public class TestDetailServlet extends TestServlet {
 
         }
 
-        RequestDispatcher r= request.getRequestDispatcher("TestDetalPage.jsp");
+        RequestDispatcher r= request.getRequestDispatcher("TestDetailPage.jsp");
         r.forward(request, response);
 
     }
@@ -73,7 +73,7 @@ public class TestDetailServlet extends TestServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    public void delet(HttpServletRequest request, HttpServletResponse response)
+    public void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("testId"));
         int questionId = Integer.parseInt(request.getParameter("questionId"));
