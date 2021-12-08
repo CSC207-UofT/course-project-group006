@@ -101,7 +101,7 @@ Our website is an educational website dedicated to creating an online study spac
 
 
 ## Packaging Strategy
-TODO
+&nbsp;&nbsp;&nbsp;&nbsp;We organized our files by clean architecture layers. The IDE automatically created a web page folder that contains all the UI pages when the project is created. In the backend, java folder, there is a servlet(controller) folder, as well as a backend folder that contains a gateway, a manager, an entity and an interface folder.  By doing so, we can local the files quickly and significantly increase the readability of our code("Ini.java" and "IniTest.java" are only for debugging purpose for us to run the main method, and will be deleted later for the final release version).
 
 ## Design Pattern
 * Dependency Injection:\
@@ -144,20 +144,18 @@ TODO
 
 ## Progress Report
 * Open Question:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;We are still not quite sure how to improve the connection speed.
 * Worked Well:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
 * Member Progress:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
-Jacky Jiang:
-gh pr checkout 48. This pull request merge a important TestAnswerManager and TestAnswerGateway into main.  gh pr checkout 59. This one add most of the test cases into main.
+&nbsp;&nbsp;&nbsp;&nbsp;Jacky Jiang: I have been working on implementing the gateways, managers and creating unit tests. https://github.com/CSC207-UofT/course-project-group006/pull/48#issue-1071496102. This pull request merged an important TestAnswerManager and TestAnswerGateway into main. https://github.com/CSC207-UofT/course-project-group006/pull/59#issue-1071620452. This one add most of the test cases into main.\
+&nbsp;&nbsp;&nbsp;&nbsp;Jen Zhu: https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324. I have been focusing on creating gateways and managers, setting up connections with the database as well as helping with the UI. This pull request changes the non-clean phase 1 structure into a clean structure by creating serval gateway classes and some new interfaces.\
 * Improvments From Phase 1:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
 * In Future:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
-
 ## Accessibility Report
 Universal Design:
 * Equitable Use:\
