@@ -1,9 +1,11 @@
 # Design Document -- Group 006
 
 ## Table of Contents
-- [Introduction](#introduction)
-- [How to run our code](#how-to-run-our-code)
-- [Functions](#functions)
+- [Specification](#specification)
+  * [Introduction](#introduction)
+  * [How to run our code](#how-to-run-our-code)
+  * [Common errors](#common-errors)
+  * [Functions](#functions)
 - [Functionality](#functionality)
 - [Design Decision](#design-decision)
 - [Clean Architecture](#clean-architecture)
@@ -17,11 +19,11 @@
 - [Progress Report](#progress-report)
 - [Accessibility Report](#accessibility-report)
   
-
-## Introduction
+## Specification
+### Introduction
 Our website is an educational website dedicated to creating an online study space for students. This platform is suitable for any kind of interactive learning! Teachers can form study groups, create questions and form tests that can be assigned to study groups. Once a question/test is designed, it becomes the property of the teacher. In the future, there will be ways for teachers to profit from these creations. Students may use the website to join study groups and learn with other students with the benefit of having a teacher to provide personalized tests. They will receive marks/feedback from the teacher once their answers are graded.
 
-## How to run our code
+### How to run our code
 1. Clone the repo to local
 2. Add a new local tomcat configuration\
   2.1. Download tomcat 8 and add it to the application server\
@@ -37,7 +39,7 @@ Our website is an educational website dedicated to creating an online study spac
 * If tomcat access is denied and you are using a mac, check if you downloaded .zip instead of the .tar for the MYSQL connector.
 * If related to the java version, set JDK to amazon corretto version 11.
 
-## Functions
+### Functions
 * Student Page:\
 ![Screen Shot 2021-12-08 at 12 26 42 PM](https://user-images.githubusercontent.com/90296783/145254954-4a75462b-6dfa-45d0-ac49-ee7c141a80e9.png)\
 &nbsp;&nbsp;&nbsp;&nbsp;The website creates a webpage for each registered student. Student users can see all the groups they have joined and are able to join new groups on the page. They can access their study groups by entering the group detail page.
@@ -113,7 +115,8 @@ Our website is an educational website dedicated to creating an online study spac
 &nbsp;&nbsp;&nbsp;&nbsp;This design pattern is a technique that makes a class independent of its dependencies. It helps us to follow the dependency inversion principle and single responsibility in solid. We introduce interfaces to break the dependencies between higher and lower level classes so that both classes depend on the interface and no longer on each other. In our code, we create an interface called GeneralReadWrite, which is the interface that all of our gateways implement. For the use cases, all of our managers import the GeneralReadWrite interface. In this case, both the use cases and gateways depend on the interface instead of each other. 
 * Strategy:\
 &nbsp;&nbsp;&nbsp;&nbsp;The strategy design pattern allows us to do specific things in different ways. We encapsulate an interface as a base and then bury implementation details in derived classes. In our project, we build our gateways by implementing the interface called GeneralReadWrite. We make different gateways like Teacher Gateway, Student Gateway, for each table in the database. These gateways all have the same thing to do, which is to read/write but each corresponding table has a unique structure. Hence, by implementing the interface, we can write their getter and setter methods accordingly. By doing so, we avoid writing long if-else statements that are required to distinguish tables. For example, without this pattern, we will need to first get a parameter telling us which table we are looking at, and then read/write the table. This will create long methods and significantly decrease readability. Instead of setting the table type as a parameter, we could dynamically tell the code which read/write method we want to use on the spot. By using this design pattern, we also satisfied the open/ close principle. In the future development, we could add more different gateways without changing the older gateways. And the old ones are closed for modification.
-
+* MVC Model:\
+&nbsp;&nbsp;&nbsp;&nbsp;Since our project is a website, we also implemented the MVC model to follow the rules of clean architecture. MVC stands for model-view-controller and we have corresponding classes for each of them. It allows us to reduce coupling between front, back and data. Our entities such as students and groups are models. They are types of data structures and are the fundamental building block. Controllers are the servlet classes, they get information from the view classes and perform actions accordingly by manipulating models. Views are the GUI files such as login.html, they display information on the screen and don't have access to the data stored in the database.
 
 ## Use of Github Features
 &nbsp;&nbsp;&nbsp;&nbsp;We frequently used the features in Github to help us work together in making this project.\
@@ -173,8 +176,8 @@ Universal Design:
 &nbsp;&nbsp;&nbsp;&nbsp;Clear instruction to functions with concise and precise descriptions. For example, the login page only has two buttons, the login and the register buttons.
 
 
-Write a paragraph about who you would market your program towards, if you were to sell or license your program to customers. This could be a specific category such as "students" or more vague, such as "people who like games". Try to give a bit more detail along with the category.\
+* Write a paragraph about who you would market your program towards, if you were to sell or license your program to customers. This could be a specific category such as "students" or more vague, such as "people who like games". Try to give a bit more detail along with the category.\
 TODO
 
-Write a paragraph about whether or not your program is less likely to be used by certain demographics. For example, a program that converts txt files to files that can be printed by a braille printer are less likely to be used by people who do not read braille.\
+* Write a paragraph about whether or not your program is less likely to be used by certain demographics. For example, a program that converts txt files to files that can be printed by a braille printer are less likely to be used by people who do not read braille.\
 TODO
