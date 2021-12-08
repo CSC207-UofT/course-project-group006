@@ -7,18 +7,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionAnswerGateway extends Gateway implements ReadIDName {
-
+    /**
+     * Read information by ID
+     * @param elementStructure the element structure
+     * @param type             the type
+     * @param targetID         the target id
+     * @return A list of information read by ID
+     */
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from QUESTIONANSWER where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
+    /**
+     * Read information by ID name
+     * @param elementStructure the element structure
+     * @param studentID the student ID
+     * @param type the type
+     * @param targetID the target ID
+     * @return A list of information read by ID name
+     */
     @Override
     public List<String> readByIDName(int elementStructure,int studentID, int type, int targetID) {
         String sql = "select * from QUESTIONANSWER where questionID = ' " + targetID + " ' and studentID = '" + studentID + " '";
         return new ArrayList<>(read(sql, type, elementStructure));
     }
+
+    /**
+     * Read rows
+     * @param targetID the target ID
+     * @return A list of strings containing information in database in rows
+     */
     @Override
     public List<String> readRow(int targetID) {
         try {
@@ -46,6 +66,12 @@ public class QuestionAnswerGateway extends Gateway implements ReadIDName {
         }
     }
 
+    /**
+     * Write information
+     * @param type the type
+     * @param info the info
+     * @return A list of info
+     */
     @Override
     public List<String> write(int type, List<String> info) {
         List<String> result = new ArrayList<>();
@@ -96,6 +122,14 @@ public class QuestionAnswerGateway extends Gateway implements ReadIDName {
         return result;
     }
 
+    /**
+     * Insert a new question answer in database
+     * @param questionID the question ID
+     * @param answer the answer
+     * @param studentID the student ID
+     * @param groupID the group ID
+     * @return a question answer
+     */
     private String newQuestionAnswer(int questionID, String answer, int studentID, int groupID) {
 
         int mark = -1;

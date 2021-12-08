@@ -8,7 +8,13 @@ import java.util.List;
  * The type Test answer gateway.
  */
 public class TestAnswerGateway extends Gateway{
-
+    /**
+     * Read by ID
+     * @param elementStructure the element structure
+     * @param type             the type
+     * @param targetID         the target id
+     * @return The list of information
+     */
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from TESTANSWER where id = " + targetID;
@@ -16,6 +22,11 @@ public class TestAnswerGateway extends Gateway{
     }
     // no name in TESTANSWER table
 
+    /**
+     * Read row
+     * @param targetID the target ID
+     * @return The list of information from rows
+     */
     @Override
     public List<String> readRow(int targetID) {
         try {
@@ -42,7 +53,12 @@ public class TestAnswerGateway extends Gateway{
             return null;
         }
     }
-
+    /**
+     * Write information
+     * @param type the type
+     * @param info the info
+     * @return A list of info
+     */
     @Override
     public List<String> write(int type, List<String> info) {
         List<String> result = new ArrayList<>();
@@ -82,6 +98,12 @@ public class TestAnswerGateway extends Gateway{
         return result;
     }
 
+    /**
+     * New test answer string
+     * @param testID the test ID
+     * @param studentID the student ID
+     * @return the String
+     */
     private String newTestAnswer(int testID, int studentID) {
         int mark = -1;
 

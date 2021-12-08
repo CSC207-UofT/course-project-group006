@@ -15,6 +15,13 @@ public class GroupGateway extends Gateway implements ReadAll {
 
     //private final int CREATOR = 3;
 
+    /**
+     * Read by ID
+     * @param elementStructure the element structure
+     * @param type             the type
+     * @param targetID         the target id
+     * @return List in database
+     */
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from STUDYGROUP where id = " + targetID;
@@ -22,6 +29,11 @@ public class GroupGateway extends Gateway implements ReadAll {
     }
 
 
+    /**
+     * Read rows
+     * @param targetID
+     * @return A list with information read from rows in database
+     */
     @Override
     public List<String> readRow(int targetID) {
         try {
@@ -49,6 +61,12 @@ public class GroupGateway extends Gateway implements ReadAll {
         }
     }
 
+    /**
+     * Write information
+     * @param type the type
+     * @param info the info
+     * @return A list of groups or info
+     */
     @Override
     public List<String> write(int type, List<String> info) {
 
@@ -107,7 +125,12 @@ public class GroupGateway extends Gateway implements ReadAll {
 
     }
 
-
+    /**
+     * Create a new group
+     * @param teacherID Teacher's ID
+     * @param groupName Name of the group
+     * @return A created new group
+     */
     private String newGroup(int teacherID, String groupName) {
         if (hasDuplicateNames("STUDYGROUP", groupName)) {
             return FAILED;
@@ -144,7 +167,10 @@ public class GroupGateway extends Gateway implements ReadAll {
 
     }
 
-
+    /**
+     * Read everything
+     * @return Info read
+     */
     @Override
     public HashMap<Integer, String> readAll() {
         HashMap<Integer, String> result = new HashMap<>();
