@@ -111,11 +111,17 @@ Our website is an educational website dedicated to creating an online study spac
 
 
 ## Design Pattern
-* Dependency Injection:\https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.\
+* Dependency Injection:\
+https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
+\
 &nbsp;&nbsp;&nbsp;&nbsp;This design pattern is a technique that makes a class independent of its dependencies. It helps us to follow the dependency inversion principle and single responsibility in solid. We introduce interfaces to break the dependencies between higher and lower level classes so that both classes depend on the interface and no longer on each other. In our code, we create an interface called GeneralReadWrite, which is the interface that all of our gateways implement. For the use cases, all of our managers import the GeneralReadWrite interface. In this case, both the use cases and gateways depend on the interface instead of each other. 
-* Strategy:\https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.\
+* Strategy:\
+https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
+\
 &nbsp;&nbsp;&nbsp;&nbsp;The strategy design pattern allows us to do specific things in different ways. We encapsulate an interface as a base and then bury implementation details in derived classes. In our project, we build our gateways by implementing the interface called GeneralReadWrite. We make different gateways like Teacher Gateway, Student Gateway, for each table in the database. These gateways all have the same thing to do, which is to read/write but each corresponding table has a unique structure. Hence, by implementing the interface, we can write their getter and setter methods accordingly. By doing so, we avoid writing long if-else statements that are required to distinguish tables. For example, without this pattern, we will need to first get a parameter telling us which table we are looking at, and then read/write the table. This will create long methods and significantly decrease readability. Instead of setting the table type as a parameter, we could dynamically tell the code which read/write method we want to use on the spot. By using this design pattern, we also satisfied the open/ close principle. In the future development, we could add more different gateways without changing the older gateways. And the old ones are closed for modification.
-* MVC Model:\https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.\
+* MVC Model:\
+https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
+\
 &nbsp;&nbsp;&nbsp;&nbsp;Since our project is a website, we also implemented the MVC model to follow the rules of clean architecture. MVC stands for model-view-controller and we have corresponding classes for each of them. It allows us to reduce coupling between front, back and data. Our entities such as students and groups are models. They are types of data structures and are the fundamental building block. Controllers are the servlet classes, they get information from the view classes and perform actions accordingly by manipulating models. Views are the GUI files such as login.html, they display information on the screen and don't have access to the data stored in the database.
 
 ## Use of Github Features
