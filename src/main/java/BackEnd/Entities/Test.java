@@ -181,6 +181,11 @@ public class Test {
         }
         return result;
     }
+
+    /**
+     * Get question ID
+     * @return The integer list of question ID
+     */
     public int[] getQuestionId(){
         int[] result = new int[questions.size()];
         for(int i=0;i<questions.size();i++){

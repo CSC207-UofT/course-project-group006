@@ -57,6 +57,12 @@ public class TestServlet extends HttpServlet {
             out.println("</html>");
         }
     }
+
+    /**
+     * Method never used
+     * @param request Servlet request
+     * @param response Servlet response
+     */
     protected void doGetAa(HttpServletRequest request, HttpServletResponse response){
 
     }
@@ -137,6 +143,11 @@ public class TestServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    /**
+     * Get users ID
+     *
+     * @param request servlet request
+     */
     public int getUserId(HttpServletRequest request){
         Cookie[] c = request.getCookies();
         for (Cookie cookie : c) {
@@ -146,6 +157,11 @@ public class TestServlet extends HttpServlet {
         }
         return -1;
     }
+    /**
+     * Get type of users
+     *
+     * @param request servlet request
+     */
     public String getUserType(HttpServletRequest request){
         Cookie[] c = request.getCookies();
         for (Cookie cookie : c) {

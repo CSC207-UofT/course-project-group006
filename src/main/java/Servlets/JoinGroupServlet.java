@@ -50,7 +50,7 @@ public class JoinGroupServlet extends TestServlet {
     }
 
     /**
-     *
+     * Student users join in groups, send redirect to JoinGroupServlet
      * @param request servlet request
      * @param response servlet response
      * @throws IOException if an I/O error occurs
@@ -61,6 +61,13 @@ public class JoinGroupServlet extends TestServlet {
         studentManager.addGroupToUser(getUserId(request),Integer.parseInt(request.getParameter("groupId")), 500);
         response.sendRedirect("JoinGroupServlet");
     }
+    /**
+     * Send redirect to StudentPageServlet
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
     public void back(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.sendRedirect("StudentPageServlet");

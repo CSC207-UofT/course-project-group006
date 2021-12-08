@@ -123,6 +123,12 @@ public abstract class Gateway implements GeneralReadWriter {
         }
     }
 
+    /**
+     * Identify whether the name has already exist
+     * @param table the table
+     * @param name  the name
+     * @return True if name exists, false if the name is new
+     */
     public boolean hasDuplicateNames(String table, String name) {
         try {
             Connection connection = getConnection();

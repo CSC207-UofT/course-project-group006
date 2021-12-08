@@ -54,6 +54,14 @@ public class TestSubmissionServlet extends TestServlet {
         r.forward(request, response);
 
     }
+    /**
+     * Method for grading the test
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void grade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int testSize= Integer.parseInt(request.getParameter("testSize"));
         int testId= Integer.parseInt(request.getParameter("testId"));
@@ -66,6 +74,14 @@ public class TestSubmissionServlet extends TestServlet {
         groupManager.grade(groupId,testId,studentId,grades,new String[testSize]);
         back(request,response);
     }
+    /**
+     * Redirect to GroupPageServlet
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void back(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));

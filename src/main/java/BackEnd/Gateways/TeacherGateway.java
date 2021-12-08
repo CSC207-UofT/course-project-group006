@@ -11,19 +11,36 @@ import java.util.List;
  */
 public class TeacherGateway extends Gateway implements ReadNameID {
 
-
+    /**
+     * Read by ID
+     * @param elementStructure the element structure
+     * @param type             the type
+     * @param targetID         the target id
+     * @return A list of information
+     */
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from TEACHER where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
+    /**
+     * Read int by name
+     * @param type the type
+     * @param targetName the target name
+     * @return The list of info
+     */
     @Override
     public List<String> readIntByName(int type, String targetName) {
         String sql = "select * from TEACHER where name = '" + targetName + "'";
         return new ArrayList<>(read(sql, type, INT));
     }
 
+    /**
+     * Read row
+     * @param targetID the target ID
+     * @return A list of strings containing information in database in rows
+     */
     @Override
     public List<String> readRow(int targetID) {
         try {
@@ -51,6 +68,12 @@ public class TeacherGateway extends Gateway implements ReadNameID {
         }
     }
 
+    /**
+     * Write information
+     * @param type the type
+     * @param info the info
+     * @return A list of info
+     */
     @Override
     public List<String> write(int type, List<String> info) {
         List<String> result = new ArrayList<>();
@@ -104,6 +127,13 @@ public class TeacherGateway extends Gateway implements ReadNameID {
         return result;
     }
 
+    /**
+     * New teacher string
+     * @param name the name
+     * @param pass the password
+     * @param email the email
+     * @return the string
+     */
     private String newTeacher(String name, String pass, String email) {
 
         if (hasDuplicateNames("STUDENT", name)) {

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterServlet extends TestServlet {
 
     /**
-     * Method allowing teacher user to register
+     * Method allowing teacher user to register, send redirect to LogInPage
      * @param request Servlet request
      * @param response Servlet response
      */
@@ -30,7 +30,7 @@ public class RegisterServlet extends TestServlet {
         }
     }
     /**
-     * Method allowing student user to register
+     * Method allowing student user to register, send redirect to LogInPage
      * @param request Servlet request
      * @param response Servlet response
      */

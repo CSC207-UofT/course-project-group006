@@ -9,6 +9,13 @@ public class Question implements QuestionInterface {
     private int marks;
     private int id;
 
+    /**
+     * Constructor for Question
+     * @param name question name
+     * @param question question body
+     * @param answer answer to question
+     * @param mark mark of question
+     */
     public Question(String name, String question, String answer, int mark){
 
         this.name = name;
@@ -16,6 +23,14 @@ public class Question implements QuestionInterface {
         this.answer=answer;
         this.marks = mark;
     }
+    /**
+     * Constructor for Question
+     * @param name question name
+     * @param question question body
+     * @param answer answer to question
+     * @param mark mark of question
+     * @param id question ID
+     */
     public Question(String name, String question, String answer, int mark,int id){
 
         this.name = name;

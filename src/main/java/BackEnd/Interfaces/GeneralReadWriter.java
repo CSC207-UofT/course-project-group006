@@ -16,7 +16,11 @@ public interface GeneralReadWriter {
      */
     List<String> readByID(int elementStructure, int type, int targetID);
 
-
+    /**
+     * Read row
+     * @param targetID the target ID
+     * @return the list of wanted info in rows
+     */
     List<String> readRow(int targetID);
 
     /**

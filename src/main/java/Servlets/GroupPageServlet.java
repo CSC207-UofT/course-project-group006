@@ -90,6 +90,14 @@ public class GroupPageServlet extends TestServlet {
         RequestDispatcher r = request.getRequestDispatcher("GroupDetail.jsp");
         r.forward(request, response);
     }
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest1(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -106,6 +114,13 @@ public class GroupPageServlet extends TestServlet {
             out.println("</html>");
         }
     }
+
+    /**
+     * Build page for both HTTP <code>GET</code> and <code>POST</code> methods.
+     * @param request servlet request
+     * @param response servlet response
+     * @param out servlet print writer
+     */
     public void buildPage(HttpServletRequest request, HttpServletResponse response,PrintWriter out){
         int id = Integer.parseInt(request.getParameter("groupId"));
         int[] students = groupManager.getStudents(id);
@@ -142,21 +157,51 @@ public class GroupPageServlet extends TestServlet {
             //out.println("</script>");
         }
     }
+    /**
+     * Delete for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     */
     public void delete(HttpServletRequest request, HttpServletResponse response){
         System.out.println("studentId:"+request.getParameter("studentId")+"groupId:"+request.getParameter("groupId"));
         groupManager.removeStudentFromGroup(Integer.parseInt(request.getParameter("studentId")), Integer.parseInt(request.getParameter("groupId")));
         try{
             response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));
         }catch(IOException ignored){
-
+            // Do nothing
         }
     }
-    public String creatTitle(int id){
+
+    /**
+     * Create title
+     * @param id the ID
+     * @return The String title
+     */
+    public String createTitle(int id){
         return groupManager.getName(id)+" Teacher: " + teacherManager.getNameById(groupManager.getTeacher(id)) +" ";
     }
+
+    /**
+     * Assign in test page
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
     public void assign(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("TestPageServlet?groupId="+request.getParameter("groupId"));
     }
+
+    /**
+     * Finish section
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void finish(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int groupId = Integer.parseInt(request.getParameter("groupId"));
@@ -171,15 +216,38 @@ public class GroupPageServlet extends TestServlet {
         groupManager.addTest(groupId, testId, due);
         processRequest(request,response);
     }
+    /**
+     * Starter
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
     public void start(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.sendRedirect("TestPresenterServlet?testId="+request.getParameter("testId")+
                 "&groupId="+request.getParameter("groupId"));
     }
+    /**
+     * Start marking
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
     public void startMarking(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.sendRedirect("MarkingPageChoosing.jsp");
     }
+
+    /**
+     * Give the grade
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void grade(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int testId=Integer.parseInt(request.getParameter("testId"));
@@ -196,6 +264,13 @@ public class GroupPageServlet extends TestServlet {
         RequestDispatcher r = request.getRequestDispatcher("MarkingPageChoosing.jsp");
         r.forward(request, response);
     }
+    /**
+     * Send redirect to TestSubmissionServlet
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
     public void choose(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.sendRedirect("TestSubmissionServlet?testId="+request.getParameter("testId")+
@@ -203,6 +278,14 @@ public class GroupPageServlet extends TestServlet {
                 "&studentId="+request.getParameter("studentId"));
 
     }
+    /**
+     * Process back to student or teacher page, send redirect to TeacherPageServlet or StudentPageServlet
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void back(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int user=getUserId(request);
@@ -212,6 +295,14 @@ public class GroupPageServlet extends TestServlet {
             response.sendRedirect("StudentPageServlet");
         }
     }
+    /**
+     * Remove test by groupManager
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void removeTest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -220,6 +311,14 @@ public class GroupPageServlet extends TestServlet {
         groupManager.removeTest(groupId,testId);
         processRequest(request,response);
     }
+    /**
+     * Post announcement
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void postAnnouncement(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         groupManager.postAnnouncement(Integer.parseInt(request.getParameter("groupId")),request.getParameter("announcement"));

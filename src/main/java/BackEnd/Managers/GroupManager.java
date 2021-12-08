@@ -263,12 +263,18 @@ public class GroupManager {
         info.add(announcement);
         return !groupGate.write(5, info).get(0).equals("FAILED");
     }
+
+    /**
+     * Read group
+     * @param id the id
+     * @return The group
+     */
     private Group readGroup(int id){
         //return new Group(1, "placeholder", new int[]{2,3}, 4, new HashMap<Integer, HashMap<Integer, String[]>>(), new ArrayList<>(), new ArrayList<>());
         List<String> info= groupGate.readRow(id);
         if(info.get(0).equals(""+id)){
             String groupName = info.get(1);
-            String creater = info.get(2);
+            String creator = info.get(2);
             String[] students = info.get(3).split(",");
             String posts = info.get(4);
             String[] tests = info.get(5).split(",");
@@ -296,18 +302,36 @@ public class GroupManager {
                     }
                 }
             }
-            //System.out.println("testAnswers:"+testAnswers);
-            //System.out.println("testDueDates"+testDueDates);
-            return new Group(Integer.parseInt(creater),groupName,sIds,id, posts,testAnswers,testDueDates);
+            return new Group(Integer.parseInt(creator),groupName,sIds,id, posts,testAnswers,testDueDates);
         }
         return null;
     }
+
+    /**
+     * Get name by ID
+     * @param id the ID
+     * @return The string of name
+     */
     public String getNameById(int id){
         return this.readGroup(id).getName();
     }
+
+    /**
+     * Get tests
+     * @param id the ID
+     * @return The hashmap of test
+     */
     public HashMap<Integer, LocalDateTime> getTests(int id){
         return readGroup(id).getTests();
     }
+
+    /**
+     * Add test
+     * @param id the ID
+     * @param testId the test ID
+     * @param due the due date
+     * @return The boolean identifying to add test successfully or not
+     */
     public boolean addTest(int id, int testId,java.time.LocalDateTime due){
         Group g = readGroup(id);
         assert g != null;
@@ -317,6 +341,12 @@ public class GroupManager {
         }
         return false;
     }
+    /**
+     * Remove test
+     * @param id the ID
+     * @param testId the test ID
+     * @return The boolean identifying to remove test successfully or not
+     */
     public boolean removeTest(int id, int testId){
         System.out.println("testId:"+testId);
         System.out.println("groupId:"+id);
@@ -329,6 +359,12 @@ public class GroupManager {
         }
         return false;
     }
+
+    /**
+     * Update test
+     * @param id the ID
+     * @param g the group
+     */
     private void updateTest(int id, Group g){
         updateStudentAnswer(id,g);
         //System.out.println(g.testAnswers());
@@ -337,32 +373,88 @@ public class GroupManager {
         groupGate.write(33, List.of("" + id, g.testIds()));
         //System.out.println(g.testIds());
     }
+
+    /**
+     * Update student answer
+     * @param id the ID
+     * @param g the group
+     */
     private void updateStudentAnswer(int id,Group g){
         groupGate.write(7, List.of("" + id, g.testAnswers()));
 
     }
+
+    /**
+     * Identify the creator
+     * @return The list of information og whom the group feature created by
+     */
     public List<Integer> createdBy(){
         return new ArrayList<>();
     }
+
+    /**
+     * Answer test
+     * @param groupId the group ID
+     * @param testId the test ID
+     * @param answer the answer
+     * @param studentId the student ID
+     */
     public void answerTest(int groupId, int testId, String[] answer, int studentId){
         Group g = readGroup(groupId);
         g.answerTest(testId,answer,studentId);
         updateStudentAnswer(groupId,g);
     }
+
+    /**
+     * Get the submission
+     * @param groupId the group ID
+     * @param testId the test ID
+     * @return The test result in hashmap
+     */
     public HashMap<Integer,String[]> getSubmition(int groupId,int testId){
         return readGroup(groupId).getTestResults(testId);
     }
+
+    /**
+     * The posts
+     * @param id the ID
+     * @return The string of the announcement
+     */
     public String posts(int id){
         return readGroup(id).getAnnouncement();
     }
+
+    /**
+     * Grade the test
+     * @param groupId the group ID
+     * @param testId the test ID
+     * @param studentId the student ID
+     * @param grades the grades
+     * @param comment the comment
+     */
     public void grade(int groupId,int testId,int studentId,int[] grades,String[] comment){
        Group g = readGroup(groupId);
        g.grade(testId,studentId,grades,comment);
        updateTest(groupId,g);
     }
+
+    /**
+     * Get marks
+     * @param groupId the group ID
+     * @param testId the test ID
+     * @param studentId the student ID
+     * @return The mark of student
+     */
     public int[] getMarks(int groupId, int testId, int studentId){
         return readGroup(groupId).getGrades(testId,studentId);
     }
+
+    /**
+     * Identify if the group has student
+     * @param groupId the group ID
+     * @param studentId the student ID
+     * @return Boolean to decide if the group contains student
+     */
     public boolean hasStudent(int groupId, int studentId){
         Group g = readGroup(groupId);
         if(g!=null) {

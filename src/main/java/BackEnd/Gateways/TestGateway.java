@@ -8,14 +8,24 @@ import java.util.List;
  * The type Test gateway.
  */
 public class TestGateway extends Gateway{
-
+    /**
+     * Read by ID
+     * @param elementStructure the element structure
+     * @param type             the type
+     * @param targetID         the target id
+     * @return A list of information from database
+     */
     @Override
     public List<String> readByID(int elementStructure, int type, int targetID) {
         String sql = "select * from TEST where id = " + targetID;
         return new ArrayList<>(read(sql, type, elementStructure));
     }
 
-
+    /**
+     * Read row
+     * @param targetID the target ID
+     * @return A list of information read from rows in database
+     */
     @Override
     public List<String> readRow(int targetID) {
         try {
@@ -43,7 +53,12 @@ public class TestGateway extends Gateway{
         }
     }
 
-
+    /**
+     * Write information
+     * @param type the type
+     * @param info the info
+     * @return A list of info
+     */
     @Override
     public List<String> write(int type, List<String> info) {
         List<String> result = new ArrayList<>();
