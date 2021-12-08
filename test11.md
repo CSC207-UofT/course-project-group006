@@ -116,10 +116,10 @@ Our website is an educational website dedicated to creating an online study spac
 
 
 ## Use of Github Features
-&nbsp;&nbsp;&nbsp;&nbspWe frequently used the features in Github to help us work together in making this project.\
-&nbsp;&nbsp;&nbsp;&nbspFor commit and pull request, everyone has their own branch to work with. If we edit a new version, we will commit and push it to our own branch and create a pull request, waiting for our teammates to compare and merge if necessary. \
-&nbsp;&nbsp;&nbsp;&nbspBased on the feedback of phase 1, we also discovered the advantage using issue in Github. Issue allows us to post the problems met in coding and wait for group members to solve them. We solved a few problems during our coding process using this feature. \
-&nbsp;&nbsp;&nbsp;&nbspFor actions, we have recently discovered the importance of using this feature in Github. it allows us to locate our processes and our full history. Because of this, I can revisit my original version to compare the difference.
+&nbsp;&nbsp;&nbsp;&nbsp;We frequently used the features in Github to help us work together in making this project.\
+&nbsp;&nbsp;&nbsp;&nbsp;For commit and pull request, everyone has their own branch to work with. If we edit a new version, we will commit and push it to our own branch and create a pull request, waiting for our teammates to compare and merge if necessary. \
+&nbsp;&nbsp;&nbsp;&nbsp;Based on the feedback of phase 1, we also discovered the advantage using issue in Github. Issue allows us to post the problems met in coding and wait for group members to solve them. We solved a few problems during our coding process using this feature. \
+&nbsp;&nbsp;&nbsp;&nbsp;For actions, we have recently discovered the importance of using this feature in Github. it allows us to locate our processes and our full history. Because of this, I can revisit my original version to compare the difference.
 
 
 ## Code Style and Documentation
