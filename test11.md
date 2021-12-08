@@ -101,7 +101,8 @@ Our website is an educational website dedicated to creating an online study spac
 
 
 ## Packaging Strategy
-&nbsp;&nbsp;&nbsp;&nbsp;We organized our files by clean architecture layers. The IDE automatically created a web page folder that contains all the UI pages when the project is created. In the backend, java folder, there is a servlet(controller) folder, as well as a backend folder that contains a gateway, a manager, an entity and an interface folder.  By doing so, we can local the files quickly and significantly increase the readability of our code("Ini.java" and "IniTest.java" are only for debugging purpose for us to run the main method, and will be deleted later for the final release version).
+&nbsp;&nbsp;&nbsp;&nbsp;We organized our files by clean architecture layers. The IDE automatically created a web page folder that contains all the UI pages when the project is created. In the backend, java folder, there is a servlet(controller) folder, as well as a backend folder that contains a gateway, a manager, an entity and an interface folder.  By doing so, we can local the files quickly and significantly increase the readability of our code("Ini.java" and "IniTest.java" are only for debugging purpose for us to run the main method, and will be deleted later for the final release version). Also, it is clear for everyone to work on a certain part of our project without violating the dependency rule.
+
 
 ## Design Pattern
 * Dependency Injection:\
