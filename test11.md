@@ -116,14 +116,11 @@ Our website is an educational website dedicated to creating an online study spac
 
 
 ## Use of Github Features
-* Commit:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
-* Pull Request:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
-* Issue:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
-* Action:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+We frequently used the features in Github to help us work together in making this project.\
+For commit and pull request, everyone has their own branch to work with. If we edit a new version, we will commit and push it to our own branch and create a pull request, waiting for our teammates to compare and merge if necessary. \
+Based on the feedback of phase 1, we also discovered the advantage using issue in Github. Issue allows us to post the problems met in coding and wait for group members to solve them. We solved a few problems during our coding process using this feature. \
+For actions, we have recently discovered the importance of using this feature in Github. it allows us to locate our processes and our full history. Because of this, I can revisit my original version to compare the difference.
+
 
 ## Code Style and Documentation
 TODO
