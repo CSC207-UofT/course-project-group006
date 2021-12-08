@@ -143,6 +143,8 @@ TODO
 * Member Progress:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
+### Jacky Jiang:
+gh pr checkout 48. This pull request merge a important TestAnswerManager and TestAnswerGateway into main.  gh pr checkout 59. This one add most of the test cases into main.
 * Improvments From Phase 1:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
