@@ -39,14 +39,21 @@ Our website is an educational website dedicated to creating an online study spac
 
 ## Functions
 * Student Page:\
+![Screen Shot 2021-12-08 at 12 26 42 PM](https://user-images.githubusercontent.com/90296783/145254954-4a75462b-6dfa-45d0-ac49-ee7c141a80e9.png)\
 &nbsp;&nbsp;&nbsp;&nbsp;The website creates a webpage for each registered student. Student users can see all the groups they have joined and are able to join new groups on the page. They can access their study groups by entering the group detail page.
 * Teacher Page:\
+![image](https://user-images.githubusercontent.com/90296783/145256012-2cb198f1-c28b-4510-b943-17f9e7169989.png)\
 &nbsp;&nbsp;&nbsp;&nbsp;The website creates a webpage for every teacher user. They can create tests as well as access all their study groups through the group detail page.
 * Tests:\
+![image](https://user-images.githubusercontent.com/90296783/145257365-04bce42d-55df-4d4e-b773-e9419f907bcd.png)\
+![image](https://user-images.githubusercontent.com/90296783/145255926-d03fb062-69a7-4069-b041-50da1fce0a4f.png)\
 &nbsp;&nbsp;&nbsp;&nbsp;Students can access tests posted by teachers. Teachers can create tests and add questions, answers, and marks to each test. Teachers are only able to see their own tests.
 * Group Study:\
+![image](https://user-images.githubusercontent.com/90296783/145255692-f409a92e-a1fe-4972-afa7-d86863c39267.png)\
+![image](https://user-images.githubusercontent.com/90296783/145256506-db138777-c11f-4185-ba57-3cb0b087ee36.png)\
 &nbsp;&nbsp;&nbsp;&nbsp;Users identified as students can choose to study in any group where they can access the materials such as student lists, announcements and tests. They are also able to see their mark once the teacher finishes grading. Users identified as teachers can see all students' answers and grade the test.
 * User Files:\
+![image](https://user-images.githubusercontent.com/90296783/145258014-229e7258-cc1f-4ca8-b77d-051c152ecfe2.png)\
 &nbsp;&nbsp;&nbsp;&nbsp;The website will store all the information online using the MySQL database without using any local storage.
 
 ## Functionality
@@ -94,7 +101,8 @@ Our website is an educational website dedicated to creating an online study spac
 
 
 ## Packaging Strategy
-TODO
+&nbsp;&nbsp;&nbsp;&nbsp;We organized our files by clean architecture layers. The IDE automatically created a web page folder that contains all the UI pages when the project is created. In the backend, java folder, there is a servlet(controller) folder, as well as a backend folder that contains a gateway, a manager, an entity and an interface folder.  By doing so, we can local the files quickly and significantly increase the readability of our code("Ini.java" and "IniTest.java" are only for debugging purpose for us to run the main method, and will be deleted later for the final release version). Also, it is clear for everyone to work on a certain part of our project without violating the dependency rule.
+
 
 ## Design Pattern
 * Dependency Injection:\
@@ -137,18 +145,18 @@ TODO
 
 ## Progress Report
 * Open Question:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;We are still not quite sure how to improve the connection speed.
 * Worked Well:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
 * Member Progress:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;Jacky Jiang: I have been working on implementing the gateways, managers and creating unit tests. https://github.com/CSC207-UofT/course-project-group006/pull/48#issue-1071496102. This pull request merged an important TestAnswerManager and TestAnswerGateway into main. https://github.com/CSC207-UofT/course-project-group006/pull/59#issue-1071620452. This one add most of the test cases into main.\
+&nbsp;&nbsp;&nbsp;&nbsp;Jen Zhu: https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324. I have been focusing on creating gateways and managers, setting up connections with the database as well as helping with the UI. This pull request changes the non-clean phase 1 structure into a clean structure by creating serval gateway classes and some new interfaces.\
 * Improvments From Phase 1:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
 * In Future:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
-
 ## Accessibility Report
 Universal Design:
 * Equitable Use:\

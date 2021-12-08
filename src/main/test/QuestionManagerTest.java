@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 public class QuestionManagerTest {
     @Before
-    public void setUp() throws SQLException {
+    public void setUp() {
 //        Server: sql5.freemysqlhosting.net
 //        Name: sql5456611
 //        Username: sql5456611
@@ -53,6 +53,21 @@ public class QuestionManagerTest {
             assertEquals("apple", b);
             assertEquals("pingguo", c);
             assertEquals(5, Integer.parseInt(d));
+
+    }
+
+    @Test (timeout = 500000)
+    public void testAddSecondQuestion() {
+        QuestionGateway questionGateway = new QuestionGateway();
+        int i = new QuestionManager(questionGateway).addQuestion("simpleTest", "banana", "xiangjiao", 10);
+        String a = questionGateway.readByID(222, 2, i).get(0);
+        String b = questionGateway.readByID(222, 3, i).get(0);
+        String c = questionGateway.readByID(222, 4, i).get(0);
+        String d = questionGateway.readByID(111, 5, i).get(0);
+        assertEquals("simpleTest", a);
+        assertEquals("banana", b);
+        assertEquals("xiangjiao", c);
+        assertEquals(10, Integer.parseInt(d));
 
     }
 }
