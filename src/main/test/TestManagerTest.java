@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TestManagerTest {
     @Before
-    public void setUp() throws SQLException {
+    public void setUp() {
         Gateway.driver = "com.mysql.cj.jdbc.Driver";
         Gateway.user = "sql5456611";
         Gateway.password = "9BF66dT8y5";
@@ -43,5 +43,17 @@ public class TestManagerTest {
         assertEquals("test", j);
         assertEquals(1, Integer.parseInt(k));
         assertEquals(10, Integer.parseInt(m));
+    }
+
+    @Test (timeout = 50000)
+    public void testSecondTest() {
+        TestGateway testGateway = new TestGateway();
+        int i = new TestManager(testGateway).creatTest("test2", 2, 5);
+        String j = testGateway.readByID(222, 2, i).get(0);
+        String k = testGateway.readByID(111, 3, i).get(0);
+        String m = testGateway.readByID(111, 5, i).get(0);
+        assertEquals("test2", j);
+        assertEquals(2, Integer.parseInt(k));
+        assertEquals(5, Integer.parseInt(m));
     }
 }
