@@ -153,10 +153,9 @@ TODO
 &nbsp;&nbsp;&nbsp;&nbsp;Jacky Jiang: I have been working on implementing the gateways, managers and creating unit tests. https://github.com/CSC207-UofT/course-project-group006/pull/48#issue-1071496102. This pull request merged an important TestAnswerManager and TestAnswerGateway into main. https://github.com/CSC207-UofT/course-project-group006/pull/59#issue-1071620452. This one add most of the test cases into main.\
 &nbsp;&nbsp;&nbsp;&nbsp;Jen Zhu: https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324. I have been focusing on creating gateways and managers, setting up connections with the database as well as helping with the UI. This pull request changes the non-clean phase 1 structure into a clean structure by creating serval gateway classes and some new interfaces.\
 * Improvments From Phase 1:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;One of the greatest improvements is that we have fixed our structure according to the MVC model so that it could meet all the requirements and principles. We have also refactored a lot and significantly improves the readability of our code. We have had lots of problems and issues using GitHub and IntelliJ in phase 1 mainly because we need to include lots of dependencies, create new configure and artifacts, and many things we have not seen before, but we are happy to say that we can use GitHub and IntelliJ much better than phase 1 now. 
 * In Future:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;We do have many ideas in mind, for example, the UI is no way close to elegant and there are many ways to make it look more professional. We plan to implement CSS and html5 into our front end. Another thing we could improve on is to migrate our source code to an online hosting server so that users can access the website directly using the URL, and don't need to download anything locally.
 ## Accessibility Report
 Universal Design:
 * Equitable Use:\
