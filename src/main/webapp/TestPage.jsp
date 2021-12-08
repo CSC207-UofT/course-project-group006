@@ -37,11 +37,11 @@
         <label><%=request.getAttribute("test" + i)%>
         </label>
         <input type="hidden" name="testId" id="testId" value=<%=i%>>
-        <input type="submit" name="act" id="act" value="detal">
+        <input type="submit" name="act" id="act" value="detail">
         <%
             if (request.getParameter("groupId") != null) {%>
         <input type="hidden" name="groupId" id="groupId" value=<%=request.getParameter("groupId")%>>
-        <input type="submit" name="act" id="act" value="asign">
+        <input type="submit" name="act" id="act" value="assign">
         <%
             }
         %>
@@ -55,9 +55,9 @@
             padding: 5px 10px;
             text-decoration: none;
             margin: auto;
-            cursor: pointer;" onclick="showForm()">creat new test
+            cursor: pointer;" onclick="showForm()">create new test
     </button>
-    <form action="TestPageServlet" method="Post" id="creatTest" hidden>
+    <form action="TestPageServlet" method="Post" id="createTest" hidden>
         <label for="testName"> name your test</label>
         <input type="text" name="testName" id="testName">
         <label for="timeLimit"> set a time limit for it</label>
@@ -67,7 +67,7 @@
 </div>
 <script>
     function showForm() {
-        document.getElementById("creatTest").hidden = !document.getElementById("creatTest").hidden;
+        document.getElementById("createTest").hidden = !document.getElementById("createTest").hidden;
     }
 </script>
 <form action="TestPageServlet" method="Post" style="position: fixed; bottom: 0px">

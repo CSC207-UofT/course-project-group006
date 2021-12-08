@@ -31,7 +31,7 @@
 </div>
 
 <form action="TestPresenterServlet" method="Post">
-    <input type="hidden" id="geoupId" name="groupId" value=<%=request.getParameter("groupId")%>>
+    <input type="hidden" id="groupId" name="groupId" value=<%=request.getParameter("groupId")%>>
     <input type="hidden" id="testId" name="testId" value=<%=request.getParameter("testId")%>>
     <%int testSize = (int) request.getAttribute("testSize");%>
     <input type="hidden" id="testSize" name="testSize" value=<%=testSize%>>

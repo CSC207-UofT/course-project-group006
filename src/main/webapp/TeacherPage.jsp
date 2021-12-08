@@ -38,10 +38,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </form>
     </div>
 
-    <form action="TeacherPageServlet" method="Post" name="creatGroup" id="creatGroup">
+    <form action="TeacherPageServlet" method="Post" name="createGroup" id="createGroup">
         <label style="font-family: Garamond, serif;color: black;font-size: 25px;">New Group Name:</label>
         <input type="text" name="testName" id="testName">
-        <input type="submit" name="act" value="Creat">
+        <input type="submit" name="act" value="Create">
     </form>
 
     <label style="font-size: 30px;">&nbsp;Your Groups:</label>
@@ -55,11 +55,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <label>:</label>
         </div>
         <div style="width: 33%; float: left;padding-left: 10px; text-align: right">
-            <input style="font-family: Garamond, serif" type="submit" name="act" value="detal">
+            <input style="font-family: Garamond, serif" type="submit" name="act" value="detail">
             <label>&nbsp;</label>
         </div>
         <div style="width: 33%; float: left">
-            <input style="font-family: Garamond, serif" type="submit" name="act" value="deleat">
+            <input style="font-family: Garamond, serif" type="submit" name="act" value="delete">
         </div>
 
         <input style="font-family: Garamond, serif" type="hidden" name="groupId" id="groupId" value=<%=group%>>
@@ -76,8 +76,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 </div>
 <script>
     function conform() {
-        if (document.activeElement.value === "deleat") {
-            return confirm("do you really want to deleat this?")
+        if (document.activeElement.value === "delete") {
+            return confirm("do you really want to delete this?")
         }
         return true
     }

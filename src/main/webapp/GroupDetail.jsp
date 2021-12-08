@@ -115,15 +115,15 @@
 <div class="right" id="people" hidden>
     <%
         int[] students = (int[]) request.getAttribute("students");
-        for (int i = 0; i < students.length; i++) {
+        for (int student : students) {
     %>
     <%
-        if (students[i] != 0) {
+        if (student != 0) {
     %>
     <form action="GroupPageServlet" method="Post">
-        <label><%= request.getAttribute("student" + students[i] + "name")%>
+        <label><%= request.getAttribute("student" + student + "name")%>
         </label>
-        <input type="hidden" name="studentId" id="studentId" value=<%=students[i]%>>
+        <input type="hidden" name="studentId" id="studentId" value=<%=student%>>
         <input type="hidden" name="groupId" id="groupId" value=<%=groupId%>>
         <%if (request.getAttribute("userType").equals("T")) {%>
         <input type="submit" name="act" id="act" value="delete">

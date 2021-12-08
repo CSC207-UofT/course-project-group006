@@ -28,8 +28,8 @@
                 <input type="hidden" name="questionId" id="questionId" value=<%=i%>>
                 <!--<lable>"<%=request.getAttribute("Q"+i+"question")%>" </lable><br>-->
                 <label>Answer:</label><br>
-                <lable>"<%=request.getAttribute("Q"+i+"answer")%>" </lable><br>
-                <input type="submit" name="act" value="delet">
+                <label>"<%=request.getAttribute("Q"+i+"answer")%>" </label><br>
+                <input type="submit" name="act" value="delete">
             </form>
                 <br>
         <%}%>
