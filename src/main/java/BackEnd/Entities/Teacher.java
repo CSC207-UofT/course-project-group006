@@ -22,6 +22,15 @@ public class Teacher extends User{
         this.groupCreated= new ArrayList<>();
         this.ownedTest = new ArrayList<>();
     }
+    /**
+     * Construct a teacher giving username, password and email
+     *
+     *  @param username the username of this teacher account
+     *  @param password the password of this teacher account
+     *  @param email the email of this teacher account
+     *  @param groupCreated the groups the teacher account created
+     *  @param ownedTest the test owned by the teacher account
+     */
     public Teacher(String username, String password, String email,ArrayList<Integer> groupCreated, ArrayList<Integer> ownedTest){
         super(username, password, email);
         this.adPurchased = new ArrayList<>();

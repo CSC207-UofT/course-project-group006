@@ -20,7 +20,7 @@ import javax.servlet.http.Cookie;
 
 public class LogInPageServlet extends TestServlet {
     /**
-     * Method to be called when user logins
+     * Method to be called when user logins, send redirect to StudentPageServlet
      * @param request Servlet request
      * @param response Servlet response
      */
@@ -81,6 +81,14 @@ public class LogInPageServlet extends TestServlet {
         }
 
     }
+    /**
+     * Send redirect to LogInPage to log out
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void LogOut(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         Cookie[] c = request.getCookies();
         for (Cookie cookie : c) {

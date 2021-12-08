@@ -24,7 +24,15 @@ public class Student extends User {
         this.level = 0;
 
     }
-
+    /**
+     * Construct a student giving the username, password and email
+     *
+     * @param username the username of this student account
+     * @param password the password of this student account
+     * @param email the email of this student account
+     * @param joinedGroup the groups joined of this student account
+     * @param level the level of the student account
+     */
     public Student(String username, String password, String email,int level, ArrayList<Integer> joinedGroup) {
         super(username, password, email);
         this.joinedGroup  = joinedGroup;

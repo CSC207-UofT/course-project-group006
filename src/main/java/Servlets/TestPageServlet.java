@@ -44,21 +44,50 @@ public class TestPageServlet extends TestServlet {
         RequestDispatcher r= request.getRequestDispatcher("TestPage.jsp");
         r.forward(request, response);
     }
-
+    /**
+     * Add test
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int testId = testManager.creatTest(request.getParameter("testName"), getUserId(request),0);
         teacherManager.addTest(getUserId(request),testId);
         processRequest(request,response);
     }
+    /**
+     * Redirect to TestDetailServlet
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
     public void detail(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.sendRedirect("TestDetailServlet?testId="+request.getParameter("testId"));
     }
+    /**
+     * Redirect to TeacherPageServlet
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void back(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.sendRedirect("TeacherPageServlet");
     }
+    /**
+     * Redirect to choosingTime
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
     public void assign(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.sendRedirect("choosingTime.jsp?testId="+request.getParameter("testId")+"&groupId="+request.getParameter("groupId"));

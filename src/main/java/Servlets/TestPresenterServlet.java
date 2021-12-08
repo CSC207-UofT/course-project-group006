@@ -41,6 +41,14 @@ public class TestPresenterServlet extends TestServlet {
         RequestDispatcher r= request.getRequestDispatcher("TestPresenter.jsp");
         r.forward(request, response);
     }
+    /**
+     * Method for submission then redirect to GroupPageServlet
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void submit(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int groupId = Integer.parseInt(request.getParameter("groupId"));

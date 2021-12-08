@@ -54,7 +54,12 @@ public class TeacherPageServlet extends TestServlet {
 
         }
 
-
+    /**
+     * Redirect to TeacherPageServlet and delete the specific group
+     *
+     * @param request servlet request
+     * @param response servlet response
+     */
     public void delete(HttpServletRequest request, HttpServletResponse response){
         int id = Integer.parseInt(request.getParameter("groupId"));
         groupManager.deleteGroup(id,new StudentGateway(),new TeacherGateway());
@@ -63,6 +68,12 @@ public class TeacherPageServlet extends TestServlet {
         }catch(IOException ignored){
         }
     }
+    /**
+     * Redirect to GroupPageServlet for detail
+     *
+     * @param request servlet request
+     * @param response servlet response
+     */
     public void detail(HttpServletRequest request, HttpServletResponse response){
         try{
             response.sendRedirect("GroupPageServlet?groupId="+request.getParameter("groupId"));
@@ -70,6 +81,12 @@ public class TeacherPageServlet extends TestServlet {
 
         }
     }
+    /**
+     * Redirect to TestPageServlet for tests
+     *
+     * @param request servlet request
+     * @param response servlet response
+     */
     public void Tests(HttpServletRequest request, HttpServletResponse response){
         try{
             response.sendRedirect("TestPageServlet");
@@ -77,6 +94,13 @@ public class TeacherPageServlet extends TestServlet {
 
         }
     }
+    /**
+     * Redirect to TeacherPageServlet to create groups
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
     public void Create(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         groupManager.createGroup(getUserId(request), request.getParameter("testName"),new TeacherGateway());
