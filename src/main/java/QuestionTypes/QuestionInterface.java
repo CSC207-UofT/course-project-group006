@@ -8,6 +8,10 @@ package QuestionTypes;
  *
  * @author darcy
  */
+
+/**
+ * The interface QuestionInterface
+ */
 public interface QuestionInterface {
     String getQuestion();
     String getAnswer();

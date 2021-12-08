@@ -6,10 +6,23 @@ import BackEnd.Interfaces.ReadNameID;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Student manager
+ */
 public class StudentManager extends UserManager{
+    /**
+     * The constructor of StudentManager
+     * @param userGate the user gate
+     */
     public StudentManager(ReadNameID userGate) {
         super(userGate);
     }
+
+    /**
+     * Read student user
+     * @param id the user ID
+     * @return the student
+     */
     @Override
     protected Student readUser(int id){
         //return new Teacher("placeholder","aaa","a",new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<>());
@@ -32,9 +45,22 @@ public class StudentManager extends UserManager{
     }
     return null;
     }
+
+    /**
+     * Identify if the user is a student user
+     * @param id the user ID
+     * @return The boolean representing if the user is a student user
+     */
     public boolean IsStudent(int id){
         return this.userGate.readRow(id).size()>0;
     }
+
+    /**
+     * Identify if the user log in successfully
+     * @param userName the username
+     * @param password the password
+     * @return The Integer representing if the login is valid
+     */
     public int LogIn(String userName,String password){
         int userType;
         userType = getUserType(userName);
@@ -48,6 +74,12 @@ public class StudentManager extends UserManager{
 
         return -1;
     }
+
+    /**
+     * Get joined group
+     * @param id the user ID
+     * @return The list of joined groups
+     */
     public List<Integer> getJoinedGroup(int id){
         return readUser(id).getJoinedGroup();
     }

@@ -240,12 +240,30 @@ public class UserManager {
         }
         return -1;
     }
+
+    /**
+     * Read user
+     * @param id the user ID
+     * @return Null
+     */
     protected User readUser(int id){
         return null;
     }
+
+    /**
+     * Get name by ID
+     * @param id the user ID
+     * @return The String of name of the user
+     */
     public String getNameById(int id){
         return readUser(id).getUsername();
     }
+
+    /**
+     * Get user type
+     * @param id the user ID
+     * @return The String of the type of the user
+     */
     public String getUserType(int id){
         int userType= getUserType(getNameById(id));
         if(userType==TEACHER){

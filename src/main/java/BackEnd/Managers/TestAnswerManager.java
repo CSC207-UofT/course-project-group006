@@ -6,12 +6,30 @@ import BackEnd.Interfaces.ReadIDName;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Manager TestAnswerManager
+ */
 public class TestAnswerManager {
     private int total_mark = 0;
 
+    /**
+     * The constructor of TestAnswerManager
+     * @param readWriter the readWriter
+     * @param rw the readWriter
+     * @param r the name
+     */
     public TestAnswerManager(GeneralReadWriter readWriter, GeneralReadWriter rw, ReadIDName r) {
     }
 
+    /**
+     * Create test answer
+     * @param testID the test ID
+     * @param studentID the student ID
+     * @param TestAnswerGate the test answer gate
+     * @param TestGate the test gate
+     * @param QuestionAnswerGate the question answer gate
+     * @return The integer identifying if successfully created test answers
+     */
     public int createTestAnswer(int testID, int studentID, GeneralReadWriter TestAnswerGate, GeneralReadWriter TestGate, ReadIDName QuestionAnswerGate) {
 
         List<String> list = new ArrayList<>();
