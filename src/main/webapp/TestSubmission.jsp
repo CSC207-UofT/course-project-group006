@@ -75,7 +75,7 @@
 <label>this student did not hand in any thing yet</label>
 <form action="TestSubmissionServlet" method="Post">
     <input type="hidden" name="groupId" id="groupId" value=<%=(int)request.getAttribute("groupId")%>>
-    <input type="submit" id="act" name="act" value="back">
+    <input type="submit" name="act" value="back">
 </form>
 <%}%>
 </body>

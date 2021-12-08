@@ -142,7 +142,7 @@
     }
 </script>
 <form action="GroupPageServlet" method="Post" style="position: fixed; bottom: 0px">
-    <input type="submit" name="act" id="act" value="back">
+    <input type="submit" name="act" value="back">
 </form>
 </body>
 </html>

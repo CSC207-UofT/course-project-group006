@@ -43,14 +43,14 @@
         <div style="width: 50%; float: left; text-align: left">
             <label>:&nbsp;</label>
             <input type="hidden" name="groupId" id="groupId" value=<%=i%>>
-            <input type="submit" name="act" id="act" value="join">
+            <input type="submit" name="act" value="join">
         </div>
     </form>
     <%}%>
 </div>
 <div style="padding-top: 20px;align-content: center;text-align: center">
     <form action="JoinGroupServlet" method="Post">
-        <input type="submit" name="act" id="act" value="back">
+        <input type="submit" name="act" value="back">
     </form>
 </div>
 </body>

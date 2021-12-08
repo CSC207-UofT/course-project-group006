@@ -62,7 +62,7 @@
         <input type="text" name="testName" id="testName">
         <label for="timeLimit"> set a time limit for it</label>
         <input type="number" name="timeLimit" id="timeLimit">
-        <input type="submit" name="act" id="act" value="add">
+        <input type="submit" name="act" value="add">
     </form>
 </div>
 <script>
@@ -71,7 +71,7 @@
     }
 </script>
 <form action="TestPageServlet" method="Post" style="position: fixed; bottom: 0px">
-    <input type="submit" name="act" id="act" value="back">
+    <input type="submit" name="act" value="back">
 </form>
 </body>
 </html>

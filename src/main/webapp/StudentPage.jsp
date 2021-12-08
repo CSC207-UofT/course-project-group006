@@ -43,7 +43,7 @@
 
 <div style="background-color:white;font-family: Garamond, serif;color: black;text-align: center;align-content: center">
     <form action="StudentPageServlet" method="Post" style="background-color: white">
-        <input type="submit" name="act" id="act" value="JoinGroup">
+        <input type="submit" name="act" value="JoinGroup">
     </form>
     <!--<form action="StudentPageServlet" method="Post">
         <input type="submit" name="act" id="act" value="learn">
@@ -68,7 +68,7 @@
             <label style="background-color: white">&nbsp;</label>
         </div>
         <div style="width: 33%; float: left">
-            <input style="font-family: Garamond, serif" type="submit" name="act" id="act" value="quit">
+            <input style="font-family: Garamond, serif" type="submit" name="act" value="quit">
         </div>
         <hr>
     </form>
