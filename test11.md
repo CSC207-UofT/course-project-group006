@@ -126,7 +126,8 @@ Our website is an educational website dedicated to creating an online study spac
 
 
 ## Code Style and Documentation
-TODO
+&nbsp;&nbsp;&nbsp;&nbsp;We have written Javadocs for all of our code, giving all our methods a clear description of functionality, parameter and return statement. Also, we did our best to resolve all of the warnings. Compared to phase1, we renamed the classes and functions that violating the naming conventions. For the newly added code, we make sure they were named in a proper format.
+
 
 ## Testing
 &nbsp;&nbsp;&nbsp;&nbsp;In order to test our code, we create a new database and new ini only for testing purpose. In this way, we can test the main method of our project using a different connection to another database. In this case, we separate our main database with the test database so that keeps our main database not being affected when we run our test.\
