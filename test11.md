@@ -151,7 +151,7 @@ https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
 * Extract Variable:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
 * Rename Method:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp; We fixed the typo in our original methods. Up to now, every method has a reasonable meaning showing what the method is doing.
 * Extract Interface:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
 
