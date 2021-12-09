@@ -145,12 +145,6 @@ https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
 ## Refactoring
 * Replace magic number with symbolic constant:\
 &nbsp;&nbsp;&nbsp;&nbsp; Instead of assigning numbers to variables, we define a constant storing the number and use the constant in methods.
-* Extract methods:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
-* Inline Temp:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
-* Extract Variable:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
 * Rename Method:\
 &nbsp;&nbsp;&nbsp;&nbsp; We fixed the typo in our original methods. Up to now, every method has a reasonable meaning showing what the method is doing.
 * Extract Interface:\
@@ -162,8 +156,8 @@ https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
 &nbsp;&nbsp;&nbsp;&nbsp;We are still not quite sure how to improve the connection speed.
 * Worked Well:\
 &nbsp;&nbsp;&nbsp;&nbsp; Our design and implementation of the website are great. The project mostly satisfies the SOLID principles and follows the clean architecture. To fit for most people, our website also follows 5 out of 7 of the universal design principle. The usage of design patterns gives our website another improvement. We also had great teamwork in this project. 
-* Member Progress:\ 
-&nbsp;&nbsp;&nbsp;&nbsp;
+* Member Progress: 
+&nbsp;&nbsp;&nbsp;&nbsp;\
 &nbsp;&nbsp;&nbsp;&nbsp;Gavin Gao: https://github.com/CSC207-UofT/course-project-group006/pull/41#issue-1069040744. I have been working on backend by implementing the gateways and managers. This pull request changes the TestGateway and TestManager. Besides that, I also worked on document part with Jerry.\
 &nbsp;&nbsp;&nbsp;&nbsp;Jacky Jiang: I have been working on implementing the gateways, managers and creating unit tests. https://github.com/CSC207-UofT/course-project-group006/pull/48#issue-1071496102. This pull request merged an important TestAnswerManager and TestAnswerGateway into main. https://github.com/CSC207-UofT/course-project-group006/pull/59#issue-1071620452. This one add most of the test cases into main.\
 &nbsp;&nbsp;&nbsp;&nbsp;Jen Zhu: https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324. I have been focusing on creating gateways and managers, setting up connections with the database as well as helping with the UI. This pull request changes the non-clean phase 1 structure into a clean structure by creating serval gateway classes and some new interfaces.\
