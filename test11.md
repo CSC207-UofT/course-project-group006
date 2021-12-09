@@ -154,8 +154,10 @@ https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
 ## Progress Report
 * Open Question:\
 &nbsp;&nbsp;&nbsp;&nbsp;We are still not quite sure how to improve the connection speed.
+
 * Worked Well:\
 &nbsp;&nbsp;&nbsp;&nbsp; Our design and implementation of the website are great. The project mostly satisfies the SOLID principles and follows the clean architecture. To fit for most people, our website also follows 5 out of 7 of the universal design principle. The usage of design patterns gives our website another improvement. We also had great teamwork in this project. 
+
 * Member Progress: 
 &nbsp;&nbsp;&nbsp;&nbsp;\
 &nbsp;&nbsp;&nbsp;&nbsp;Gavin Gao: https://github.com/CSC207-UofT/course-project-group006/pull/41#issue-1069040744. I have been working on backend by implementing the gateways and managers. This pull request changes the TestGateway and TestManager. Besides that, I also worked on document part with Jerry.\
@@ -163,8 +165,10 @@ https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
 &nbsp;&nbsp;&nbsp;&nbsp;Jen Zhu: https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324. I have been focusing on creating gateways and managers, setting up connections with the database as well as helping with the UI. This pull request changes the non-clean phase 1 structure into a clean structure by creating serval gateway classes and some new interfaces.\
 &nbsp;&nbsp;&nbsp;&nbsp;Zi Hua Xu: I have been working on the written part, including the fixing warning, design document and the javadocs. https://github.com/CSC207-UofT/course-project-group006/pull/101#issue-1074299889 This is the finished version of the javadocs and the minor warnings version commit.\
 &nbsp;&nbsp;&nbsp;&nbsp;Darcy Wang: I have been working the front end and it's connection with the back end through the project. https://github.com/CSC207-UofT/course-project-group006/pull/25#issue-1053202870, this is the pull request I added all the servlets I wrote.
+
 * Improvments From Phase 1:\
 &nbsp;&nbsp;&nbsp;&nbsp;One of the greatest improvements is that we have fixed our structure according to the MVC model so that it could meet all the requirements and principles. We have also refactored a lot and significantly improves the readability of our code. We have had lots of problems and issues using GitHub and IntelliJ in phase 1 mainly because we need to include lots of dependencies, create new configure and artifacts, and many things we have not seen before, but we are happy to say that we can use GitHub and IntelliJ much better than phase 1 now. 
+
 * In Future:\
 &nbsp;&nbsp;&nbsp;&nbsp;We do have many ideas in mind, for example, the UI is no way close to elegant and there are many ways to make it look more professional. We plan to implement CSS and html5 into our front end. Another thing we could improve on is to migrate our source code to an online hosting server so that users can access the website directly using the URL, and don't need to download anything locally.
 ## Accessibility Report
