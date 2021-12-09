@@ -160,7 +160,7 @@ https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
 * Open Question:\
 &nbsp;&nbsp;&nbsp;&nbsp;We are still not quite sure how to improve the connection speed.
 * Worked Well:\
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; We had great collaboration in this project. Our design of the website is also great.
 * Member Progress:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO\
 &nbsp;&nbsp;&nbsp;&nbsp;Gavin Gao: https://github.com/CSC207-UofT/course-project-group006/pull/41#issue-1069040744. I have been working on backend by implementing the gateways and managers. This pull request changes the TestGateway and TestManager. Besides that, I also worked on document part with Jerry.\
