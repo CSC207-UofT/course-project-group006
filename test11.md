@@ -160,13 +160,13 @@ https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
 * Open Question:\
 &nbsp;&nbsp;&nbsp;&nbsp;We are still not quite sure how to improve the connection speed.
 * Worked Well:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;
 * Member Progress:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO\
 &nbsp;&nbsp;&nbsp;&nbsp;Gavin Gao: https://github.com/CSC207-UofT/course-project-group006/pull/41#issue-1069040744. I have been working on backend by implementing the gateways and managers. This pull request changes the TestGateway and TestManager. Besides that, I also worked on document part with Jerry.\
 &nbsp;&nbsp;&nbsp;&nbsp;Jacky Jiang: I have been working on implementing the gateways, managers and creating unit tests. https://github.com/CSC207-UofT/course-project-group006/pull/48#issue-1071496102. This pull request merged an important TestAnswerManager and TestAnswerGateway into main. https://github.com/CSC207-UofT/course-project-group006/pull/59#issue-1071620452. This one add most of the test cases into main.\
 &nbsp;&nbsp;&nbsp;&nbsp;Jen Zhu: https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324. I have been focusing on creating gateways and managers, setting up connections with the database as well as helping with the UI. This pull request changes the non-clean phase 1 structure into a clean structure by creating serval gateway classes and some new interfaces.\
-&nbsp;&nbsp;&nbsp;&nbsp;Zi Hua Xu: I have been working on the written part, including the fixing warning, design document and the javadocs. https://github.com/CSC207-UofT/course-project-group006/pull/101 This is the finished version of the javadocs and the minor warnings version commit.
+&nbsp;&nbsp;&nbsp;&nbsp;Zi Hua Xu: I have been working on the written part, including the fixing warning, design document and the javadocs. https://github.com/CSC207-UofT/course-project-group006/pull/101#issue-1074299889 This is the finished version of the javadocs and the minor warnings version commit.
 * Improvments From Phase 1:\
 &nbsp;&nbsp;&nbsp;&nbsp;One of the greatest improvements is that we have fixed our structure according to the MVC model so that it could meet all the requirements and principles. We have also refactored a lot and significantly improves the readability of our code. We have had lots of problems and issues using GitHub and IntelliJ in phase 1 mainly because we need to include lots of dependencies, create new configure and artifacts, and many things we have not seen before, but we are happy to say that we can use GitHub and IntelliJ much better than phase 1 now. 
 * In Future:\
