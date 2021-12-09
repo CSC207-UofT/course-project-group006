@@ -143,7 +143,7 @@ https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
 
 ## Refactoring
 * Replace magic number with symbolic constant:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp; Instead of assigning numbers to variables, we define a constant storing the number and use the constant in methods.
 * Extract methods:\
 &nbsp;&nbsp;&nbsp;&nbsp;TODO
 * Inline Temp:\
