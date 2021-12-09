@@ -135,6 +135,7 @@ https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
 &nbsp;&nbsp;&nbsp;&nbsp;For commit and pull request, everyone has their own branch to work with. If we edit a new version, we will commit and push it to our own branch and create a pull request, waiting for our teammates to compare and merge if necessary. \
 &nbsp;&nbsp;&nbsp;&nbsp;Based on the feedback of phase 1, we also discovered the advantage using issue in Github. Issue allows us to post the problems met in coding and wait for group members to solve them. We solved a few problems during our coding process using this feature. \
 &nbsp;&nbsp;&nbsp;&nbsp;For actions, we have recently discovered the importance of using this feature in Github. it allows us to locate our processes and our full history. Because of this, I can revisit my original version to compare the difference.\
+&nbsp;&nbsp;&nbsp;&nbsp;We also did a brief introduction about our project in the Github Wiki in order to tell the readers and users about the basic information of our website and how to run our code correctly.
 &nbsp;&nbsp;&nbsp;&nbsp;In case of the number of commits, we have about 400 commits in our main. This is because we changed our main in Github when working on the project. We also did about 200 commits to our old main. In total, there are roughly 600 commits.
 
 
