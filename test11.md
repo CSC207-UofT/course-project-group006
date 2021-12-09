@@ -186,7 +186,7 @@ Universal Design:
 
 
 * Write a paragraph about who you would market your program towards, if you were to sell or license your program to customers. This could be a specific category such as "students" or more vague, such as "people who like games". Try to give a bit more detail along with the category.\
-Our program is toward students who want to do ward studies and teachers who would like to have some extra income.\
+Our program is toward students who want to do ward studies and teachers who would like to have some extra income. As mentioned in the introduction paragraph, our website aims to provide a platform for educational services.
 
 * Write a paragraph about whether or not your program is less likely to be used by certain demographics. For example, a program that converts txt files to files that can be printed by a braille printer are less likely to be used by people who do not read braille.\
-TODO
+Our website is theoretically fittable for everyone. For people having some visual disabilities, since our website provides all announcement and materials in String form, then it can be converted to txt file in some way. Also, even if he/she does not want to convert to txt file, a more convenient way will be opening a translate tool and screen shot our website, the clear and neat format will make it easy to identify words, the translate tool shall be able to read to our users.
