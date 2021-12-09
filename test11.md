@@ -153,7 +153,7 @@ https://github.com/CSC207-UofT/course-project-group006/pull/32#issue-1067677324.
 * Rename Method:\
 &nbsp;&nbsp;&nbsp;&nbsp; We fixed the typo in our original methods. Up to now, every method has a reasonable meaning showing what the method is doing.
 * Extract Interface:\
-&nbsp;&nbsp;&nbsp;&nbsp;TODO
+&nbsp;&nbsp;&nbsp;&nbsp;For those gateways, they all have some common methods, such as Read and Write. In this case, we extracted an interface called GeneralReadWriter which contains methods and made gateways to implement this interface.
 
 
 ## Progress Report
